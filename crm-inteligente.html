@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>NX Digital - Plataforma de atendimento</title>
+<meta name="description" content="CRM Inteligente — NX Digital, plataforma de atendimento multicanal no WhatsApp." />
+<link rel="icon" type="image/png" href="assets/nx-logo.png" />
+<link rel="apple-touch-icon" href="assets/nx-logo.png" />
+<link rel="shortcut icon" type="image/png" href="assets/nx-logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:#0B1220;background:#fff;-webkit-font-smoothing:antialiased}
+  a{color:#0756FF;text-decoration:none}
+  a:hover{color:#0445CC}
+  @media(max-width:920px){.head-nav{display:none!important}.sub-title{font-size:40px!important}.foot-grid{grid-template-columns:1fr 1fr!important}}
+  @media(max-width:560px){.foot-grid{grid-template-columns:1fr!important}}
+  @keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .dots-bg{background-image:radial-gradient(#c9d6ee 1.1px,transparent 1.1px);background-size:22px 22px}
+  @media(max-width:920px){.crm-grid{grid-template-columns:1fr!important}.crm3{grid-template-columns:1fr!important}.crm4{grid-template-columns:1fr 1fr!important}.crm-metrics{grid-template-columns:repeat(3,1fr)!important}.crm2{grid-template-columns:1fr!important}}
+  @media(max-width:560px){.crm4{grid-template-columns:1fr!important}.crm-metrics{grid-template-columns:repeat(2,1fr)!important}}
+
+  /* ===== MOBILE (não afeta desktop) ===== */
+  @media(max-width:760px){
+    html,body{overflow-x:hidden!important}
+    img{max-width:100%!important;height:auto!important}
+    h1,.sub-title{font-size:clamp(27px,7.6vw,36px)!important;line-height:1.12!important;letter-spacing:-1.1px!important}
+    h2{font-size:clamp(22px,6.2vw,29px)!important;line-height:1.16!important;letter-spacing:-.8px!important}
+    h3{font-size:18px!important}
+    section{padding-left:16px!important;padding-right:16px!important}
+    section > div, footer > div{max-width:100%!important}
+    div[style*="grid-template-columns"]{grid-template-columns:1fr!important}
+    div[style*="position:sticky"],div[style*="position: sticky"]{position:static!important;top:auto!important}
+    p{font-size:15.5px!important;line-height:1.6!important}
+    a[style*="padding:16px 3"],a[style*="padding:15px 3"],a[style*="padding: 16px 3"],a[style*="padding: 15px 3"]{width:100%!important;justify-content:center!important}
+    div[style*="max-width:520px"],div[style*="max-width:560px"],div[style*="max-width:460px"],div[style*="max-width:440px"],div[style*="max-width:420px"],div[style*="max-width:400px"]{max-width:100%!important}
+    img[style*="margin-left:-9%"]{width:100%!important;margin-left:0!important}
+    img[style*="margin-left:-24px"]{margin-left:0!important}
+  }
+  @media(max-width:560px){
+    section{padding-top:44px!important;padding-bottom:44px!important}
+    div[style*="padding:56px"],div[style*="padding:64px"],div[style*="padding: 56px"],div[style*="padding: 64px"]{padding:26px 18px!important}
+    div[style*="border-radius:28px"]{border-radius:20px!important}
+  }
+
+  /* nav mobile: mostra os menus em linha rolável */
+  @media(max-width:920px){
+    header .head-nav{display:flex!important;order:3;width:100%;gap:18px!important;overflow-x:auto;padding:8px 2px 2px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    header .head-nav::-webkit-scrollbar{display:none}
+    header .head-nav > *{flex-shrink:0}
+    header .head-nav a,header .head-nav button{font-size:13.5px!important;white-space:nowrap}
+    header .wrap-pad,header > div > div > div{flex-wrap:wrap!important}
+  }
+  @media(max-width:560px){
+    header a[style*="border-radius:100px"]{font-size:12.5px!important;padding:9px 15px!important}
+    header img{height:30px!important}
+  }
+
+  /* ===== MOBILE v2 — refinos (desktop intocado) ===== */
+  @media(max-width:760px){
+    *{max-width:100%}
+    svg{max-width:100%}
+    /* mockups e cards com largura fixa */
+    div[style*="width:420px"],div[style*="width:440px"],div[style*="width:460px"],div[style*="width:360px"],div[style*="width:340px"],div[style*="width:330px"],div[style*="width:320px"],div[style*="width:310px"],div[style*="width:300px"],div[style*="width:290px"],div[style*="width:270px"],div[style*="width:250px"],div[style*="width:230px"]{width:100%!important}
+    div[style*="min-width:110px"],div[style*="min-width:150px"],div[style*="min-width:104px"]{min-width:0!important}
+    /* cartões flutuantes viram estáticos para não sobrepor texto */
+    div[style*="position:absolute"][style*="animation:floaty"]{position:static!important;animation:none!important;margin:12px auto 0!important;transform:none!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important}
+    /* marquee mais lento e legível */
+    div[style*="animation:marquee"]{gap:34px!important}
+    div[style*="animation:marquee"] > span{font-size:19px!important}
+    /* tabelas / linhas largas rolam sozinhas */
+    table{display:block;overflow-x:auto;white-space:nowrap}
+    /* textos que travavam em uma linha só */
+    p[style*="white-space:nowrap"],div[style*="white-space:nowrap"]{white-space:normal!important}
+    /* aspect-ratio de círculos decorativos não estica a página */
+    div[style*="aspect-ratio:1"]{max-height:78vw}
+    /* form: inputs confortáveis e sem zoom no iOS */
+    input,select,textarea,button{font-size:16px!important;max-width:100%}
+    select{background-position:right 12px center!important}
+    /* CTAs empilhados ocupam a linha */
+    div[style*="display:flex"][style*="flex-wrap:wrap"] > a{flex:1 1 100%}
+  }
+  @media(max-width:560px){
+    h1,.sub-title,.h1-xl{font-size:clamp(25px,7.4vw,31px)!important;letter-spacing:-.9px!important}
+    h2,.sec-title{font-size:clamp(21px,6vw,26px)!important}
+    /* padding interno de cards grandes */
+    div[style*="padding:32px 30px"],div[style*="padding:30px 28px"],div[style*="padding:34px 30px"],div[style*="padding:26px 26px"],div[style*="padding:28px 26px"]{padding:20px 16px!important}
+    div[style*="border-radius:26px"],div[style*="border-radius:24px"],div[style*="border-radius:22px"],div[style*="border-radius:20px"]{border-radius:16px!important}
+    /* números gigantes */
+    div[style*="font-size:56px"],div[style*="font-size:44px"],div[style*="font-size:42px"]{font-size:32px!important;letter-spacing:-1px!important}
+    /* whatsapp flutuante não cobre o CTA */
+    a[style*="position:fixed"]{bottom:14px!important;right:14px!important;transform:scale(.9)}
+  }
+
+  /* ===== MOBILE v3 — correções (desktop intocado) ===== */
+  @media(max-width:760px){
+    /* CABEÇALHO: logo+CTAs em linha, menus abaixo, nada estourando */
+    header .wrap-pad{flex-wrap:wrap!important;gap:8px!important;padding:8px 12px!important}
+    header .wrap-pad > div:first-child{flex:0 0 auto}
+    header .wrap-pad > div:last-child{flex:1 1 100%;order:2;display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:8px!important;justify-content:flex-start!important}
+    header .wrap-pad > div:last-child > div:first-child{order:1;flex:0 0 auto}
+    header .wrap-pad > div:last-child > a{flex:1 1 auto;min-width:0;justify-content:center!important;text-align:center;font-size:13px!important;padding:10px 12px!important;white-space:nowrap}
+    header .head-nav{order:3;flex:1 1 100%}
+    /* MARQUEE: precisa ser mais largo que a tela pra rolar */
+    div[style*="animation:marquee"]{width:max-content!important;max-width:none!important;flex-wrap:nowrap!important}
+    div[style*="animation:marquee"] > span{max-width:none!important;flex-shrink:0!important}
+    /* FAIXA "Atenda mais rápido": deixa quebrar em 2 linhas */
+    section p[style*="white-space:nowrap"]{white-space:normal!important;font-size:17px!important;text-align:left!important}
+    /* HERO: foto da especialista encaixada, sem sobra */
+    img[src*="moca"],img[src*="hero-"]{width:100%!important;max-width:420px!important;margin:0 auto!important;display:block!important}
+    /* WhatsApp flutuante fica acima de tudo, sem cobrir CTA */
+    a[style*="position:fixed"]{z-index:90!important}
+  }
+  @media(max-width:560px){
+    header .wrap-pad > div:last-child > a{font-size:12.5px!important;padding:9px 10px!important}
+    header img{height:26px!important}
+    div[style*="animation:marquee"] > span{font-size:17px!important}
+    section p[style*="white-space:nowrap"]{font-size:15.5px!important}
+  }
+
+  /* MOBILE marquee speed */
+  @media(max-width:760px){
+    div[style*="animation:marquee"]{animation-duration:9s!important}
+  }
+  @media(max-width:560px){
+    div[style*="animation:marquee"]{animation-duration:7s!important}
+  }
+
+  /* MOBILE footer logo */
+  @media(max-width:760px){
+    footer .foot-grid > div:first-child > div:first-child{display:inline-flex!important;width:auto!important;max-width:150px!important;padding:8px 12px!important;border-radius:10px!important}
+    footer .foot-grid img{height:30px!important;width:auto!important;max-width:120px!important;object-fit:contain!important}
+  }
+
+  /* MOBILE cabeçalho: bandeirinhas pequenas na primeira linha */
+  @media(max-width:760px){
+    header .wrap-pad{position:relative}
+    header .wrap-pad > div:last-child > div:first-child{position:absolute!important;top:10px!important;right:14px!important;gap:5px!important;z-index:5}
+    header .wrap-pad > div:last-child > div:first-child button{width:20px!important;height:15px!important;border-radius:3px!important}
+    header .wrap-pad > div:last-child > div:first-child button svg{width:20px!important;height:15px!important}
+    header .wrap-pad > div:last-child{padding-top:2px!important}
+    header .wrap-pad > div:first-child{padding-right:82px}
+  }
+
+  /* MOBILE nav centralizado */
+  @media(max-width:920px){
+    header .head-nav{justify-content:center!important;overflow-x:visible!important;flex-wrap:wrap!important;gap:16px!important;padding:6px 2px 2px!important}
+  }
+
+  /* MOBILE: mockups do CRM cabem inteiros na tela (escala reduzida) */
+  @media(max-width:920px){
+    .crm-scroll{overflow:hidden!important;width:100%!important}
+    .crm-scroll > div{width:100%!important;max-width:100%!important}
+    .keep-desktop-grid{grid-template-columns:inherit!important}
+    .crm-metrics.keep-desktop-grid{grid-template-columns:repeat(6,1fr)!important;gap:3px!important}
+    .crm-metrics.keep-desktop-grid > div{padding:6px 4px!important;border-radius:7px!important}
+    .crm-metrics.keep-desktop-grid > div div:first-child{font-size:7px!important;line-height:1.2!important}
+    .crm-metrics.keep-desktop-grid > div div:nth-child(2){font-size:12px!important;letter-spacing:-.3px!important}
+    .crm-metrics.keep-desktop-grid svg{width:8px!important;height:8px!important}
+    /* calendário: 7 colunas menores, sem rolar */
+    .crm-scroll .keep-desktop-grid[style*="repeat(7"]{grid-template-columns:repeat(7,1fr)!important;gap:2px!important}
+    .crm-scroll .keep-desktop-grid[style*="repeat(7"] > div{min-height:34px!important;padding:2px!important;border-radius:4px!important}
+    .crm-scroll .keep-desktop-grid[style*="repeat(7"] > div > div:first-child{font-size:7px!important}
+    .crm-scroll .keep-desktop-grid[style*="repeat(7"] > div > div:not(:first-child){font-size:5.5px!important;padding:1px 2px!important;border-radius:2px!important;line-height:1.25!important}
+    .crm-scroll div[style*="grid-template-columns:repeat(7,1fr)"][style*="margin-bottom"] > div{font-size:7px!important}
+    /* funil de upsell fica em 2 colunas */
+    .crm-scroll .keep-desktop-grid[style*="1fr 1fr"]{grid-template-columns:1fr 1fr!important;gap:6px!important}
+  }
+  @media(max-width:920px){
+    .cal-dows{display:none!important}
+    .crm-scroll{overflow:visible!important;border-radius:16px!important}
+    .crm-scroll > div{border-radius:16px!important;overflow:hidden!important}
+  }
+  @media(max-width:560px){
+    .crm-metrics.keep-desktop-grid > div div:nth-child(2){font-size:10px!important}
+    .crm-metrics.keep-desktop-grid > div div:first-child{font-size:6px!important}
+    .crm-scroll .keep-desktop-grid[style*="repeat(7"] > div{min-height:30px!important}
+  }
+
+  /* MOBILE: hero do CRM sem corte de texto */
+  @media(max-width:920px){
+    .crm-hero-grid{grid-template-columns:1fr!important;gap:26px!important}
+    .crm-hero-grid > div{min-width:0!important}
+    .crm-hero-grid h1,.crm-hero-grid .sub-title{font-size:clamp(25px,7vw,32px)!important;letter-spacing:-.9px!important;overflow-wrap:break-word!important;word-break:normal!important;hyphens:auto!important}
+    .crm-hero-grid p{max-width:100%!important}
+  }
+
+  /* MOBILE: kanban do funil completo na tela */
+  @media(max-width:760px){
+    .kan-scroll{overflow-x:hidden!important;padding:10px 8px 12px!important}
+    .kan-track{min-width:0!important;gap:4px!important}
+    .kan-track > div{flex:1 1 0!important;width:auto!important;min-width:0!important}
+    .kan-track > div > div:first-child{padding:0 1px 5px!important}
+    .kan-track > div > div:first-child > div:first-child{font-size:7px!important;letter-spacing:-.1px!important;line-height:1.15!important}
+    .kan-track > div > div:first-child > span{font-size:6.5px!important;min-width:12px!important;height:12px!important;padding:0 2px!important}
+    .kan-track > div > div:last-child{gap:4px!important}
+    .kan-track > div > div:last-child > div{padding:5px 4px!important;border-radius:5px!important}
+    .kan-track span[style*="font-size:8px"]{font-size:5.5px!important;padding:1px 3px!important}
+    .kan-track div[style*="font-size:9.5px"]{font-size:6.5px!important;line-height:1.2!important}
+    .kan-track div[style*="font-size:10px"]{font-size:6.5px!important;line-height:1.2!important}
+    .kan-track span[style*="width:14px"]{width:10px!important;height:10px!important;font-size:5px!important}
+    .kan-track svg{width:7px!important;height:7px!important}
+  }
+
+  /* MOBILE: card do funil sem estouro/sombra cortada */
+  @media(max-width:760px){
+    .crm-scroll{overflow-x:hidden!important;padding-bottom:0!important}
+    .crm-scroll > *{min-width:0!important;max-width:100%!important}
+    .crm-scroll > div{box-shadow:0 18px 40px -28px rgba(15,23,42,.35)!important;border-radius:14px!important}
+    .crm-scroll [style*="display:flex"][style*="border-bottom"]{flex-wrap:wrap!important;gap:8px 12px!important;overflow:hidden!important}
+    .crm-scroll [style*="display:flex"][style*="border-bottom"] > span{font-size:9.5px!important;padding-bottom:5px!important;white-space:nowrap}
+    .crm-scroll div[style*="padding:12px 14px"]{padding:10px 10px 0!important}
+  }
+
+  /* MOBILE: cabeçalho reto + dropdowns dentro da tela */
+  @media(max-width:760px){
+    header > div:first-child{padding:0!important;max-width:none!important}
+    header > div:first-child > div:first-child{border-radius:0!important;box-shadow:0 2px 10px -4px rgba(15,23,42,.25)!important}
+    header .head-nav > div{position:static!important}
+    header .head-nav > div > div[style*="position:absolute"]{position:fixed!important;left:8px!important;right:8px!important;top:auto!important;width:auto!important;max-width:none!important;padding-top:6px!important}
+    header .head-nav > div > div[style*="position:absolute"] > div{min-width:0!important;width:100%!important;max-height:62vh!important;overflow-y:auto!important;box-sizing:border-box!important}
+    header .head-nav > div > div[style*="position:absolute"] a{font-size:13.5px!important;padding:10px 13px!important;white-space:normal!important;line-height:1.35!important}
+  }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="width:100%;overflow-x:hidden;background:#fff">
+
+  <header class="dots-bg" style="position:sticky;top:0;z-index:50;padding:0;background:#eef4ff">
+    <div style="max-width:1240px;margin:0 auto;padding:12px 24px 0">
+    <div style="background:#fff;border-radius:22px;box-shadow:0 14px 40px -16px rgba(7,86,255,.35)">
+    <div class="wrap-pad" style="max-width:1200px;margin:0 auto;padding:8px 28px;display:flex;align-items:center;justify-content:space-between">
+      <a href="/" style="display:flex;align-items:center;gap:8px">
+        <img src="assets/nx-logo.png" alt="NX Digital" style="height:40px;object-fit:contain;display:block" />
+      </a>
+      <nav class="head-nav" style="display:flex;align-items:center;gap:32px">
+        <div style="position:relative" onMouseEnter="{{ openSol }}" onMouseLeave="{{ closeSol }}">
+          <button onClick="{{ toggleSol }}" style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;padding:0;cursor:pointer;color:#334155;font-weight:600;font-size:15px;font-family:inherit;transition:color .15s" style-hover="color:#0756FF">Soluções<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="{{ solChevronStyle }}"><path d="m6 9 6 6 6-6"></path></svg></button>
+          <div style="{{ solMenuStyle }}">
+            <div style="background:#fff;border:1px solid #eef2f8;border-radius:16px;box-shadow:0 24px 60px -18px rgba(15,23,42,.3);padding:10px;min-width:250px;display:flex;flex-direction:column">
+              <a href="/chatbot" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Chatbot</a>
+              <a href="/agente-de-ia" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Agente de IA</a>
+              <a href="/copiloto-de-ia" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Copiloto de IA</a>
+              <a href="/crm-inteligente" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">CRM Inteligente</a>
+              <a href="/disparo-em-massa" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Disparo em massa</a>
+              <a href="/relatorios" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Relatórios</a>
+              <a href="/integracoes-personalizadas" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Integrações personalizadas</a>
+              <a href="/integracao-whatsapp" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Integração WhatsApp</a>
+              <a href="/integracao-instagram" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Integração Instagram</a>
+              <a href="/criacao-de-site" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Criação de site</a>
+              <a href="/automacao-personalizada" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Automação personalizada</a>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative" onMouseEnter="{{ openQuem }}" onMouseLeave="{{ closeQuem }}">
+          <button onClick="{{ toggleQuem }}" style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;padding:0;cursor:pointer;color:#334155;font-weight:600;font-size:15px;font-family:inherit;transition:color .15s" style-hover="color:#0756FF">Quem somos<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="{{ quemChevronStyle }}"><path d="m6 9 6 6 6-6"></path></svg></button>
+          <div style="{{ quemMenuStyle }}">
+            <div style="background:#fff;border:1px solid #eef2f8;border-radius:16px;box-shadow:0 24px 60px -18px rgba(15,23,42,.3);padding:10px;min-width:290px;display:flex;flex-direction:column">
+              <a href="/protecao-de-dados" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Proteção de Dados e Segurança</a>
+              <a href="/politica-de-chatbot-e-ia" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Política de Chatbot e Inteligência Artificial</a>
+              <a href="/politica-de-privacidade" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Política de Privacidade</a>
+              <a href="/aviso-de-privacidade" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Aviso de Privacidade</a>
+              <a href="/termos-de-uso" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Termos de Uso</a>
+              <a href="/codigo-de-etica" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Código de Ética</a>
+              <a href="/politica-anticorrupcao" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Política Anticorrupção</a>
+              <a href="/politicas-da-meta" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Políticas da Meta</a>
+              <a href="/nossa-historia" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Nossa História</a>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative" onMouseEnter="{{ openCont }}" onMouseLeave="{{ closeCont }}">
+          <button onClick="{{ toggleCont }}" style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;padding:0;cursor:pointer;color:#334155;font-weight:600;font-size:15px;font-family:inherit;transition:color .15s" style-hover="color:#0756FF">Contato<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="{{ contChevronStyle }}"><path d="m6 9 6 6 6-6"></path></svg></button>
+          <div style="{{ contMenuStyle }}">
+            <div style="background:#fff;border:1px solid #eef2f8;border-radius:16px;box-shadow:0 24px 60px -18px rgba(15,23,42,.3);padding:10px;min-width:230px;display:flex;flex-direction:column">
+              <a href="/seja-um-parceiro" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Seja um parceiro</a>
+              <a href="/suporte" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Fale com o suporte</a>
+              <a href="#form-crm" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Fale com o especialista</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div style="display:flex;align-items:center;gap:16px">
+        <div style="display:flex;align-items:center;gap:7px">
+          <button onClick="{{ setLangPt }}" aria-label="Português (Brasil)" title="Português" style="width:26px;height:19px;border-radius:4px;border:none;padding:0;overflow:hidden;cursor:pointer;background:none;display:flex;transition:transform .15s" style-hover="transform:scale(1.14)">
+            <svg width="26" height="19" viewBox="0 0 26 19"><rect width="26" height="19" fill="#009c3b"/><path d="M13 2.5 23.5 9.5 13 16.5 2.5 9.5Z" fill="#ffdf00"/><circle cx="13" cy="9.5" r="3.4" fill="#002776"/></svg>
+          </button>
+          <button onClick="{{ setLangEs }}" aria-label="Español" title="Español" style="width:26px;height:19px;border-radius:4px;border:none;padding:0;overflow:hidden;cursor:pointer;background:none;display:flex;transition:transform .15s" style-hover="transform:scale(1.14)">
+            <svg width="26" height="19" viewBox="0 0 26 19"><rect width="26" height="19" fill="#c60b1e"/><rect y="4.75" width="26" height="9.5" fill="#ffc400"/></svg>
+          </button>
+          <button onClick="{{ setLangEn }}" aria-label="English (US)" title="English" style="width:26px;height:19px;border-radius:4px;border:none;padding:0;overflow:hidden;cursor:pointer;background:none;display:flex;transition:transform .15s" style-hover="transform:scale(1.14)">
+            <svg width="26" height="19" viewBox="0 0 26 19"><rect width="26" height="19" fill="#fff"/><g fill="#b22234"><rect width="26" height="1.46"/><rect y="2.92" width="26" height="1.46"/><rect y="5.85" width="26" height="1.46"/><rect y="8.77" width="26" height="1.46"/><rect y="11.69" width="26" height="1.46"/><rect y="14.62" width="26" height="1.46"/><rect y="17.54" width="26" height="1.46"/></g><rect width="11.5" height="8.77" fill="#3c3b6e"/></svg>
+          </button>
+        </div>
+        <a href="#form-crm" style="display:inline-flex;align-items:center;gap:8px;background:#0756FF;color:#fff;font-weight:700;font-size:14.5px;padding:12px 24px;border-radius:100px;transition:background .15s;box-shadow:0 8px 20px -8px rgba(7,86,255,.6)" style-hover="background:#0445CC">Fale com o especialista</a>
+        <a href="/#planos" style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;font-weight:700;font-size:14.5px;padding:12px 24px;border-radius:100px;transition:filter .15s;box-shadow:0 8px 20px -8px rgba(37,211,102,.6)" style-hover="filter:brightness(.95)">Preços e Planos</a>
+      </div>
+    </div>
+    </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="dots-bg" style="background:linear-gradient(180deg,#eef4ff 0%,#f7faff 100%);padding:44px 24px 72px">
+    <div class="crm-grid crm-hero-grid" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:.78fr 1.22fr;gap:44px;align-items:center">
+    <div style="text-align:left">
+      <h1 class="sub-title" style="font-size:46px;line-height:1.06;font-weight:900;letter-spacing:-1.8px;margin:0 0 18px;text-wrap:balance"><span style="color:#0756FF">Funil de vendas da NX:</span> <span style="color:#0a1633">controle total e em tempo real</span></h1>
+      <p style="font-size:17px;line-height:1.6;color:#51607a;margin:0 0 28px;max-width:460px">Visualize cada etapa, acompanhe as oportunidades conforme elas acontecem e entenda exatamente onde estão as chances reais de gerar receita. Tudo integrado ao atendimento para você vender mais com muito menos esforço.</p>
+      <a href="#form-crm" style="display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#3d9bff,#0756FF);color:#fff;font-weight:800;font-size:16.5px;padding:16px 34px;border-radius:100px;box-shadow:0 16px 34px -14px rgba(7,86,255,.6);transition:transform .15s,filter .15s" style-hover="transform:translateY(-2px);filter:brightness(1.05)">Veja na prática <span style="font-size:19px">→</span></a>
+    </div>
+    <div class="crm-scroll" style="width:100%"><div style="background:#fff;border:1px solid #e6ecf5;border-radius:20px;box-shadow:0 50px 100px -50px rgba(15,23,42,.45);overflow:hidden">
+      <div style="padding:16px 18px 0">
+        <div style="font-size:16px;font-weight:900;color:#0a1633;letter-spacing:-.3px">Funil de Vendas</div>
+        <div style="font-size:13px;color:#8695af;margin-bottom:16px">Gerencie seu pipeline de vendas</div>
+        <div style="display:flex;gap:16px;border-bottom:1px solid #eef1f6;font-size:11.5px;font-weight:600;color:#8695af;flex-wrap:nowrap;overflow:hidden">
+          <span style="color:#0756FF;padding-bottom:10px;border-bottom:2px solid #0756FF;white-space:nowrap">Dashboard</span>
+          <span style="padding-bottom:10px;white-space:nowrap">Kanban</span>
+          <span style="padding-bottom:10px;white-space:nowrap">Pipelines</span>
+          <span style="padding-bottom:10px;white-space:nowrap">Calendário</span>
+          <span style="padding-bottom:10px;white-space:nowrap">Ações</span>
+          <span style="padding-bottom:10px;white-space:nowrap">Ações Ticket</span>
+        </div>
+      </div>
+      <div style="padding:22px 26px 30px">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px">
+          <div>
+            <div style="font-size:18px;font-weight:800;color:#0a1633;display:flex;align-items:center;gap:6px">Dashboard do Funil <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#b6c0d4" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9a2.5 2.5 0 0 1 5 .3c0 1.7-2.5 2-2.5 3.7"></path><circle cx="12" cy="17" r=".6" fill="#b6c0d4"></circle></svg></div>
+            <div style="font-size:12.5px;color:#8695af">Visualize métricas e desempenho do funil de vendas</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="display:inline-flex;align-items:center;gap:8px;border:1px solid #e2e8f0;border-radius:9px;padding:8px 12px;font-size:12.5px;font-weight:600;color:#334155">Últimas 100 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.4"><path d="m6 9 6 6 6-6"></path></svg></span>
+            <span style="display:inline-flex;align-items:center;gap:7px;border:1px solid #e2e8f0;border-radius:9px;padding:8px 12px;font-size:12.5px;font-weight:600;color:#334155"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v6h6"></path><path d="M21 12A9 9 0 0 0 6 5.3L3 8"></path><path d="M21 22v-6h-6"></path><path d="M3 12a9 9 0 0 0 15 6.7l3-2.7"></path></svg>Atualizar</span>
+          </div>
+        </div>
+        <div class="crm-metrics keep-desktop-grid" style="display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-bottom:12px">
+          {{ metricCards }}
+        </div>
+        <div class="crm2" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
+          <div style="border:1px solid #fde9c8;background:#fffdf8;border-radius:14px;padding:16px 18px">
+            <div style="display:flex;align-items:center;gap:7px;font-size:10.5px;font-weight:800;letter-spacing:.4px;color:#d9880b;margin-bottom:6px">VALOR TOTAL DE OPORTUNIDADES</div>
+            <div style="font-size:24px;font-weight:800;letter-spacing:-.8px;color:#f59e0b">R$ 161.225,00</div>
+            <div style="font-size:11px;color:#8695af;margin-top:3px">100 oportunidades no total</div>
+          </div>
+          <div style="border:1px solid #cdeede;background:#f8fefb;border-radius:14px;padding:16px 18px">
+            <div style="display:flex;align-items:center;gap:7px;font-size:10.5px;font-weight:800;letter-spacing:.4px;color:#0f9d63;margin-bottom:6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0f9d63" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 6-6 4 4 8-8"></path><path d="M17 7h4v4"></path></svg>TOTAL GANHO (VENDIDO)</div>
+            <div style="font-size:24px;font-weight:800;letter-spacing:-.8px;color:#10b981">R$ 21.242,00</div>
+            <div style="font-size:11px;color:#8695af;margin-top:3px">5 oportunidades ganhas</div>
+          </div>
+        </div>
+        <div class="crm2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div style="border:1px solid #eef1f6;border-radius:14px;padding:20px">
+            <div style="font-size:14px;font-weight:700;color:#0a1633;margin-bottom:18px">Oportunidades por Status</div>
+            <div style="display:flex;justify-content:center;padding:8px 0 14px">
+              <div style="width:100px;height:100px;border-radius:50%;background:conic-gradient(#0756FF 0 77%,#10b981 77% 82%,#f59e0b 82% 100%);display:flex;align-items:center;justify-content:center"><div style="width:60px;height:60px;border-radius:50%;background:#fff"></div></div>
+            </div>
+            <div style="display:flex;justify-content:center;gap:16px;font-size:12px;color:#64748b">
+              <span style="display:inline-flex;align-items:center;gap:5px"><span style="width:8px;height:8px;border-radius:50%;background:#0756FF"></span>Abertas</span>
+              <span style="display:inline-flex;align-items:center;gap:5px"><span style="width:8px;height:8px;border-radius:50%;background:#10b981"></span>Ganhas</span>
+              <span style="display:inline-flex;align-items:center;gap:5px"><span style="width:8px;height:8px;border-radius:50%;background:#f59e0b"></span>Perdidas</span>
+            </div>
+          </div>
+          <div style="border:1px solid #eef1f6;border-radius:14px;padding:20px">
+            <div style="font-size:14px;font-weight:700;color:#0a1633;margin-bottom:18px">Oportunidades por Etapa</div>
+            <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:8px;height:110px;padding-top:6px">
+              <div style="flex:1;height:100%;background:#0756FF;border-radius:5px 5px 0 0"></div>
+              <div style="flex:1;height:88%;background:#10b981;border-radius:5px 5px 0 0"></div>
+              <div style="flex:1;height:74%;background:#f59e0b;border-radius:5px 5px 0 0"></div>
+              <div style="flex:1;height:70%;background:#e0324f;border-radius:5px 5px 0 0"></div>
+              <div style="flex:1;height:44%;background:#8b5cf6;border-radius:5px 5px 0 0"></div>
+              <div style="flex:1;height:46%;background:#14b8c6;border-radius:5px 5px 0 0"></div>
+              <div style="flex:1;height:8%;background:#eab308;border-radius:5px 5px 0 0"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- MONTE O FUNIL -->
+  <section style="background:#fff;padding:40px 24px 88px">
+    <div style="max-width:1120px;margin:0 auto">
+      <div style="text-align:center;max-width:720px;margin:0 auto 48px">
+        <h2 style="font-size:44px;line-height:1.12;font-weight:900;letter-spacing:-1.6px;color:#0a1633;margin:0 0 16px;text-wrap:balance">Monte o <span style="color:#0756FF">funil perfeito</span> para sua operação</h2>
+        <p style="font-size:17.5px;line-height:1.6;color:#5f6d88;margin:0">Adapte o processo ao seu jeito de vender, organize etapas como preferir e acompanhe tudo sem perder o contexto do atendimento.</p>
+      </div>
+      <div class="crm-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+        <div>
+          <span style="display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#0756FF;background:#e7effe;padding:7px 15px;border-radius:100px;margin-bottom:20px">Estrutura flexível</span>
+          <h3 style="font-size:28px;font-weight:900;letter-spacing:-.8px;color:#0a1633;margin:0 0 24px">Organize seu funil do seu jeito</h3>
+          <div style="display:flex;flex-direction:column;gap:18px">
+            <div style="display:flex;gap:12px;align-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg><span style="font-size:16px;color:#334155;font-weight:500">Criar e renomear etapas conforme seu fluxo</span></div>
+            <div style="display:flex;gap:12px;align-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"></path></svg><span style="font-size:16px;color:#334155;font-weight:500">Mover oportunidades com rapidez</span></div>
+            <div style="display:flex;gap:12px;align-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 5-9 5-9-5Z"></path><path d="m3 12 9 5 9-5"></path><path d="m3 17 9 5 9-5"></path></svg><span style="font-size:16px;color:#334155;font-weight:500">Copiar estruturas prontas e reutilizar etapas</span></div>
+            <div style="display:flex;gap:12px;align-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path></svg><span style="font-size:16px;color:#334155;font-weight:500">Padronizar funis em equipes e setores</span></div>
+          </div>
+        </div>
+        <div style="position:relative;display:flex;justify-content:center">
+          <div style="width:100%;background:#fff;border:1px solid #e6ecf5;border-radius:18px;box-shadow:0 40px 80px -40px rgba(7,86,255,.5);overflow:hidden">
+            <div style="padding:14px 16px 0">
+              <div style="font-size:15px;font-weight:900;color:#0a1633">Funil de Vendas</div>
+              <div style="display:flex;gap:18px;border-bottom:1px solid #eef1f6;font-size:11.5px;font-weight:600;color:#8695af;margin-top:8px">
+                <span style="padding-bottom:8px">Dashboard</span>
+                <span style="color:#0756FF;padding-bottom:8px;border-bottom:2px solid #0756FF">Kanban</span>
+                <span style="padding-bottom:8px">Pipelines</span>
+                <span style="padding-bottom:8px">Calendário</span>
+                <span style="padding-bottom:8px">Ações</span>
+                <span style="padding-bottom:8px">Ações Ticket</span>
+              </div>
+            </div>
+            <div class="kan-scroll" style="overflow-x:auto;padding:14px 16px 16px">
+              <div class="kan-track" style="display:flex;gap:12px;min-width:640px;align-items:flex-start">
+                {{ kanbanMini }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- MAIS VENDAS -->
+  <section style="background:#fff;padding:88px 24px">
+    <div style="max-width:1120px;margin:0 auto">
+      <div style="text-align:center;max-width:720px;margin:0 auto 52px">
+        <h2 style="font-size:44px;line-height:1.12;font-weight:900;letter-spacing:-1.6px;color:#0a1633;margin:0 0 16px;text-wrap:balance">Mais vendas, <span style="color:#0756FF">menos complicações</span></h2>
+        <p style="font-size:17.5px;line-height:1.6;color:#5f6d88;margin:0">Um funil visual que acelera decisões, elimina travas e faz seu time focar no que importa: fechar negócios com muito mais inteligência.</p>
+      </div>
+      <div class="crm3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+        <div style="background:#fff;border:1px solid #e8edf5;border-radius:20px;padding:36px 30px;box-shadow:0 24px 50px -34px rgba(15,23,42,.4)">
+          <span style="display:inline-flex;width:54px;height:54px;border-radius:15px;background:#e7effe;align-items:center;justify-content:center;margin-bottom:22px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.4" fill="#0756FF"></circle></svg></span>
+          <h3 style="font-size:20px;font-weight:800;color:#0a1633;margin:0 0 10px">Ataque as oportunidades certas</h3>
+          <p style="font-size:14.5px;line-height:1.55;color:#5f6d88;margin:0">Enxergue prioridades com clareza e concentre esforços onde existe chance real de fechamento.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #e8edf5;border-radius:20px;padding:36px 30px;box-shadow:0 24px 50px -34px rgba(15,23,42,.4)">
+          <span style="display:inline-flex;width:54px;height:54px;border-radius:15px;background:#e7effe;align-items:center;justify-content:center;margin-bottom:22px"><svg width="26" height="26" viewBox="0 0 24 24" fill="#0756FF"><path d="M13 2 3 14h7l-1 8 10-12h-7z"></path></svg></span>
+          <h3 style="font-size:20px;font-weight:800;color:#0a1633;margin:0 0 10px">Decida rápido, ganhe velocidade</h3>
+          <p style="font-size:14.5px;line-height:1.55;color:#5f6d88;margin:0">Avance etapas com facilidade, tire gargalos do caminho e mantenha o pipeline sempre em movimento.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #e8edf5;border-radius:20px;padding:36px 30px;box-shadow:0 24px 50px -34px rgba(15,23,42,.4)">
+          <span style="display:inline-flex;width:54px;height:54px;border-radius:15px;background:#e7effe;align-items:center;justify-content:center;margin-bottom:22px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 6-6 4 4 8-8"></path><path d="M17 7h4v4"></path></svg></span>
+          <h3 style="font-size:20px;font-weight:800;color:#0a1633;margin:0 0 10px">Converta muito mais</h3>
+          <p style="font-size:14.5px;line-height:1.55;color:#5f6d88;margin:0">Reduza perdas, mantenha o ritmo da operação e transforme leads em vendas com mais consistência.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISÃO 360 -->
+  <section style="background:#f7faff;padding:88px 24px">
+    <div style="max-width:1120px;margin:0 auto">
+      <div class="crm-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+        <div style="position:relative;display:flex;justify-content:center;order:1">
+          <div style="position:absolute;inset:8% 6%;background:linear-gradient(135deg,#0756FF,#0433a8);border-radius:24px;transform:rotate(-2deg)"></div>
+          <div style="position:relative;z-index:2;width:100%;max-width:420px;background:#0756FF;border-radius:20px;padding:16px;box-shadow:0 40px 80px -34px rgba(7,86,255,.6)">
+                        <div style="font-size:12px;color:#cddcff;margin-bottom:4px">Funis de operação / Funil de aquisição</div>
+            <div style="font-size:16px;font-weight:800;color:#fff;margin-bottom:14px">‹ Funil de upsell</div>
+            <div class="keep-desktop-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <div style="background:#fff;border-radius:12px;padding:11px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><span style="font-size:11px;font-weight:700;color:#0a1633">Em contato</span><span style="font-size:9px;font-weight:700;color:#8695af;background:#f1f4f9;border-radius:20px;padding:1px 6px">1</span></div><div style="background:#fff;border:1px solid #eef1f6;border-radius:9px;padding:8px 9px;box-shadow:0 4px 12px -8px rgba(15,23,42,.3)"><span style="display:inline-block;font-size:8px;font-weight:800;color:#b45309;background:#fef3c7;border-radius:5px;padding:1px 6px;margin-bottom:5px">Aberto</span><div style="font-size:10px;font-weight:700;color:#0a1633">#4712 - Vinicius</div><div style="font-size:10.5px;font-weight:800;color:#22c55e;margin:1px 0 6px">R$ 89,00</div><div style="display:flex;align-items:center;gap:5px"><span style="width:16px;height:16px;border-radius:50%;background:#bfdbfe;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800;color:#334155">V</span><span style="font-size:9px;color:#64748b">Vinicius D.</span></div></div></div>
+              <div style="background:#fff;border-radius:12px;padding:11px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><span style="font-size:11px;font-weight:700;color:#0a1633">Em negociação</span><span style="font-size:9px;font-weight:700;color:#8695af;background:#f1f4f9;border-radius:20px;padding:1px 6px">1</span></div><div style="background:#fff;border:1px solid #eef1f6;border-radius:9px;padding:8px 9px;box-shadow:0 4px 12px -8px rgba(15,23,42,.3)"><span style="display:inline-block;font-size:8px;font-weight:800;color:#b45309;background:#fef3c7;border-radius:5px;padding:1px 6px;margin-bottom:5px">Aberto</span><div style="font-size:10px;font-weight:700;color:#0a1633">#4709 - Carlos</div><div style="font-size:10.5px;font-weight:800;color:#22c55e;margin:1px 0 6px">R$ 189,00</div><div style="display:flex;align-items:center;gap:5px"><span style="width:16px;height:16px;border-radius:50%;background:#bbf7d0;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800;color:#334155">C</span><span style="font-size:9px;color:#64748b">Carlos S.</span></div></div></div>
+            </div>
+          </div>
+        </div>
+        <div style="order:2">
+          <span style="display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#0756FF;background:#e7effe;padding:7px 15px;border-radius:100px;margin-bottom:20px">Visão 360º</span>
+          <h3 style="font-size:34px;font-weight:900;letter-spacing:-1px;color:#0a1633;margin:0 0 24px;line-height:1.12">Acompanhe cada oportunidade com clareza</h3>
+          <div style="display:flex;flex-direction:column;gap:18px">
+            <div style="display:flex;gap:12px;align-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><span style="font-size:16px;color:#334155;font-weight:500">Acessar o histórico completo da conversa</span></div>
+            <div style="display:flex;gap:12px;align-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg><span style="font-size:16px;color:#334155;font-weight:500">Visualizar informações importantes sem sair da tela</span></div>
+            <div style="display:flex;gap:12px;align-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5z"></path><path d="m9 12 2 2 4-4"></path></svg><span style="font-size:16px;color:#334155;font-weight:500">Definir permissões por função e cargo</span></div>
+            <div style="display:flex;gap:12px;align-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="m7 14 3-4 4 3 5-6"></path></svg><span style="font-size:16px;color:#334155;font-weight:500">Ver métricas que mostram a jornada real do lead</span></div>
+          </div>
+          <a href="#form-crm" style="margin-top:32px;display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#3d9bff,#0756FF);color:#fff;font-weight:800;font-size:16px;padding:15px 32px;border-radius:100px;box-shadow:0 16px 34px -14px rgba(7,86,255,.6);transition:transform .15s" style-hover="transform:translateY(-2px)">Fale com um especialista <span style="font-size:18px">›</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATÓRIOS -->
+  <section class="dots-bg" style="background:linear-gradient(180deg,#eef4ff 0%,#f7faff 100%);padding:88px 24px">
+    <div style="max-width:1120px;margin:0 auto">
+      <div style="text-align:center;max-width:740px;margin:0 auto 44px">
+        <h2 style="font-size:44px;line-height:1.12;font-weight:900;letter-spacing:-1.6px;color:#0a1633;margin:0 0 16px;text-wrap:balance">Relatórios confiáveis para decisões <span style="color:#0756FF">seguras</span></h2>
+        <p style="font-size:17.5px;line-height:1.6;color:#5f6d88;margin:0">Tenha clareza total sobre ganhos, perdas, potencial de receita e desempenho da equipe. Os dados são precisos, organizados e fáceis de exportar.</p>
+      </div>
+      <div style="text-align:center;font-size:13px;font-weight:800;letter-spacing:1px;color:#0a1633;margin-bottom:24px">VOCÊ PODE:</div>
+      <div class="crm4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px">
+        <div style="background:rgba(255,255,255,.7);border:1px solid #e2e9f5;border-radius:16px;padding:24px 20px;text-align:center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:14px"><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"></path><path d="M9 13h6M9 17h4"></path></svg><div style="font-size:14px;font-weight:600;color:#334155;line-height:1.4">Gerar relatórios completos por período</div></div>
+        <div style="background:rgba(255,255,255,.7);border:1px solid #e2e9f5;border-radius:16px;padding:24px 20px;text-align:center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:14px"><path d="M22 3H2l8 9.5V19l4 2v-8.5L22 3z"></path></svg><div style="font-size:14px;font-weight:600;color:#334155;line-height:1.4">Filtrar por etapas e responsáveis</div></div>
+        <div style="background:rgba(255,255,255,.7);border:1px solid #e2e9f5;border-radius:16px;padding:24px 20px;text-align:center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:14px"><path d="M3 3v18h18"></path><path d="m7 14 3-4 4 3 5-6"></path></svg><div style="font-size:14px;font-weight:600;color:#334155;line-height:1.4">Analisar evolução e performance</div></div>
+        <div style="background:rgba(255,255,255,.7);border:1px solid #e2e9f5;border-radius:16px;padding:24px 20px;text-align:center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:14px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path><path d="M12 15V3"></path></svg><div style="font-size:14px;font-weight:600;color:#334155;line-height:1.4">Exportar dados e resultados</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALENDÁRIO -->
+  <section style="background:#f7faff;padding:88px 24px">
+    <div class="crm-grid" style="max-width:1160px;margin:0 auto;display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:center">
+      <div>
+        <span style="display:inline-block;font-size:12px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#0756FF;background:#eaf1ff;border-radius:100px;padding:7px 16px;margin-bottom:18px">Calendário</span>
+        <h2 style="font-size:40px;line-height:1.12;font-weight:900;letter-spacing:-1.6px;color:#0a1633;margin:0 0 16px;text-wrap:balance">Tudo no <span style="color:#0756FF">calendário</span> do funil</h2>
+        <p style="font-size:17px;line-height:1.6;color:#5f6d88;margin:0">Aqui você vê, dia a dia, quem precisa de retorno e quais oportunidades estão próximas do fechamento. Agende follow-ups, organize os contatos por data e nunca deixe um lead esfriar por falta de acompanhamento.</p>
+      </div>
+      <div class="crm-scroll" style="width:100%"><div style="max-width:100%;margin:0;background:#fff;border:1px solid #e6ecf5;border-radius:16px;box-shadow:0 40px 90px -50px rgba(15,23,42,.45);overflow:hidden">
+        <div style="padding:14px 16px 0">
+          <div style="font-size:14px;font-weight:900;color:#0a1633;letter-spacing:-.3px">Funil de Vendas</div>
+          <div style="font-size:10.5px;color:#8695af;margin-bottom:10px">Gerencie seu pipeline de vendas</div>
+          <div style="display:flex;gap:14px;border-bottom:1px solid #eef1f6;font-size:10.5px;font-weight:600;color:#8695af;flex-wrap:nowrap;overflow:hidden">
+            <span style="padding-bottom:8px;white-space:nowrap">Dashboard</span>
+            <span style="padding-bottom:8px;white-space:nowrap">Kanban</span>
+            <span style="padding-bottom:8px;white-space:nowrap">Pipelines</span>
+            <span style="color:#0756FF;padding-bottom:8px;border-bottom:2px solid #0756FF;white-space:nowrap">Calendário</span>
+            <span style="padding-bottom:8px;white-space:nowrap">Ações</span>
+            <span style="padding-bottom:8px;white-space:nowrap">Ações Ticket</span>
+          </div>
+        </div>
+        <div style="padding:14px 16px 18px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div style="font-size:13px;font-weight:800;color:#0a1633;display:flex;align-items:center;gap:5px">Calendário do Funil <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#b6c0d4" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9a2.5 2.5 0 0 1 5 .3c0 1.7-2.5 2-2.5 3.7"></path><circle cx="12" cy="17" r=".6" fill="#b6c0d4"></circle></svg></div>
+            <div style="display:flex;align-items:center;gap:5px">
+              <span style="width:24px;height:24px;border:1px solid #e2e8f0;border-radius:7px;display:flex;align-items:center;justify-content:center;color:#64748b"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></span>
+              <span style="font-size:11.5px;font-weight:700;color:#0a1633;padding:0 6px">Julho de 2026</span>
+              <span style="width:24px;height:24px;border:1px solid #e2e8f0;border-radius:7px;display:flex;align-items:center;justify-content:center;color:#64748b"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+            </div>
+          </div>
+          <div class="cal-dows" style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:5px">
+            <div style="text-align:center;font-size:9.5px;font-weight:700;color:#8695af">Dom</div>
+            <div style="text-align:center;font-size:9.5px;font-weight:700;color:#8695af">Seg</div>
+            <div style="text-align:center;font-size:9.5px;font-weight:700;color:#8695af">Ter</div>
+            <div style="text-align:center;font-size:9.5px;font-weight:700;color:#8695af">Qua</div>
+            <div style="text-align:center;font-size:9.5px;font-weight:700;color:#8695af">Qui</div>
+            <div style="text-align:center;font-size:9.5px;font-weight:700;color:#8695af">Sex</div>
+            <div style="text-align:center;font-size:9.5px;font-weight:700;color:#8695af">Sáb</div>
+          </div>
+          <div class="keep-desktop-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px">
+            {{ calCells }}
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- AÇÕES AUTOMÁTICAS -->
+  <section style="background:#fff;padding:88px 24px">
+    <div class="crm-grid" style="max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center">
+      <div>
+        <span style="display:inline-block;font-size:12px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#0756FF;background:#eaf1ff;border-radius:100px;padding:7px 16px;margin-bottom:18px">Ações automáticas</span>
+        <h2 style="font-size:40px;line-height:1.12;font-weight:900;letter-spacing:-1.6px;color:#0a1633;margin:0 0 18px;text-wrap:balance">Follow-up inteligente que <span style="color:#0756FF">prospecta sozinho</span></h2>
+        <p style="font-size:17px;line-height:1.6;color:#5f6d88;margin:0 0 26px">Crie ações que disparam automaticamente no momento certo — mensagens de follow-up, lembretes e reengajamento — para prospectar seus clientes sem esforço manual. Você define uma vez e o funil trabalha por você.</p>
+        <ul style="list-style:none;margin:0 0 30px;padding:0;display:flex;flex-direction:column;gap:14px">
+          <li style="display:flex;gap:11px;align-items:flex-start"><span style="flex-shrink:0;width:24px;height:24px;border-radius:50%;background:#e7effe;display:flex;align-items:center;justify-content:center;margin-top:1px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font-size:15.5px;line-height:1.5;color:#334155"><strong style="color:#0a1633">Follow-up inteligente</strong> — prospecta e reengaja os clientes de forma automática.</span></li>
+          <li style="display:flex;gap:11px;align-items:flex-start"><span style="flex-shrink:0;width:24px;height:24px;border-radius:50%;background:#e7effe;display:flex;align-items:center;justify-content:center;margin-top:1px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font-size:15.5px;line-height:1.5;color:#334155">Dispare por <strong style="color:#0a1633">etapa do funil</strong> e por tempo (dias após a criação da oportunidade).</span></li>
+          <li style="display:flex;gap:11px;align-items:flex-start"><span style="flex-shrink:0;width:24px;height:24px;border-radius:50%;background:#e7effe;display:flex;align-items:center;justify-content:center;margin-top:1px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font-size:15.5px;line-height:1.5;color:#334155"><strong style="color:#0a1633">Basta automatizar</strong> — a NX configura e entrega tudo pronto pra você.</span></li>
+        </ul>
+        <a href="#form-crm" style="display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#3d9bff,#0756FF);color:#fff;font-weight:800;font-size:16.5px;padding:16px 34px;border-radius:100px;box-shadow:0 16px 34px -14px rgba(7,86,255,.6);transition:transform .15s,filter .15s" style-hover="transform:translateY(-2px);filter:brightness(1.05)">Quero automatizar meu funil <span style="font-size:20px">›</span></a>
+      </div>
+
+      <div style="display:flex;justify-content:center">
+        <div style="width:100%;max-width:400px;background:#fff;border:1px solid #e6ecf5;border-radius:18px;box-shadow:0 44px 90px -46px rgba(15,23,42,.5);padding:24px 24px 22px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px">
+            <div>
+              <div style="font-size:19px;font-weight:900;color:#0a1633;letter-spacing:-.4px">Nova Ação</div>
+              <div style="font-size:12.5px;color:#8695af">Configure os detalhes da ação automática</div>
+            </div>
+            <span style="color:#b6c0d4;font-size:18px;line-height:1">✕</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:13px">
+            <div><div style="font-size:12.5px;font-weight:700;color:#334155;margin-bottom:6px">Nome <span style="color:#e0324f">*</span></div><div style="border:1px solid #e2e8f0;border-radius:9px;padding:11px 13px;font-size:13px;color:#9aa7bd">Follow-up inteligente</div></div>
+            <div><div style="font-size:12.5px;font-weight:700;color:#334155;margin-bottom:6px">Pipeline <span style="color:#e0324f">*</span></div><div style="border:1px solid #e2e8f0;border-radius:9px;padding:11px 13px;font-size:13px;color:#9aa7bd;display:flex;align-items:center;justify-content:space-between">Funil de vendas <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b6c0d4" stroke-width="2.4"><path d="m6 9 6 6 6-6"></path></svg></div></div>
+            <div><div style="font-size:12.5px;font-weight:700;color:#334155;margin-bottom:6px">Etapa <span style="color:#e0324f">*</span></div><div style="border:1px solid #e2e8f0;border-radius:9px;padding:11px 13px;font-size:13px;color:#9aa7bd;display:flex;align-items:center;justify-content:space-between">Primeiro contato <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b6c0d4" stroke-width="2.4"><path d="m6 9 6 6 6-6"></path></svg></div></div>
+            <div><div style="font-size:12.5px;font-weight:700;color:#334155;margin-bottom:6px">Tipo de Ação <span style="color:#e0324f">*</span></div><div style="border:1px solid #e2e8f0;border-radius:9px;padding:11px 13px;font-size:13px;color:#334155;display:flex;align-items:center;justify-content:space-between">Enviar Mensagem <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b6c0d4" stroke-width="2.4"><path d="m6 9 6 6 6-6"></path></svg></div></div>
+            <div><div style="font-size:12.5px;font-weight:700;color:#334155;margin-bottom:6px">Mensagem <span style="color:#e0324f">*</span></div><div style="border:1px solid #e2e8f0;border-radius:9px;padding:11px 13px;font-size:13px;color:#9aa7bd;min-height:64px;position:relative">Olá {nome}, tudo bem? Vi seu interesse e quero te ajudar a…<span style="position:absolute;top:9px;right:11px;font-size:11px;color:#b6c0d4">(x)</span></div></div>
+            <div><div style="font-size:12.5px;font-weight:700;color:#334155;margin-bottom:6px">WhatsApp <span style="color:#e0324f">*</span></div><div style="border:1px solid #e2e8f0;border-radius:9px;padding:11px 13px;font-size:13px;color:#9aa7bd;display:flex;align-items:center;justify-content:space-between">Número principal <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b6c0d4" stroke-width="2.4"><path d="m6 9 6 6 6-6"></path></svg></div></div>
+            <div><div style="font-size:12.5px;font-weight:700;color:#334155;margin-bottom:6px">Dias para Disparar</div><div style="border:1px solid #e2e8f0;border-radius:9px;padding:11px 13px;font-size:13px;color:#334155">2</div><div style="font-size:11px;color:#8695af;margin-top:6px">Dias após a criação da oportunidade para a ação disparar.</div></div>
+          </div>
+          <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:20px">
+            <span style="border:1px solid #e2e8f0;border-radius:9px;padding:10px 20px;font-size:13.5px;font-weight:600;color:#334155">Cancelar</span>
+            <span style="background:#0756FF;border-radius:9px;padding:10px 24px;font-size:13.5px;font-weight:700;color:#fff">Criar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA ESCURO -->
+  <section style="background:linear-gradient(160deg,#0756FF 0%,#0540c4 55%,#0433a8 100%);padding:96px 24px;text-align:center;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:520px;height:320px;background:radial-gradient(circle,rgba(255,255,255,.16),transparent 70%);pointer-events:none"></div>
+    <div style="max-width:760px;margin:0 auto;position:relative;z-index:2">
+      <h2 style="font-size:46px;line-height:1.12;font-weight:900;letter-spacing:-1.8px;color:#fff;margin:0 0 18px;text-wrap:balance">Um funil feito para acompanhar o <span style="color:#bcd2ff">crescimento</span> do seu negócio</h2>
+      <p style="font-size:18px;line-height:1.6;color:#d3e0ff;margin:0 0 34px">Ideal para pequenas, médias e grandes operações que precisam de visão clara, velocidade e eficiência.</p>
+      <a href="#form-crm" style="display:inline-flex;align-items:center;gap:9px;background:#fff;color:#0756FF;font-weight:800;font-size:17px;padding:17px 40px;border-radius:100px;box-shadow:0 20px 40px -14px rgba(0,0,0,.4);transition:transform .15s" style-hover="transform:translateY(-2px)">Testar agora <span style="font-size:19px">→</span></a>
+    </div>
+  </section>
+
+  <!-- FORMULÁRIO -->
+  <section id="form-crm" style="background:#fff;padding:88px 24px;scroll-margin-top:80px">
+    <div class="crm-grid" style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+      <div>
+        <h2 style="font-size:38px;line-height:1.1;font-weight:900;letter-spacing:-1.2px;color:#0a1633;margin:0 0 16px">Fale com o nosso time comercial</h2>
+        <p style="font-size:18px;line-height:1.6;color:#51607a;margin:0 0 24px">Preencha ao lado e o nosso time comercial te chama rapidinho no WhatsApp para montar o CRM inteligente da sua operação — implementação e treinamento inclusos.</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;gap:12px;color:#334155;font-size:15.5px;font-weight:500"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Resposta rápida do nosso time, sem robô genérico</div>
+          <div style="display:flex;align-items:center;gap:12px;color:#334155;font-size:15.5px;font-weight:500"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Parceiro oficial Meta</div>
+          <div style="display:flex;align-items:center;gap:12px;color:#334155;font-size:15.5px;font-weight:500"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Funil montado para o seu jeito de vender</div>
+        </div>
+      </div>
+      <div>
+        <div style="background:#fff;border-radius:24px;padding:32px 30px;box-shadow:0 40px 80px -34px rgba(7,86,255,.4);border:1px solid #eef1f6">
+          <h3 style="font-size:22px;font-weight:800;letter-spacing:-.5px;margin:0 0 6px;color:#0a1633">Quero organizar meu atendimento</h3>
+          <p style="font-size:14.5px;color:#64748b;line-height:1.5;margin:0 0 22px">Preencha e o nosso time comercial te chama rapidinho no seu WhatsApp.</p>
+          <form onSubmit="{{ handleSubmit }}" style="display:flex;flex-direction:column;gap:14px">
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px">Nome</label>
+              <input name="nome" required placeholder="Seu nome" style="width:100%;font-family:inherit;font-size:15px;padding:13px 14px;border:1.5px solid #e2e8f0;border-radius:12px;outline:none;background:#fafbff" style-focus="border-color:#0756FF;box-shadow:0 0 0 3px rgba(7,86,255,.12);background:#fff" />
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px">WhatsApp</label>
+              <input name="whatsapp" required inputmode="tel" placeholder="(00) 00000-0000" style="width:100%;font-family:inherit;font-size:15px;padding:13px 14px;border:1.5px solid #e2e8f0;border-radius:12px;outline:none;background:#fafbff" style-focus="border-color:#0756FF;box-shadow:0 0 0 3px rgba(7,86,255,.12);background:#fff" />
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px">Ramo do negócio</label>
+              <input name="ramo" required placeholder="Ex: clínica, loja, imobiliária…" style="width:100%;font-family:inherit;font-size:15px;padding:13px 14px;border:1.5px solid #e2e8f0;border-radius:12px;outline:none;background:#fafbff" style-focus="border-color:#0756FF;box-shadow:0 0 0 3px rgba(7,86,255,.12);background:#fff" />
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px">Quantidade de usuários</label>
+              <select name="usuarios" required style="width:100%;font-family:inherit;font-size:15px;padding:13px 14px;border:1.5px solid #e2e8f0;border-radius:12px;outline:none;background:#fafbff;color:#334155;cursor:pointer;appearance:none;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 fill=%22none%22 stroke=%22%2364748b%22 stroke-width=%222.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22m6 9 6 6 6-6%22/></svg>');background-repeat:no-repeat;background-position:right 14px center" style-focus="border-color:#0756FF;box-shadow:0 0 0 3px rgba(7,86,255,.12);background-color:#fff">
+                <option value="" disabled selected>Selecione o tamanho da equipe</option>
+                <option value="1-5">1 a 5 usuários</option>
+                <option value="6-15">6 a 15 usuários</option>
+                <option value="16-30">16 a 30 usuários</option>
+                <option value="31-50">31 a 50 usuários</option>
+                <option value="50+">Mais de 50 usuários</option>
+              </select>
+            </div>
+            <label style="display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:#64748b;line-height:1.5;cursor:pointer;margin-top:2px">
+              <input type="checkbox" name="consent" required style="margin-top:2px;width:16px;height:16px;accent-color:#0756FF;flex-shrink:0" />
+              <span>Ao enviar, você concorda com nossa <a href="https://ajuda.zdg.com.br/diretrizes-e-politicas/aviso-de-privacidade" target="_blank" rel="noopener">Política de Privacidade</a> e com o tratamento dos seus dados conforme a LGPD.</span>
+            </label>
+            <button type="submit" style="margin-top:6px;width:100%;background:#0756FF;color:#fff;font-family:inherit;font-weight:700;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;transition:background .15s;box-shadow:0 14px 26px -12px rgba(7,86,255,.7)" style-hover="background:#0445CC">Enviar e receber mensagem</button>
+            <button type="button" onClick="{{ handleWhats }}" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;font-family:inherit;font-weight:700;font-size:16px;padding:15px;border:none;border-radius:14px;cursor:pointer;transition:filter .15s" style-hover="filter:brightness(.95)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37s-1.05 1.02-1.05 2.5 1.08 2.9 1.23 3.1c.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.71.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35zM12 2a10 10 0 0 0-8.6 15.06L2 22l5.06-1.33A10 10 0 1 0 12 2z"></path></svg>
+              Falar agora no WhatsApp
+            </button>
+            <p style="text-align:center;font-size:12px;color:#94a3b8;margin-top:2px">Resposta rápida • Parceiro oficial Meta • Demonstração gratuita</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:linear-gradient(165deg,#0756FF 0%,#0540c4 55%,#062a86 100%);padding:64px 20px 26px;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-140px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(255,255,255,.14),transparent 70%);pointer-events:none"></div>
+    <div style="max-width:1180px;margin:0 auto;position:relative;z-index:2">
+      <div class="foot-grid" style="display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:44px">
+        <div>
+          <div style="display:inline-flex;align-items:center;justify-content:center;background:#fff;padding:12px 16px;border-radius:14px;margin-bottom:20px;box-shadow:0 10px 24px -12px rgba(0,0,0,.4)"><img src="assets/nx-logo.png" alt="NX Digital" style="height:40px;object-fit:contain;display:block" /></div>
+          <p style="font-size:14.5px;line-height:1.6;color:#cdddff;max-width:320px;margin:0 0 22px">Plataforma de atendimento multicanal com API oficial da Meta. A gente implementa, configura e treina o seu time.</p>
+          <div style="display:flex;gap:10px">
+            <a href="https://instagram.com/gruponxdigital" target="_blank" rel="noopener" aria-label="Instagram @gruponxdigital" style="width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:rgba(255,255,255,.24)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.2" fill="#fff" stroke="none"></circle></svg></a>
+            <a href="#form-crm" aria-label="WhatsApp" style="width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:rgba(255,255,255,.24)"><svg width="21" height="21" viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.87 9.87 0 0 0 1.523 5.263l-.999 3.648 3.965-1.05zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg></a>
+            <a href="mailto:atendimento@nxsystems.com.br" aria-label="E-mail" style="width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:rgba(255,255,255,.24)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8fb4ff;margin:0 0 18px">Soluções</h4>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <a href="/chatbot" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Chatbot</a>
+            <a href="/agente-de-ia" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Agente de IA</a>
+            <a href="/copiloto-de-ia" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Copiloto de IA</a>
+            <a href="/crm-inteligente" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">CRM Inteligente</a>
+            <a href="/disparo-em-massa" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Disparo em massa</a>
+            <a href="/relatorios" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Relatórios</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8fb4ff;margin:0 0 18px">Quem somos</h4>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <a href="/nossa-historia" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Nossa História</a>
+            <a href="/protecao-de-dados" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Proteção de Dados</a>
+            <a href="/politica-de-privacidade" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Política de Privacidade</a>
+            <a href="/termos-de-uso" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Termos de Uso</a>
+            <a href="/codigo-de-etica" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Código de Ética</a>
+            <a href="/politicas-da-meta" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Políticas da Meta</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8fb4ff;margin:0 0 18px">Nossa empresa</h4>
+          <div style="display:flex;flex-direction:column;gap:13px;font-size:14px;color:#dce8ff;line-height:1.5">
+            <div style="font-weight:700;color:#fff">GRUPO NX NETSCALE LTDA</div>
+            <div style="display:flex;gap:9px;align-items:flex-start"><svg style="flex-shrink:0;margin-top:2px" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8fb4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 8h6M9 12h6M9 16h4"></path></svg><span>CNPJ 59.935.008/0001-92</span></div>
+            <a href="mailto:atendimento@nxsystems.com.br" style="display:flex;gap:9px;align-items:flex-start;color:#dce8ff;transition:color .15s" style-hover="color:#fff"><svg style="flex-shrink:0;margin-top:2px" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8fb4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg><span>atendimento@nxsystems.com.br</span></a>
+            <div style="display:flex;gap:9px;align-items:flex-start"><svg style="flex-shrink:0;margin-top:2px" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8fb4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>Av. Expedicionário José Pedro Coelho, 1237 — Centro, Tubarão/SC, 88701-005</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding-top:24px;border-top:1px solid rgba(255,255,255,.16)">
+        <div style="font-size:13px;color:#a9c4ff">© 2026 Grupo NX Netscale LTDA • Todos os direitos reservados</div>
+        <div style="display:flex;align-items:center;gap:16px;font-size:13px;color:#a9c4ff"><a href="/mapa-do-site" style="color:#dce8ff;font-weight:600" style-hover="color:#fff">Mapa do site</a><span>Plataforma de atendimento multicanal • Parceiro oficial Meta</span></div>
+      </div>
+    </div>
+  </footer>
+
+    <a href="#form-crm" aria-label="Falar no WhatsApp" style="position:fixed;bottom:24px;right:24px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px -6px rgba(37,211,102,.6);animation:pulseRing 2.4s infinite">
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.87 9.87 0 0 0 1.523 5.263l-.999 3.648 3.965-1.05zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+  </a>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { solOpen:false, quemOpen:false, contOpen:false };
+  waNumber = '5548936181649';
+  handleSubmit(e){
+    e.preventDefault();
+    if(e.target.checkValidity && !e.target.checkValidity()){ e.target.reportValidity(); return; }
+    const f = e.target;
+    const nome = f.nome.value.trim();
+    const whats = f.whatsapp.value.trim();
+    const ramo = f.ramo.value.trim();
+    const sel = f.usuarios;
+    const usuarios = sel && sel.selectedIndex >= 0 ? sel.options[sel.selectedIndex].text : '';
+    const texto = encodeURIComponent(`Olá! Quero organizar meu atendimento.\nNome: ${nome}\nWhatsApp: ${whats}\nRamo: ${ramo}\nQuantidade de usuários: ${usuarios}`);
+    window.open(`https://wa.me/${this.waNumber}?text=${texto}`, '_blank');
+    window.location.href = 'obrigado?nome=' + encodeURIComponent(nome);
+  }
+  handleWhats(){
+    const texto = encodeURIComponent('Olá! Quero montar o CRM inteligente da NX Digital no meu atendimento.');
+    window.open(`https://wa.me/${this.waNumber}?text=${texto}`, '_blank');
+  }
+  renderVals(){
+    const menu = (open) => `position:absolute;top:100%;left:-10px;padding-top:14px;z-index:60;transition:opacity .18s,transform .18s;transform-origin:top left;opacity:${open?1:0};transform:${open?'translateY(0) scale(1)':'translateY(-6px) scale(.98)'};visibility:${open?'visible':'hidden'};pointer-events:${open?'auto':'none'}`;
+    const chev = (open) => `transition:transform .18s;transform:rotate(${open?180:0}deg)`;
+    const contatos = [
+      ['Cláudia', '12:51', '#f5b78a', '#25d366'],
+      ['Antônio', '16:01', '#8ecae6', '#e0324f'],
+      ['Lázaro', '08:05', '#b8a5d6', '#3d9bff'],
+      ['Mariana', '09:56', '#f0a5b8', '#25d366'],
+      ['Laura', '16:51', '#a5d6c0', '#25d366'],
+    ];
+    const kanColsData = [
+      ['Nova lead', 3, [['#4491 - Amanda','R$ 0,00','Amanda Ribeiro','5548988014725','14/07/2026','#fbcfe8'],['#4490 - Rafael','R$ 0,00','Rafael Moura','5541996327108','02/06/2026','#bfdbfe'],['#4489 - Beatriz','R$ 0,00','Beatriz Nunes','5551997450362','29/06/2026','#bbf7d0']]],
+      ['Primeiro contato', 14, [['#4688 - Gilvano','R$ 0,00','Gilvano Souza','5562993185470','11/07/2026','#c7d2fe'],['#4687 - Patrícia','R$ 0,00','Patrícia Alves','5585987640213','21/06/2026','#fde68a'],['#4682 - Léia','R$ 0,00','Léia Fernandes','5527996053841','05/07/2026','#bbf7d0']]],
+      ['Qualificado', 14, [['#4703 - Anderson','R$ 0,00','Anderson Moreth','5519994728650','18/07/2026','#bfdbfe'],['#4702 - Kléber','R$ 0,00','Kléber Rodrigues','5581983617294','07/06/2026','#ddd6fe'],['#4699 - Carolina','R$ 0,00','Carolina Dias','5548992540718','22/07/2026','#fbcfe8']]],
+      ['Em negociação', 25, [['#4701 - Mariana','R$ 0,00','Mariana Costa','5571986304592','16/07/2026','#fca5a5'],['#4700 - Rodrigo','R$ 0,00','Rodrigo Lima','5534997158260','01/06/2026','#a5f3fc'],['#4697 - Sérgio','R$ 0,00','Sérgio Pacheco','5511985423679','24/06/2026','#fed7aa']]],
+      ['Proposta enviada', 26, [['#4686 - Marcelo','R$ 780,00','Marcelo Agrusa','5548996170842','09/07/2026','#c7d2fe'],['#4684 - Juliana','R$ 650,00','Juliana Prado','5567993082517','13/06/2026','#bbf7d0'],['#4683 - João','R$ 920,00','João Alexandre','5521987354190','20/07/2026','#fbcfe8']]],
+      ['Ganho', 7, [['#4696 - Jardel','R$ 899,00','Jardel Teixeira','5519998267043','04/07/2026','#bbf7d0'],['#4654 - Fernanda','R$ 1250,00','Fernanda Minchio','5542991750638','17/06/2026','#c7d2fe'],['#4647 - Isabel','R$ 540,00','Isabel Cristina','5573986420175','10/06/2026','#fde68a']]],
+    ];
+    const kanbanCols = kanColsData.map(([titulo, count, cards], ci) =>
+      React.createElement('div', { key: ci, style: { flex: '0 0 172px', width: '172px' } },
+        React.createElement('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 4px 12px' } },
+          React.createElement('span', { style: { fontSize: '13.5px', fontWeight: 800, color: '#0a1633' } }, titulo),
+          React.createElement('span', { style: { fontSize: '11px', fontWeight: 700, color: '#8695af', background: '#f1f4f9', borderRadius: '20px', padding: '2px 8px' } }, count)
+        ),
+        React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px' } },
+          cards.map(([id, valor, nome, tel, criado, av], i) => {
+            const isGanho = titulo === 'Ganho';
+            return React.createElement('div', { key: i, style: { background: '#fff', border: '1px solid #eef1f6', borderRadius: '12px', padding: '11px 12px', boxShadow: '0 6px 16px -10px rgba(15,23,42,.3)' } },
+              React.createElement('span', { style: { display: 'inline-block', fontSize: '10px', fontWeight: 800, color: isGanho ? '#0f9d63' : '#b45309', background: isGanho ? '#dcfce7' : '#fef3c7', borderRadius: '6px', padding: '2px 8px', marginBottom: '8px' } }, isGanho ? 'Ganho' : 'Aberto'),
+              React.createElement('div', { style: { fontSize: '12.5px', fontWeight: 700, color: '#0a1633' } }, id),
+              React.createElement('div', { style: { fontSize: '13px', fontWeight: 800, color: valor === 'R$ 0,00' ? '#22c55e' : '#16a34a', margin: '2px 0 9px' } }, valor),
+              React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '7px', marginBottom: '8px' } },
+                React.createElement('span', { style: { width: '22px', height: '22px', borderRadius: '50%', background: av, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 800, color: '#334155' } }, nome.trim().charAt(0).toUpperCase()),
+                React.createElement('div', { style: { minWidth: 0 } },
+                  React.createElement('div', { style: { fontSize: '11px', fontWeight: 700, color: '#334155', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' } }, nome),
+                  React.createElement('div', { style: { fontSize: '10px', color: '#8695af' } }, '☎ ' + tel)
+                )
+              ),
+              React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '5px', fontSize: '10px', color: '#8695af', borderTop: '1px solid #f1f4f9', paddingTop: '7px' } },
+                React.createElement('svg', { width: 11, height: 11, viewBox: '0 0 24 24', fill: 'none', stroke: '#8695af', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('rect', { x: 3, y: 4, width: 18, height: 18, rx: 2 }), React.createElement('path', { d: 'M16 2v4M8 2v4M3 10h18' })),
+                'Criado: ' + criado
+              )
+            );
+          })
+        )
+      )
+    );
+    const metricInfo = [
+      ['Criadas', '100', React.createElement('path',{d:'M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M9 7a4 4 0 1 0 0 .01'})],
+      ['Abertas', '77', React.createElement('g',null,React.createElement('circle',{cx:12,cy:12,r:8}),React.createElement('circle',{cx:12,cy:12,r:3}))],
+      ['Ganhas', '5', React.createElement('path',{d:'m3 17 6-6 4 4 8-8M17 7h4v4'})],
+      ['Perdidas', '18', React.createElement('g',null,React.createElement('circle',{cx:12,cy:12,r:9}),React.createElement('path',{d:'m9 9 6 6M15 9l-6 6'}))],
+      ['Ticket Médio', 'R$ 1612', React.createElement('path',{d:'M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6'})],
+      ['Taxa de Conversão', '5.00%', React.createElement('path',{d:'M19 5 5 19M6.5 8a1.5 1.5 0 1 0 0-.01M17.5 17a1.5 1.5 0 1 0 0-.01'})],
+    ];
+    const metricCards = metricInfo.map(([label, value, icon], i) =>
+      React.createElement('div', { key: i, style: { background: '#0756FF', borderRadius: '10px', padding: '10px 10px', color: '#fff', position: 'relative', overflow: 'hidden' } },
+        React.createElement('div', { style: { display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '3px' } },
+          React.createElement('span', { style: { fontSize: '9.5px', fontWeight: 600, color: '#cddcff', lineHeight: 1.2 } }, label),
+          React.createElement('svg', { width: 12, height: 12, viewBox: '0 0 24 24', fill: 'none', stroke: 'rgba(255,255,255,.55)', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round', style: { flexShrink: 0 } }, icon)
+        ),
+        React.createElement('div', { style: { fontSize: '15px', fontWeight: 900, letterSpacing: '-.4px', marginTop: '6px' } }, value)
+      )
+    );
+    const calEv = {
+      1:[['Amanda',0],['Rafael',1]],
+      2:[['Beatriz',2]],
+      3:[['Gilvano',0],['Patrícia',3],['Léia',1]],
+      6:[['Anderson',1],['Carolina',2]],
+      7:[['Rodrigo',0]],
+      8:[['Mariana',3],['Sérgio',1],['Marcelo',2]],
+      9:[['Juliana',0],['João',1]],
+      10:[['Jardel',2]],
+      13:[['Fernanda',1],['Isabel',0],['Lucas',3]],
+      14:[['Camila',2]],
+      15:[['Bruno',0],['Renata',1]],
+      16:[['Diego',3],['Aline',2]],
+      17:[['Felipe',1]],
+      20:[['Vanessa',0],['Gustavo',2],['Larissa',1]],
+      21:[['Marcos',3]],
+      22:[['Priscila',1],['Eduardo',0]],
+      23:[['Amanda',2],['Rafael',3],['Carla',0]],
+      24:[['Tiago',1]],
+      27:[['Sandra',0],['Paulo',2]],
+      28:[['Roberta',1],['Vinícius',3],['Nádia',0]],
+      29:[['Hélio',2]],
+      30:[['Letícia',1],['André',0]],
+      31:[['Cecília',3],['Otto',2]],
+    };
+    const evColors = [['#bbf7d0','#166534'],['#bbf7d0','#166534'],['#bbf7d0','#166534'],['#bbf7d0','#166534']];
+    const calDays = [
+      [28,1],[29,1],[30,1],[1,0],[2,0],[3,0],[4,0],
+      [5,0],[6,0],[7,0],[8,0],[9,0],[10,0],[11,0],
+      [12,0],[13,0],[14,0],[15,0],[16,0],[17,0],[18,0],
+      [19,0],[20,0],[21,0],[22,2],[23,0],[24,0],[25,0],
+      [26,0],[27,0],[28,0],[29,0],[30,0],[31,0],[1,1],
+    ];
+    const calCells = calDays.map(([d, kind], i) => {
+      const muted = kind === 1, selected = kind === 2;
+      const evs = muted ? [] : (calEv[d] || []);
+      return React.createElement('div', { key: i, style: { minHeight: '48px', border: selected ? '1.5px solid #0756FF' : '1px solid #eef1f6', background: muted ? '#fbfcfe' : '#fff', borderRadius: '7px', padding: '4px 4px', display: 'flex', flexDirection: 'column', gap: '2px' } },
+        React.createElement('div', { style: { fontSize: '9px', fontWeight: 600, color: muted ? '#c3ccda' : '#334155', marginBottom: '1px' } }, d),
+        ...evs.map(([nm, c], j) => React.createElement('div', { key: j, style: { background: evColors[c][0], color: evColors[c][1], fontSize: '8px', fontWeight: 600, borderRadius: '3px', padding: '1.5px 4px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' } }, nm))
+      );
+    });
+    const kanbanMini = kanColsData.map(([titulo, count, cards], ci) =>
+      React.createElement('div', { key: ci, style: { flex: '0 0 120px', width: '120px' } },
+        React.createElement('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 2px 8px' } },
+          React.createElement('span', { style: { fontSize: '11px', fontWeight: 800, color: '#0a1633', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' } }, titulo),
+          React.createElement('span', { style: { fontSize: '9px', fontWeight: 700, color: '#8695af', background: '#f1f4f9', borderRadius: '20px', padding: '1px 6px' } }, count)
+        ),
+        React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '8px' } },
+          cards.slice(0, 2).map(([id, valor, nome, tel, criado, av], i) => {
+            const isGanho = titulo === 'Ganho';
+            return React.createElement('div', { key: i, style: { background: '#fff', border: '1px solid #eef1f6', borderRadius: '9px', padding: '8px 9px', boxShadow: '0 4px 12px -8px rgba(15,23,42,.3)' } },
+              React.createElement('span', { style: { display: 'inline-block', fontSize: '8px', fontWeight: 800, color: isGanho ? '#0f9d63' : '#b45309', background: isGanho ? '#dcfce7' : '#fef3c7', borderRadius: '5px', padding: '1px 6px', marginBottom: '5px' } }, isGanho ? 'Ganho' : 'Aberto'),
+              React.createElement('div', { style: { fontSize: '10px', fontWeight: 700, color: '#0a1633', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' } }, id),
+              React.createElement('div', { style: { fontSize: '10.5px', fontWeight: 800, color: '#22c55e', margin: '1px 0 6px' } }, valor),
+              React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '5px' } },
+                React.createElement('span', { style: { width: '16px', height: '16px', borderRadius: '50%', background: av, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '8px', fontWeight: 800, color: '#334155' } }, nome.trim().charAt(0).toUpperCase()),
+                React.createElement('span', { style: { fontSize: '9px', color: '#64748b', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' } }, nome)
+              )
+            );
+          })
+        )
+      )
+    );
+    const funilRows = contatos.map(([nome, hora, av, ch], i) =>
+      React.createElement('div', { key: i, style: { display: 'flex', alignItems: 'center', gap: '10px', padding: '11px 15px', borderBottom: i < contatos.length - 1 ? '1px solid #f1f4f9' : 'none' } },
+        React.createElement('span', { style: { position: 'relative', flexShrink: 0 } },
+          React.createElement('span', { style: { width: '34px', height: '34px', borderRadius: '50%', background: av, display: 'block' } }),
+          React.createElement('span', { style: { position: 'absolute', bottom: '-2px', right: '-2px', width: '13px', height: '13px', borderRadius: '50%', background: ch, border: '2px solid #fff' } })
+        ),
+        React.createElement('div', { style: { flex: 1, minWidth: 0 } },
+          React.createElement('div', { style: { fontSize: '13px', fontWeight: 700, color: '#0a1633' } }, nome),
+          React.createElement('div', { style: { fontSize: '11px', color: '#8695af' } }, '✓✓ Mensagem recebida')
+        ),
+        React.createElement('span', { style: { fontSize: '10.5px', color: '#8695af' } }, hora)
+      )
+    );
+    return {
+      funilRows,
+      kanbanMini,
+      metricCards,
+      kanbanCols,
+      calCells,
+      handleSubmit: (e) => this.handleSubmit(e),
+      handleWhats: () => this.handleWhats(),
+      openSol:()=>this.setState({solOpen:true}), closeSol:()=>this.setState({solOpen:false}), toggleSol:()=>this.setState(s=>({solOpen:!s.solOpen})),
+      openQuem:()=>this.setState({quemOpen:true}), closeQuem:()=>this.setState({quemOpen:false}), toggleQuem:()=>this.setState(s=>({quemOpen:!s.quemOpen})),
+      openCont:()=>this.setState({contOpen:true}), closeCont:()=>this.setState({contOpen:false}), toggleCont:()=>this.setState(s=>({contOpen:!s.contOpen})),
+      solMenuStyle: menu(this.state.solOpen), solChevronStyle: chev(this.state.solOpen),
+      quemMenuStyle: menu(this.state.quemOpen), quemChevronStyle: chev(this.state.quemOpen),
+      contMenuStyle: menu(this.state.contOpen), contChevronStyle: chev(this.state.contOpen),
+      setLangPt:()=>{}, setLangEs:()=>{}, setLangEn:()=>{},
+    };
+  }
+}
+</script>
+</body>
+</html>

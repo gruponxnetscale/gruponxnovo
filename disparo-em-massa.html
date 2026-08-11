@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>NX Digital - Plataforma de atendimento</title>
+<meta name="description" content="Disparo em massa — NX Digital, plataforma de atendimento multicanal no WhatsApp." />
+<link rel="icon" type="image/png" href="assets/nx-logo.png" />
+<link rel="apple-touch-icon" href="assets/nx-logo.png" />
+<link rel="shortcut icon" type="image/png" href="assets/nx-logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:#0B1220;background:#fff;-webkit-font-smoothing:antialiased}
+  a{color:#0756FF;text-decoration:none}
+  a:hover{color:#0445CC}
+  @media(max-width:920px){.head-nav{display:none!important}.sub-title{font-size:40px!important}.foot-grid{grid-template-columns:1fr 1fr!important}}
+  @media(max-width:560px){.foot-grid{grid-template-columns:1fr!important}}
+  @keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .dm-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .dm-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .dm-form-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:26px;align-items:start}
+  @media(max-width:920px){.dm-grid{grid-template-columns:1fr!important}.dm-stats{grid-template-columns:1fr!important}.dm-form-grid{grid-template-columns:1fr!important}}
+
+  /* ===== MOBILE (não afeta desktop) ===== */
+  @media(max-width:760px){
+    html,body{overflow-x:hidden!important}
+    img{max-width:100%!important;height:auto!important}
+    h1,.sub-title{font-size:clamp(27px,7.6vw,36px)!important;line-height:1.12!important;letter-spacing:-1.1px!important}
+    h2{font-size:clamp(22px,6.2vw,29px)!important;line-height:1.16!important;letter-spacing:-.8px!important}
+    h3{font-size:18px!important}
+    section{padding-left:16px!important;padding-right:16px!important}
+    section > div, footer > div{max-width:100%!important}
+    div[style*="grid-template-columns"]{grid-template-columns:1fr!important}
+    div[style*="position:sticky"],div[style*="position: sticky"]{position:static!important;top:auto!important}
+    p{font-size:15.5px!important;line-height:1.6!important}
+    a[style*="padding:16px 3"],a[style*="padding:15px 3"],a[style*="padding: 16px 3"],a[style*="padding: 15px 3"]{width:100%!important;justify-content:center!important}
+    div[style*="max-width:520px"],div[style*="max-width:560px"],div[style*="max-width:460px"],div[style*="max-width:440px"],div[style*="max-width:420px"],div[style*="max-width:400px"]{max-width:100%!important}
+    img[style*="margin-left:-9%"]{width:100%!important;margin-left:0!important}
+    img[style*="margin-left:-24px"]{margin-left:0!important}
+  }
+  @media(max-width:560px){
+    section{padding-top:44px!important;padding-bottom:44px!important}
+    div[style*="padding:56px"],div[style*="padding:64px"],div[style*="padding: 56px"],div[style*="padding: 64px"]{padding:26px 18px!important}
+    div[style*="border-radius:28px"]{border-radius:20px!important}
+  }
+
+  /* nav mobile: mostra os menus em linha rolável */
+  @media(max-width:920px){
+    header .head-nav{display:flex!important;order:3;width:100%;gap:18px!important;overflow-x:auto;padding:8px 2px 2px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    header .head-nav::-webkit-scrollbar{display:none}
+    header .head-nav > *{flex-shrink:0}
+    header .head-nav a,header .head-nav button{font-size:13.5px!important;white-space:nowrap}
+    header .wrap-pad,header > div > div > div{flex-wrap:wrap!important}
+  }
+  @media(max-width:560px){
+    header a[style*="border-radius:100px"]{font-size:12.5px!important;padding:9px 15px!important}
+    header img{height:30px!important}
+  }
+
+  /* ===== MOBILE v2 — refinos (desktop intocado) ===== */
+  @media(max-width:760px){
+    *{max-width:100%}
+    svg{max-width:100%}
+    /* mockups e cards com largura fixa */
+    div[style*="width:420px"],div[style*="width:440px"],div[style*="width:460px"],div[style*="width:360px"],div[style*="width:340px"],div[style*="width:330px"],div[style*="width:320px"],div[style*="width:310px"],div[style*="width:300px"],div[style*="width:290px"],div[style*="width:270px"],div[style*="width:250px"],div[style*="width:230px"]{width:100%!important}
+    div[style*="min-width:110px"],div[style*="min-width:150px"],div[style*="min-width:104px"]{min-width:0!important}
+    /* cartões flutuantes viram estáticos para não sobrepor texto */
+    div[style*="position:absolute"][style*="animation:floaty"]{position:static!important;animation:none!important;margin:12px auto 0!important;transform:none!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important}
+    /* marquee mais lento e legível */
+    div[style*="animation:marquee"]{gap:34px!important}
+    div[style*="animation:marquee"] > span{font-size:19px!important}
+    /* tabelas / linhas largas rolam sozinhas */
+    table{display:block;overflow-x:auto;white-space:nowrap}
+    /* textos que travavam em uma linha só */
+    p[style*="white-space:nowrap"],div[style*="white-space:nowrap"]{white-space:normal!important}
+    /* aspect-ratio de círculos decorativos não estica a página */
+    div[style*="aspect-ratio:1"]{max-height:78vw}
+    /* form: inputs confortáveis e sem zoom no iOS */
+    input,select,textarea,button{font-size:16px!important;max-width:100%}
+    select{background-position:right 12px center!important}
+    /* CTAs empilhados ocupam a linha */
+    div[style*="display:flex"][style*="flex-wrap:wrap"] > a{flex:1 1 100%}
+  }
+  @media(max-width:560px){
+    h1,.sub-title,.h1-xl{font-size:clamp(25px,7.4vw,31px)!important;letter-spacing:-.9px!important}
+    h2,.sec-title{font-size:clamp(21px,6vw,26px)!important}
+    /* padding interno de cards grandes */
+    div[style*="padding:32px 30px"],div[style*="padding:30px 28px"],div[style*="padding:34px 30px"],div[style*="padding:26px 26px"],div[style*="padding:28px 26px"]{padding:20px 16px!important}
+    div[style*="border-radius:26px"],div[style*="border-radius:24px"],div[style*="border-radius:22px"],div[style*="border-radius:20px"]{border-radius:16px!important}
+    /* números gigantes */
+    div[style*="font-size:56px"],div[style*="font-size:44px"],div[style*="font-size:42px"]{font-size:32px!important;letter-spacing:-1px!important}
+    /* whatsapp flutuante não cobre o CTA */
+    a[style*="position:fixed"]{bottom:14px!important;right:14px!important;transform:scale(.9)}
+  }
+
+  /* ===== MOBILE v3 — correções (desktop intocado) ===== */
+  @media(max-width:760px){
+    /* CABEÇALHO: logo+CTAs em linha, menus abaixo, nada estourando */
+    header .wrap-pad{flex-wrap:wrap!important;gap:8px!important;padding:8px 12px!important}
+    header .wrap-pad > div:first-child{flex:0 0 auto}
+    header .wrap-pad > div:last-child{flex:1 1 100%;order:2;display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:8px!important;justify-content:flex-start!important}
+    header .wrap-pad > div:last-child > div:first-child{order:1;flex:0 0 auto}
+    header .wrap-pad > div:last-child > a{flex:1 1 auto;min-width:0;justify-content:center!important;text-align:center;font-size:13px!important;padding:10px 12px!important;white-space:nowrap}
+    header .head-nav{order:3;flex:1 1 100%}
+    /* MARQUEE: precisa ser mais largo que a tela pra rolar */
+    div[style*="animation:marquee"]{width:max-content!important;max-width:none!important;flex-wrap:nowrap!important}
+    div[style*="animation:marquee"] > span{max-width:none!important;flex-shrink:0!important}
+    /* FAIXA "Atenda mais rápido": deixa quebrar em 2 linhas */
+    section p[style*="white-space:nowrap"]{white-space:normal!important;font-size:17px!important;text-align:left!important}
+    /* HERO: foto da especialista encaixada, sem sobra */
+    img[src*="moca"],img[src*="hero-"]{width:100%!important;max-width:420px!important;margin:0 auto!important;display:block!important}
+    /* WhatsApp flutuante fica acima de tudo, sem cobrir CTA */
+    a[style*="position:fixed"]{z-index:90!important}
+  }
+  @media(max-width:560px){
+    header .wrap-pad > div:last-child > a{font-size:12.5px!important;padding:9px 10px!important}
+    header img{height:26px!important}
+    div[style*="animation:marquee"] > span{font-size:17px!important}
+    section p[style*="white-space:nowrap"]{font-size:15.5px!important}
+  }
+
+  /* MOBILE marquee speed */
+  @media(max-width:760px){
+    div[style*="animation:marquee"]{animation-duration:9s!important}
+  }
+  @media(max-width:560px){
+    div[style*="animation:marquee"]{animation-duration:7s!important}
+  }
+
+  /* MOBILE footer logo */
+  @media(max-width:760px){
+    footer .foot-grid > div:first-child > div:first-child{display:inline-flex!important;width:auto!important;max-width:150px!important;padding:8px 12px!important;border-radius:10px!important}
+    footer .foot-grid img{height:30px!important;width:auto!important;max-width:120px!important;object-fit:contain!important}
+  }
+
+  /* MOBILE cabeçalho: bandeirinhas pequenas na primeira linha */
+  @media(max-width:760px){
+    header .wrap-pad{position:relative}
+    header .wrap-pad > div:last-child > div:first-child{position:absolute!important;top:10px!important;right:14px!important;gap:5px!important;z-index:5}
+    header .wrap-pad > div:last-child > div:first-child button{width:20px!important;height:15px!important;border-radius:3px!important}
+    header .wrap-pad > div:last-child > div:first-child button svg{width:20px!important;height:15px!important}
+    header .wrap-pad > div:last-child{padding-top:2px!important}
+    header .wrap-pad > div:first-child{padding-right:82px}
+  }
+
+  /* MOBILE nav centralizado */
+  @media(max-width:920px){
+    header .head-nav{justify-content:center!important;overflow-x:visible!important;flex-wrap:wrap!important;gap:16px!important;padding:6px 2px 2px!important}
+  }
+
+  /* MOBILE: remove a bolha azul atrás do mockup */
+  @media(max-width:760px){
+    .dm-blob{display:none!important}
+  }
+
+  /* MOBILE: cabeçalho reto + dropdowns dentro da tela */
+  @media(max-width:760px){
+    header > div:first-child{padding:0!important;max-width:none!important}
+    header > div:first-child > div:first-child{border-radius:0!important;box-shadow:0 2px 10px -4px rgba(15,23,42,.25)!important}
+    header .head-nav > div{position:static!important}
+    header .head-nav > div > div[style*="position:absolute"]{position:fixed!important;left:8px!important;right:8px!important;top:auto!important;width:auto!important;max-width:none!important;padding-top:6px!important}
+    header .head-nav > div > div[style*="position:absolute"] > div{min-width:0!important;width:100%!important;max-height:62vh!important;overflow-y:auto!important;box-sizing:border-box!important}
+    header .head-nav > div > div[style*="position:absolute"] a{font-size:13.5px!important;padding:10px 13px!important;white-space:normal!important;line-height:1.35!important}
+  }
+</style>
+</helmet>
+
+<div style="width:100%;overflow-x:hidden;background:#fff">
+
+  <header style="position:sticky;top:0;z-index:50;padding:0;background:transparent">
+    <div style="max-width:1240px;margin:0 auto;padding:12px 24px 0">
+    <div style="background:#fff;border-radius:22px;box-shadow:0 14px 40px -16px rgba(7,86,255,.35)">
+    <div class="wrap-pad" style="max-width:1200px;margin:0 auto;padding:8px 28px;display:flex;align-items:center;justify-content:space-between">
+      <a href="/" style="display:flex;align-items:center;gap:8px">
+        <img src="assets/nx-logo.png" alt="NX Digital" style="height:40px;object-fit:contain;display:block" />
+      </a>
+      <nav class="head-nav" style="display:flex;align-items:center;gap:32px">
+        <div style="position:relative" onMouseEnter="{{ openSol }}" onMouseLeave="{{ closeSol }}">
+          <button onClick="{{ toggleSol }}" style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;padding:0;cursor:pointer;color:#334155;font-weight:600;font-size:15px;font-family:inherit;transition:color .15s" style-hover="color:#0756FF">Soluções<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="{{ solChevronStyle }}"><path d="m6 9 6 6 6-6"></path></svg></button>
+          <div style="{{ solMenuStyle }}">
+            <div style="background:#fff;border:1px solid #eef2f8;border-radius:16px;box-shadow:0 24px 60px -18px rgba(15,23,42,.3);padding:10px;min-width:250px;display:flex;flex-direction:column">
+              <a href="/chatbot" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Chatbot</a>
+              <a href="/agente-de-ia" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Agente de IA</a>
+              <a href="/copiloto-de-ia" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Copiloto de IA</a>
+              <a href="/crm-inteligente" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">CRM Inteligente</a>
+              <a href="/disparo-em-massa" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Disparo em massa</a>
+              <a href="/relatorios" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Relatórios</a>
+              <a href="/integracoes-personalizadas" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Integrações personalizadas</a>
+              <a href="/integracao-whatsapp" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Integração WhatsApp</a>
+              <a href="/integracao-instagram" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Integração Instagram</a>
+              <a href="/criacao-de-site" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Criação de site</a>
+              <a href="/automacao-personalizada" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Automação personalizada</a>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative" onMouseEnter="{{ openQuem }}" onMouseLeave="{{ closeQuem }}">
+          <button onClick="{{ toggleQuem }}" style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;padding:0;cursor:pointer;color:#334155;font-weight:600;font-size:15px;font-family:inherit;transition:color .15s" style-hover="color:#0756FF">Quem somos<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="{{ quemChevronStyle }}"><path d="m6 9 6 6 6-6"></path></svg></button>
+          <div style="{{ quemMenuStyle }}">
+            <div style="background:#fff;border:1px solid #eef2f8;border-radius:16px;box-shadow:0 24px 60px -18px rgba(15,23,42,.3);padding:10px;min-width:290px;display:flex;flex-direction:column">
+              <a href="/protecao-de-dados" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Proteção de Dados e Segurança</a>
+              <a href="/politica-de-chatbot-e-ia" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Política de Chatbot e Inteligência Artificial</a>
+              <a href="/politica-de-privacidade" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Política de Privacidade</a>
+              <a href="/aviso-de-privacidade" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Aviso de Privacidade</a>
+              <a href="/termos-de-uso" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Termos de Uso</a>
+              <a href="/codigo-de-etica" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Código de Ética</a>
+              <a href="/politica-anticorrupcao" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Política Anticorrupção</a>
+              <a href="/politicas-da-meta" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Políticas da Meta</a>
+              <a href="/nossa-historia" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Nossa História</a>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative" onMouseEnter="{{ openCont }}" onMouseLeave="{{ closeCont }}">
+          <button onClick="{{ toggleCont }}" style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;padding:0;cursor:pointer;color:#334155;font-weight:600;font-size:15px;font-family:inherit;transition:color .15s" style-hover="color:#0756FF">Contato<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="{{ contChevronStyle }}"><path d="m6 9 6 6 6-6"></path></svg></button>
+          <div style="{{ contMenuStyle }}">
+            <div style="background:#fff;border:1px solid #eef2f8;border-radius:16px;box-shadow:0 24px 60px -18px rgba(15,23,42,.3);padding:10px;min-width:230px;display:flex;flex-direction:column">
+              <a href="/seja-um-parceiro" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Seja um parceiro</a>
+              <a href="/suporte" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Fale com o suporte</a>
+              <a href="#form-dm" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Fale com o especialista</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div style="display:flex;align-items:center;gap:16px">
+        <div style="display:flex;align-items:center;gap:7px">
+          <button onClick="{{ setLangPt }}" aria-label="Português (Brasil)" title="Português" style="width:26px;height:19px;border-radius:4px;border:none;padding:0;overflow:hidden;cursor:pointer;background:none;display:flex;transition:transform .15s" style-hover="transform:scale(1.14)">
+            <svg width="26" height="19" viewBox="0 0 26 19"><rect width="26" height="19" fill="#009c3b"/><path d="M13 2.5 23.5 9.5 13 16.5 2.5 9.5Z" fill="#ffdf00"/><circle cx="13" cy="9.5" r="3.4" fill="#002776"/></svg>
+          </button>
+          <button onClick="{{ setLangEs }}" aria-label="Español" title="Español" style="width:26px;height:19px;border-radius:4px;border:none;padding:0;overflow:hidden;cursor:pointer;background:none;display:flex;transition:transform .15s" style-hover="transform:scale(1.14)">
+            <svg width="26" height="19" viewBox="0 0 26 19"><rect width="26" height="19" fill="#c60b1e"/><rect y="4.75" width="26" height="9.5" fill="#ffc400"/></svg>
+          </button>
+          <button onClick="{{ setLangEn }}" aria-label="English (US)" title="English" style="width:26px;height:19px;border-radius:4px;border:none;padding:0;overflow:hidden;cursor:pointer;background:none;display:flex;transition:transform .15s" style-hover="transform:scale(1.14)">
+            <svg width="26" height="19" viewBox="0 0 26 19"><rect width="26" height="19" fill="#fff"/><g fill="#b22234"><rect width="26" height="1.46"/><rect y="2.92" width="26" height="1.46"/><rect y="5.85" width="26" height="1.46"/><rect y="8.77" width="26" height="1.46"/><rect y="11.69" width="26" height="1.46"/><rect y="14.62" width="26" height="1.46"/><rect y="17.54" width="26" height="1.46"/></g><rect width="11.5" height="8.77" fill="#3c3b6e"/></svg>
+          </button>
+        </div>
+        <a href="#form-dm" style="display:inline-flex;align-items:center;gap:8px;background:#0756FF;color:#fff;font-weight:700;font-size:14.5px;padding:12px 24px;border-radius:100px;transition:background .15s;box-shadow:0 8px 20px -8px rgba(7,86,255,.6)" style-hover="background:#0445CC">Fale com o especialista</a>
+        <a href="/#planos" style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;font-weight:700;font-size:14.5px;padding:12px 24px;border-radius:100px;transition:filter .15s;box-shadow:0 8px 20px -8px rgba(37,211,102,.6)" style-hover="filter:brightness(.95)">Preços e Planos</a>
+      </div>
+    </div>
+    </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section style="background:#fff;overflow:hidden">
+    <div class="dm-grid" style="max-width:1180px;margin:0 auto;padding:64px 32px 0">
+      <div style="padding-bottom:64px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ff8f7a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path></svg>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="#25D366"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.87 9.87 0 0 0 1.523 5.263l-.999 3.648 3.965-1.05zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+        </div>
+        <h1 class="sub-title" style="font-size:46px;line-height:1.1;font-weight:900;letter-spacing:-1.8px;color:#0a1633;margin:0 0 20px;text-wrap:balance"><span style="color:#0756FF">Aumente</span> em até <span style="color:#0756FF">30% suas vendas</span> com o Disparo de Mensagens em Massa no WhatsApp</h1>
+        <p style="font-size:18px;line-height:1.6;color:#5f6d88;max-width:480px;margin:0 0 30px">Envie <strong style="color:#0a1633">mensagens em massa</strong> para toda a sua lista de contatos com a <strong style="color:#0a1633">API oficial da Meta</strong> — a NX configura e entrega tudo pronto.</p>
+        <a href="#form-dm" style="display:inline-flex;align-items:center;gap:8px;background:#0756FF;color:#fff;font-weight:800;font-size:16.5px;padding:16px 38px;border-radius:12px;box-shadow:0 16px 34px -14px rgba(7,86,255,.6);transition:transform .15s,filter .15s;margin-bottom:34px" style-hover="transform:translateY(-2px);filter:brightness(1.05)">Contratar agora</a>
+        <div style="display:flex;align-items:center;gap:16px">
+          <div style="background:#fff;border:1px solid #e6ecf5;border-radius:10px;padding:10px 14px;box-shadow:0 10px 24px -14px rgba(0,0,0,.25)"><img src="assets/meta-business-partner.png" alt="Meta Business Partner" style="height:38px;object-fit:contain;display:block" /></div>
+          <span style="font-size:15px;font-weight:700;color:#0a1633;line-height:1.35">Parceiros oficiais do<br/>WhatsApp e Instagram</span>
+        </div>
+      </div>
+
+      <div style="align-self:flex-end;display:flex;justify-content:center;padding-bottom:0">
+        <div style="width:360px;max-width:100%;background:#0b0d10;border-radius:42px 42px 0 0;padding:11px 11px 0;box-shadow:0 -10px 60px -20px rgba(0,0,0,.5)">
+          <div style="position:relative;background:#e6ddd4;border-radius:30px 30px 0 0;overflow:hidden;padding-bottom:0">
+            <div style="position:absolute;top:9px;left:50%;transform:translateX(-50%);width:70px;height:7px;background:#0b0d10;border-radius:100px;z-index:6"></div>
+            <div style="display:flex;align-items:center;gap:9px;padding:26px 14px 11px;background:#075e54;color:#fff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="m15 18-6-6 6-6"></path></svg><span style="width:32px;height:32px;border-radius:50%;overflow:hidden;flex-shrink:0;display:flex"><img src="assets/nx-avatar.png" alt="NX" style="width:100%;height:100%;object-fit:cover"/></span><div style="flex:1"><div style="font-size:13px;font-weight:700;display:flex;align-items:center;gap:5px">Empresa <svg width="13" height="13" viewBox="0 0 24 24" fill="#4fc3f7"><circle cx="12" cy="12" r="11"/><path d="m8 12 3 3 5-6" stroke="#075e54" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.2z"/></svg></div>
+            <div style="padding:14px 12px 16px;display:flex;flex-direction:column;gap:9px">
+              <div style="align-self:flex-start;max-width:88%;background:#fff;border-radius:2px 12px 12px 12px;padding:9px 12px;font-size:12.5px;line-height:1.45;color:#111b21;box-shadow:0 1px 2px rgba(15,23,42,.15)"><strong>10% OFF!!!</strong> Utilize o cupom <strong>CLIENTE10</strong> e ganhe 10% de desconto em todos os produtos do nosso site. Aproveite já!<span style="font-size:9.5px;color:#8aa0b3;float:right;margin-left:8px;margin-top:4px">8:26</span></div>
+              <div style="align-self:stretch;background:#fff;border-radius:10px;padding:12px;text-align:center;font-size:13px;font-weight:700;color:#54656f;box-shadow:0 1px 2px rgba(15,23,42,.12)">Resgatar oferta</div>
+              <div style="align-self:stretch;background:#fff;border-radius:10px;padding:12px;text-align:center;font-size:13px;font-weight:700;color:#0756FF;box-shadow:0 1px 2px rgba(15,23,42,.12)">Falar com vendedor</div>
+              <div style="align-self:flex-end;max-width:80%;background:#d9fdd3;border-radius:12px 2px 12px 12px;padding:9px 12px;font-size:12.5px;line-height:1.45;color:#111b21">Falar com vendedor<span style="font-size:9.5px;color:#5aa06b;float:right;margin-left:8px;margin-top:4px">8:27 ✓✓</span></div>
+              <div style="align-self:flex-start;max-width:88%;background:#fff;border-radius:2px 12px 12px 12px;padding:9px 12px;font-size:12.5px;line-height:1.45;color:#111b21;box-shadow:0 1px 2px rgba(15,23,42,.15)"><strong style="color:#0756FF">Rafael · Vendas</strong><br/>Oi! 😊 Aqui é o Rafael, já assumi seu atendimento. Vou aplicar o cupom pra você — qual produto você quer levar?<span style="font-size:9.5px;color:#8aa0b3;float:right;margin-left:8px;margin-top:4px">8:27</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFÍCIOS -->
+  <section style="background:#fff;padding:88px 24px;overflow:hidden">
+    <div class="dm-grid" style="max-width:1120px;margin:0 auto">
+      <div style="position:relative;display:flex;justify-content:center">
+        <div style="position:absolute;left:0;top:10%;width:220px;height:220px;background:radial-gradient(circle,rgba(7,86,255,.14),transparent 70%);pointer-events:none"></div>
+        <div class="dm-blob" style="position:absolute;right:6%;bottom:4%;width:180px;height:150px;background:#3d9bff;border-radius:40% 60% 55% 45%;z-index:0;opacity:.9"></div>
+        <div style="position:relative;z-index:2;width:310px;max-width:100%;background:#0b0d10;border-radius:40px;padding:10px;box-shadow:0 44px 90px -40px rgba(15,23,42,.55)">
+          <div style="position:relative;background:#e6ddd4;border-radius:31px;overflow:hidden">
+            <div style="position:absolute;top:9px;left:50%;transform:translateX(-50%);width:100px;height:22px;background:#0b0d10;border-radius:100px;z-index:6"></div>
+            <div style="display:flex;align-items:center;gap:9px;padding:30px 13px 11px;background:#075e54;color:#fff"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="m15 18-6-6 6-6"></path></svg><span style="width:30px;height:30px;border-radius:50%;overflow:hidden;flex-shrink:0;display:flex"><img src="assets/nx-avatar.png" alt="NX" style="width:100%;height:100%;object-fit:cover"/></span><div style="flex:1"><div style="font-size:13px;font-weight:700;display:flex;align-items:center;gap:5px">NX Digital <svg width="13" height="13" viewBox="0 0 24 24" fill="#4fc3f7"><circle cx="12" cy="12" r="11"/><path d="m8 12 3 3 5-6" stroke="#075e54" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div style="font-size:9.5px;color:#bfe0d8">Conta Empresarial</div></div><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.2z"/></svg></div>
+            <div style="padding:14px 11px 16px;display:flex;flex-direction:column;gap:9px">
+              <div style="align-self:center;background:rgba(255,255,255,.7);color:#54656f;font-size:9.5px;font-weight:600;padding:3px 11px;border-radius:8px">HOJE</div>
+              <div style="align-self:flex-end;max-width:86%;background:#d9fdd3;border-radius:12px 2px 12px 12px;padding:9px 12px;font-size:12.5px;line-height:1.4;color:#111b21;box-shadow:0 1px 2px rgba(15,23,42,.12)">Boa tarde! Quero fazer o pagamento dos produtos que selecionei<span style="font-size:9px;color:#5aa06b;float:right;margin-left:6px;margin-top:4px">10:02 ✓✓</span></div>
+              <div style="align-self:flex-start;max-width:88%;background:#fff;border-radius:2px 12px 12px 12px;padding:9px 12px;font-size:12.5px;line-height:1.4;color:#111b21;box-shadow:0 1px 2px rgba(15,23,42,.12)">Boa tarde, Bruno! Claro. 😊<span style="font-size:9px;color:#8aa0b3;float:right;margin-left:6px;margin-top:4px">10:02</span></div>
+              <div style="align-self:flex-start;max-width:90%;background:#fff;border-radius:12px;padding:9px;box-shadow:0 1px 2px rgba(15,23,42,.12)"><div style="height:96px;border-radius:9px;background:linear-gradient(135deg,#0756FF,#3d9bff);display:flex;align-items:center;justify-content:center;margin-bottom:8px;position:relative"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span style="position:absolute;top:8px;right:8px;background:rgba(255,255,255,.25);color:#fff;font-size:9px;font-weight:700;padding:2px 8px;border-radius:100px">Pedido</span></div><div style="font-size:11.5px;color:#111b21;line-height:1.4">NX Digital enviou um pedido: Olá Bruno, seu pedido <strong>#45978</strong> foi criado.</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:7px;border-top:1px solid #eef1f6;padding-top:7px"><span style="font-size:13px;font-weight:800;color:#111b21">R$ 479,90</span><span style="font-size:10.5px;font-weight:700;color:#0756FF">Pagar agora ›</span></div></div>
+              <div style="align-self:flex-end;max-width:86%;background:#d9fdd3;border-radius:12px 2px 12px 12px;padding:9px 12px;font-size:12.5px;color:#111b21;box-shadow:0 1px 2px rgba(15,23,42,.12)">Já está pago! 😉<span style="font-size:9px;color:#5aa06b;float:right;margin-left:6px;margin-top:4px">10:03 ✓✓</span></div>
+              <div style="align-self:flex-start;max-width:88%;background:#fff;border-radius:2px 12px 12px 12px;padding:9px 12px;font-size:12.5px;line-height:1.4;color:#111b21;box-shadow:0 1px 2px rgba(15,23,42,.12)">Pagamento confirmado! ✅ Já estamos separando seu pedido. Obrigado, Bruno!<span style="font-size:9px;color:#8aa0b3;float:right;margin-left:6px;margin-top:4px">10:03</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:26px">
+        <div style="display:flex;gap:16px;align-items:flex-start"><span style="flex-shrink:0;width:46px;height:46px;border-radius:12px;background:#eaf1ff;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m2 13 4 4 8-9"></path><path d="m10 15 2 2 8-9"></path></svg></span><p style="font-size:16.5px;line-height:1.5;color:#334155;margin:0;padding-top:4px">Envie mensagens com <strong style="color:#0a1633">taxa de abertura acima de 98%</strong></p></div>
+        <div style="display:flex;gap:16px;align-items:flex-start"><span style="flex-shrink:0;width:46px;height:46px;border-radius:12px;background:#eaf1ff;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span><p style="font-size:16.5px;line-height:1.5;color:#334155;margin:0;padding-top:4px">Aumente o volume de clientes e <strong style="color:#0a1633">venda mais no WhatsApp</strong></p></div>
+        <div style="display:flex;gap:16px;align-items:flex-start"><span style="flex-shrink:0;width:46px;height:46px;border-radius:12px;background:#eaf1ff;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg></span><p style="font-size:16.5px;line-height:1.5;color:#334155;margin:0;padding-top:4px">Dispare <strong style="color:#0a1633">cupons e promoções em massa</strong> para toda a sua base de clientes</p></div>
+        <div style="display:flex;gap:16px;align-items:flex-start"><span style="flex-shrink:0;width:46px;height:46px;border-radius:12px;background:#eaf1ff;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg></span><p style="font-size:16.5px;line-height:1.5;color:#334155;margin:0;padding-top:4px">Cliente mostrou interesse e sumiu? Faça <strong style="color:#0a1633">remarketing</strong> e reengaje quem já falou com você no WhatsApp</p></div>
+        <a href="#form-dm" style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:#0756FF;color:#fff;font-weight:800;font-size:16px;padding:15px 34px;border-radius:12px;box-shadow:0 16px 34px -14px rgba(7,86,255,.6);transition:background .15s,transform .15s;margin-top:6px" style-hover="background:#0445CC;transform:translateY(-2px)">Contratar agora</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUE WHATSAPP -->
+  <section style="background:linear-gradient(180deg,#f0f7ff 0%,#eaf1ff 100%);padding:88px 24px">
+    <div style="max-width:1080px;margin:0 auto">
+      <h2 style="text-align:center;font-size:40px;font-weight:900;letter-spacing:-1.4px;color:#0756FF;margin:0 0 48px;text-wrap:balance">Por que disparar mensagens pelo WhatsApp?</h2>
+      <div class="dm-stats">
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:38px 26px;text-align:center;box-shadow:0 24px 50px -34px rgba(15,23,42,.4)">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="#0756FF" style="margin-bottom:8px"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24z"></path></svg>
+          <div style="font-size:56px;font-weight:900;letter-spacing:-2px;color:#0756FF;line-height:1">99%</div>
+          <p style="font-size:15px;line-height:1.5;color:#334155;margin:10px 0 0">dos smartphones do Brasil possuem o <strong style="color:#0a1633">WhatsApp instalado</strong>.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:38px 26px;text-align:center;box-shadow:0 24px 50px -34px rgba(15,23,42,.4)">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2" style="margin-bottom:8px"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>
+          <div style="font-size:56px;font-weight:900;letter-spacing:-2px;color:#0756FF;line-height:1">95%</div>
+          <p style="font-size:15px;line-height:1.5;color:#334155;margin:10px 0 0">dos usuários <strong style="color:#0a1633">acessam o WhatsApp todo dia</strong> ou quase todo dia.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:38px 26px;text-align:center;box-shadow:0 24px 50px -34px rgba(15,23,42,.4)">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:8px"><path d="M11 12H7a2 2 0 0 0-2 2v6M20 8v6M23 11h-6M9 7a3 3 0 1 0 0-.01"></path></svg>
+          <div style="font-size:56px;font-weight:900;letter-spacing:-2px;color:#0756FF;line-height:1">81%</div>
+          <p style="font-size:15px;line-height:1.5;color:#334155;margin:10px 0 0">dos usuários se <strong style="color:#0a1633">comunicam com empresas</strong> pelo WhatsApp.</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:40px"><a href="#form-dm" style="display:inline-flex;align-items:center;gap:8px;background:#0756FF;color:#fff;font-weight:800;font-size:16px;padding:16px 38px;border-radius:12px;box-shadow:0 16px 34px -14px rgba(7,86,255,.6);transition:transform .15s,filter .15s" style-hover="transform:translateY(-2px);filter:brightness(1.05)">Contratar agora</a></div>
+    </div>
+  </section>
+
+  <!-- TELA DO DISPARO -->
+  <section style="background:#fff;padding:88px 24px">
+    <div class="dm-grid" style="max-width:1160px;margin:0 auto;align-items:center">
+      <div>
+        <span style="display:inline-block;font-size:12px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#0756FF;background:#eaf1ff;border-radius:100px;padding:7px 16px;margin-bottom:16px">Campanha de disparo</span>
+        <h2 style="font-size:40px;font-weight:900;letter-spacing:-1.4px;color:#0a1633;margin:0 0 16px;text-wrap:balance">Crie sua campanha em <span style="color:#0756FF">poucos cliques</span></h2>
+        <p style="font-size:17px;line-height:1.6;color:#5f6d88;margin:0 0 26px">Nome, sessão, agendamento, delay entre mensagens, mídia e até 3 variações de texto com IA — tudo pronto e configurado pela NX na <strong>API oficial da Meta</strong>.</p>
+        <a href="#form-dm" style="display:inline-flex;align-items:center;gap:8px;background:#0756FF;color:#fff;font-weight:800;font-size:16px;padding:15px 34px;border-radius:12px;box-shadow:0 16px 34px -14px rgba(7,86,255,.6);transition:background .15s,transform .15s" style-hover="background:#0445CC;transform:translateY(-2px)">Quero disparar em massa <span style="font-size:20px">›</span></a>
+      </div>
+
+      <div style="background:#fff;border:1px solid #e6ecf5;border-radius:16px;box-shadow:0 44px 90px -50px rgba(15,23,42,.45);padding:16px 18px">
+        <div style="font-size:14px;font-weight:900;color:#0a1633;margin-bottom:14px">Nova campanha de disparo</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div><div style="font-size:10px;font-weight:700;color:#334155;margin-bottom:4px">Nome</div><div style="border:1.5px solid #0756FF;border-radius:7px;padding:7px 9px;font-size:10.5px;color:#9aa7bd;box-shadow:0 0 0 2px rgba(7,86,255,.1)">Nome da campanha</div></div>
+            <div><div style="font-size:10px;font-weight:700;color:#334155;margin-bottom:4px">Sessão/WhatsApp</div><div style="border:1px solid #e2e8f0;border-radius:7px;padding:7px 9px;font-size:10.5px;color:#9aa7bd;display:flex;align-items:center;justify-content:space-between">Selecione <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#b6c0d4" stroke-width="2.4"><path d="m6 9 6 6 6-6"></path></svg></div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div><div style="font-size:10px;font-weight:700;color:#334155;margin-bottom:4px">Data/hora de início</div><div style="border:1px solid #e2e8f0;border-radius:7px;padding:7px 9px;font-size:10.5px;color:#334155;display:flex;align-items:center;justify-content:space-between">22/07/2026 14:42 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#b6c0d4" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></div></div>
+            <div><div style="font-size:10px;font-weight:700;color:#334155;margin-bottom:4px">Delay (seg)</div><div style="border:1px solid #e2e8f0;border-radius:7px;padding:7px 9px;font-size:10.5px;color:#334155">20</div></div>
+          </div>
+          <div style="border:1px solid #eef1f6;border-radius:8px;padding:9px 11px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><span style="font-size:11px;font-weight:700;color:#0a1633">Janela de envio</span><span style="width:32px;height:18px;border-radius:100px;background:#0756FF;position:relative"><span style="position:absolute;top:2px;right:2px;width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.3)"></span></span></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div><div style="font-size:9px;font-weight:600;color:#8695af;margin-bottom:3px">Iniciar às</div><div style="border:1px solid #e2e8f0;border-radius:6px;padding:6px 8px;font-size:10px;color:#334155;display:flex;align-items:center;gap:5px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>08:00</div></div><div><div style="font-size:9px;font-weight:600;color:#8695af;margin-bottom:3px">Parar às</div><div style="border:1px solid #e2e8f0;border-radius:6px;padding:6px 8px;font-size:10px;color:#334155;display:flex;align-items:center;gap:5px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#e0324f" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>18:00</div></div></div></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #eef1f6;border-radius:8px;padding:9px 11px"><span style="font-size:11px;font-weight:700;color:#0a1633;line-height:1.3">Exibir mensagem original ao receber resposta</span><span style="flex-shrink:0;width:32px;height:18px;border-radius:100px;background:#e2e8f0;position:relative"><span style="position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.3)"></span></span></div>
+          <div><div style="font-size:10px;font-weight:700;color:#334155;margin-bottom:4px">Mídia (opcional)</div><div style="display:flex;gap:9px;align-items:center;border:1px solid #e2e8f0;border-radius:8px;padding:8px"><span style="flex-shrink:0;width:42px;height:42px;border-radius:7px;background:linear-gradient(135deg,#0756FF,#3d9bff);display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg></span><div style="flex:1;min-width:0"><div style="font-size:10.5px;font-weight:700;color:#0a1633">promo-blackfriday.jpg</div><div style="font-size:9.5px;color:#8695af">Imagem anexada · 240 KB</div></div></div></div>
+          <div><div style="font-size:10px;font-weight:700;color:#334155;margin-bottom:4px">Template</div><div style="border:1px solid #e2e8f0;border-radius:7px;padding:8px 9px;font-size:10px;color:#334155;display:flex;align-items:center;justify-content:space-between">Promoção — Black Friday <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#b6c0d4" stroke-width="2.4"><path d="m6 9 6 6 6-6"></path></svg></div></div>
+          <div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><span style="font-size:10px;font-weight:700;color:#fff;background:#0756FF;border-radius:5px;padding:3px 9px">Mensagem 1</span><span style="display:flex;align-items:center;gap:9px;font-size:10px;font-weight:700"><span style="color:#8b5cf6">✨ IA</span><span style="color:#334155">Variáveis</span></span></div>
+            <div style="border:1px solid #e2e8f0;border-radius:7px;padding:9px;font-size:10.5px;color:#334155;min-height:38px;line-height:1.4">Olá {nome}! 🖤 Black Friday chegou: <strong>10% OFF</strong> com o cupom <strong>CLIENTE10</strong>. Aproveite!</div>
+          </div>
+          <div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><span style="font-size:10.5px;font-weight:700;color:#334155">Mensagem 2</span><span style="display:flex;align-items:center;gap:9px;font-size:10px;font-weight:700"><span style="color:#8b5cf6">✨ IA</span><span style="color:#334155">Variáveis</span></span></div>
+            <div style="border:1px solid #e2e8f0;border-radius:7px;padding:9px;font-size:10.5px;color:#9aa7bd;min-height:34px">Digite a mensagem…</div>
+          </div>
+          <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:6px">
+            <span style="border:1px solid #e2e8f0;border-radius:7px;padding:8px 16px;font-size:11px;font-weight:600;color:#334155">Cancelar</span>
+            <span style="background:#0756FF;border-radius:7px;padding:8px 18px;font-size:11px;font-weight:700;color:#fff">Criar campanha</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEGURANÇA / BENEFÍCIOS API -->
+  <section style="background:linear-gradient(180deg,#f5f8ff 0%,#eef4ff 100%);padding:88px 24px">
+    <div style="max-width:1120px;margin:0 auto">
+      <div style="text-align:center;max-width:720px;margin:0 auto 48px">
+        <span style="display:inline-block;font-size:12px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#0756FF;background:#e0ebff;border-radius:100px;padding:7px 16px;margin-bottom:16px">Seguro e oficial</span>
+        <h2 style="font-size:40px;font-weight:900;letter-spacing:-1.4px;color:#0a1633;margin:0 0 14px;text-wrap:balance">Dispare em massa <span style="color:#0756FF">sem risco de banimento</span></h2>
+        <p style="font-size:17px;line-height:1.6;color:#5f6d88;margin:0">Diferente dos disparadores piratas, a NX usa a <strong>API oficial da Meta</strong>. Seu número fica seguro, dentro das regras e com entrega garantida.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px" class="dm-stats">
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:30px 26px;box-shadow:0 24px 50px -34px rgba(15,23,42,.4)">
+          <span style="display:inline-flex;width:50px;height:50px;border-radius:14px;background:#eaf1ff;align-items:center;justify-content:center;margin-bottom:16px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
+          <h3 style="font-size:18px;font-weight:800;color:#0a1633;margin:0 0 8px">Sem risco de banimento</h3>
+          <p style="font-size:14.5px;line-height:1.55;color:#5f6d88;margin:0">Envios pela API oficial da Meta, dentro das políticas — seu número protegido e nunca bloqueado por disparo.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:30px 26px;box-shadow:0 24px 50px -34px rgba(15,23,42,.4)">
+          <span style="display:inline-flex;width:50px;height:50px;border-radius:14px;background:#eaf1ff;align-items:center;justify-content:center;margin-bottom:16px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"></path><path d="M22 2 15 22l-4-9-9-4 20-7z"></path></svg></span>
+          <h3 style="font-size:18px;font-weight:800;color:#0a1633;margin:0 0 8px">Entrega garantida</h3>
+          <p style="font-size:14.5px;line-height:1.55;color:#5f6d88;margin:0">Mensagens chegam com selo verde de conta verificada — mais confiança e taxa de abertura acima de 98%.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:30px 26px;box-shadow:0 24px 50px -34px rgba(15,23,42,.4)">
+          <span style="display:inline-flex;width:50px;height:50px;border-radius:14px;background:#eaf1ff;align-items:center;justify-content:center;margin-bottom:16px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></span>
+          <h3 style="font-size:18px;font-weight:800;color:#0a1633;margin:0 0 8px">Personalização real</h3>
+          <p style="font-size:14.5px;line-height:1.55;color:#5f6d88;margin:0">Use o nome do cliente e variáveis para cada contato. Nada de mensagem genérica — cada disparo parece feito à mão.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:30px 26px;box-shadow:0 24px 50px -34px rgba(15,23,42,.4)">
+          <span style="display:inline-flex;width:50px;height:50px;border-radius:14px;background:#eaf1ff;align-items:center;justify-content:center;margin-bottom:16px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span>
+          <h3 style="font-size:18px;font-weight:800;color:#0a1633;margin:0 0 8px">Agendamento e janela</h3>
+          <p style="font-size:14.5px;line-height:1.55;color:#5f6d88;margin:0">Programe início e fim, defina o delay entre envios e respeite o horário comercial dos seus contatos.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:30px 26px;box-shadow:0 24px 50px -34px rgba(15,23,42,.4)">
+          <span style="display:inline-flex;width:50px;height:50px;border-radius:14px;background:#eaf1ff;align-items:center;justify-content:center;margin-bottom:16px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path></svg></span>
+          <h3 style="font-size:18px;font-weight:800;color:#0a1633;margin:0 0 8px">Respostas caem no atendimento</h3>
+          <p style="font-size:14.5px;line-height:1.55;color:#5f6d88;margin:0">Quem responder ao disparo vira uma conversa no painel — seu time assume e fecha a venda na hora.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:30px 26px;box-shadow:0 24px 50px -34px rgba(15,23,42,.4)">
+          <span style="display:inline-flex;width:50px;height:50px;border-radius:14px;background:#eaf1ff;align-items:center;justify-content:center;margin-bottom:16px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg></span>
+          <h3 style="font-size:18px;font-weight:800;color:#0a1633;margin:0 0 8px">A NX configura, você dispara</h3>
+          <p style="font-size:14.5px;line-height:1.55;color:#5f6d88;margin:0">A gente configura a API oficial, deixa tudo pronto e treina o seu time. O disparo das campanhas fica no seu controle, quando você quiser.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULÁRIO -->
+  <section id="form-dm" style="background:#fff;padding:88px 24px;scroll-margin-top:80px">
+    <div class="dm-grid" style="max-width:1000px;margin:0 auto;align-items:center">
+      <div>
+        <h2 style="font-size:38px;line-height:1.1;font-weight:900;letter-spacing:-1.2px;color:#0a1633;margin:0 0 16px">Comece a disparar e vender mais no WhatsApp</h2>
+        <p style="font-size:18px;line-height:1.6;color:#51607a;margin:0 0 24px">Preencha ao lado e o nosso time comercial te chama rapidinho no WhatsApp. A NX configura o disparo em massa na API oficial da Meta e deixa tudo pronto pra você.</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;gap:12px;color:#334155;font-size:15.5px;font-weight:500"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>API oficial da Meta — sem risco de banimento</div>
+          <div style="display:flex;align-items:center;gap:12px;color:#334155;font-size:15.5px;font-weight:500"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Implementação, configuração e treinamento inclusos</div>
+          <div style="display:flex;align-items:center;gap:12px;color:#334155;font-size:15.5px;font-weight:500"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Parceiro oficial Meta</div>
+        </div>
+      </div>
+      <div>
+        <div style="background:#fff;border-radius:24px;padding:32px 30px;box-shadow:0 40px 80px -34px rgba(7,86,255,.4);border:1px solid #eef1f6">
+          <h3 style="font-size:22px;font-weight:800;letter-spacing:-.5px;margin:0 0 6px;color:#0a1633">Quero disparar em massa</h3>
+          <p style="font-size:14.5px;color:#64748b;line-height:1.5;margin:0 0 22px">Preencha e o nosso time comercial te chama rapidinho no seu WhatsApp.</p>
+          <form onSubmit="{{ handleSubmit }}" style="display:flex;flex-direction:column;gap:14px">
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px">Nome</label>
+              <input name="nome" required placeholder="Seu nome" style="width:100%;font-family:inherit;font-size:15px;padding:13px 14px;border:1.5px solid #e2e8f0;border-radius:12px;outline:none;background:#fafbff" style-focus="border-color:#0756FF;box-shadow:0 0 0 3px rgba(7,86,255,.12);background:#fff" />
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px">WhatsApp</label>
+              <input name="whatsapp" required inputmode="tel" placeholder="(00) 00000-0000" style="width:100%;font-family:inherit;font-size:15px;padding:13px 14px;border:1.5px solid #e2e8f0;border-radius:12px;outline:none;background:#fafbff" style-focus="border-color:#0756FF;box-shadow:0 0 0 3px rgba(7,86,255,.12);background:#fff" />
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px">Ramo do negócio</label>
+              <input name="ramo" required placeholder="Ex: clínica, loja, imobiliária…" style="width:100%;font-family:inherit;font-size:15px;padding:13px 14px;border:1.5px solid #e2e8f0;border-radius:12px;outline:none;background:#fafbff" style-focus="border-color:#0756FF;box-shadow:0 0 0 3px rgba(7,86,255,.12);background:#fff" />
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px">Quantidade de usuários</label>
+              <select name="usuarios" required style="width:100%;font-family:inherit;font-size:15px;padding:13px 14px;border:1.5px solid #e2e8f0;border-radius:12px;outline:none;background:#fafbff;color:#334155;cursor:pointer;appearance:none;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 fill=%22none%22 stroke=%22%2364748b%22 stroke-width=%222.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22m6 9 6 6 6-6%22/></svg>');background-repeat:no-repeat;background-position:right 14px center" style-focus="border-color:#0756FF;box-shadow:0 0 0 3px rgba(7,86,255,.12);background-color:#fff">
+                <option value="" disabled selected>Selecione o tamanho da equipe</option>
+                <option value="1-5">1 a 5 usuários</option>
+                <option value="6-15">6 a 15 usuários</option>
+                <option value="16-30">16 a 30 usuários</option>
+                <option value="31-50">31 a 50 usuários</option>
+                <option value="50+">Mais de 50 usuários</option>
+              </select>
+            </div>
+            <label style="display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:#64748b;line-height:1.5;cursor:pointer;margin-top:2px">
+              <input type="checkbox" name="consent" required style="margin-top:2px;width:16px;height:16px;accent-color:#0756FF;flex-shrink:0" />
+              <span>Ao enviar, você concorda com nossa <a href="https://ajuda.zdg.com.br/diretrizes-e-politicas/aviso-de-privacidade" target="_blank" rel="noopener">Política de Privacidade</a> e com o tratamento dos seus dados conforme a LGPD.</span>
+            </label>
+            <button type="submit" style="margin-top:6px;width:100%;background:#0756FF;color:#fff;font-family:inherit;font-weight:700;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;transition:background .15s;box-shadow:0 14px 26px -12px rgba(7,86,255,.7)" style-hover="background:#0445CC">Enviar e receber mensagem</button>
+            <button type="button" onClick="{{ handleWhats }}" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;font-family:inherit;font-weight:700;font-size:16px;padding:15px;border:none;border-radius:14px;cursor:pointer;transition:filter .15s" style-hover="filter:brightness(.95)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37s-1.05 1.02-1.05 2.5 1.08 2.9 1.23 3.1c.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.71.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35zM12 2a10 10 0 0 0-8.6 15.06L2 22l5.06-1.33A10 10 0 1 0 12 2z"></path></svg>
+              Falar agora no WhatsApp
+            </button>
+            <p style="text-align:center;font-size:12px;color:#94a3b8;margin-top:2px">Resposta rápida • Parceiro oficial Meta • Demonstração gratuita</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:linear-gradient(165deg,#0756FF 0%,#0540c4 55%,#062a86 100%);padding:64px 20px 26px;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-140px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(255,255,255,.14),transparent 70%);pointer-events:none"></div>
+    <div style="max-width:1180px;margin:0 auto;position:relative;z-index:2">
+      <div class="foot-grid" style="display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:44px">
+        <div>
+          <div style="display:inline-flex;align-items:center;justify-content:center;background:#fff;padding:12px 16px;border-radius:14px;margin-bottom:20px;box-shadow:0 10px 24px -12px rgba(0,0,0,.4)"><img src="assets/nx-logo.png" alt="NX Digital" style="height:40px;object-fit:contain;display:block" /></div>
+          <p style="font-size:14.5px;line-height:1.6;color:#cdddff;max-width:320px;margin:0 0 22px">Plataforma de atendimento multicanal com API oficial da Meta. A gente implementa, configura e treina o seu time.</p>
+          <div style="display:flex;gap:10px">
+            <a href="https://instagram.com/gruponxdigital" target="_blank" rel="noopener" aria-label="Instagram @gruponxdigital" style="width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:rgba(255,255,255,.24)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.2" fill="#fff" stroke="none"></circle></svg></a>
+            <a href="#form-dm" aria-label="WhatsApp" style="width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:rgba(255,255,255,.24)"><svg width="21" height="21" viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.87 9.87 0 0 0 1.523 5.263l-.999 3.648 3.965-1.05zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg></a>
+            <a href="mailto:atendimento@nxsystems.com.br" aria-label="E-mail" style="width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:rgba(255,255,255,.24)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8fb4ff;margin:0 0 18px">Soluções</h4>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <a href="/chatbot" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Chatbot</a>
+            <a href="/agente-de-ia" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Agente de IA</a>
+            <a href="/copiloto-de-ia" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Copiloto de IA</a>
+            <a href="/crm-inteligente" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">CRM Inteligente</a>
+            <a href="/disparo-em-massa" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Disparo em massa</a>
+            <a href="/relatorios" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Relatórios</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8fb4ff;margin:0 0 18px">Quem somos</h4>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <a href="/nossa-historia" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Nossa História</a>
+            <a href="/protecao-de-dados" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Proteção de Dados</a>
+            <a href="/politica-de-privacidade" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Política de Privacidade</a>
+            <a href="/termos-de-uso" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Termos de Uso</a>
+            <a href="/codigo-de-etica" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Código de Ética</a>
+            <a href="/politicas-da-meta" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Políticas da Meta</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8fb4ff;margin:0 0 18px">Nossa empresa</h4>
+          <div style="display:flex;flex-direction:column;gap:13px;font-size:14px;color:#dce8ff;line-height:1.5">
+            <div style="font-weight:700;color:#fff">GRUPO NX NETSCALE LTDA</div>
+            <div style="display:flex;gap:9px;align-items:flex-start"><svg style="flex-shrink:0;margin-top:2px" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8fb4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 8h6M9 12h6M9 16h4"></path></svg><span>CNPJ 59.935.008/0001-92</span></div>
+            <a href="mailto:atendimento@nxsystems.com.br" style="display:flex;gap:9px;align-items:flex-start;color:#dce8ff;transition:color .15s" style-hover="color:#fff"><svg style="flex-shrink:0;margin-top:2px" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8fb4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg><span>atendimento@nxsystems.com.br</span></a>
+            <div style="display:flex;gap:9px;align-items:flex-start"><svg style="flex-shrink:0;margin-top:2px" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8fb4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>Av. Expedicionário José Pedro Coelho, 1237 — Centro, Tubarão/SC, 88701-005</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding-top:24px;border-top:1px solid rgba(255,255,255,.16)">
+        <div style="font-size:13px;color:#a9c4ff">© 2026 Grupo NX Netscale LTDA • Todos os direitos reservados</div>
+        <div style="display:flex;align-items:center;gap:16px;font-size:13px;color:#a9c4ff"><a href="/mapa-do-site" style="color:#dce8ff;font-weight:600" style-hover="color:#fff">Mapa do site</a><span>Plataforma de atendimento multicanal • Parceiro oficial Meta</span></div>
+      </div>
+    </div>
+  </footer>
+
+    <a href="#form-dm" aria-label="Falar no WhatsApp" style="position:fixed;bottom:24px;right:24px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px -6px rgba(37,211,102,.6);animation:pulseRing 2.4s infinite">
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.87 9.87 0 0 0 1.523 5.263l-.999 3.648 3.965-1.05zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+  </a>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { solOpen:false, quemOpen:false, contOpen:false };
+  waNumber = '5548936181649';
+  handleSubmit(e){
+    e.preventDefault();
+    if(e.target.checkValidity && !e.target.checkValidity()){ e.target.reportValidity(); return; }
+    const f = e.target;
+    const nome = f.nome.value.trim();
+    const whats = f.whatsapp.value.trim();
+    const ramo = f.ramo.value.trim();
+    const sel = f.usuarios;
+    const usuarios = sel && sel.selectedIndex >= 0 ? sel.options[sel.selectedIndex].text : '';
+    const texto = encodeURIComponent(`Olá! Quero disparar em massa no WhatsApp.\nNome: ${nome}\nWhatsApp: ${whats}\nRamo: ${ramo}\nQuantidade de usuários: ${usuarios}`);
+    window.open(`https://wa.me/${this.waNumber}?text=${texto}`, '_blank');
+    window.location.href = 'obrigado?nome=' + encodeURIComponent(nome);
+  }
+  handleWhats(){
+    const texto = encodeURIComponent('Olá! Quero disparar em massa no WhatsApp com a NX Digital.');
+    window.open(`https://wa.me/${this.waNumber}?text=${texto}`, '_blank');
+  }
+  renderVals(){
+    const menu = (open) => `position:absolute;top:100%;left:-10px;padding-top:14px;z-index:60;transition:opacity .18s,transform .18s;transform-origin:top left;opacity:${open?1:0};transform:${open?'translateY(0) scale(1)':'translateY(-6px) scale(.98)'};visibility:${open?'visible':'hidden'};pointer-events:${open?'auto':'none'}`;
+    const chev = (open) => `transition:transform .18s;transform:rotate(${open?180:0}deg)`;
+    return {
+      openSol:()=>this.setState({solOpen:true}), closeSol:()=>this.setState({solOpen:false}), toggleSol:()=>this.setState(s=>({solOpen:!s.solOpen})),
+      handleSubmit:(e)=>this.handleSubmit(e), handleWhats:()=>this.handleWhats(),
+      openQuem:()=>this.setState({quemOpen:true}), closeQuem:()=>this.setState({quemOpen:false}), toggleQuem:()=>this.setState(s=>({quemOpen:!s.quemOpen})),
+      openCont:()=>this.setState({contOpen:true}), closeCont:()=>this.setState({contOpen:false}), toggleCont:()=>this.setState(s=>({contOpen:!s.contOpen})),
+      solMenuStyle: menu(this.state.solOpen), solChevronStyle: chev(this.state.solOpen),
+      quemMenuStyle: menu(this.state.quemOpen), quemChevronStyle: chev(this.state.quemOpen),
+      contMenuStyle: menu(this.state.contOpen), contChevronStyle: chev(this.state.contOpen),
+      setLangPt:()=>{}, setLangEs:()=>{}, setLangEn:()=>{},
+    };
+  }
+}
+</script>
+</body>
+</html>

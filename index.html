@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>NX Digital - Plataforma de atendimento</title>
+<meta name="description" content="Plataforma de atendimento multicanal: multiatendimento no WhatsApp, chatbot e IA 24h com API oficial da Meta. A NX implementa, configura e treina seu time." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/png" href="assets/nx-logo.png" />
+<link rel="apple-touch-icon" href="assets/nx-logo.png" />
+<link rel="shortcut icon" type="image/png" href="assets/nx-logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<!-- ===== TRACKING (cole seus IDs): GA4 / Google Ads / Meta Pixel aqui no topo ===== -->
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:#0B1220;background:#fff;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:#0756FF;text-decoration:none}
+  a:hover{color:#0445CC}
+  details summary::-webkit-details-marker{display:none}
+  details summary{list-style:none}
+  details[open] .faq-chev{transform:rotate(180deg)}
+  details[open] summary{color:#0756FF}
+  [data-reveal]{opacity:1;transform:none}
+  [data-reveal].vis{opacity:1;transform:none}
+  @keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(37,211,102,.4)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes heroUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+  @keyframes tdot{0%,80%,100%{transform:translateY(0);opacity:.35}40%{transform:translateY(-5px);opacity:1}}
+  @keyframes spinGlow{to{transform:rotate(360deg)}}
+  @keyframes auraPulse{0%{box-shadow:0 0 0 0 rgba(7,86,255,.5)}70%{box-shadow:0 0 0 14px rgba(7,86,255,0)}100%{box-shadow:0 0 0 0 rgba(7,86,255,0)}}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+  #seg-row::-webkit-scrollbar{display:none}
+  .noscroll::-webkit-scrollbar{display:none}
+  .noscroll{scrollbar-width:none;-ms-overflow-style:none}
+  input::placeholder{color:#9aa7bd}
+  @media(max-width:920px){.hero-grid{grid-template-columns:1fr!important}.two-col{grid-template-columns:1fr!important}.bene-grid{grid-template-columns:1fr 1fr!important}.steps-grid{grid-template-columns:1fr 1fr!important}.testi-grid{grid-template-columns:1fr!important}.integ-grid{grid-template-columns:1fr!important}.chan-grid{gap:14px!important}.rec-grid{grid-template-columns:1fr!important}.head-nav{display:none!important}.foot-grid{grid-template-columns:1fr 1fr!important}.sim-grid{grid-template-columns:1fr!important}.why-grid{grid-template-columns:1fr 1fr!important}.h1-xl{font-size:40px!important}.sec-title{font-size:32px!important}.wrap-pad{padding-left:20px!important;padding-right:20px!important}.hero-pad{padding-top:44px!important}}
+  @media(max-width:560px){.bene-grid{grid-template-columns:1fr!important}.steps-grid{grid-template-columns:1fr!important}.why-grid{grid-template-columns:1fr!important}.feat-grid{grid-template-columns:1fr!important}.foot-grid{grid-template-columns:1fr!important}}
+
+  /* ===== MOBILE (não afeta desktop) ===== */
+  @media(max-width:760px){
+    html,body{overflow-x:hidden!important}
+    img{max-width:100%!important;height:auto!important}
+    h1,.sub-title{font-size:clamp(27px,7.6vw,36px)!important;line-height:1.12!important;letter-spacing:-1.1px!important}
+    h2{font-size:clamp(22px,6.2vw,29px)!important;line-height:1.16!important;letter-spacing:-.8px!important}
+    h3{font-size:18px!important}
+    section{padding-left:16px!important;padding-right:16px!important}
+    section > div, footer > div{max-width:100%!important}
+    div[style*="grid-template-columns"]{grid-template-columns:1fr!important}
+    div[style*="position:sticky"],div[style*="position: sticky"]{position:static!important;top:auto!important}
+    p{font-size:15.5px!important;line-height:1.6!important}
+    a[style*="padding:16px 3"],a[style*="padding:15px 3"],a[style*="padding: 16px 3"],a[style*="padding: 15px 3"]{width:100%!important;justify-content:center!important}
+    div[style*="max-width:520px"],div[style*="max-width:560px"],div[style*="max-width:460px"],div[style*="max-width:440px"],div[style*="max-width:420px"],div[style*="max-width:400px"]{max-width:100%!important}
+    img[style*="margin-left:-9%"]{width:100%!important;margin-left:0!important}
+    img[style*="margin-left:-24px"]{margin-left:0!important}
+  }
+  @media(max-width:560px){
+    section{padding-top:44px!important;padding-bottom:44px!important}
+    div[style*="padding:56px"],div[style*="padding:64px"],div[style*="padding: 56px"],div[style*="padding: 64px"]{padding:26px 18px!important}
+    div[style*="border-radius:28px"]{border-radius:20px!important}
+  }
+
+  /* nav mobile: mostra os menus em linha rolável */
+  @media(max-width:920px){
+    header .head-nav{display:flex!important;order:3;width:100%;gap:18px!important;overflow-x:auto;padding:8px 2px 2px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    header .head-nav::-webkit-scrollbar{display:none}
+    header .head-nav > *{flex-shrink:0}
+    header .head-nav a,header .head-nav button{font-size:13.5px!important;white-space:nowrap}
+    header .wrap-pad,header > div > div > div{flex-wrap:wrap!important}
+  }
+  @media(max-width:560px){
+    header a[style*="border-radius:100px"]{font-size:12.5px!important;padding:9px 15px!important}
+    header img{height:30px!important}
+  }
+
+  /* ===== MOBILE v2 — refinos (desktop intocado) ===== */
+  @media(max-width:760px){
+    *{max-width:100%}
+    svg{max-width:100%}
+    /* mockups e cards com largura fixa */
+    div[style*="width:420px"],div[style*="width:440px"],div[style*="width:460px"],div[style*="width:360px"],div[style*="width:340px"],div[style*="width:330px"],div[style*="width:320px"],div[style*="width:310px"],div[style*="width:300px"],div[style*="width:290px"],div[style*="width:270px"],div[style*="width:250px"],div[style*="width:230px"]{width:100%!important}
+    div[style*="min-width:110px"],div[style*="min-width:150px"],div[style*="min-width:104px"]{min-width:0!important}
+    /* cartões flutuantes viram estáticos para não sobrepor texto */
+    div[style*="position:absolute"][style*="animation:floaty"]{position:static!important;animation:none!important;margin:12px auto 0!important;transform:none!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important}
+    /* marquee mais lento e legível */
+    div[style*="animation:marquee"]{gap:34px!important}
+    div[style*="animation:marquee"] > span{font-size:19px!important}
+    /* tabelas / linhas largas rolam sozinhas */
+    table{display:block;overflow-x:auto;white-space:nowrap}
+    /* textos que travavam em uma linha só */
+    p[style*="white-space:nowrap"],div[style*="white-space:nowrap"]{white-space:normal!important}
+    /* aspect-ratio de círculos decorativos não estica a página */
+    div[style*="aspect-ratio:1"]{max-height:78vw}
+    /* form: inputs confortáveis e sem zoom no iOS */
+    input,select,textarea,button{font-size:16px!important;max-width:100%}
+    select{background-position:right 12px center!important}
+    /* CTAs empilhados ocupam a linha */
+    div[style*="display:flex"][style*="flex-wrap:wrap"] > a{flex:1 1 100%}
+  }
+  @media(max-width:560px){
+    h1,.sub-title,.h1-xl{font-size:clamp(25px,7.4vw,31px)!important;letter-spacing:-.9px!important}
+    h2,.sec-title{font-size:clamp(21px,6vw,26px)!important}
+    /* padding interno de cards grandes */
+    div[style*="padding:32px 30px"],div[style*="padding:30px 28px"],div[style*="padding:34px 30px"],div[style*="padding:26px 26px"],div[style*="padding:28px 26px"]{padding:20px 16px!important}
+    div[style*="border-radius:26px"],div[style*="border-radius:24px"],div[style*="border-radius:22px"],div[style*="border-radius:20px"]{border-radius:16px!important}
+    /* números gigantes */
+    div[style*="font-size:56px"],div[style*="font-size:44px"],div[style*="font-size:42px"]{font-size:32px!important;letter-spacing:-1px!important}
+    /* whatsapp flutuante não cobre o CTA */
+    a[style*="position:fixed"]{bottom:14px!important;right:14px!important;transform:scale(.9)}
+  }
+
+  /* ===== MOBILE v3 — correções (desktop intocado) ===== */
+  @media(max-width:760px){
+    /* CABEÇALHO: logo+CTAs em linha, menus abaixo, nada estourando */
+    header .wrap-pad{flex-wrap:wrap!important;gap:8px!important;padding:8px 12px!important}
+    header .wrap-pad > div:first-child{flex:0 0 auto}
+    header .wrap-pad > div:last-child{flex:1 1 100%;order:2;display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:8px!important;justify-content:flex-start!important}
+    header .wrap-pad > div:last-child > div:first-child{order:1;flex:0 0 auto}
+    header .wrap-pad > div:last-child > a{flex:1 1 auto;min-width:0;justify-content:center!important;text-align:center;font-size:13px!important;padding:10px 12px!important;white-space:nowrap}
+    header .head-nav{order:3;flex:1 1 100%}
+    /* MARQUEE: precisa ser mais largo que a tela pra rolar */
+    div[style*="animation:marquee"]{width:max-content!important;max-width:none!important;flex-wrap:nowrap!important}
+    div[style*="animation:marquee"] > span{max-width:none!important;flex-shrink:0!important}
+    /* FAIXA "Atenda mais rápido": deixa quebrar em 2 linhas */
+    section p[style*="white-space:nowrap"]{white-space:normal!important;font-size:17px!important;text-align:left!important}
+    /* HERO: foto da especialista encaixada, sem sobra */
+    img[src*="moca"],img[src*="hero-"]{width:100%!important;max-width:420px!important;margin:0 auto!important;display:block!important}
+    /* WhatsApp flutuante fica acima de tudo, sem cobrir CTA */
+    a[style*="position:fixed"]{z-index:90!important}
+  }
+  @media(max-width:560px){
+    header .wrap-pad > div:last-child > a{font-size:12.5px!important;padding:9px 10px!important}
+    header img{height:26px!important}
+    div[style*="animation:marquee"] > span{font-size:17px!important}
+    section p[style*="white-space:nowrap"]{font-size:15.5px!important}
+  }
+
+  /* MOBILE marquee speed */
+  @media(max-width:760px){
+    div[style*="animation:marquee"]{animation-duration:9s!important}
+  }
+  @media(max-width:560px){
+    div[style*="animation:marquee"]{animation-duration:7s!important}
+  }
+
+  /* MOBILE footer logo */
+  @media(max-width:760px){
+    footer .foot-grid > div:first-child > div:first-child{display:inline-flex!important;width:auto!important;max-width:150px!important;padding:8px 12px!important;border-radius:10px!important}
+    footer .foot-grid img{height:30px!important;width:auto!important;max-width:120px!important;object-fit:contain!important}
+  }
+
+  /* MOBILE seg tabs — 2 por linha, compactos */
+  @media(max-width:760px){
+    div[data-reveal][style*="justify-content:center"][style*="flex-wrap:wrap"]{gap:8px!important}
+    div[data-reveal][style*="justify-content:center"][style*="flex-wrap:wrap"] > button{flex:1 1 calc(50% - 8px)!important;min-width:0!important;font-size:13px!important;padding:10px 8px!important;justify-content:center!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    div[data-reveal][style*="justify-content:center"][style*="flex-wrap:wrap"] > button > svg{width:15px!important;height:15px!important;flex-shrink:0}
+  }
+  @media(max-width:560px){
+    div[data-reveal][style*="justify-content:center"][style*="flex-wrap:wrap"] > button{font-size:12px!important;padding:9px 6px!important}
+  }
+
+  /* MOBILE hero: mulher encostada na linha azul/branco */
+  @media(max-width:920px){
+    section .hero-pad{padding-bottom:0!important}
+    .hero-grid{align-items:end!important;gap:20px!important}
+    .hero-grid > div:last-child{margin-bottom:0!important;align-items:flex-end!important;display:flex!important;line-height:0!important}
+    .hero-grid > div:last-child img{display:block!important;vertical-align:bottom!important;margin:0 auto!important;width:100%!important;max-width:400px!important;line-height:0!important}
+  }
+
+  /* MOBILE cabeçalho: bandeirinhas pequenas na primeira linha */
+  @media(max-width:760px){
+    header .wrap-pad{position:relative}
+    header .wrap-pad > div:last-child > div:first-child{position:absolute!important;top:10px!important;right:14px!important;gap:5px!important;z-index:5}
+    header .wrap-pad > div:last-child > div:first-child button{width:20px!important;height:15px!important;border-radius:3px!important}
+    header .wrap-pad > div:last-child > div:first-child button svg{width:20px!important;height:15px!important}
+    header .wrap-pad > div:last-child{padding-top:2px!important}
+    header .wrap-pad > div:first-child{padding-right:82px}
+  }
+
+  /* MOBILE nav centralizado */
+  @media(max-width:920px){
+    header .head-nav{justify-content:center!important;overflow-x:visible!important;flex-wrap:wrap!important;gap:16px!important;padding:6px 2px 2px!important}
+  }
+
+  /* MOBILE hero v4 — imagem em cima, infos abaixo */
+  @media(max-width:920px){
+    .hero-grid{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:0!important}
+    .hero-grid > div:last-child{order:-1!important;margin:-56px 0 0!important;line-height:0!important;display:block!important}
+    .hero-grid > div:last-child img{width:112%!important;max-width:none!important;margin:0 -6%!important;display:block!important}
+    /* pill dos canais sobe um pouco, ficando sobre a mão dela */
+    .hero-grid > div:first-child > div:first-child{display:flex!important;width:100%!important;justify-content:space-around!important;gap:0!important;padding:13px 10px!important;border-radius:18px!important;margin:-56px 0 22px!important;position:relative!important;z-index:3!important}
+    .hero-grid > div:first-child > div:first-child svg{width:27px!important;height:27px!important}
+    /* textos alinhados à esquerda */
+    .hero-grid > div:first-child h1,.hero-grid > div:first-child p{text-align:left!important;max-width:100%!important}
+    .hero-grid > div:first-child > div:nth-of-type(2){justify-content:flex-start!important}
+    .hero-grid > div:first-child > div:last-child{justify-content:flex-start!important}
+    section .hero-pad{padding-top:0!important;padding-bottom:34px!important}
+  }
+
+  /* MOBILE faixa "Atenda mais rápido" */
+  @media(max-width:760px){
+    .faixa-row{flex-wrap:wrap!important;flex-direction:column!important;gap:12px!important;padding:0 18px!important}
+    .faixa-txt{white-space:normal!important;font-size:18px!important;text-align:center!important;line-height:1.4!important}
+    .logos-sec{padding:18px 0 22px!important}
+    .logos-title{margin:0 0 14px!important;font-size:14.5px!important}
+    .logos-track{animation-duration:26s!important;gap:34px!important;width:max-content!important;max-width:none!important;flex-wrap:nowrap!important}
+    .logos-track > span{max-width:none!important;flex-shrink:0!important;white-space:nowrap!important;font-size:18px!important}
+    .faixa-sec{padding:18px 0!important}
+  }
+  @media(max-width:560px){
+    .faixa-txt{font-size:16px!important}
+  }
+
+  /* MOBILE simulador: chips em 2 colunas iguais */
+  @media(max-width:760px){
+    .seg-tabs{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important;margin-bottom:26px!important}
+    .seg-tabs > button{width:100%!important;min-width:0!important;flex:none!important;justify-content:center!important;font-size:12.5px!important;padding:11px 6px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .seg-tabs > button > svg{width:14px!important;height:14px!important;flex-shrink:0}
+  }
+
+  /* MOBILE: cabeçalho reto + dropdowns dentro da tela */
+  @media(max-width:760px){
+    header > div:first-child{padding:0!important;max-width:none!important}
+    header > div:first-child > div:first-child{border-radius:0!important;box-shadow:0 2px 10px -4px rgba(15,23,42,.25)!important}
+    header .head-nav > div{position:static!important}
+    header .head-nav > div > div[style*="position:absolute"]{position:fixed!important;left:8px!important;right:8px!important;top:auto!important;width:auto!important;max-width:none!important;padding-top:6px!important}
+    header .head-nav > div > div[style*="position:absolute"] > div{min-width:0!important;width:100%!important;max-height:62vh!important;overflow-y:auto!important;box-sizing:border-box!important}
+    header .head-nav > div > div[style*="position:absolute"] a{font-size:13.5px!important;padding:10px 13px!important;white-space:normal!important;line-height:1.35!important}
+  }
+</style>
+</helmet>
+
+<div style="width:100%;overflow-x:hidden;background:#fff">
+
+  <!-- ===================== HEADER ===================== -->
+  <header style="position:sticky;top:0;z-index:50;padding:0;background:#0547d2">
+    <div style="max-width:1240px;margin:0 auto;padding:12px 24px 0">
+    <div style="background:#fff;border-radius:22px;box-shadow:0 14px 40px -16px rgba(7,86,255,.35)">
+    <div class="wrap-pad" style="max-width:1200px;margin:0 auto;padding:8px 28px;display:flex;align-items:center;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:8px">
+        <img src="assets/nx-logo.png" alt="NX Digital" style="height:40px;object-fit:contain;display:block" />
+      </div>
+      <nav class="head-nav" style="display:flex;align-items:center;gap:32px">
+        <div style="position:relative" onMouseEnter="{{ openSol }}" onMouseLeave="{{ closeSol }}">
+          <button onClick="{{ toggleSol }}" style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;padding:0;cursor:pointer;color:#334155;font-weight:600;font-size:15px;font-family:inherit;transition:color .15s" style-hover="color:#0756FF">Soluções<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="{{ solChevronStyle }}"><path d="m6 9 6 6 6-6"></path></svg></button>
+          <div style="{{ solMenuStyle }}">
+            <div style="background:#fff;border:1px solid #eef2f8;border-radius:16px;box-shadow:0 24px 60px -18px rgba(15,23,42,.3);padding:10px;min-width:250px;display:flex;flex-direction:column">
+              <a href="/chatbot" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Chatbot</a>
+              <a href="/agente-de-ia" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Agente de IA</a>
+              <a href="/copiloto-de-ia" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Copiloto de IA</a>
+              <a href="/crm-inteligente" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">CRM Inteligente</a>
+              <a href="/disparo-em-massa" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Disparo em massa</a>
+              <a href="/relatorios" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Relatórios</a>
+              <a href="/integracoes-personalizadas" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Integrações personalizadas</a>
+              <a href="/integracao-whatsapp" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Integração WhatsApp</a>
+              <a href="/integracao-instagram" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Integração Instagram</a>
+              <a href="/criacao-de-site" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Criação de site</a>
+              <a href="/automacao-personalizada" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Automação personalizada</a>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative" onMouseEnter="{{ openQuem }}" onMouseLeave="{{ closeQuem }}">
+          <button onClick="{{ toggleQuem }}" style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;padding:0;cursor:pointer;color:#334155;font-weight:600;font-size:15px;font-family:inherit;transition:color .15s" style-hover="color:#0756FF">Quem somos<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="{{ quemChevronStyle }}"><path d="m6 9 6 6 6-6"></path></svg></button>
+          <div style="{{ quemMenuStyle }}">
+            <div style="background:#fff;border:1px solid #eef2f8;border-radius:16px;box-shadow:0 24px 60px -18px rgba(15,23,42,.3);padding:10px;min-width:290px;display:flex;flex-direction:column">
+              <a href="/protecao-de-dados" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Proteção de Dados e Segurança</a>
+              <a href="/politica-de-chatbot-e-ia" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Política de Chatbot e Inteligência Artificial</a>
+              <a href="/politica-de-privacidade" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Política de Privacidade</a>
+              <a href="/aviso-de-privacidade" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Aviso de Privacidade</a>
+              <a href="/termos-de-uso" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Termos de Uso</a>
+              <a href="/codigo-de-etica" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Código de Ética</a>
+              <a href="/politica-anticorrupcao" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Política Anticorrupção</a>
+              <a href="/politicas-da-meta" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Políticas da Meta</a>
+              <a href="/nossa-historia" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Nossa História</a>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative" onMouseEnter="{{ openCont }}" onMouseLeave="{{ closeCont }}">
+          <button onClick="{{ toggleCont }}" style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;padding:0;cursor:pointer;color:#334155;font-weight:600;font-size:15px;font-family:inherit;transition:color .15s" style-hover="color:#0756FF">Contato<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="{{ contChevronStyle }}"><path d="m6 9 6 6 6-6"></path></svg></button>
+          <div style="{{ contMenuStyle }}">
+            <div style="background:#fff;border:1px solid #eef2f8;border-radius:16px;box-shadow:0 24px 60px -18px rgba(15,23,42,.3);padding:10px;min-width:230px;display:flex;flex-direction:column">
+              <a href="/seja-um-parceiro" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Seja um parceiro</a>
+              <a href="/suporte" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Fale com o suporte</a>
+              <a href="#form" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Fale com o especialista</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div style="display:flex;align-items:center;gap:16px">
+        <div style="display:flex;align-items:center;gap:7px">
+          <button onClick="{{ setLangPt }}" aria-label="Português (Brasil)" title="Português" style="width:26px;height:19px;border-radius:4px;border:none;padding:0;overflow:hidden;cursor:pointer;background:none;display:flex;transition:transform .15s" style-hover="transform:scale(1.14)">
+            <svg width="26" height="19" viewBox="0 0 26 19"><rect width="26" height="19" fill="#009c3b"/><path d="M13 2.5 23.5 9.5 13 16.5 2.5 9.5Z" fill="#ffdf00"/><circle cx="13" cy="9.5" r="3.4" fill="#002776"/></svg>
+          </button>
+          <button onClick="{{ setLangEs }}" aria-label="Español" title="Español" style="width:26px;height:19px;border-radius:4px;border:none;padding:0;overflow:hidden;cursor:pointer;background:none;display:flex;transition:transform .15s" style-hover="transform:scale(1.14)">
+            <svg width="26" height="19" viewBox="0 0 26 19"><rect width="26" height="19" fill="#c60b1e"/><rect y="4.75" width="26" height="9.5" fill="#ffc400"/></svg>
+          </button>
+          <button onClick="{{ setLangEn }}" aria-label="English (US)" title="English" style="width:26px;height:19px;border-radius:4px;border:none;padding:0;overflow:hidden;cursor:pointer;background:none;display:flex;transition:transform .15s" style-hover="transform:scale(1.14)">
+            <svg width="26" height="19" viewBox="0 0 26 19"><rect width="26" height="19" fill="#fff"/><g fill="#b22234"><rect width="26" height="1.46"/><rect y="2.92" width="26" height="1.46"/><rect y="5.85" width="26" height="1.46"/><rect y="8.77" width="26" height="1.46"/><rect y="11.69" width="26" height="1.46"/><rect y="14.62" width="26" height="1.46"/><rect y="17.54" width="26" height="1.46"/></g><rect width="11.5" height="8.77" fill="#3c3b6e"/></svg>
+          </button>
+        </div>
+        <a href="#form" style="display:inline-flex;align-items:center;gap:8px;background:#0756FF;color:#fff;font-weight:700;font-size:14.5px;padding:12px 24px;border-radius:100px;transition:background .15s;box-shadow:0 8px 20px -8px rgba(7,86,255,.6)" style-hover="background:#0445CC">Fale com o especialista</a>
+        <a href="#planos" style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;font-weight:700;font-size:14.5px;padding:12px 24px;border-radius:100px;transition:filter .15s;box-shadow:0 8px 20px -8px rgba(37,211,102,.6)" style-hover="filter:brightness(.95)">Preços e Planos</a>
+      </div>
+    </div>
+    </div>
+    </div>
+  </header>
+
+  <!-- ===================== HERO (centralizado) ===================== -->
+  <section style="position:relative;background:#0547d2;overflow:hidden">
+    <div class="wrap-pad hero-pad" style="max-width:1200px;margin:0 auto;padding:20px 32px 0;position:relative;z-index:2">
+      <div class="hero-grid" style="display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:start">
+        <div>
+          <div style="display:inline-flex;align-items:center;gap:16px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:12px 20px;margin-bottom:22px;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2Zm5.6 14.1c-.2.6-1.4 1.2-1.9 1.2-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.5-1.2-2.9s.7-2 .9-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4-.1.7.5l.8 2c.1.2.1.4 0 .5l-.4.5-.3.3c-.1.1-.3.3-.1.5.1.3.6 1.1 1.4 1.7 1 .8 1.7 1.1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.2Z"/></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="#fff" stroke="none"/></svg>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.3 2 2 6.2 2 11.7c0 3.1 1.4 5.8 3.7 7.6v3.2l3.4-1.9c.9.3 1.9.4 2.9.4 5.7 0 10-4.2 10-9.7S17.7 2 12 2Zm1 12.4-2.5-2.7-4.9 2.7 5.4-5.7 2.6 2.7 4.8-2.7-5.4 5.7Z"/></svg>
+            <svg width="25" height="25" viewBox="0 0 24 24" fill="#fff"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.5 1.4 4.7 3.6 6.2 0 .8-.4 2-1.4 3.3 0 0 2.6-.4 4.6-1.9.9.2 1.9.4 3.2.4 5.5 0 10-3.6 10-8S17.5 3 12 3Z"/></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+          </div>
+          <h1 class="h1-xl" style="font-size:56px;line-height:1.05;font-weight:900;letter-spacing:-2.2px;margin-bottom:16px;color:#fff;text-wrap:balance;">Transforme o WhatsApp no <span style="color:#bcd2ff">maior canal de vendas</span> da sua empresa.</h1>
+          <p style="font-size:20px;line-height:1.5;color:#d3e0ff;max-width:540px;margin-bottom:32px;text-wrap:pretty;">Todos os canais num painel, IA respondendo na hora e sua equipe inteira num só número.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;margin-bottom:28px;">
+            <a href="#form" style="display:inline-flex;align-items:center;gap:9px;background:#fff;color:#0756FF;font-weight:700;font-size:16.5px;padding:16px 30px;border-radius:100px;box-shadow:0 16px 34px -12px rgba(0,0,0,.4);transition:transform .15s" style-hover="transform:translateY(-2px)">Quero organizar meu atendimento<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px 20px;">
+            <div style="display:flex;align-items:center;gap:8px;color:#d3e0ff;font-size:14px;font-weight:500"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#bcd2ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Parceiro Oficial Meta</div>
+            <div style="display:flex;align-items:center;gap:8px;color:#d3e0ff;font-size:14px;font-weight:500"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#bcd2ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>API Oficial do WhatsApp</div>
+            <div style="display:flex;align-items:center;gap:8px;color:#d3e0ff;font-size:14px;font-weight:500"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#bcd2ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Implementação + treinamento</div>
+            <div style="display:flex;align-items:center;gap:8px;color:#d3e0ff;font-size:14px;font-weight:500"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#bcd2ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Suporte humanizado</div>
+          </div>
+        </div>
+        <div style="position:relative;display:flex;align-items:flex-end;justify-content:center;margin-bottom:-6px">
+          <div style="position:absolute;bottom:4%;left:50%;transform:translateX(-46%);width:82%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 42%,#2f6bff 0%,#1a4fe0 46%,rgba(26,79,224,0) 72%);z-index:0;pointer-events:none"></div>
+          <img src="assets/moca7-hq.png" alt="Especialistaa NX sorrindo segurando o celular, com selo Meta Business Partner e +700 empresas" style="position:relative;z-index:1;width:118%;max-width:none;height:auto;display:block;margin-left:-9%" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAIXA DESTAQUE ===================== -->
+  <section class="faixa-sec" style="background:#fff;padding:26px 0;border-bottom:1px solid #eef2f8">
+    <div class="wrap-pad faixa-row" style="max-width:1200px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:center;gap:16px;text-align:center;flex-wrap:nowrap">
+      <span style="flex-shrink:0;width:46px;height:46px;border-radius:50%;background:#0756FF;display:inline-flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6.5a3.5 3.5 0 0 0-3.5-2.5h-3A3 3 0 0 0 10.5 10h3a3 3 0 0 1 0 6h-3A3.5 3.5 0 0 1 7 13.5"></path></svg></span>
+      <p class="faixa-txt" style="font-size:clamp(19px,2.4vw,29px);font-weight:500;color:#1e293b;letter-spacing:-.6px;white-space:nowrap;margin:0"><strong style="font-weight:800;color:#0756FF">Atenda mais rápido</strong>, em todos os canais, <strong style="font-weight:800;color:#0756FF">sem perder nenhuma conversa</strong></p>
+    </div>
+  </section>
+
+  <!-- ===================== LOGOS MARQUEE ===================== -->
+  <section class="logos-sec" style="background:#fff;padding:40px 0 44px;overflow:hidden;border-bottom:1px solid #eef2f8">
+    <p class="logos-title" style="text-align:center;font-size:16px;font-weight:500;color:#64748b;margin:0 0 28px;letter-spacing:.2px">Milhares de empresas <strong style="color:#1e293b;font-weight:800">confiam</strong> na NX Digital</p>
+    <div style="position:relative;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)">
+      <div class="logos-track" style="display:flex;width:max-content;gap:64px;animation:marquee 42s linear infinite;padding:0 32px">
+        {{ marqueeLogos }}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FORMULÁRIO ===================== -->
+  <section id="form" style="background:#fff;padding:80px 0;scroll-margin-top:80px">
+    <span id="contato" style="position:relative;top:-72px"></span>
+    <div class="wrap-pad two-col" style="max-width:1000px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+      <div data-reveal>
+        <h2 class="sec-title" style="font-size:38px;line-height:1.1;font-weight:900;letter-spacing:-1.2px;margin-bottom:16px">Fale com o nosso time comercial</h2>
+        <p style="font-size:18px;line-height:1.6;color:#51607a;margin-bottom:24px">Preencha ao lado e o nosso time comercial te chama rapidinho no WhatsApp para organizar seu atendimento — implementação e treinamento inclusos.</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;gap:12px;color:#334155;font-size:15.5px;font-weight:500"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Resposta rápida do nosso time, sem robô genérico</div>
+          <div style="display:flex;align-items:center;gap:12px;color:#334155;font-size:15.5px;font-weight:500"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Parceiro oficial Meta</div>
+          <div style="display:flex;align-items:center;gap:12px;color:#334155;font-size:15.5px;font-weight:500"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Demonstração gratuita</div>
+        </div>
+      </div>
+      <div data-reveal>
+        <div style="background:#fff;border-radius:24px;padding:32px 30px;box-shadow:0 40px 80px -34px rgba(7,86,255,.4);border:1px solid #eef1f6">
+          <h3 style="font-size:22px;font-weight:800;letter-spacing:-.5px;margin-bottom:6px">Quero organizar meu atendimento</h3>
+          <p style="font-size:14.5px;color:#64748b;line-height:1.5;margin-bottom:22px">Preencha e o nosso time comercial te chama rapidinho no seu WhatsApp.</p>
+          <form onSubmit="{{ handleSubmit }}" style="display:flex;flex-direction:column;gap:14px">
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px">Nome</label>
+              <input name="nome" required placeholder="Seu nome" style="width:100%;font-family:inherit;font-size:15px;padding:13px 14px;border:1.5px solid #e2e8f0;border-radius:12px;outline:none;background:#fafbff" style-focus="border-color:#0756FF;box-shadow:0 0 0 3px rgba(7,86,255,.12);background:#fff" />
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px">WhatsApp</label>
+              <input name="whatsapp" required inputmode="tel" placeholder="(00) 00000-0000" style="width:100%;font-family:inherit;font-size:15px;padding:13px 14px;border:1.5px solid #e2e8f0;border-radius:12px;outline:none;background:#fafbff" style-focus="border-color:#0756FF;box-shadow:0 0 0 3px rgba(7,86,255,.12);background:#fff" />
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px">Ramo do negócio</label>
+              <input name="ramo" required placeholder="Ex: clínica, loja, imobiliária…" style="width:100%;font-family:inherit;font-size:15px;padding:13px 14px;border:1.5px solid #e2e8f0;border-radius:12px;outline:none;background:#fafbff" style-focus="border-color:#0756FF;box-shadow:0 0 0 3px rgba(7,86,255,.12);background:#fff" />
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px">Quantidade de usuários</label>
+              <select name="usuarios" required style="width:100%;font-family:inherit;font-size:15px;padding:13px 14px;border:1.5px solid #e2e8f0;border-radius:12px;outline:none;background:#fafbff;color:#334155;cursor:pointer;appearance:none;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 fill=%22none%22 stroke=%22%2364748b%22 stroke-width=%222.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22m6 9 6 6 6-6%22/></svg>');background-repeat:no-repeat;background-position:right 14px center" style-focus="border-color:#0756FF;box-shadow:0 0 0 3px rgba(7,86,255,.12);background-color:#fff">
+                <option value="" disabled selected>Selecione o tamanho da equipe</option>
+                <option value="1-5">1 a 5 usuários</option>
+                <option value="6-15">6 a 15 usuários</option>
+                <option value="16-30">16 a 30 usuários</option>
+                <option value="31-50">31 a 50 usuários</option>
+                <option value="50+">Mais de 50 usuários</option>
+              </select>
+            </div>
+            <label style="display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:#64748b;line-height:1.5;cursor:pointer;margin-top:2px">
+              <input type="checkbox" name="consent" required style="margin-top:2px;width:16px;height:16px;accent-color:#0756FF;flex-shrink:0" />
+              <span>Ao enviar, você concorda com nossa <a href="https://ajuda.zdg.com.br/diretrizes-e-politicas/aviso-de-privacidade" target="_blank" rel="noopener">Política de Privacidade</a> e com o tratamento dos seus dados conforme a LGPD.</span>
+            </label>
+            <button type="submit" style="margin-top:6px;width:100%;background:#0756FF;color:#fff;font-family:inherit;font-weight:700;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;transition:background .15s;box-shadow:0 14px 26px -12px rgba(7,86,255,.7)" style-hover="background:#0445CC">Enviar e receber mensagem</button>
+            <button type="button" onClick="{{ handleWhats }}" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;font-family:inherit;font-weight:700;font-size:16px;padding:15px;border:none;border-radius:14px;cursor:pointer;transition:filter .15s" style-hover="filter:brightness(.95)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37s-1.05 1.02-1.05 2.5 1.08 2.9 1.23 3.1c.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.71.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35zM12 2a10 10 0 0 0-8.6 15.06L2 22l5.06-1.33A10 10 0 1 0 12 2z"></path></svg>
+              Falar agora no WhatsApp
+            </button>
+            <p style="text-align:center;font-size:12px;color:#94a3b8;margin-top:2px">Resposta rápida • Parceiro oficial Meta • Demonstração gratuita</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RECURSOS (grid + mockup) ===================== -->
+  <section id="recursos" style="background:linear-gradient(180deg,#f4f6ff 0%,#eef1ff 100%);padding:96px 0;scroll-margin-top:80px;overflow:hidden">
+    <div class="wrap-pad" style="max-width:1200px;margin:0 auto;padding:0 32px">
+      <div class="rec-grid" style="display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center">
+        <div data-reveal>
+          <h2 style="font-size:40px;line-height:1.08;font-weight:900;letter-spacing:-1.4px;color:#0B1220;margin:0 0 12px;text-wrap:balance">Tudo o que sua operação precisa, <span style="color:#0756FF">num só lugar</span></h2>
+          <p style="font-size:17px;color:#64748b;line-height:1.6;margin:0 0 34px;max-width:460px">Do primeiro contato à venda fechada: recursos que trabalham juntos para sua equipe atender melhor e vender mais.</p>
+          <div class="feat-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:22px 28px;margin-bottom:38px">
+            {{ recursos }}
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;max-width:420px">
+            <a href="#form" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#0756FF;color:#fff;font-weight:700;font-size:15.5px;padding:16px 24px;border-radius:14px;box-shadow:0 16px 34px -14px rgba(7,86,255,.6);transition:background .15s,transform .15s" style-hover="background:#0445CC;transform:translateY(-2px)">Fale com um especialista</a>
+            <a href="#planos" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#0756FF;font-weight:700;font-size:15.5px;padding:16px 24px;border-radius:14px;border:1.5px solid #cdd9ff;transition:border-color .15s,background .15s" style-hover="border-color:#0756FF;background:#f7f9ff">Conheça os planos</a>
+          </div>
+        </div>
+
+        <div data-reveal style="position:relative;display:flex;justify-content:center;padding:8px 46px">
+          <div style="position:absolute;top:-14px;right:12%;z-index:4;background:#bcd4ff;color:#0740c9;font-weight:800;font-size:17px;padding:12px 26px;border-radius:14px;border:2px solid #0756FF;box-shadow:0 14px 30px -14px rgba(7,86,255,.7);animation:floaty 5s ease-in-out infinite">Multicanais</div>
+          <div style="position:absolute;bottom:-14px;left:10%;z-index:4;background:#bcd4ff;color:#0740c9;font-weight:800;font-size:17px;padding:12px 26px;border-radius:14px;border:2px solid #0756FF;box-shadow:0 14px 30px -14px rgba(7,86,255,.7);animation:floaty 5.6s ease-in-out infinite .4s">Multiatendentes</div>
+
+          <div style="position:absolute;left:0;top:0;bottom:0;z-index:3;display:flex;flex-direction:column;justify-content:space-evenly;padding:22px 0">
+            <span style="width:56px;height:56px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 26px -10px rgba(234,67,53,.55);animation:floaty 4.6s ease-in-out infinite .1s"><svg width="28" height="28" viewBox="0 0 24 24"><path fill="#4285F4" d="M22 6.5V18a1.5 1.5 0 0 1-1.5 1.5H19V9.2l-7 5.05L5 9.2V19.5H3.5A1.5 1.5 0 0 1 2 18V6.5a2 2 0 0 1 .8-1.6L4 4h16l1.2.9A2 2 0 0 1 22 6.5z"/><path fill="#EA4335" d="M2 6.5 12 14l10-7.5A2 2 0 0 0 20 4H4a2 2 0 0 0-2 2.5z"/><path fill="#34A853" d="M5 19.5V9.2l7 5.05V19.5z"/><path fill="#FBBC05" d="M19 19.5V9.2l-7 5.05V19.5z"/></svg></span>
+            <span style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#3aa9ec,#2591d4);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 26px -10px rgba(37,145,212,.7);animation:floaty 5s ease-in-out infinite .3s"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M21.9 4.3 18.6 19.8c-.25 1.1-.9 1.37-1.83.85l-5.05-3.72-2.44 2.35c-.27.27-.5.5-1 .5l.36-5.12L17.9 6.1c.4-.36-.09-.56-.63-.2L5.85 12.9l-4.99-1.56c-1.08-.34-1.1-1.08.23-1.6L20.5 2.28c.9-.34 1.69.2 1.4 2.02z"/></svg></span>
+            <span style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#8b5cf6,#6d28d9);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 26px -10px rgba(109,40,217,.7);animation:floaty 5.4s ease-in-out infinite .5s"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2Z"/></svg></span>
+          </div>
+
+          <div style="position:absolute;right:0;top:0;bottom:0;z-index:3;display:flex;flex-direction:column;justify-content:space-evenly;padding:22px 0">
+            <span style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#feda75,#d62976 45%,#962fbf 75%,#4f5bd5);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 26px -10px rgba(150,47,191,.7);animation:floaty 5.2s ease-in-out infinite .2s"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="#fff" stroke="none"/></svg></span>
+            <span style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#25d366,#128c3e);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 26px -10px rgba(18,140,62,.7);animation:floaty 4.8s ease-in-out infinite .4s"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.87 9.87 0 0 0 1.523 5.263l-.999 3.648 3.965-1.05zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg></span>
+            <span style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#0a7cff,#a033ff);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 26px -10px rgba(120,60,255,.7);animation:floaty 5.6s ease-in-out infinite .6s"><svg width="27" height="27" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.3 2 2 6.2 2 11.7c0 3.1 1.4 5.8 3.7 7.6v3.2l3.4-1.9c.9.3 1.9.4 2.9.4 5.7 0 10-4.2 10-9.7S17.7 2 12 2Zm1 12.4-2.5-2.7-4.9 2.7 5.4-5.7 2.6 2.7 4.8-2.7-5.4 5.7Z"/></svg></span>
+          </div>
+
+          <div style="position:relative;z-index:2;width:100%;max-width:360px;background:#f7f8fa;border:3px solid #0B1220;border-radius:26px;padding:26px 24px;box-shadow:0 40px 80px -40px rgba(7,86,255,.5)">
+            <div style="height:44px;border-radius:12px;background:#fff;border:1px solid #e2e8f0;margin-bottom:26px"></div>
+            <div style="display:flex;flex-direction:column;gap:26px">
+              <div style="display:flex;flex-direction:column;gap:9px"><div style="width:62%;height:12px;border-radius:6px;background:#b6bcc7"></div><div style="width:88%;height:12px;border-radius:6px;background:#d9dde4"></div></div>
+              <div style="display:flex;flex-direction:column;gap:9px"><div style="width:52%;height:12px;border-radius:6px;background:#b6bcc7"></div><div style="width:82%;height:12px;border-radius:6px;background:#d9dde4"></div></div>
+              <div style="display:flex;flex-direction:column;gap:9px"><div style="width:58%;height:12px;border-radius:6px;background:#b6bcc7"></div><div style="width:86%;height:12px;border-radius:6px;background:#d9dde4"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MULTIATENDENTES (inbox mockup) ===================== -->
+  <section style="background:#fff;padding:96px 0;overflow:hidden">
+    <div class="wrap-pad" style="max-width:1180px;margin:0 auto;padding:0 32px">
+      <div class="rec-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+        <div data-reveal style="position:relative;display:flex;justify-content:center;padding-top:40px">
+          <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:4;background:#1409e0;color:#fff;font-weight:800;font-size:16px;line-height:1.2;padding:16px 28px;border-radius:18px;display:flex;align-items:center;gap:12px;box-shadow:0 20px 40px -16px rgba(20,9,224,.6);animation:floaty 5.4s ease-in-out infinite">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3fd0ff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <span>Multiatendentes<br/>e multicanal</span>
+          </div>
+          <div style="position:relative;z-index:2;width:100%;max-width:420px;background:#fff;border:2px solid #e2e6ee;border-radius:26px;padding:18px 16px;box-shadow:0 44px 90px -42px rgba(15,23,42,.5)">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+              <span style="font-size:19px;font-weight:800;color:#0B1220">Atendimentos</span>
+              <div style="display:flex;align-items:center;gap:7px">
+                <span style="width:34px;height:34px;border-radius:9px;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#334155" stroke-width="2.2"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg></span>
+                <span style="position:relative;display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;border:1px solid #e2e8f0;font-size:13px;font-weight:600;color:#334155"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#334155" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3H2l8 9.5V19l4 2v-8.5L22 3z"></path></svg>Filtros<span style="position:absolute;top:-6px;right:-6px;background:#0756FF;color:#fff;font-size:10px;font-weight:800;min-width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:0 4px">3</span></span>
+                <span style="display:flex;align-items:center;gap:5px;height:34px;padding:0 12px;border-radius:9px;border:1px solid #e2e8f0;font-size:13px;font-weight:600;color:#334155"><svg width="15" height="15" viewBox="0 0 24 24" fill="#334155"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg>Ações</span>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;margin-bottom:14px">
+              <span style="position:relative;flex:1;text-align:center;background:#0756FF;color:#fff;font-size:14px;font-weight:700;padding:10px 0;border-radius:100px">Privados<span style="position:absolute;top:-6px;right:16px;background:#ef4444;color:#fff;font-size:10px;font-weight:800;min-width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center">2</span></span>
+              <span style="position:relative;display:flex;align-items:center;gap:7px;font-size:14px;font-weight:600;color:#334155;padding-right:8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path></svg>Grupos<span style="position:absolute;top:-8px;right:-8px;background:#ef4444;color:#fff;font-size:10px;font-weight:800;min-width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center">8</span></span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+              <div style="flex:1;display:flex;align-items:center;gap:9px;background:#f4f6fa;border:1px solid #e6e9f0;border-radius:11px;padding:10px 13px">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                <span style="color:#94a3b8;font-size:14px">Buscar nome, número…</span>
+              </div>
+              <span style="width:38px;height:38px;border-radius:10px;border:1px solid #e6e9f0;display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.1"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>
+              <span style="display:flex;align-items:center;gap:4px;height:38px;padding:0 10px;border-radius:10px;border:1.5px solid #10b981;color:#10b981;font-size:13px;font-weight:700"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a10 10 0 0 1 14 0"></path><path d="M8.5 16.5a5 5 0 0 1 7 0"></path><path d="M2 8.8a15 15 0 0 1 20 0"></path><circle cx="12" cy="20" r="1"></circle></svg>6</span>
+              <span style="width:38px;height:38px;border-radius:10px;border:1px solid #e6e9f0;display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v6h6"></path><path d="M21 12A9 9 0 0 0 6 5.3L3 8"></path><path d="M21 22v-6h-6"></path><path d="M3 12a9 9 0 0 0 15 6.7l3-2.7"></path></svg></span>
+            </div>
+            <div style="margin-bottom:12px"><span style="display:inline-flex;align-items:center;gap:7px;background:#eef3ff;color:#0756FF;font-size:13px;font-weight:600;padding:7px 13px;border-radius:100px">Ver todos <span style="font-size:14px">×</span></span></div>
+            <div style="display:flex;align-items:center;gap:18px;border-bottom:1px solid #eef1f6;padding-bottom:11px;margin-bottom:8px">
+              <span style="position:relative;display:flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;color:#0B1220"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0B1220" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>Abertos<span style="background:#0756FF;color:#fff;font-size:10px;font-weight:800;min-width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;padding:0 4px">10</span></span>
+              <span style="display:flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;color:#f59e0b"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Pendentes<span style="background:#8b5cf6;color:#fff;font-size:10px;font-weight:800;min-width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;padding:0 4px">11</span></span>
+              <span style="display:flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;color:#64748b"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 3 3 5-6"></path></svg>Fechados<span style="background:#0756FF;color:#fff;font-size:10px;font-weight:800;min-width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;padding:0 4px">1</span></span>
+            </div>
+            <div style="display:flex;flex-direction:column">
+              {{ conversas }}
+            </div>
+          </div>
+        </div>
+
+        <div data-reveal>
+          <span style="display:inline-flex;width:70px;height:70px;border-radius:50%;background:#0756FF;align-items:center;justify-content:center;margin-bottom:28px;box-shadow:0 16px 34px -14px rgba(7,86,255,.7)"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
+          <h2 style="font-size:44px;line-height:1.08;font-weight:900;letter-spacing:-1.6px;color:#0B1220;margin:0 0 22px;text-wrap:balance">Um número e <span style="color:#0756FF">vários atendentes</span> no mesmo WhatsApp</h2>
+          <p style="font-size:18px;line-height:1.6;color:#51607a;margin:0 0 26px;max-width:480px">Tudo o que seu time precisa para agilizar e simplificar o atendimento no seu WhatsApp, Facebook, Instagram e Chat para site.</p>
+          <a href="#recursos" style="display:inline-flex;align-items:center;gap:8px;color:#0756FF;font-weight:800;font-size:17px;text-decoration:underline;text-underline-offset:4px">Conheça a plataforma <span style="font-size:20px">›</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CHATBOT / IA ===================== -->
+  <section style="background:linear-gradient(180deg,#f4f6ff 0%,#eef1ff 100%);padding:96px 0;overflow:hidden">
+    <div class="wrap-pad" style="max-width:1180px;margin:0 auto;padding:0 32px">
+      <div class="rec-grid" style="display:grid;grid-template-columns:1fr 1.05fr;gap:72px;align-items:center">
+        <div data-reveal>
+          <span style="display:inline-flex;width:72px;height:72px;border-radius:22px;background:#0756FF;align-items:center;justify-content:center;margin-bottom:26px;box-shadow:0 16px 34px -14px rgba(7,86,255,.8)"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="3"></rect><path d="M12 8V4M9 4h6"></path><path d="M1 12v3M23 12v3"></path><circle cx="9" cy="13.5" r="1.2" fill="#fff" stroke="none"></circle><circle cx="15" cy="13.5" r="1.2" fill="#fff" stroke="none"></circle></svg></span>
+          <h2 style="font-size:40px;line-height:1.1;font-weight:900;letter-spacing:-1.4px;color:#0B1220;margin:0 0 24px;text-wrap:balance">{{ botHeading }}</h2>
+          <ul style="list-style:none;margin:0 0 34px;padding:0;display:flex;flex-direction:column;gap:14px">
+            {{ botBullets }}
+          </ul>
+          <a href="#form" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#0756FF;color:#fff;font-weight:700;font-size:16px;padding:16px 38px;border-radius:14px;box-shadow:0 16px 34px -14px rgba(7,86,255,.7);transition:background .15s,transform .15s" style-hover="background:#0445CC;transform:translateY(-2px)">Quero automatizar meu atendimento</a>
+        </div>
+
+        <div data-reveal style="position:relative;padding-top:38px">
+          <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:5;display:flex;gap:4px;background:#fff;border:1px solid #e6e9f5;border-radius:100px;padding:5px;box-shadow:0 18px 38px -16px rgba(7,86,255,.4)">
+            <button onClick="{{ setBot }}" style="{{ tabChatbotStyle }}">Chatbot</button>
+            <button onClick="{{ setIa }}" style="{{ tabIaStyle }}">IA</button>
+          </div>
+          <div style="position:relative;z-index:2;width:100%;max-width:360px;margin:0 auto;background:#141a26;border-radius:56px;padding:14px;box-shadow:0 60px 110px -40px rgba(7,86,255,.6),inset 0 0 0 2px rgba(255,255,255,.06);border:1px solid #232c3d">
+            <div style="position:absolute;top:27px;left:50%;transform:translateX(-50%);width:80px;height:8px;background:#0a0e16;border-radius:100px;z-index:6"></div>
+            <div style="{{ botCardStyle }}">
+              {{ botMessages }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== SEGMENTOS (carrossel) ===================== -->
+  <!-- ===================== SIMULADOR POR SEGMENTO ===================== -->
+  <section style="background:linear-gradient(180deg,#f5f8ff 0%,#ffffff 100%);padding:100px 0;border-top:1px solid #eef1f6;overflow:hidden">
+    <div class="wrap-pad" style="max-width:1120px;margin:0 auto;padding:0 32px">
+      <div data-reveal style="text-align:center;max-width:720px;margin:0 auto 40px">
+        <span style="display:inline-block;font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#0756FF;background:#e7effe;padding:7px 15px;border-radius:100px;margin-bottom:18px">Simulador</span>
+        <h2 class="sec-title" style="font-size:42px;line-height:1.08;font-weight:900;letter-spacing:-1.3px;margin-bottom:14px">Veja a NX na sua operação</h2>
+        <p style="font-size:18px;line-height:1.6;color:#51607a">Escolha o seu ramo e veja como o atendimento, os fluxos e a IA funcionam no dia a dia do seu negócio.</p>
+      </div>
+
+      <div data-reveal class="seg-tabs" style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:44px">
+        {{ segTabs }}
+      </div>
+
+      <div data-reveal class="sim-grid" style="display:grid;grid-template-columns:1fr 1.15fr;gap:56px;align-items:center">
+        <div>
+          <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:18px">
+            <span style="{{ segIconWrap }}">{{ segIcon }}</span>
+            <h3 style="font-size:30px;font-weight:900;letter-spacing:-.8px;color:#0B1220;margin:0">{{ segName }}</h3>
+          </div>
+          <p style="font-size:17px;line-height:1.6;color:#51607a;margin:0 0 26px;max-width:440px">{{ segDesc }}</p>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:30px">
+            {{ segFeatures }}
+          </div>
+          <div style="display:flex;gap:26px;flex-wrap:wrap">
+            {{ segStats }}
+          </div>
+        </div>
+
+        <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:20px">
+          <div style="display:flex;gap:5px;background:#eef1fb;border-radius:100px;padding:5px">
+            <button onClick="{{ setSegBot }}" style="{{ segTabBotStyle }}">Chatbot</button>
+            <button onClick="{{ setSegIa }}" style="{{ segTabIaStyle }}">IA</button>
+          </div>
+          <div style="position:relative;z-index:2;width:100%;max-width:330px;background:#141a26;border-radius:46px;padding:12px;box-shadow:0 50px 100px -40px rgba(7,86,255,.55);border:1px solid #232c3d">
+            <div style="position:absolute;top:18px;left:50%;transform:translateX(-50%);width:100px;height:24px;background:#0a0e16;border-radius:14px;z-index:6"></div>
+            <div class="noscroll" style="background:#e6ddd4;border-radius:36px;overflow:hidden;height:600px;display:flex;flex-direction:column">
+              <div style="display:flex;align-items:center;gap:10px;padding:46px 15px 12px;background:#075e54;color:#fff">
+                <span style="width:38px;height:38px;border-radius:50%;overflow:hidden;flex-shrink:0;display:flex"><img src="assets/nx-avatar.png" alt="NX" style="width:100%;height:100%;object-fit:cover;display:block" /></span>
+                <div style="flex:1;min-width:0"><div style="font-size:14.5px;font-weight:700;display:flex;align-items:center;gap:5px">{{ segName }} <svg width="15" height="15" viewBox="0 0 24 24" fill="#0756FF"><circle cx="12" cy="12" r="11"/><path d="m8 12 3 3 5-6" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div style="font-size:11.5px;display:flex;align-items:center;gap:5px;opacity:.9"><span style="width:7px;height:7px;border-radius:50%;background:#4ade80;display:inline-block"></span>online</div></div>
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="#fff"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.2z"/></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg>
+              </div>
+              <div class="noscroll" style="flex:1;min-height:0;display:flex;flex-direction:column;justify-content:flex-start;gap:7px;padding:13px 12px;overflow-y:auto">
+                {{ segMessages }}
+              </div>
+              <div style="display:flex;align-items:center;gap:9px;margin:0 10px 12px;padding:9px 13px;background:#fff;border-radius:100px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9aa7bd" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg><span style="flex:1;font-size:13px;color:#9aa7bd">Mensagem</span><span style="width:30px;height:30px;border-radius:50%;background:#075e54;display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PLANOS ===================== -->
+  <section id="planos" style="background:linear-gradient(180deg,#f5f8ff 0%,#ffffff 100%);padding:96px 0;border-top:1px solid #eef1f6;scroll-margin-top:90px">
+    <div class="wrap-pad" style="max-width:1120px;margin:0 auto;padding:0 32px">
+      <div data-reveal style="text-align:center;max-width:640px;margin:0 auto 48px">
+        <h2 class="sec-title" style="font-size:42px;line-height:1.08;font-weight:900;letter-spacing:-1.3px">Comece a organizar seu atendimento</h2>
+      </div>
+      <div data-reveal style="max-width:740px;margin:0 auto;background:#fff;border:1px solid #e6ecf5;border-radius:26px;box-shadow:0 40px 80px -40px rgba(7,86,255,.35);overflow:hidden">
+        <div style="background:linear-gradient(135deg,#0756FF 0%,#0433a8 100%);color:#fff;padding:40px;text-align:center;position:relative">
+          <div style="font-size:14px;color:#c9d9ff;font-weight:600;margin-bottom:8px">A partir de</div>
+          <div style="font-size:56px;font-weight:900;letter-spacing:-2px;line-height:1">R$ 249<span style="font-size:22px;font-weight:600;color:#c9d9ff">/mês</span></div>
+          <div style="font-size:15px;color:#d6e2ff;margin-top:10px">Plano inicial • 5 usuários</div>
+          <div style="font-size:12.5px;color:#a9c2ff;margin-top:8px">O valor pode variar conforme o plano selecionado</div>
+        </div>
+        <div style="padding:38px 42px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px 30px;margin-bottom:28px">
+            <div style="display:flex;gap:11px;align-items:flex-start"><svg style="flex-shrink:0;margin-top:2px" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;color:#334155;line-height:1.45">Painel multicanal — API oficial ou comum (opcional)</span></div>
+            <div style="display:flex;gap:11px;align-items:flex-start"><svg style="flex-shrink:0;margin-top:2px" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;color:#334155;line-height:1.45">Vários atendentes no mesmo número</span></div>
+            <div style="display:flex;gap:11px;align-items:flex-start"><svg style="flex-shrink:0;margin-top:2px" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;color:#334155;line-height:1.45">Módulo de automação e agente de IA (opcionais)</span></div>
+            <div style="display:flex;gap:11px;align-items:flex-start"><svg style="flex-shrink:0;margin-top:2px" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;color:#334155;line-height:1.45">Instagram, Messenger e canais extras conforme a necessidade</span></div>
+            <div style="display:flex;gap:11px;align-items:flex-start"><svg style="flex-shrink:0;margin-top:2px" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;color:#0B1220;font-weight:700;line-height:1.45">Implementação, configuração e treinamento da equipe</span></div>
+            <div style="display:flex;gap:11px;align-items:flex-start"><svg style="flex-shrink:0;margin-top:2px" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15px;color:#0B1220;font-weight:700;line-height:1.45">Suporte por grupo no WhatsApp</span></div>
+          </div>
+          <p style="font-size:13px;color:#64748b;line-height:1.5;padding:14px 16px;background:#f5f8ff;border:1px solid #e6ecf5;border-radius:12px;margin-bottom:26px">O plano começa em R$ 249/mês (5 usuários). O valor final pode variar conforme o plano selecionado — na conversa com o especialista a gente monta o plano ideal pra sua operação.</p>
+          <a href="#form" style="display:flex;align-items:center;justify-content:center;gap:9px;text-align:center;background:#0756FF;color:#fff;font-weight:700;font-size:16px;padding:17px;border-radius:14px;transition:background .15s;box-shadow:0 14px 26px -12px rgba(7,86,255,.7);margin-bottom:12px" style-hover="background:#0445CC"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"></path></svg>Quero montar meu plano</a>
+          <a href="#form" style="display:block;text-align:center;background:#fff;color:#0756FF;font-weight:700;font-size:16px;padding:15px;border-radius:14px;border:1.5px solid #cfdcff;transition:background .15s" style-hover="background:#f4f7ff">Falar com especialista</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer style="background:linear-gradient(165deg,#0756FF 0%,#0540c4 55%,#062a86 100%);padding:64px 20px 26px;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-140px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(255,255,255,.14),transparent 70%);pointer-events:none"></div>
+    <div style="max-width:1180px;margin:0 auto;position:relative;z-index:2">
+      <div class="foot-grid" style="display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:44px">
+        <div>
+          <div style="display:inline-flex;align-items:center;justify-content:center;background:#fff;padding:12px 16px;border-radius:14px;margin-bottom:20px;box-shadow:0 10px 24px -12px rgba(0,0,0,.4)"><img src="assets/nx-logo.png" alt="NX Digital" style="height:40px;object-fit:contain;display:block" /></div>
+          <p style="font-size:14.5px;line-height:1.6;color:#cdddff;max-width:320px;margin:0 0 22px">Plataforma de atendimento multicanal com API oficial da Meta. A gente implementa, configura e treina o seu time.</p>
+          <div style="display:flex;gap:10px">
+            <a href="https://instagram.com/gruponxdigital" target="_blank" rel="noopener" aria-label="Instagram @gruponxdigital" style="width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:rgba(255,255,255,.24)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.2" fill="#fff" stroke="none"></circle></svg></a>
+            <a href="#form" aria-label="WhatsApp" style="width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:rgba(255,255,255,.24)"><svg width="21" height="21" viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.87 9.87 0 0 0 1.523 5.263l-.999 3.648 3.965-1.05zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg></a>
+            <a href="mailto:atendimento@nxsystems.com.br" aria-label="E-mail" style="width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:rgba(255,255,255,.24)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8fb4ff;margin:0 0 18px">Soluções</h4>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <a href="/chatbot" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Chatbot</a>
+            <a href="/agente-de-ia" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Agente de IA</a>
+            <a href="/copiloto-de-ia" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Copiloto de IA</a>
+            <a href="/crm-inteligente" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">CRM Inteligente</a>
+            <a href="/disparo-em-massa" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Disparo em massa</a>
+            <a href="/relatorios" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Relatórios</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8fb4ff;margin:0 0 18px">Quem somos</h4>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <a href="/nossa-historia" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Nossa História</a>
+            <a href="/protecao-de-dados" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Proteção de Dados</a>
+            <a href="/politica-de-privacidade" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Política de Privacidade</a>
+            <a href="/termos-de-uso" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Termos de Uso</a>
+            <a href="/codigo-de-etica" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Código de Ética</a>
+            <a href="/politicas-da-meta" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Políticas da Meta</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8fb4ff;margin:0 0 18px">Nossa empresa</h4>
+          <div style="display:flex;flex-direction:column;gap:13px;font-size:14px;color:#dce8ff;line-height:1.5">
+            <div style="font-weight:700;color:#fff">GRUPO NX NETSCALE LTDA</div>
+            <div style="display:flex;gap:9px;align-items:flex-start"><svg style="flex-shrink:0;margin-top:2px" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8fb4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 8h6M9 12h6M9 16h4"></path></svg><span>CNPJ 59.935.008/0001-92</span></div>
+            <a href="mailto:atendimento@nxsystems.com.br" style="display:flex;gap:9px;align-items:flex-start;color:#dce8ff;transition:color .15s" style-hover="color:#fff"><svg style="flex-shrink:0;margin-top:2px" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8fb4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg><span>atendimento@nxsystems.com.br</span></a>
+            <div style="display:flex;gap:9px;align-items:flex-start"><svg style="flex-shrink:0;margin-top:2px" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8fb4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>Av. Expedicionário José Pedro Coelho, 1237 — Centro, Tubarão/SC, 88701-005</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding-top:24px;border-top:1px solid rgba(255,255,255,.16)">
+        <div style="font-size:13px;color:#a9c4ff">© 2026 Grupo NX Netscale LTDA • Todos os direitos reservados</div>
+        <div style="display:flex;align-items:center;gap:16px;font-size:13px;color:#a9c4ff"><a href="/mapa-do-site" style="color:#dce8ff;font-weight:600" style-hover="color:#fff">Mapa do site</a><span>Plataforma de atendimento multicanal • Parceiro oficial Meta</span></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== BOTÃO FLUTUANTE WHATSAPP ===================== -->
+  <a href="#form" aria-label="Falar no WhatsApp" style="position:fixed;bottom:24px;right:24px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px -6px rgba(37,211,102,.6);animation:pulseRing 2.4s infinite">
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.87 9.87 0 0 0 1.523 5.263l-.999 3.648 3.965-1.05zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+  </a>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const I18N = {
+  es: {
+    "Soluções":"Soluciones","Canais":"Canales","Quem somos":"Quiénes somos","Contato":"Contacto",
+    "Fale com o especialista":"Habla con el especialista","Teste grátis":"Prueba gratis","Preços e Planos":"Precios y Planes",
+    "Parceiro oficial Meta":"Socio oficial de Meta","Parceiro Oficial Meta":"Socio Oficial de Meta",
+    "Seu atendimento no WhatsApp,":"Tu atención en WhatsApp,","finalmente organizado":"por fin organizada",
+    "Vários atendentes no mesmo número, chatbot e IA atendendo 24h — e a nossa equipe faz toda a implementação e treina o seu time.":"Varios agentes en el mismo número, chatbot e IA atendiendo 24h — y nuestro equipo hace toda la implementación y capacita a tu equipo.",
+    "Quero organizar meu atendimento":"Quiero organizar mi atención","Enviar e receber mensagem":"Enviar y recibir mensaje","Falar no WhatsApp":"Hablar por WhatsApp","Falar agora no WhatsApp":"Hablar ahora por WhatsApp",
+    "API Oficial do WhatsApp":"API Oficial de WhatsApp","Implementação + treinamento inclusos":"Implementación + capacitación incluidas",
+    "Fale com o nosso time comercial":"Habla con nuestro equipo comercial",
+    "Preencha ao lado e o nosso time comercial te chama rapidinho no WhatsApp para organizar seu atendimento — implementação e treinamento inclusos.":"Completa al lado y te contactamos por WhatsApp para organizar tu atención — implementación y capacitación incluidas.",
+    "Resposta rápida do nosso time, sem robô genérico":"Respuesta rápida de nuestro equipo, sin robot genérico","Sem compromisso":"Sin compromiso",
+    "Preencha e o nosso time comercial te chama rapidinho no seu WhatsApp.":"Completa y nuestro equipo comercial te contacta rapidito por WhatsApp.",
+    "Nome":"Nombre","WhatsApp":"WhatsApp","Ramo do negócio":"Sector del negocio","Quantidade de usuários":"Cantidad de usuarios","Selecione o tamanho da equipe":"Selecciona el tamaño del equipo","1 a 5 usuários":"1 a 5 usuarios","6 a 15 usuários":"6 a 15 usuarios","16 a 30 usuários":"16 a 30 usuarios","31 a 50 usuários":"31 a 50 usuarios","Mais de 50 usuários":"Más de 50 usuarios",
+    "Ao enviar, você concorda com nossa":"Al enviar, aceptas nuestra","Política de Privacidade":"Política de Privacidad","e com o tratamento dos seus dados conforme a LGPD.":"y el tratamiento de tus datos conforme a la LGPD.",
+    "Resposta rápida • Parceiro oficial Meta • Demonstração gratuita":"Respuesta rápida • Socio oficial de Meta • Sin compromiso",
+    "O problema":"El problema","Seu atendimento hoje é assim?":"¿Tu atención hoy es así?",
+    "Mensagem chega e some no meio de outras 200.":"El mensaje llega y se pierde entre otros 200.",
+    "Dois atendentes respondem o mesmo cliente — ou ninguém responde.":"Dos agentes responden al mismo cliente — o nadie responde.",
+    "WhatsApp, Instagram e Direct em telas separadas.":"WhatsApp, Instagram y Direct en pantallas separadas.",
+    "Você não sabe quantas vendas perdeu por demora.":"No sabes cuántas ventas perdiste por la demora.",
+    "À noite e no fim de semana, ninguém atende.":"Por la noche y el fin de semana, nadie atiende.",
+    "A solução":"La solución","Todos os seus canais num painel só":"Todos tus canales en un solo panel",
+    "A NX centraliza WhatsApp, Instagram e Messenger num lugar. Vários atendentes usam o mesmo número, sem confusão. Chatbot e IA respondem na hora, 24h — e passam pro humano quando precisa. Tudo com API oficial da Meta, sem risco de banimento.":"NX centraliza WhatsApp, Instagram y Messenger en un solo lugar. Varios agentes usan el mismo número, sin confusión. Chatbot e IA responden al instante, 24h — y pasan al humano cuando hace falta. Todo con API oficial de Meta, sin riesgo de bloqueo.",
+    "API oficial Meta":"API oficial de Meta",
+    "Todos os seus canais numa tela só":"Todos tus canales en una sola pantalla",
+    "WhatsApp, Instagram, Messenger, Telegram, webchat, e-mail e SMS — sem alternar janelas, sem perder histórico.":"WhatsApp, Instagram, Messenger, Telegram, webchat, e-mail y SMS — sin cambiar de ventana, sin perder el historial.",
+    "Inteligência Artificial":"Inteligencia Artificial","Uma IA que atende sozinha":"Una IA que atiende sola",
+    "Responde na hora, dia e noite — e passa pro humano só quando precisa.":"Responde al instante, día y noche — y pasa al humano solo cuando hace falta.",
+    "Assistente NX":"Asistente NX","online agora":"en línea ahora","Oi! Vocês entregam hoje?":"¡Hola! ¿Entregan hoy?",
+    "Entregamos sim! Me passa seu CEP que já confirmo o prazo.":"¡Sí, entregamos! Pásame tu código postal y te confirmo el plazo.",
+    "Trabalho em equipe":"Trabajo en equipo","Vários atendentes, um número só":"Varios agentes, un solo número",
+    "Cada um sabe o que fazer — e nenhum cliente é respondido duas vezes.":"Cada uno sabe qué hacer — y ningún cliente recibe respuesta dos veces.",
+    "Sem disputa":"Sin conflictos","Histórico completo":"Historial completo","Papéis definidos":"Roles definidos","Todos no mesmo número":"Todos en el mismo número",
+    "Por que a NX":"Por qué NX","Organização que vira venda":"Organización que se convierte en venta",
+    "Nenhuma mensagem perdida":"Ningún mensaje perdido","Tudo cai num lugar só e você vê o que já foi respondido.":"Todo llega a un solo lugar y ves lo que ya fue respondido.",
+    "Atende 24h no automático":"Atiende 24h en automático","A IA responde enquanto o time descansa e só chama o humano quando precisa.":"La IA responde mientras el equipo descansa y solo llama al humano cuando hace falta.",
+    "Time em equipe, não em disputa":"Equipo en conjunto, no en conflicto","Vários atendentes no mesmo número, cada um sabendo o que fazer.":"Varios agentes en el mismo número, cada uno sabiendo qué hacer.",
+    "Cliente respondido na hora":"Cliente respondido al instante","Quanto mais rápido você responde, mais vende.":"Cuanto más rápido respondes, más vendes.",
+    "Visão de dono":"Visión de dueño","Acompanhe atendimentos e conversas de toda a operação num painel.":"Sigue atenciones y conversaciones de toda la operación en un panel.",
+    "Cresce sem virar caos":"Crece sin volverse un caos","Adicione atendentes e canais quando o negócio pedir.":"Agrega agentes y canales cuando el negocio lo pida.",
+    "Soluções para diferentes segmentos":"Soluciones para diferentes sectores",
+    "Cada área atende de um jeito. A NX adapta canais, automações e fluxos pro seu negócio.":"Cada área atiende de una forma. NX adapta canales, automatizaciones y flujos a tu negocio.",
+    "Educação":"Educación","Centralize a comunicação com alunos, responsáveis e leads — do primeiro contato ao suporte.":"Centraliza la comunicación con alumnos, tutores y leads — del primer contacto al soporte.",
+    "Serviços Financeiros":"Servicios Financieros","Atendimento consultivo, seguro e rastreável em vários canais, com mais produtividade.":"Atención consultiva, segura y rastreable en varios canales, con más productividad.",
+    "Imobiliário":"Inmobiliario","Distribua leads com inteligência, organize conversas por corretor e acelere negociações.":"Distribuye leads con inteligencia, organiza conversaciones por agente y acelera negociaciones.",
+    "Contabilidade":"Contabilidad","Centralize solicitações, organize documentos e demandas com agilidade e segurança.":"Centraliza solicitudes, organiza documentos y demandas con agilidad y seguridad.",
+    "Varejo":"Retail","Responda rápido, recupere carrinhos e transforme conversas em vendas repetidas.":"Responde rápido, recupera carritos y convierte conversaciones en ventas recurrentes.",
+    "Saúde":"Salud","Agende, confirme e faça o follow-up de pacientes sem sobrecarregar a recepção.":"Agenda, confirma y haz seguimiento de pacientes sin sobrecargar la recepción.",
+    "O diferencial":"El diferencial","A gente não entrega um login e some":"No te entregamos un login y desaparecemos",
+    "Enquanto quase todo concorrente te manda um acesso e boa sorte, a NX faz tudo com você.":"Mientras casi todo competidor te manda un acceso y buena suerte, NX lo hace todo contigo.",
+    "Implementamos":"Implementamos","Instalamos e conectamos seus canais com a API oficial.":"Instalamos y conectamos tus canales con la API oficial.",
+    "Configuramos":"Configuramos","Deixamos automações, IA e fluxos prontos pra sua operação.":"Dejamos automatizaciones, IA y flujos listos para tu operación.",
+    "Treinamos seu time":"Capacitamos a tu equipo","Sua equipe começa já sabendo usar.":"Tu equipo empieza ya sabiendo usarlo.",
+    "Damos suporte":"Damos soporte","Atendimento direto por grupo no WhatsApp, sempre que precisar.":"Atención directa por grupo de WhatsApp, siempre que lo necesites.",
+    "API Oficial WhatsApp":"API Oficial de WhatsApp",
+    "Integrações":"Integraciones","integrações nativas — configuradas dentro da plataforma":"integraciones nativas — configuradas dentro de la plataforma",
+    "Soluções de IA":"Soluciones de IA","Gere respostas e analise conversas sem sair do fluxo.":"Genera respuestas y analiza conversaciones sin salir del flujo.",
+    "Marketing e Anúncios":"Marketing y Anuncios","Sincronize leads de anúncios direto nos fluxos.":"Sincroniza leads de anuncios directo en los flujos.",
+    "CRM & Vendas":"CRM y Ventas","Leads, pipeline e clientes sempre sincronizados.":"Leads, pipeline y clientes siempre sincronizados.",
+    "E-commerce & Pagamentos":"E-commerce y Pagos","Automatize pedidos, confirmações e cobranças.":"Automatiza pedidos, confirmaciones y cobros.",
+    "Comece a organizar seu atendimento":"Empieza a organizar tu atención","A partir de":"Desde","/mês":"/mes",
+    "Plano inicial • 5 usuários":"Plan inicial • 5 usuarios",
+    "O valor pode variar conforme o plano selecionado":"El valor puede variar según el plan seleccionado",
+    "Painel multicanal — API oficial ou comum (opcional)":"Panel multicanal — API oficial o común (opcional)","Vários atendentes no mesmo número":"Varios agentes en el mismo número",
+    "Módulo de automação e agente de IA (opcionais)":"Módulo de automatización y agente de IA (opcionales)",
+    "Instagram, Messenger e canais extras conforme a necessidade":"Instagram, Messenger y canales extra según la necesidad",
+    "Implementação, configuração e treinamento da equipe":"Implementación, configuración y capacitación del equipo",
+    "Suporte por grupo no WhatsApp":"Soporte por grupo de WhatsApp",
+    "O plano começa em R$ 249/mês (5 usuários). O valor final pode variar conforme o plano selecionado — na conversa com o especialista a gente monta o plano ideal pra sua operação.":"El valor de R$ 249/mes es inicial y puede variar según el plan seleccionado. Al contado con 10% de descuento en el trimestral; setup único según el plan (API oficial desde R$ 497).",
+    "Quero montar meu plano":"Quiero armar mi plan","Falar com especialista":"Hablar con un especialista",
+    "Ainda em dúvida?":"¿Aún con dudas?",
+    "Você não configura nada. A gente instala, deixa tudo pronto e treina seu time.":"No configuras nada. Nosotros instalamos, dejamos todo listo y capacitamos a tu equipo.",
+    "O WhatsApp comum trava com volume: um número, um atendente, zero organização. Com a NX é o mesmo número, vários atendentes e histórico completo.":"El WhatsApp común se traba con el volumen: un número, un agente, cero organización. Con NX es el mismo número, varios agentes e historial completo.",
+    "Uma venda perdida por demora já paga o mês.":"Una venta perdida por la demora ya paga el mes.",
+    "Por isso o treinamento vem incluso.":"Por eso la capacitación viene incluida.",
+    "Perguntas frequentes":"Preguntas frecuentes","Preciso trocar meu número?":"¿Necesito cambiar mi número?","Não, usa o mesmo número com vários atendentes.":"No, usa el mismo número con varios agentes.",
+    "É a API oficial?":"¿Es la API oficial?","Sim, parceiros oficiais da Meta — sem risco de banimento.":"Sí, socios oficiales de Meta — sin riesgo de bloqueo.",
+    "Quem configura?":"¿Quién configura?","Nós — implementação, configuração e treinamento inclusos.":"Nosotros — implementación, configuración y capacitación incluidas.",
+    "Funciona com Instagram e Messenger?":"¿Funciona con Instagram y Messenger?","Sim, tudo no mesmo painel.":"Sí, todo en el mismo panel.",
+    "Tem IA de verdade?":"¿Tiene IA de verdad?","Sim, atende no automático e passa pro humano quando necessário.":"Sí, atiende en automático y pasa al humano cuando es necesario.",
+    "Como pago?":"¿Cómo pago?","Trimestral em 3x sem juros ou à vista com desconto. Setup único conforme o plano.":"Trimestral en 3x sin intereses o al contado con descuento. Setup único según el plan.",
+    "Tem suporte?":"¿Hay soporte?","Sim, direto por grupo no WhatsApp.":"Sí, directo por grupo de WhatsApp.",
+    "Pare de perder venda por mensagem não respondida":"Deja de perder ventas por mensajes sin responder",
+    "Deixa a NX organizar seu atendimento — a gente instala, configura e treina o seu time.":"Deja que NX organice tu atención — instalamos, configuramos y capacitamos a tu equipo.",
+    "O diferencial da NX não é só o sistema — é a gente fazer tudo com você. Enquanto os concorrentes entregam um login e somem, a NX implementa, treina e fica no seu WhatsApp.":"El diferencial de NX no es solo el sistema — es que lo hacemos todo contigo. Mientras los competidores entregan un login y desaparecen, NX implementa, capacita y se queda en tu WhatsApp.",
+    "Plataforma de atendimento multicanal • Parceiro oficial Meta":"Plataforma de atención multicanal • Socio oficial de Meta",
+    "Seu nome":"Tu nombre","Ex: clínica, loja, imobiliária…":"Ej: clínica, tienda, inmobiliaria…"
+  },
+  en: {
+    "Soluções":"Solutions","Canais":"Channels","Quem somos":"About us","Contato":"Contact",
+    "Fale com o especialista":"Talk to a consultant","Teste grátis":"Free trial","Preços e Planos":"Pricing & Plans",
+    "Parceiro oficial Meta":"Official Meta Partner","Parceiro Oficial Meta":"Official Meta Partner",
+    "Seu atendimento no WhatsApp,":"Your WhatsApp support,","finalmente organizado":"finally organized",
+    "Vários atendentes no mesmo número, chatbot e IA atendendo 24h — e a nossa equipe faz toda a implementação e treina o seu time.":"Multiple agents on the same number, chatbot and AI answering 24/7 — and our team handles the full setup and trains your staff.",
+    "Quero organizar meu atendimento":"I want to organize my support","Enviar e receber mensagem":"Send and get a message","Falar no WhatsApp":"Chat on WhatsApp","Falar agora no WhatsApp":"Chat now on WhatsApp",
+    "API Oficial do WhatsApp":"Official WhatsApp API","Implementação + treinamento inclusos":"Setup + training included",
+    "Fale com o nosso time comercial":"Talk to our sales team",
+    "Preencha ao lado e o nosso time comercial te chama rapidinho no WhatsApp para organizar seu atendimento — implementação e treinamento inclusos.":"Fill out the form and we'll reach you on WhatsApp to organize your support — setup and training included.",
+    "Resposta rápida do nosso time, sem robô genérico":"Fast reply from our team, no generic bot","Sem compromisso":"No commitment",
+    "Preencha e o nosso time comercial te chama rapidinho no seu WhatsApp.":"Fill out and our sales team reaches you quickly on WhatsApp.",
+    "Nome":"Name","WhatsApp":"WhatsApp","Ramo do negócio":"Line of business","Quantidade de usuários":"Number of users","Selecione o tamanho da equipe":"Select your team size","1 a 5 usuários":"1 to 5 users","6 a 15 usuários":"6 to 15 users","16 a 30 usuários":"16 to 30 users","31 a 50 usuários":"31 to 50 users","Mais de 50 usuários":"More than 50 users",
+    "Ao enviar, você concorda com nossa":"By submitting, you agree to our","Política de Privacidade":"Privacy Policy","e com o tratamento dos seus dados conforme a LGPD.":"and to the processing of your data under the LGPD.",
+    "Resposta rápida • Parceiro oficial Meta • Demonstração gratuita":"Fast reply • Official Meta Partner • No commitment",
+    "O problema":"The problem","Seu atendimento hoje é assim?":"Is your support like this today?",
+    "Mensagem chega e some no meio de outras 200.":"A message arrives and gets lost among 200 others.",
+    "Dois atendentes respondem o mesmo cliente — ou ninguém responde.":"Two agents reply to the same customer — or no one replies.",
+    "WhatsApp, Instagram e Direct em telas separadas.":"WhatsApp, Instagram and Direct on separate screens.",
+    "Você não sabe quantas vendas perdeu por demora.":"You don't know how many sales you lost to slow replies.",
+    "À noite e no fim de semana, ninguém atende.":"At night and on weekends, no one answers.",
+    "A solução":"The solution","Todos os seus canais num painel só":"All your channels in a single panel",
+    "A NX centraliza WhatsApp, Instagram e Messenger num lugar. Vários atendentes usam o mesmo número, sem confusão. Chatbot e IA respondem na hora, 24h — e passam pro humano quando precisa. Tudo com API oficial da Meta, sem risco de banimento.":"NX centralizes WhatsApp, Instagram and Messenger in one place. Multiple agents use the same number, no confusion. Chatbot and AI reply instantly, 24/7 — and hand off to a human when needed. All with Meta's official API, no risk of a ban.",
+    "API oficial Meta":"Official Meta API",
+    "Todos os seus canais numa tela só":"All your channels on one screen",
+    "WhatsApp, Instagram, Messenger, Telegram, webchat, e-mail e SMS — sem alternar janelas, sem perder histórico.":"WhatsApp, Instagram, Messenger, Telegram, webchat, email and SMS — without switching windows, without losing history.",
+    "Inteligência Artificial":"Artificial Intelligence","Uma IA que atende sozinha":"An AI that answers on its own",
+    "Responde na hora, dia e noite — e passa pro humano só quando precisa.":"Replies instantly, day and night — and hands off to a human only when needed.",
+    "Assistente NX":"NX Assistant","online agora":"online now","Oi! Vocês entregam hoje?":"Hi! Do you deliver today?",
+    "Entregamos sim! Me passa seu CEP que já confirmo o prazo.":"Yes, we do! Send me your ZIP code and I'll confirm the timing.",
+    "Trabalho em equipe":"Teamwork","Vários atendentes, um número só":"Many agents, one number",
+    "Cada um sabe o que fazer — e nenhum cliente é respondido duas vezes.":"Everyone knows their role — and no customer is answered twice.",
+    "Sem disputa":"No overlap","Histórico completo":"Full history","Papéis definidos":"Clear roles","Todos no mesmo número":"All on the same number",
+    "Por que a NX":"Why NX","Organização que vira venda":"Organization that turns into sales",
+    "Nenhuma mensagem perdida":"No message lost","Tudo cai num lugar só e você vê o que já foi respondido.":"Everything lands in one place and you see what's already been answered.",
+    "Atende 24h no automático":"Answers 24/7 automatically","A IA responde enquanto o time descansa e só chama o humano quando precisa.":"The AI replies while your team rests and only calls a human when needed.",
+    "Time em equipe, não em disputa":"A team, not a turf war","Vários atendentes no mesmo número, cada um sabendo o que fazer.":"Multiple agents on the same number, each knowing what to do.",
+    "Cliente respondido na hora":"Customers answered instantly","Quanto mais rápido você responde, mais vende.":"The faster you reply, the more you sell.",
+    "Visão de dono":"Owner's view","Acompanhe atendimentos e conversas de toda a operação num painel.":"Track support and conversations across the whole operation in one panel.",
+    "Cresce sem virar caos":"Scale without chaos","Adicione atendentes e canais quando o negócio pedir.":"Add agents and channels whenever the business needs.",
+    "Soluções para diferentes segmentos":"Solutions for different industries",
+    "Cada área atende de um jeito. A NX adapta canais, automações e fluxos pro seu negócio.":"Each field works differently. NX adapts channels, automations and flows to your business.",
+    "Educação":"Education","Centralize a comunicação com alunos, responsáveis e leads — do primeiro contato ao suporte.":"Centralize communication with students, guardians and leads — from first contact to support.",
+    "Serviços Financeiros":"Financial Services","Atendimento consultivo, seguro e rastreável em vários canais, com mais produtividade.":"Consultative, secure and traceable support across channels, with more productivity.",
+    "Imobiliário":"Real Estate","Distribua leads com inteligência, organize conversas por corretor e acelere negociações.":"Distribute leads intelligently, organize conversations by agent and speed up deals.",
+    "Contabilidade":"Accounting","Centralize solicitações, organize documentos e demandas com agilidade e segurança.":"Centralize requests, organize documents and tasks with speed and security.",
+    "Varejo":"Retail","Responda rápido, recupere carrinhos e transforme conversas em vendas repetidas.":"Reply fast, recover carts and turn conversations into repeat sales.",
+    "Saúde":"Healthcare","Agende, confirme e faça o follow-up de pacientes sem sobrecarregar a recepção.":"Schedule, confirm and follow up with patients without overloading the front desk.",
+    "O diferencial":"The difference","A gente não entrega um login e some":"We don't just hand over a login and vanish",
+    "Enquanto quase todo concorrente te manda um acesso e boa sorte, a NX faz tudo com você.":"While almost every competitor sends you a login and good luck, NX does it all with you.",
+    "Implementamos":"We implement","Instalamos e conectamos seus canais com a API oficial.":"We install and connect your channels with the official API.",
+    "Configuramos":"We configure","Deixamos automações, IA e fluxos prontos pra sua operação.":"We set up automations, AI and flows ready for your operation.",
+    "Treinamos seu time":"We train your team","Sua equipe começa já sabendo usar.":"Your team starts already knowing how to use it.",
+    "Damos suporte":"We support you","Atendimento direto por grupo no WhatsApp, sempre que precisar.":"Direct support via WhatsApp group, whenever you need.",
+    "API Oficial WhatsApp":"Official WhatsApp API",
+    "Integrações":"Integrations","integrações nativas — configuradas dentro da plataforma":"native integrations — set up inside the platform",
+    "Soluções de IA":"AI Solutions","Gere respostas e analise conversas sem sair do fluxo.":"Generate replies and analyze conversations without leaving the flow.",
+    "Marketing e Anúncios":"Marketing & Ads","Sincronize leads de anúncios direto nos fluxos.":"Sync ad leads straight into your flows.",
+    "CRM & Vendas":"CRM & Sales","Leads, pipeline e clientes sempre sincronizados.":"Leads, pipeline and customers always in sync.",
+    "E-commerce & Pagamentos":"E-commerce & Payments","Automatize pedidos, confirmações e cobranças.":"Automate orders, confirmations and payments.",
+    "Comece a organizar seu atendimento":"Start organizing your support","A partir de":"From","/mês":"/mo",
+    "Plano inicial • 5 usuários":"Starter plan • 5 users",
+    "O valor pode variar conforme o plano selecionado":"The price may vary depending on the selected plan",
+    "Painel multicanal — API oficial ou comum (opcional)":"Multichannel panel — official or standard API (optional)","Vários atendentes no mesmo número":"Multiple agents on the same number",
+    "Módulo de automação e agente de IA (opcionais)":"Automation module and AI agent (optional)",
+    "Instagram, Messenger e canais extras conforme a necessidade":"Instagram, Messenger and extra channels as needed",
+    "Implementação, configuração e treinamento da equipe":"Implementation, configuration and team training",
+    "Suporte por grupo no WhatsApp":"Support via WhatsApp group",
+    "O plano começa em R$ 249/mês (5 usuários). O valor final pode variar conforme o plano selecionado — na conversa com o especialista a gente monta o plano ideal pra sua operação.":"The R$ 249/mo price is a starting point and may vary depending on the selected plan. 10% off when paid upfront on the quarterly plan; one-time setup depending on the plan (official API from R$ 497).",
+    "Quero montar meu plano":"Build my plan","Falar com especialista":"Talk to a specialist",
+    "Ainda em dúvida?":"Still unsure?",
+    "Você não configura nada. A gente instala, deixa tudo pronto e treina seu time.":"You configure nothing. We install, get everything ready and train your team.",
+    "O WhatsApp comum trava com volume: um número, um atendente, zero organização. Com a NX é o mesmo número, vários atendentes e histórico completo.":"Regular WhatsApp breaks under volume: one number, one agent, zero organization. With NX it's the same number, multiple agents and full history.",
+    "Uma venda perdida por demora já paga o mês.":"One sale lost to slow replies already pays for the month.",
+    "Por isso o treinamento vem incluso.":"That's why training is included.",
+    "Perguntas frequentes":"Frequently asked questions","Preciso trocar meu número?":"Do I need to change my number?","Não, usa o mesmo número com vários atendentes.":"No, use the same number with multiple agents.",
+    "É a API oficial?":"Is it the official API?","Sim, parceiros oficiais da Meta — sem risco de banimento.":"Yes, official Meta partners — no risk of a ban.",
+    "Quem configura?":"Who sets it up?","Nós — implementação, configuração e treinamento inclusos.":"We do — implementation, configuration and training included.",
+    "Funciona com Instagram e Messenger?":"Does it work with Instagram and Messenger?","Sim, tudo no mesmo painel.":"Yes, all in the same panel.",
+    "Tem IA de verdade?":"Is there real AI?","Sim, atende no automático e passa pro humano quando necessário.":"Yes, it answers automatically and hands off to a human when needed.",
+    "Como pago?":"How do I pay?","Trimestral em 3x sem juros ou à vista com desconto. Setup único conforme o plano.":"Quarterly in 3 interest-free installments or upfront with a discount. One-time setup depending on the plan.",
+    "Tem suporte?":"Is there support?","Sim, direto por grupo no WhatsApp.":"Yes, directly via a WhatsApp group.",
+    "Pare de perder venda por mensagem não respondida":"Stop losing sales to unanswered messages",
+    "Deixa a NX organizar seu atendimento — a gente instala, configura e treina o seu time.":"Let NX organize your support — we install, configure and train your team.",
+    "O diferencial da NX não é só o sistema — é a gente fazer tudo com você. Enquanto os concorrentes entregam um login e somem, a NX implementa, treina e fica no seu WhatsApp.":"NX's difference isn't just the system — it's that we do everything with you. While competitors hand over a login and vanish, NX implements, trains and stays on your WhatsApp.",
+    "Plataforma de atendimento multicanal • Parceiro oficial Meta":"Multichannel support platform • Official Meta Partner",
+    "Seu nome":"Your name","Ex: clínica, loja, imobiliária…":"e.g. clinic, store, real estate…"
+  }
+};
+class Component extends DCLogic {
+  state = { solOpen: false, quemOpen: false, contOpen: false, botTab: 'chatbot', seg: 0, segMode: 'bot' };
+  componentDidMount() {
+    if (window.location.hash === '#planos') {
+      let tries = 0;
+      const jump = () => {
+        const el = document.getElementById('planos');
+        if (el) { window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' }); }
+        else if (tries++ < 20) { setTimeout(jump, 150); }
+      };
+      setTimeout(jump, 400);
+    }
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    setTimeout(() => document.querySelectorAll('[data-reveal]').forEach((el) => obs.observe(el)), 60);
+    this._nodes = [];
+    this._phs = [];
+    setTimeout(() => {
+      const skip = { SCRIPT: 1, STYLE: 1, NOSCRIPT: 1 };
+      const walk = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+        acceptNode: (n) => (n.nodeValue && n.nodeValue.trim() && !skip[n.parentNode && n.parentNode.nodeName]) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT,
+      });
+      let n; while ((n = walk.nextNode())) {
+        const raw = n.nodeValue, t = raw.trim(), i = raw.indexOf(t);
+        this._nodes.push({ node: n, pt: t, pre: raw.slice(0, i), post: raw.slice(i + t.length) });
+      }
+      document.querySelectorAll('input[placeholder]').forEach((el) => this._phs.push({ el, pt: el.getAttribute('placeholder') }));
+      const saved = (() => { try { return localStorage.getItem('nx-lang'); } catch (e) { return null; } })();
+      if (saved && saved !== 'pt') this.applyLang(saved);
+    }, 120);
+  }
+  applyLang(lang) {
+    const dict = I18N[lang] || null;
+    (this._nodes || []).forEach((e) => {
+      const val = (!dict) ? e.pt : (dict[e.pt] || e.pt);
+      e.node.nodeValue = e.pre + val + e.post;
+    });
+    (this._phs || []).forEach((p) => { p.el.setAttribute('placeholder', (!dict ? p.pt : (dict[p.pt] || p.pt))); });
+    try { document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang; localStorage.setItem('nx-lang', lang); } catch (e) {}
+  }
+  get waNumber() { return '5548936181649'; }
+  sendForm(f) {
+    if (!f) return;
+    const nome = (f.nome.value || '').trim();
+    const whats = (f.whatsapp.value || '').trim();
+    const ramo = (f.ramo.value || '').trim();
+    const usuariosSel = f.usuarios;
+    const usuarios = usuariosSel && usuariosSel.selectedIndex >= 0 ? usuariosSel.options[usuariosSel.selectedIndex].text : '';
+    const texto = encodeURIComponent(`Olá! Quero organizar meu atendimento.\nNome: ${nome}\nWhatsApp: ${whats}\nRamo: ${ramo}\nQuantidade de usuários: ${usuarios}`);
+    window.open(`https://wa.me/${this.waNumber}?text=${texto}`, '_blank');
+    window.location.href = 'obrigado?nome=' + encodeURIComponent(nome);
+  }
+  renderVals() {
+    const msg = encodeURIComponent('Olá! Quero organizar meu atendimento no WhatsApp com a NX Digital.');
+    const solOpen = this.state.solOpen;
+    const empresas = ['Prefeitura de São Ludgero','Banco BMG','Marajó Gás','Shopbike','Posto Presidente','DigitalX','Apae','Digaweb Telecom','Academia Spart','Coexpress','VeicularMais','Colégio Horizonte','Associação Aliada'];
+    const marqueeLogos = [...empresas, ...empresas].map((nome, i) =>
+      React.createElement('span', {
+        key: i,
+        style: { flexShrink: 0, whiteSpace: 'nowrap', fontSize: '26px', fontWeight: 800, letterSpacing: '-.4px', color: '#0756FF' }
+      }, nome)
+    );
+    const ic = (p) => React.createElement('svg', { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: '#fff', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, p.map((d, i) => React.createElement('path', { key: i, d })));
+    const feats = [
+      ['Centralização de chats', ['M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z']],
+      ['Agendamento de mensagem', ['M8 2v4', 'M16 2v4', 'M3 10h18', 'M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z']],
+      ['Vários atendentes', ['M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2', 'M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z', 'M23 21v-2a4 4 0 0 0-3-3.87', 'M16 3.13a4 4 0 0 1 0 7.75']],
+      ['Ligações', ['M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7A2 2 0 0 1 22 16.9z']],
+      ['Chatbot', ['M12 8V4H8', 'M4 8h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2z', 'M2 14h2', 'M20 14h2', 'M15 13v2', 'M9 13v2']],
+      ['Inteligência Artificial', ['M12 3l1.9 4.6L18.5 9l-4.6 1.9L12 15.5 10.1 10.9 5.5 9l4.6-1.4L12 3z', 'M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15z']],
+      ['Disparo em massa', ['M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2', 'M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z', 'M22 8l-3 3-1.5-1.5']],
+      ['CRM', ['M22 3H2l8 9.5V19l4 2v-8.5L22 3z']],
+    ];
+    const recursos = feats.map(([nome, paths], i) =>
+      React.createElement('div', { key: i, style: { display: 'flex', alignItems: 'center', gap: '14px' } },
+        React.createElement('span', { style: { flexShrink: 0, width: '46px', height: '46px', borderRadius: '14px', background: 'linear-gradient(135deg,#3d7bff,#0756FF)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 10px 22px -10px rgba(7,86,255,.7)' } }, ic(paths)),
+        React.createElement('span', { style: { fontSize: '16px', fontWeight: 700, color: '#0B1220', lineHeight: 1.25 } }, nome)
+      )
+    );
+    const waIcon = React.createElement('svg', { width: 24, height: 24, viewBox: '0 0 24 24', fill: '#fff' }, React.createElement('path', { d: 'M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.87 9.87 0 0 0 1.523 5.263l-.999 3.648 3.965-1.05zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z' }));
+    const igIcon = React.createElement('svg', { width: 22, height: 22, viewBox: '0 0 24 24', fill: 'none', stroke: '#fff', strokeWidth: 2 }, React.createElement('rect', { x: 2.5, y: 2.5, width: 19, height: 19, rx: 5.5 }), React.createElement('circle', { cx: 12, cy: 12, r: 4.2 }), React.createElement('circle', { cx: 17.4, cy: 6.6, r: 1.2, fill: '#fff', stroke: 'none' }));
+    const msgIcon = React.createElement('svg', { width: 22, height: 22, viewBox: '0 0 24 24', fill: '#fff' }, React.createElement('path', { d: 'M12 2C6.3 2 2 6.2 2 11.7c0 3.1 1.4 5.8 3.7 7.6v3.2l3.4-1.9c.9.3 1.9.4 2.9.4 5.7 0 10-4.2 10-9.7S17.7 2 12 2Zm1 12.4-2.5-2.7-4.9 2.7 5.4-5.7 2.6 2.7 4.8-2.7-5.4 5.7Z' }));
+    const chan = {
+      wa: ['linear-gradient(135deg,#25d366,#128c3e)', waIcon],
+      ig: ['linear-gradient(135deg,#feda75,#d62976 45%,#962fbf 75%,#4f5bd5)', igIcon],
+      msg: ['linear-gradient(135deg,#0a7cff,#a033ff)', msgIcon],
+    };
+    const tagPill = (txt, bg, color) => React.createElement('span', { style: { fontSize: '10.5px', fontWeight: 700, padding: '3px 8px', borderRadius: '6px', background: bg, color, whiteSpace: 'nowrap' } }, txt);
+    const convData = [
+      { ini: 'PN', avbg: '#c98a5e', nome: 'Pamela Nogueira', id: '#221951', time: '07m', prev: 'Imagem', unread: 2, ch: 'wa', active: false,
+        tags: [['Ian Santiago', '#e0edff', '#0756FF'], ['Número principal', '#eef1f6', '#64748b']] },
+      { ini: 'MS', avbg: '#1e293b', nome: 'Marcio Silveira', id: '#177399', time: '12m', prev: '*Luis Otávio*: Opaa Marcio, boa tarde!! Tudo …', unread: 0, ch: 'wa', active: true,
+        tags: [['Comercial NX', '#3b82f6', '#fff'], ['Luis Otávio', '#e0edff', '#0756FF'], ['Número principal', '#eef1f6', '#64748b']] },
+      { ini: 'A', avbg: '#94a3b8', nome: 'Adriana', id: '#218113', time: '15m', prev: 'Oi', unread: 2, ch: 'wa', active: false,
+        tags: [['Suporte', '#3b82f6', '#fff'], ['João Lucas', '#e0edff', '#0756FF'], ['Número principal', '#eef1f6', '#64748b']] },
+    ];
+    const conversas = convData.map((c, i) =>
+      React.createElement('div', { key: i, style: { display: 'flex', gap: '11px', padding: '12px 10px', borderRadius: '14px', background: c.active ? '#eef1fb' : 'transparent', borderBottom: i < convData.length - 1 ? '1px solid #eef1f6' : 'none' } },
+        React.createElement('div', { style: { position: 'relative', flexShrink: 0 } },
+          React.createElement('span', { style: { width: '42px', height: '42px', borderRadius: '50%', background: c.avbg, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '13px' } }, c.ini),
+          c.unread ? React.createElement('span', { style: { position: 'absolute', top: '-4px', left: '-4px', background: '#ef4444', color: '#fff', fontSize: '9.5px', fontWeight: 800, minWidth: '17px', height: '17px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid #fff' } }, c.unread) : null,
+          React.createElement('span', { style: { position: 'absolute', bottom: '-3px', right: '-3px', width: '18px', height: '18px', borderRadius: '50%', background: chan[c.ch][0], display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid #fff' } }, React.cloneElement(chan[c.ch][1], { width: 10, height: 10 }))
+        ),
+        React.createElement('div', { style: { flex: 1, minWidth: 0 } },
+          React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '6px' } },
+            React.createElement('span', { style: { fontSize: '14px', fontWeight: 700, color: '#0B1220', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', flex: 1 } }, c.nome),
+            React.createElement('span', { style: { fontSize: '11px', color: '#64748b', fontWeight: 600 } }, c.id),
+            React.createElement('span', { style: { fontSize: '11px', color: '#e0324f', fontWeight: 600 } }, c.time)
+          ),
+          React.createElement('div', { style: { fontSize: '12.5px', color: '#64748b', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', margin: '2px 0 7px' } }, c.prev),
+          React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '5px', flexWrap: 'wrap' } },
+            ...c.tags.map(([t, bg, col], j) => tagPill(t, bg, col)),
+            React.createElement('svg', { key: 'g', width: 13, height: 13, viewBox: '0 0 24 24', fill: 'none', stroke: '#94a3b8', strokeWidth: 2 }, React.createElement('circle', { cx: 12, cy: 12, r: 3 }), React.createElement('path', { d: 'M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-2.83 1.17V22a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 8 20.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 3.6 15H3.5a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 5 9.4l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9.6 3.6V3.5a2 2 0 0 1 4 0v.09A1.65 1.65 0 0 0 15 5l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 20.4 9h.1a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z' }))
+          )
+        )
+      )
+    );
+    const svgI = (d, extra) => React.createElement('svg', { width: 22, height: 22, viewBox: '0 0 24 24', fill: 'none', stroke: '#fff', strokeWidth: 1.9, strokeLinecap: 'round', strokeLinejoin: 'round' }, ...(Array.isArray(d) ? d : [d]).map((p, i) => React.createElement('path', { key: i, d: p })), ...(extra || []));
+    const segData = [
+      { name: 'Educação', avatar: 'ES', icon: svgI(['M22 10 12 5 2 10l10 5 10-5z', 'M6 12v5c0 1 2.5 3 6 3s6-2 6-3v-5']),
+        desc: 'Da captação de alunos à secretaria: um número só para matrículas, dúvidas de responsáveis e avisos, com respostas na hora.',
+        features: ['Bot responde valores, turmas e horários 24h', 'Distribui leads de matrícula por unidade', 'Lembretes de mensalidade e reunião automáticos'],
+        stats: [['-68%', 'ligações na secretaria'], ['3x', 'mais matrículas respondidas'], ['24h', 'atendimento aos pais']],
+        msgs: [['user', 'Oi, boa tarde! Queria saber sobre matrícula pro 1º ano.'], ['bot', 'Boa tarde! 🙂 Aqui é a Secretaria do Colégio Horizonte. As matrículas do 1º ano estão abertas!'], ['bot', 'A mensalidade é R$ 620 e o material está incluso. Quer agendar uma visita pra conhecer a escola?'], ['user', 'Quero sim! Pode ser sexta de manhã?'], ['bot', 'Perfeito! Agendei sexta às 9h. Vou te enviar o endereço e um lembrete no dia. 📍']] },
+      { name: 'Saúde', avatar: 'SA', icon: svgI('M22 12h-4l-3 9L9 3l-3 9H2'),
+        desc: 'Agende, confirme e faça follow-up de pacientes sem sobrecarregar a recepção — tudo pelo WhatsApp da clínica.',
+        features: ['Agendamento e confirmação de consultas automáticos', 'Lembrete 24h antes reduz faltas', 'Triagem inicial encaminha ao setor certo'],
+        stats: [['-72%', 'faltas em consultas'], ['+40%', 'agendas preenchidas'], ['0', 'paciente sem resposta']],
+        msgs: [['user', 'Olá! Queria agendar uma consulta com a dermatologista.'], ['bot', 'Olá! 🙂 Aqui é a Clínica Bem Viver. Claro, posso te ajudar com isso!'], ['bot', 'Tenho horários na quinta às 14h ou na sexta às 9h. Qual fica melhor pra você?'], ['user', 'Quinta às 14h fica ótimo.'], ['bot', 'Agendado! ✅ Vou te mandar a confirmação e um lembrete 24h antes. Precisa de mais alguma coisa?']] },
+      { name: 'Imobiliário', avatar: 'IM', icon: svgI(['m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z', 'M9 21v-6h6v6']),
+        desc: 'Distribua leads entre corretores com inteligência, organize conversas por imóvel e acelere as negociações.',
+        features: ['Lead de anúncio cai direto no corretor de plantão', 'Bot qualifica orçamento e região antes do humano', 'Histórico por imóvel e follow-up automático'],
+        stats: [['1min', 'para o 1º retorno'], ['+55%', 'visitas agendadas'], ['100%', 'leads distribuídos']],
+        msgs: [['user', 'Oi! Vi o apê de 2 quartos no Centro no anúncio de vocês.'], ['bot', 'Oi! 🙂 Aqui é a Imobiliária Prime. Ótima escolha, esse apê é bem procurado!'], ['bot', 'Ele está R$ 320 mil, com vaga e sacada. Você pensa em financiar ou à vista?'], ['user', 'Financiado. Dá pra visitar esse fim de semana?'], ['bot', 'Dá sim! Já vou te conectar com o corretor responsável pra agendar a visita. 👍']] },
+      { name: 'Varejo', avatar: 'VA', icon: svgI(['M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z', 'M3 6h18M16 10a4 4 0 0 1-8 0']),
+        desc: 'Responda rápido, recupere carrinhos abandonados e transforme conversas em vendas repetidas.',
+        features: ['Bot informa preço, estoque e prazo na hora', 'Recuperação de carrinho por WhatsApp', 'Disparo de ofertas para a base de clientes'],
+        stats: [['+32%', 'conversão em vendas'], ['-50%', 'tempo de resposta'], ['+2x', 'recompra']],
+        msgs: [['user', 'Boa tarde! Aquele tênis branco tem no 40?'], ['bot', 'Boa tarde! 🙂 Temos sim, no 40! Sai por R$ 199 com frete grátis pra sua região.'], ['user', 'Ótimo! E parcela?'], ['bot', 'Pode dividir em até 3x sem juros. 💳 Quer que eu já reserve e te mande o link de pagamento?'], ['user', 'Quero, pode reservar!'], ['bot', 'Reservado! ✅ Te encaminho pro checkout agora. 🛒']] },
+      { name: 'Serviços Financeiros', avatar: 'SF', icon: svgI('M3 21h18M4 10h16M5 10 12 3l7 7M6 10v11M18 10v11M10 10v11M14 10v11'),
+        desc: 'Atendimento consultivo, seguro e rastreável em vários canais, com histórico completo de cada cliente.',
+        features: ['Atendimento com registro e rastreabilidade total', 'Bot tira dúvidas de contratos e vencimentos', 'Encaminha ao especialista certo por perfil'],
+        stats: [['100%', 'conversas registradas'], ['-60%', 'retrabalho'], ['+45%', 'produtividade']],
+        msgs: [['user', 'Olá! Queria simular um empréstimo.'], ['bot', 'Olá! 🙂 Aqui é a NX Crédito. Claro! Qual valor você tem em mente?'], ['user', 'Uns R$ 10 mil.'], ['bot', 'Perfeito! Para R$ 10 mil, temos parcelas a partir de R$ 420/mês. 🔒'], ['bot', 'Vou te conectar com um especialista pra uma simulação personalizada e segura. 👍']] },
+      { name: 'Contabilidade', avatar: 'CO', icon: svgI('M8 6h8M8 10h8M8 14h3M8 18h3M15 14h1M15 18h1', [React.createElement('rect', { key: 'r', x: 4, y: 2, width: 16, height: 20, rx: 2 })]),
+        desc: 'Centralize solicitações, organize o envio de documentos e as demandas dos clientes com agilidade e segurança.',
+        features: ['Coleta de documentos organizada por cliente', 'Lembretes de obrigações e prazos fiscais', 'Bot responde dúvidas recorrentes na hora'],
+        stats: [['-65%', 'e-mails perdidos'], ['+50%', 'agilidade nas demandas'], ['0', 'prazo esquecido']],
+        msgs: [['user', 'Bom dia! Preciso enviar as notas fiscais do mês.'], ['bot', 'Bom dia! 🙂 Aqui é o Escritório Contábil NX. Pode me enviar por aqui mesmo!'], ['user', 'Enviei os arquivos agora.'], ['bot', 'Recebi tudo. 📎 Já organizei na sua pasta e avisei o contador responsável.'], ['bot', 'Fico de olho no prazo do imposto e te lembro antes do vencimento. Mais alguma coisa?'], ['user', 'Só isso, muito obrigado!']] },
+      { name: 'Meu negócio', avatar: 'NX', icon: svgI('M3 21h18M5 21V7l8-4v18M19 21V11l-6-4M9 9v.01M9 12v.01M9 15v.01M9 18v.01'),
+        desc: 'Seja qual for o seu ramo, a NX adapta canais, automações e fluxos à sua operação — e a nossa equipe configura tudo com você.',
+        features: ['Atendimento centralizado de todos os canais', 'Bot e IA respondem na hora, 24h por dia', 'Fluxos e automações sob medida pro seu negócio'],
+        stats: [['1', 'painel para tudo'], ['24h', 'atendimento no ar'], ['100%', 'feito com você']],
+        msgs: [['user', 'Oi! Vi vocês no Instagram e queria entender como funciona.'], ['bot', 'Boa tarde! 🙂 Que bom ter você aqui! A NX centraliza WhatsApp, Instagram e Direct num painel só, com IA respondendo na hora.'], ['user', 'E é difícil de configurar?'], ['bot', 'Nada! A gente implementa, configura e ainda treina o seu time. Você não mexe em nada. 👍'], ['bot', 'Quer que eu chame um especialista pra montar a solução ideal pro seu negócio?'], ['user', 'Quero sim!']] },
+      { name: 'Provedor de internet', avatar: 'PV', icon: svgI('M5 12.55a11 11 0 0 1 14 0M8.5 16.03a6 6 0 0 1 7 0M2 8.82a15 15 0 0 1 20 0M12 20h.01'),
+        desc: 'Do primeiro contato ao suporte técnico: vendas de planos, 2ª via de boleto e abertura de chamados sem lotar o telefone.',
+        features: ['Bot emite 2ª via de boleto e Pix na hora', 'Abertura e acompanhamento de chamados', 'Suporte técnico nível 1 automatizado 24h'],
+        stats: [['-70%', 'ligações no suporte'], ['+45%', 'boletos pagos no prazo'], ['24h', 'abertura de chamado']],
+        msgs: [['user', 'Boa noite! Minha internet caiu.'], ['bot', 'Boa noite! 🙂 Aqui é a DigaWeb Telecom. Sinto muito! Já verifiquei sua conexão por aqui.'], ['bot', 'Identifiquei uma instabilidade na sua região. Pode tentar reiniciar o modem por 30 segundos?'], ['user', 'Reiniciei, mas continua sem sinal.'], ['bot', 'Entendi. Vou abrir um chamado técnico prioritário e te manter atualizado por aqui. Protocolo #48213. 🔧']] },
+      { name: 'Academia', avatar: 'AC', icon: svgI('M6.5 6.5 17.5 17.5M4 8l2-2M8 4l-2 2M16 20l2-2M20 16l-2 2M6 14l-2 2 2 2 2-2M18 6l2-2M14 6l4 4'),
+        desc: 'Capte alunos, agende aulas experimentais e cobre a mensalidade sem depender da recepção estar livre.',
+        features: ['Bot responde planos, horários e agenda aula grátis', 'Lembrete e cobrança de mensalidade automáticos', 'Reativação de alunos inativos por WhatsApp'],
+        stats: [['+50%', 'aulas experimentais'], ['-40%', 'inadimplência'], ['+2x', 'alunos reativados']],
+        msgs: [['user', 'Oi! Quero saber os planos da academia.'], ['bot', 'Bom dia! 🙂 Aqui é a Academia Spart. Temos planos a partir de R$ 89/mês com acesso livre e aulas coletivas.'], ['user', 'Tem musculação e aula de spinning?'], ['bot', 'Tem sim! Musculação, spinning, funcional e mais 12 modalidades inclusas. 💪'], ['bot', 'Quer marcar uma aula experimental gratuita pra conhecer a estrutura?'], ['user', 'Quero! Pode ser amanhã.']] },
+      { name: 'Comércio geral', avatar: 'CG', icon: svgI('M3 3h2l.4 2M7 13h10l3-8H5.4M7 13 5.4 5M7 13l-2 4h12M9 21h.01M17 21h.01'),
+        desc: 'Atenda, tire dúvidas de produto, envie orçamento e feche a venda pelo WhatsApp — sem perder cliente por demora.',
+        features: ['Bot informa preço, estoque e formas de pagamento', 'Orçamento e catálogo enviados na hora', 'Follow-up automático de quem não respondeu'],
+        stats: [['+38%', 'vendas fechadas'], ['-55%', 'tempo de resposta'], ['0', 'orçamento esquecido']],
+        msgs: [['user', 'Boa tarde! Vocês têm esse produto em estoque?'], ['bot', 'Boa tarde! 🙂 Temos sim em estoque! Posso te enviar o valor e as formas de pagamento?'], ['user', 'Pode sim!'], ['bot', 'Sai por R$ 149 no Pix (com 5% de desconto) ou em 3x sem juros no cartão.'], ['user', 'Vou querer no Pix.'], ['bot', 'Ótima escolha! 🛍️ Já te envio o QR Code e reservo a sua unidade.']] },
+    ];
+    const seg = segData[this.state.seg] || segData[0];
+    const segTabs = segData.map((s, i) => React.createElement('button', { key: i, onClick: () => this.setState({ seg: i }),
+      style: { display: 'inline-flex', alignItems: 'center', gap: '8px', border: i === this.state.seg ? '1.5px solid #0756FF' : '1.5px solid #e2e8f0', background: i === this.state.seg ? '#0756FF' : '#fff', color: i === this.state.seg ? '#fff' : '#334155', fontFamily: 'inherit', fontWeight: 700, fontSize: '14.5px', padding: '11px 20px', borderRadius: '100px', cursor: 'pointer', transition: 'all .18s', boxShadow: i === this.state.seg ? '0 12px 26px -12px rgba(7,86,255,.6)' : 'none' } },
+      React.cloneElement(s.icon, { width: 18, height: 18, stroke: i === this.state.seg ? '#fff' : '#0756FF' }), s.name));
+    const segIconWrap = 'width:52px;height:52px;border-radius:15px;background:linear-gradient(135deg,#0756FF,#3d82ff);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 26px -12px rgba(7,86,255,.6)';
+    const segIcon = React.cloneElement(seg.icon, { width: 26, height: 26 });
+    const segFeatures = [...seg.features, '100% personalizado: você monta o fluxo do jeito que quiser e a gente faz por você'].map((f, i) => React.createElement('div', { key: i, style: { display: 'flex', gap: '11px', alignItems: 'flex-start' } },
+      React.createElement('span', { style: { flexShrink: 0, width: '24px', height: '24px', borderRadius: '50%', background: '#e7effe', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '1px' } }, React.createElement('svg', { width: 14, height: 14, viewBox: '0 0 24 24', fill: 'none', stroke: '#0756FF', strokeWidth: 3, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('path', { d: 'M20 6 9 17l-5-5' }))),
+      React.createElement('span', { style: { fontSize: '15.5px', color: '#334155', lineHeight: 1.45, fontWeight: 500 } }, f)));
+    const segStats = seg.stats.map((st, i) => React.createElement('div', { key: i },
+      React.createElement('div', { style: { fontSize: '28px', fontWeight: 900, letterSpacing: '-1px', color: '#0756FF' } }, st[0]),
+      React.createElement('div', { style: { fontSize: '13px', color: '#64748b', maxWidth: '110px', lineHeight: 1.3 } }, st[1])));
+    const segBotOpts = [
+      { greet: 'Boa tarde! 🙂 Aqui é o Colégio Horizonte. Como posso ajudar?', opts: ['Matrículas', 'Mensalidade', 'Falar com a secretaria'], pick: 'Matrículas', reply: 'Perfeito! Já estou te transferindo para o setor de Matrículas. Um atendente vai continuar por aqui. 👍' },
+      { greet: 'Olá! 🙂 Clínica Bem Viver. O que você precisa hoje?', opts: ['Agendar consulta', 'Confirmar horário', 'Resultados de exame'], pick: 'Agendar consulta', reply: 'Perfeito! Já estou te transferindo para a recepção de Agendamentos. Um atendente vai continuar por aqui. 👍' },
+      { greet: 'Oi! 🙂 Imobiliária Prime. Como posso te ajudar?', opts: ['Comprar imóvel', 'Alugar imóvel', 'Falar com corretor'], pick: 'Comprar imóvel', reply: 'Perfeito! Já estou te transferindo para um corretor de Vendas. Ele vai continuar por aqui. 👍' },
+      { greet: 'Boa tarde! 🙂 Bem-vindo à nossa loja. Escolha uma opção:', opts: ['Ver produtos', 'Status do pedido', 'Falar com vendedor'], pick: 'Ver produtos', reply: 'Perfeito! Já estou te transferindo para o time de Vendas. Um atendente vai continuar por aqui. 👍' },
+      { greet: 'Olá! 🙂 NX Crédito. Selecione uma opção para começar:', opts: ['Simular empréstimo', '2ª via de contrato', 'Falar com especialista'], pick: 'Simular empréstimo', reply: 'Perfeito! Já estou te transferindo para um especialista de Crédito. Ele vai continuar por aqui. 👍' },
+      { greet: 'Bom dia! 🙂 Escritório Contábil NX. Como posso ajudar?', opts: ['Enviar documentos', 'Dúvidas fiscais', 'Falar com o contador'], pick: 'Enviar documentos', reply: 'Perfeito! Já estou te transferindo para o contador responsável. Ele vai continuar por aqui. 👍' },
+      { greet: 'Boa tarde! 🙂 Que bom ter você por aqui. Como posso ajudar?', opts: ['Quero contratar', 'Sou cliente', 'Falar com especialista'], pick: 'Quero contratar', reply: 'Perfeito! Já estou te transferindo para um especialista Comercial. Ele vai continuar por aqui. 👍' },
+      { greet: 'Boa noite! 🙂 DigaWeb Telecom. Selecione uma opção:', opts: ['2ª via de boleto', 'Suporte técnico', 'Contratar plano'], pick: 'Suporte técnico', reply: 'Perfeito! Já estou te transferindo para o Suporte Técnico. Um atendente vai continuar por aqui. 👍' },
+      { greet: 'Bom dia! 🙂 Academia Spart. Como posso ajudar?', opts: ['Ver planos', 'Aula experimental', '2ª via mensalidade'], pick: 'Aula experimental', reply: 'Perfeito! Já estou te transferindo para a recepção. Um atendente vai continuar por aqui. 👍' },
+      { greet: 'Boa tarde! 🙂 Bem-vindo! Escolha uma opção:', opts: ['Ver produtos', 'Fazer orçamento', 'Falar com vendedor'], pick: 'Fazer orçamento', reply: 'Perfeito! Já estou te transferindo para o time de Vendas. Um atendente vai continuar por aqui. 👍' },
+    ];
+    const segIsBot = this.state.segMode !== 'ia';
+    const bo = segBotOpts[this.state.seg] || segBotOpts[0];
+    const segMsgSh = '0 2px 6px -2px rgba(15,23,42,.18)';
+    const bBubble = (key, side, txt) => side === 'bot'
+      ? React.createElement('div', { key, style: { alignSelf: 'flex-start', maxWidth: '84%', background: '#fff', borderRadius: '2px 12px 12px 12px', padding: '8px 11px', fontSize: '12.5px', lineHeight: 1.38, color: '#111b21', boxShadow: segMsgSh } }, txt)
+      : React.createElement('div', { key, style: { alignSelf: 'flex-end', maxWidth: '84%', background: '#d9fdd3', borderRadius: '12px 2px 12px 12px', padding: '8px 11px', fontSize: '12.5px', lineHeight: 1.38, color: '#111b21', boxShadow: segMsgSh } }, txt);
+    let segMessages;
+    if (segIsBot) {
+      segMessages = [
+        bBubble('g', 'bot', bo.greet),
+        ...bo.opts.map((o, i) => React.createElement('div', { key: 'o' + i, style: { alignSelf: 'flex-start', width: '90%', background: '#fff', borderRadius: '10px', padding: '10px', textAlign: 'center', fontSize: '13px', fontWeight: 700, color: '#0756FF', boxShadow: segMsgSh, border: o === bo.pick ? '1.5px solid #0756FF' : '1.5px solid transparent' } }, '› ' + o)),
+        bBubble('p', 'user', bo.pick),
+        bBubble('r', 'bot', bo.reply),
+      ];
+    } else {
+      segMessages = seg.msgs.map((m, i) => bBubble(i, m[0], m[1]));
+    }
+    const segTabBase = 'border:none;cursor:pointer;font-family:inherit;font-size:13.5px;font-weight:800;padding:8px 24px;border-radius:100px;transition:background .18s,color .18s;';
+    const segTabBotStyle = segTabBase + (segIsBot ? 'background:#0756FF;color:#fff;' : 'background:transparent;color:#8698b5;');
+    const segTabIaStyle = segTabBase + (!segIsBot ? 'background:#0756FF;color:#fff;' : 'background:transparent;color:#8698b5;');
+    const isBot = this.state.botTab === 'chatbot';
+    const tabBase = 'border:none;cursor:pointer;font-family:inherit;font-size:15px;font-weight:800;padding:9px 30px;border-radius:100px;transition:background .18s,color .18s;';
+    const tabChatbotStyle = tabBase + (isBot ? 'background:#1409e0;color:#fff;' : 'background:transparent;color:#94a3b8;');
+    const tabIaStyle = tabBase + (!isBot ? 'background:#1409e0;color:#fff;' : 'background:transparent;color:#94a3b8;');
+    const botHeadingEl = isBot
+      ? React.createElement(React.Fragment, null, 'Direcione o atendimento de forma automática com o ', React.createElement('span', { style: { color: '#0756FF' } }, 'nosso chatbot'))
+      : React.createElement(React.Fragment, null, 'Respostas na hora com ', React.createElement('span', { style: { color: '#0756FF' } }, 'inteligência artificial'), ' de verdade');
+    const bulletsData = isBot
+      ? ['Tenha um chatbot personalizado trabalhando de forma eficiente 24 horas por dia', 'Envie pesquisas de satisfação', 'Automatize perguntas frequentes', 'Crie fluxos de atendimento']
+      : ['IA 100% personalizada: treinada com as informações e o jeito do seu negócio', 'Entende e envia áudios — responde por voz quando o cliente prefere', 'Entende fotos: o cliente manda uma imagem e a IA interpreta na hora', 'Responde em linguagem natural 24h e passa para o atendente humano quando necessário'];
+    const botBullets = bulletsData.map((t, i) =>
+      React.createElement('li', { key: i, style: { display: 'flex', gap: '12px', fontSize: '16.5px', lineHeight: 1.5, color: '#334155' } },
+        React.createElement('span', { style: { flexShrink: 0, marginTop: '9px', width: '7px', height: '7px', borderRadius: '50%', background: '#0B1220' } }),
+        React.createElement('span', null, t)
+      )
+    );
+    const botAvatar = React.createElement('span', { style: { flexShrink: 0, width: '38px', height: '38px', borderRadius: '50%', background: '#1409e0', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 18px -8px rgba(20,9,224,.7)' } }, React.createElement('svg', { width: 20, height: 20, viewBox: '0 0 24 24', fill: 'none', stroke: '#fff', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('rect', { x: 4, y: 8, width: 16, height: 11, rx: 3 }), React.createElement('path', { d: 'M12 8V4M9 4h6' }), React.createElement('circle', { cx: 9, cy: 13.5, r: 1.1, fill: '#fff', stroke: 'none' }), React.createElement('circle', { cx: 15, cy: 13.5, r: 1.1, fill: '#fff', stroke: 'none' })));
+    const userAvatar = React.createElement('span', { style: { flexShrink: 0, width: '38px', height: '38px', borderRadius: '50%', background: 'linear-gradient(135deg,#c98a5e,#8b5a3c)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 700, fontSize: '13px' } }, 'C');
+    const check = React.createElement('svg', { width: 15, height: 15, viewBox: '0 0 24 24', fill: 'none', stroke: '#3b82f6', strokeWidth: 2.4, strokeLinecap: 'round', strokeLinejoin: 'round', style: { flexShrink: 0 } }, React.createElement('path', { d: 'm2 13 4 4 8-9' }), React.createElement('path', { d: 'm10 15 2 2 8-9' }));
+    const meta = (time) => React.createElement('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '4px', marginTop: '6px' } }, check, React.createElement('span', { style: { fontSize: '11px', color: '#94a3b8' } }, time));
+    const bubble = (opts) => {
+      const { from, children, time, key } = opts;
+      const isBotMsg = from === 'bot';
+      const avatar = from === 'bot' ? botAvatar : (from === 'user' ? userAvatar : null);
+      const row = React.createElement('div', { style: { display: 'flex', gap: '10px', flexDirection: isBotMsg ? 'row-reverse' : 'row', alignItems: 'flex-start', justifyContent: isBotMsg ? 'flex-start' : 'flex-start' } },
+        avatar,
+        React.createElement('div', { style: { maxWidth: '78%', background: '#fff', borderRadius: isBotMsg ? '16px 16px 4px 16px' : '16px 16px 16px 4px', padding: '13px 16px', boxShadow: '0 6px 18px -10px rgba(15,23,42,.35)' } },
+          React.createElement('div', { style: { fontSize: '14.5px', lineHeight: 1.5, color: '#334155' } }, children),
+          time ? meta(time) : null
+        )
+      );
+      return React.createElement('div', { key, style: { display: 'flex', justifyContent: isBotMsg ? 'flex-end' : 'flex-start' } }, row);
+    };
+    const b = (s) => React.createElement('strong', { style: { fontWeight: 800, color: '#0B1220' } }, s);
+    const dblCheck = (col) => React.createElement('svg', { width: 16, height: 11, viewBox: '0 0 18 12', fill: 'none', stroke: col, strokeWidth: 1.6, strokeLinecap: 'round', strokeLinejoin: 'round', style: { flexShrink: 0 } }, React.createElement('path', { d: 'M1 6.5 4 9.5 10 2.5' }), React.createElement('path', { d: 'M7 9 8 10 14 3' }));
+    const stamp = (t, col) => React.createElement('span', { style: { display: 'inline-flex', alignItems: 'center', gap: '3px', fontSize: '10.5px', color: col || '#8aa0b3', float: 'right', marginLeft: '12px', position: 'relative', top: '5px' } }, t, dblCheck(col || '#53bdeb'));
+    const chatHeader = (opts) => React.createElement('div', { key: 'hd', style: { display: 'flex', alignItems: 'center', gap: '11px', margin: 0, padding: '46px 16px 13px', background: opts.bg, color: '#fff', boxShadow: '0 2px 10px -4px rgba(0,0,0,.25)', position: 'relative', zIndex: 2 } },
+      React.createElement('span', { style: { flexShrink: 0, width: '40px', height: '40px', borderRadius: '50%', overflow: 'hidden', display: 'flex' } }, React.createElement('img', { src: 'assets/nx-avatar.png', alt: 'NX', style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' } })),
+      React.createElement('div', { style: { flex: 1, minWidth: 0 } },
+        React.createElement('div', { style: { fontSize: '15px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '5px' } }, opts.name, opts.verified ? React.createElement('svg', { width: 15, height: 15, viewBox: '0 0 24 24', fill: '#0756FF' }, React.createElement('circle', { cx: 12, cy: 12, r: 11 }), React.createElement('path', { d: 'm8 12 3 3 5-6', stroke: '#fff', strokeWidth: 2.4, fill: 'none', strokeLinecap: 'round', strokeLinejoin: 'round' })) : null),
+        React.createElement('div', { style: { fontSize: '11.5px', opacity: .85, display: 'flex', alignItems: 'center', gap: '5px' } }, React.createElement('span', { style: { width: '7px', height: '7px', borderRadius: '50%', background: '#4ade80' } }), opts.status)
+      ),
+      React.createElement('div', { style: { display: 'flex', gap: '15px', opacity: .95 } },
+        React.createElement('svg', { width: 19, height: 19, viewBox: '0 0 24 24', fill: '#fff' }, React.createElement('path', { d: 'M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z' })),
+        React.createElement('svg', { width: 17, height: 17, viewBox: '0 0 24 24', fill: '#fff' }, React.createElement('path', { d: 'M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.2z' })),
+        React.createElement('svg', { width: 17, height: 17, viewBox: '0 0 24 24', fill: '#fff' }, React.createElement('circle', { cx: 12, cy: 5, r: 1.6 }), React.createElement('circle', { cx: 12, cy: 12, r: 1.6 }), React.createElement('circle', { cx: 12, cy: 19, r: 1.6 }))
+      )
+    );
+    const inputBar = (ph) => React.createElement('div', { key: 'ib', style: { display: 'flex', alignItems: 'center', gap: '9px', margin: '4px 10px 12px', padding: '9px 12px', background: '#fff', borderRadius: '100px', boxShadow: '0 6px 16px -8px rgba(15,23,42,.25)', position: 'relative', zIndex: 2 } },
+      React.createElement('svg', { width: 20, height: 20, viewBox: '0 0 24 24', fill: 'none', stroke: '#94a3b8', strokeWidth: 2 }, React.createElement('circle', { cx: 12, cy: 12, r: 9 }), React.createElement('path', { d: 'M8.5 14.5a4 4 0 0 0 7 0', strokeLinecap: 'round' }), React.createElement('circle', { cx: 9, cy: 10, r: 1, fill: '#94a3b8', stroke: 'none' }), React.createElement('circle', { cx: 15, cy: 10, r: 1, fill: '#94a3b8', stroke: 'none' })),
+      React.createElement('span', { style: { flex: 1, fontSize: '13.5px', color: '#94a3b8' } }, ph),
+      React.createElement('span', { style: { flexShrink: 0, width: '34px', height: '34px', borderRadius: '50%', background: '#0e7a5f', display: 'flex', alignItems: 'center', justifyContent: 'center' } }, React.createElement('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: '#fff' }, React.createElement('path', { d: 'M3 20.5 21 12 3 3.5 3 10l12 2-12 2z' })))
+    );
+    const wallpaper = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><g fill="none" stroke="#cdb89b" stroke-width="1" opacity="0.3"><path d="M12 14h8M12 18h5"/><circle cx="44" cy="40" r="4"/><path d="M40 46h8"/><path d="M20 40l3 3 5-6"/></g></svg>');
+    let botMessages, botCardStyle;
+    const cardBase = `position:relative;z-index:1;width:100%;border-radius:44px;padding:0;display:flex;flex-direction:column;height:720px;overflow:hidden;background:#e6ddd4 url("${wallpaper}");background-size:130px;`;
+    const scrollWrap = (kids) => React.createElement('div', { key: 'sc', className: 'noscroll', style: { flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '8px', padding: '12px 12px 6px', overflow: 'hidden' } }, kids);
+    if (isBot) {
+      const waBubbleSh = '0 2px 6px -2px rgba(15,23,42,.18)';
+      const waBot = (opts) => React.createElement('div', { key: opts.key, style: { alignSelf: 'flex-start', maxWidth: '82%', background: '#fff', borderRadius: '2px 12px 12px 12px', padding: '8px 11px 6px', boxShadow: waBubbleSh, fontSize: '13.5px', lineHeight: 1.45, color: '#111b21', position: 'relative', zIndex: 1 } }, opts.children, stamp(opts.time, '#8aa0b3'));
+      const waUser = (opts) => React.createElement('div', { key: opts.key, style: { alignSelf: 'flex-end', maxWidth: '82%', background: '#d9fdd3', borderRadius: '12px 2px 12px 12px', padding: '8px 11px 6px', fontSize: '13.5px', lineHeight: 1.45, color: '#111b21', boxShadow: waBubbleSh } }, opts.children, stamp(opts.time, '#4aa564'));
+      const waOption = (t, i) => React.createElement('button', { key: 'o' + i, style: { alignSelf: 'stretch', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '7px', background: '#fff', border: 'none', borderRadius: '10px', padding: '12px', fontFamily: 'inherit', fontSize: '14px', fontWeight: 700, color: '#0aa5ec', cursor: 'pointer', boxShadow: waBubbleSh, transition: 'transform .15s, box-shadow .15s' }, onMouseEnter: (e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 10px 22px -10px rgba(10,165,236,.5)'; }, onMouseLeave: (e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = waBubbleSh; } },
+        React.createElement('svg', { width: 15, height: 15, viewBox: '0 0 24 24', fill: 'none', stroke: '#0aa5ec', strokeWidth: 2.4, strokeLinecap: 'round', strokeLinejoin: 'round' }, React.createElement('path', { d: 'M9 6l6 6-6 6' })), t);
+      botCardStyle = cardBase;
+      botMessages = [
+        chatHeader({ bg: '#075e54', avBg: 'linear-gradient(135deg,#25d366,#0e7a5f)', avatar: React.createElement('svg', { width: 22, height: 22, viewBox: '0 0 24 24', fill: '#fff' }, React.createElement('path', { d: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2' }), React.createElement('circle', { cx: 9, cy: 7, r: 4 }), React.createElement('path', { d: 'M23 21v-2a4 4 0 0 0-3-3.87' })), name: 'Empresa', verified: true, status: 'online' }),
+        scrollWrap([
+          waUser({ key: 'u0', time: '15:28', children: 'Oi, boa tarde! Vim pelo Instagram de vocês 😊' }),
+          waBot({ key: 0, time: '15:29', children: 'Boa tarde! 🙂 Que bom ter você por aqui. Seja bem-vindo à Empresa!' }),
+          waBot({ key: 1, time: '15:30', children: 'Para um atendimento mais ágil, escolha uma das opções abaixo:' }),
+          ...['Comercial', 'Financeiro', 'Outros assuntos'].map((t, i) => waOption(t, i)),
+          waUser({ key: 2, time: '15:31', children: 'Comercial' }),
+          waBot({ key: 3, time: '15:32', children: React.createElement('span', null, React.createElement('strong', { style: { display: 'block', color: '#0B1220', marginBottom: '2px', fontSize: '13px' } }, 'Pedro'), 'Oi, boa tarde 🙂', React.createElement('br'), 'Como posso te ajudar?') }),
+        ]),
+        inputBar('Mensagem'),
+      ];
+    } else {
+      const waBubbleSh = '0 2px 6px -2px rgba(15,23,42,.18)';
+      const waBot = (opts) => React.createElement('div', { key: opts.key, style: { alignSelf: 'flex-start', maxWidth: '82%', background: '#fff', borderRadius: '2px 12px 12px 12px', padding: '8px 11px 6px', boxShadow: waBubbleSh, fontSize: '13.5px', lineHeight: 1.45, color: '#111b21' } }, opts.children, stamp(opts.time, '#8aa0b3'));
+      const waUser = (opts) => React.createElement('div', { key: opts.key, style: { alignSelf: 'flex-end', maxWidth: '82%', background: '#d9fdd3', borderRadius: '12px 2px 12px 12px', padding: '8px 11px 6px', fontSize: '13.5px', lineHeight: 1.45, color: '#111b21', boxShadow: waBubbleSh } }, opts.children, stamp(opts.time, '#4aa564'));
+      botCardStyle = cardBase;
+      botMessages = [
+        chatHeader({ bg: '#075e54', avBg: 'linear-gradient(135deg,#25d366,#0e7a5f)', avatar: React.createElement('svg', { width: 22, height: 22, viewBox: '0 0 24 24', fill: '#fff' }, React.createElement('rect', { x: 4, y: 8, width: 16, height: 11, rx: 3 }), React.createElement('path', { d: 'M12 8V4M9 4h6', stroke: '#fff', strokeWidth: 2, strokeLinecap: 'round' }), React.createElement('circle', { cx: 9, cy: 13.5, r: 1.1 }), React.createElement('circle', { cx: 15, cy: 13.5, r: 1.1 })), name: 'Assistente IA', verified: true, status: 'online' }),
+        scrollWrap([
+          waUser({ key: 0, time: '11:28', children: 'Boa tarde! Vi o anúncio de vocês e queria saber o preço da argamassa.' }),
+          waBot({ key: 1, time: '11:28', children: 'Boa tarde! 🙂 Que bom falar com você! Sou a assistente virtual da Silva Materiais.' }),
+          waBot({ key: 2, time: '11:29', children: ['Claro! A ', b('argamassa AC-II'), ' sai por ', b('R$ 19,90'), ' o saco. Para calcular a entrega, pode me informar o ', b('endereço'), '?'] }),
+          waUser({ key: 3, time: '11:30', children: 'Rua das Palmeiras, 240 — Centro, Tubarão/SC' }),
+          waBot({ key: 4, time: '11:31', children: ['Perfeito! Já estou te ', b('encaminhando ao time comercial'), ' para fechar o orçamento com a entrega nesse endereço. 👍'] }),
+          React.createElement('div', { key: 'typing', style: { alignSelf: 'flex-start', display: 'flex', gap: '5px', background: '#fff', padding: '11px 14px', borderRadius: '2px 12px 12px 12px', boxShadow: waBubbleSh } },
+            React.createElement('span', { style: { width: '7px', height: '7px', borderRadius: '50%', background: '#9db8ff', animation: 'tdot 1.2s infinite' } }),
+            React.createElement('span', { style: { width: '7px', height: '7px', borderRadius: '50%', background: '#9db8ff', animation: 'tdot 1.2s infinite .2s' } }),
+            React.createElement('span', { style: { width: '7px', height: '7px', borderRadius: '50%', background: '#9db8ff', animation: 'tdot 1.2s infinite .4s' } })
+          ),
+        ]),
+        inputBar('Mensagem'),
+      ];
+    }
+    void bubble; void botAvatar; void userAvatar; void meta;
+    return {
+      marqueeLogos,
+      recursos,
+      conversas,
+      botHeading: botHeadingEl,
+      botBullets,
+      botMessages,
+      botCardStyle,
+      tabChatbotStyle,
+      tabIaStyle,
+      setBot: () => this.setState({ botTab: 'chatbot' }),
+      setIa: () => this.setState({ botTab: 'ia' }),
+      openSol: () => this.setState({ solOpen: true }),
+      closeSol: () => this.setState({ solOpen: false }),
+      toggleSol: () => this.setState((s) => ({ solOpen: !s.solOpen })),
+      solMenuStyle: `position:absolute;top:100%;left:-10px;padding-top:14px;z-index:60;transition:opacity .18s,transform .18s;transform-origin:top left;opacity:${solOpen ? 1 : 0};transform:${solOpen ? 'translateY(0) scale(1)' : 'translateY(-6px) scale(.98)'};visibility:${solOpen ? 'visible' : 'hidden'};pointer-events:${solOpen ? 'auto' : 'none'}`,
+      solChevronStyle: `transition:transform .18s;transform:rotate(${solOpen ? 180 : 0}deg)`,
+      openQuem: () => this.setState({ quemOpen: true }),
+      closeQuem: () => this.setState({ quemOpen: false }),
+      toggleQuem: () => this.setState((s) => ({ quemOpen: !s.quemOpen })),
+      quemMenuStyle: `position:absolute;top:100%;left:-10px;padding-top:14px;z-index:60;transition:opacity .18s,transform .18s;transform-origin:top left;opacity:${this.state.quemOpen ? 1 : 0};transform:${this.state.quemOpen ? 'translateY(0) scale(1)' : 'translateY(-6px) scale(.98)'};visibility:${this.state.quemOpen ? 'visible' : 'hidden'};pointer-events:${this.state.quemOpen ? 'auto' : 'none'}`,
+      quemChevronStyle: `transition:transform .18s;transform:rotate(${this.state.quemOpen ? 180 : 0}deg)`,
+      openCont: () => this.setState({ contOpen: true }),
+      closeCont: () => this.setState({ contOpen: false }),
+      toggleCont: () => this.setState((s) => ({ contOpen: !s.contOpen })),
+      contMenuStyle: `position:absolute;top:100%;left:-10px;padding-top:14px;z-index:60;transition:opacity .18s,transform .18s;transform-origin:top left;opacity:${this.state.contOpen ? 1 : 0};transform:${this.state.contOpen ? 'translateY(0) scale(1)' : 'translateY(-6px) scale(.98)'};visibility:${this.state.contOpen ? 'visible' : 'hidden'};pointer-events:${this.state.contOpen ? 'auto' : 'none'}`,
+      contChevronStyle: `transition:transform .18s;transform:rotate(${this.state.contOpen ? 180 : 0}deg)`,
+      waLink: `https://wa.me/${this.waNumber}?text=${msg}`,
+      trackWhats: () => {},
+      setLangPt: () => {},
+      setLangEs: () => {},
+      setLangEn: () => {},
+      segTabs, segName: seg.name, segDesc: seg.desc, segAvatar: seg.avatar, segIcon, segIconWrap, segFeatures, segStats, segMessages,
+      segTabBotStyle, segTabIaStyle, setSegBot: () => this.setState({ segMode: 'bot' }), setSegIa: () => this.setState({ segMode: 'ia' }),
+      handleSubmit: (e) => {
+        e.preventDefault();
+        this.sendForm(e.target);
+      },
+      handleWhats: (e) => {
+        const f = e.target.closest('form');
+        if (f && !f.reportValidity()) return;
+        this.sendForm(f);
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>
