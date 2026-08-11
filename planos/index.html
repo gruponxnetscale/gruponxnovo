@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>NX Digital - Plataforma de atendimento</title>
+<meta name="description" content="Monte o seu plano NX: ajuste usuários, módulos e canais e veja o preço em tempo real." />
+<link rel="icon" type="image/png" href="../assets/nx-logo.png" />
+<link rel="apple-touch-icon" href="../assets/nx-logo.png" />
+<link rel="shortcut icon" type="image/png" href="../assets/nx-logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:#0B1220;background:#fff;-webkit-font-smoothing:antialiased}
+  a{color:#0756FF;text-decoration:none}
+  a:hover{color:#0445CC}
+  @media(max-width:920px){.head-nav{display:none!important}.sub-title{font-size:38px!important}}
+  @media(max-width:860px){.pl-grid{grid-template-columns:1fr!important}.pl-setup{grid-template-columns:1fr 1fr!important}}
+  @media(max-width:560px){.pl-setup{grid-template-columns:1fr!important}}
+  @media(max-width:860px){.pl-resumo{grid-template-columns:1fr!important}}
+  @media(max-width:760px){.sup-grid{grid-template-columns:1fr!important}.sup-form-grid{grid-template-columns:1fr!important}}
+  @keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+
+  /* ===== MOBILE (não afeta desktop) ===== */
+  @media(max-width:760px){
+    html,body{overflow-x:hidden!important}
+    img{max-width:100%!important;height:auto!important}
+    h1,.sub-title{font-size:clamp(27px,7.6vw,36px)!important;line-height:1.12!important;letter-spacing:-1.1px!important}
+    h2{font-size:clamp(22px,6.2vw,29px)!important;line-height:1.16!important;letter-spacing:-.8px!important}
+    h3{font-size:18px!important}
+    section{padding-left:16px!important;padding-right:16px!important}
+    section > div, footer > div{max-width:100%!important}
+    div[style*="grid-template-columns"]{grid-template-columns:1fr!important}
+    div[style*="position:sticky"],div[style*="position: sticky"]{position:static!important;top:auto!important}
+    p{font-size:15.5px!important;line-height:1.6!important}
+    a[style*="padding:16px 3"],a[style*="padding:15px 3"],a[style*="padding: 16px 3"],a[style*="padding: 15px 3"]{width:100%!important;justify-content:center!important}
+    div[style*="max-width:520px"],div[style*="max-width:560px"],div[style*="max-width:460px"],div[style*="max-width:440px"],div[style*="max-width:420px"],div[style*="max-width:400px"]{max-width:100%!important}
+    img[style*="margin-left:-9%"]{width:100%!important;margin-left:0!important}
+    img[style*="margin-left:-24px"]{margin-left:0!important}
+  }
+  @media(max-width:560px){
+    section{padding-top:44px!important;padding-bottom:44px!important}
+    div[style*="padding:56px"],div[style*="padding:64px"],div[style*="padding: 56px"],div[style*="padding: 64px"]{padding:26px 18px!important}
+    div[style*="border-radius:28px"]{border-radius:20px!important}
+  }
+
+  /* nav mobile: mostra os menus em linha rolável */
+  @media(max-width:920px){
+    header .head-nav{display:flex!important;order:3;width:100%;gap:18px!important;overflow:visible;padding:8px 2px 2px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    header .head-nav::-webkit-scrollbar{display:none}
+    header .head-nav > *{flex-shrink:0}
+    header .head-nav a,header .head-nav button{font-size:13.5px!important;white-space:nowrap}
+    header .wrap-pad,header > div > div > div{flex-wrap:wrap!important}
+  }
+  @media(max-width:560px){
+    header a[style*="border-radius:100px"]{font-size:12.5px!important;padding:9px 15px!important}
+    header img{height:30px!important}
+  }
+
+  /* ===== MOBILE v2 — refinos (desktop intocado) ===== */
+  @media(max-width:760px){
+    *{max-width:100%}
+    svg{max-width:100%}
+    div[style*="width:420px"],div[style*="width:440px"],div[style*="width:460px"],div[style*="width:360px"],div[style*="width:340px"],div[style*="width:330px"],div[style*="width:320px"],div[style*="width:310px"],div[style*="width:300px"],div[style*="width:290px"],div[style*="width:270px"],div[style*="width:250px"],div[style*="width:230px"]{width:100%!important}
+    div[style*="min-width:110px"],div[style*="min-width:150px"],div[style*="min-width:104px"]{min-width:0!important}
+    div[style*="position:absolute"][style*="animation:floaty"]{position:static!important;animation:none!important;margin:12px auto 0!important;transform:none!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important}
+    div[style*="animation:marquee"]{gap:34px!important}
+    div[style*="animation:marquee"] > span{font-size:19px!important}
+    table{display:block;overflow:visible;white-space:nowrap}
+    p[style*="white-space:nowrap"],div[style*="white-space:nowrap"]{white-space:normal!important}
+    div[style*="aspect-ratio:1"]{max-height:78vw}
+    input,select,textarea,button{font-size:16px!important;max-width:100%}
+    select{background-position:right 12px center!important}
+    div[style*="display:flex"][style*="flex-wrap:wrap"] > a{flex:1 1 100%}
+  }
+  @media(max-width:560px){
+    h1,.sub-title,.h1-xl{font-size:clamp(25px,7.4vw,31px)!important;letter-spacing:-.9px!important}
+    h2,.sec-title{font-size:clamp(21px,6vw,26px)!important}
+    div[style*="padding:32px 30px"],div[style*="padding:30px 28px"],div[style*="padding:34px 30px"],div[style*="padding:26px 26px"],div[style*="padding:28px 26px"]{padding:20px 16px!important}
+    div[style*="border-radius:26px"],div[style*="border-radius:24px"],div[style*="border-radius:22px"],div[style*="border-radius:20px"]{border-radius:16px!important}
+    div[style*="font-size:56px"],div[style*="font-size:44px"],div[style*="font-size:42px"]{font-size:32px!important;letter-spacing:-1px!important}
+    a[style*="position:fixed"]{bottom:14px!important;right:14px!important;transform:scale(.9)}
+  }
+
+  /* ===== MOBILE v3 — correções (desktop intocado) ===== */
+  @media(max-width:760px){
+    header .wrap-pad{flex-wrap:wrap!important;gap:8px!important;padding:8px 12px!important}
+    header .wrap-pad > div:first-child{flex:0 0 auto}
+    header .wrap-pad > div:last-child{flex:1 1 100%;order:2;display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:8px!important;justify-content:flex-start!important}
+    header .wrap-pad > div:last-child > div:first-child{order:1;flex:0 0 auto}
+    header .wrap-pad > div:last-child > a{flex:1 1 auto;min-width:0;justify-content:center!important;text-align:center;font-size:13px!important;padding:10px 12px!important;white-space:nowrap}
+    header .head-nav{order:3;flex:1 1 100%}
+    div[style*="animation:marquee"]{width:max-content!important;max-width:none!important;flex-wrap:nowrap!important}
+    div[style*="animation:marquee"] > span{max-width:none!important;flex-shrink:0!important}
+    section p[style*="white-space:nowrap"]{white-space:normal!important;font-size:17px!important;text-align:left!important}
+    img[src*="moca"],img[src*="hero-"]{width:100%!important;max-width:420px!important;margin:0 auto!important;display:block!important}
+    a[style*="position:fixed"]{z-index:90!important}
+  }
+  @media(max-width:560px){
+    header .wrap-pad > div:last-child > a{font-size:12.5px!important;padding:9px 10px!important}
+    header img{height:26px!important}
+    div[style*="animation:marquee"] > span{font-size:17px!important}
+    section p[style*="white-space:nowrap"]{font-size:15.5px!important}
+  }
+
+  /* MOBILE marquee speed */
+  @media(max-width:760px){
+    div[style*="animation:marquee"]{animation-duration:9s!important}
+  }
+  @media(max-width:560px){
+    div[style*="animation:marquee"]{animation-duration:7s!important}
+  }
+
+  /* MOBILE footer logo */
+  @media(max-width:760px){
+    footer .foot-grid > div:first-child > div:first-child{display:inline-flex!important;width:auto!important;max-width:150px!important;padding:8px 12px!important;border-radius:10px!important}
+    footer .foot-grid img{height:30px!important;width:auto!important;max-width:120px!important;object-fit:contain!important}
+  }
+
+  /* MOBILE cabeçalho: bandeirinhas pequenas na primeira linha */
+  @media(max-width:760px){
+    header .wrap-pad{position:relative}
+    header .wrap-pad > div:last-child > div:first-child{position:absolute!important;top:10px!important;right:14px!important;gap:5px!important;z-index:5}
+    header .wrap-pad > div:last-child > div:first-child button{width:20px!important;height:15px!important;border-radius:3px!important}
+    header .wrap-pad > div:last-child > div:first-child button svg{width:20px!important;height:15px!important}
+    header .wrap-pad > div:last-child{padding-top:2px!important}
+    header .wrap-pad > div:first-child{padding-right:82px}
+  }
+
+  /* MOBILE nav centralizado */
+  @media(max-width:920px){
+    header .head-nav{justify-content:center!important;overflow-x:visible!important;flex-wrap:wrap!important;gap:16px!important;padding:6px 2px 2px!important}
+  }
+
+  /* MOBILE: cabeçalho reto + dropdowns dentro da tela */
+  @media(max-width:760px){
+    header > div:first-child{padding:0!important;max-width:none!important}
+    header > div:first-child > div:first-child{border-radius:0!important;box-shadow:0 2px 10px -4px rgba(15,23,42,.25)!important}
+    header .head-nav > div{position:static!important}
+    header .head-nav > div > div[style*="position:absolute"]{position:fixed!important;left:8px!important;right:8px!important;top:auto!important;width:auto!important;max-width:none!important;padding-top:6px!important}
+    header .head-nav > div > div[style*="position:absolute"] > div{min-width:0!important;width:100%!important;max-height:62vh!important;overflow-y:auto!important;box-sizing:border-box!important}
+    header .head-nav > div > div[style*="position:absolute"] a{font-size:13.5px!important;padding:10px 13px!important;white-space:normal!important;line-height:1.35!important}
+  }
+</style>
+</helmet>
+
+<div style="width:100%;overflow-x:hidden;background:#fff">
+
+  <header style="position:sticky;top:0;z-index:50;padding:0;background:transparent">
+    <div style="max-width:1240px;margin:0 auto;padding:12px 24px 0">
+    <div style="background:#fff;border-radius:22px;box-shadow:0 14px 40px -16px rgba(7,86,255,.35)">
+    <div class="wrap-pad" style="max-width:1200px;margin:0 auto;padding:8px 28px;display:flex;align-items:center;justify-content:space-between">
+      <a href="/" style="display:flex;align-items:center;gap:8px">
+        <img src="../assets/nx-logo.png" alt="NX Digital" style="height:40px;object-fit:contain;display:block" />
+      </a>
+      <nav class="head-nav" style="display:flex;align-items:center;gap:32px">
+        <div style="position:relative" onMouseEnter="{{ openSol }}" onMouseLeave="{{ closeSol }}">
+          <button onClick="{{ toggleSol }}" style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;padding:0;cursor:pointer;color:#334155;font-weight:600;font-size:15px;font-family:inherit;transition:color .15s" style-hover="color:#0756FF">Soluções<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="{{ solChevronStyle }}"><path d="m6 9 6 6 6-6"></path></svg></button>
+          <div style="{{ solMenuStyle }}">
+            <div style="background:#fff;border:1px solid #eef2f8;border-radius:16px;box-shadow:0 24px 60px -18px rgba(15,23,42,.3);padding:10px;min-width:250px;display:flex;flex-direction:column">
+              <a href="/chatbot" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Chatbot</a>
+              <a href="/agente-de-ia" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Agente de IA</a>
+              <a href="/copiloto-de-ia" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Copiloto de IA</a>
+              <a href="/crm-inteligente" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">CRM Inteligente</a>
+              <a href="/disparo-em-massa" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Disparo em massa</a>
+              <a href="/relatorios" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Relatórios</a>
+              <a href="/integracoes-personalizadas" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Integrações personalizadas</a>
+              <a href="/integracao-whatsapp" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Integração WhatsApp</a>
+              <a href="/integracao-instagram" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Integração Instagram</a>
+              <a href="/criacao-de-site" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Criação de site</a>
+              <a href="/automacao-personalizada" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Automação personalizada</a>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative" onMouseEnter="{{ openQuem }}" onMouseLeave="{{ closeQuem }}">
+          <button onClick="{{ toggleQuem }}" style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;padding:0;cursor:pointer;color:#334155;font-weight:600;font-size:15px;font-family:inherit;transition:color .15s" style-hover="color:#0756FF">Quem somos<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="{{ quemChevronStyle }}"><path d="m6 9 6 6 6-6"></path></svg></button>
+          <div style="{{ quemMenuStyle }}">
+            <div style="background:#fff;border:1px solid #eef2f8;border-radius:16px;box-shadow:0 24px 60px -18px rgba(15,23,42,.3);padding:10px;min-width:290px;display:flex;flex-direction:column">
+              <a href="/protecao-de-dados" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Proteção de Dados e Segurança</a>
+              <a href="/politica-de-chatbot-e-ia" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Política de Chatbot e Inteligência Artificial</a>
+              <a href="/politica-de-privacidade" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Política de Privacidade</a>
+              <a href="/aviso-de-privacidade" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Aviso de Privacidade</a>
+              <a href="/termos-de-uso" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Termos de Uso</a>
+              <a href="/codigo-de-etica" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Código de Ética</a>
+              <a href="/politica-anticorrupcao" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Política Anticorrupção</a>
+              <a href="/politicas-da-meta" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Políticas da Meta</a>
+              <a href="/nossa-historia" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Nossa História</a>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative" onMouseEnter="{{ openCont }}" onMouseLeave="{{ closeCont }}">
+          <button onClick="{{ toggleCont }}" style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;padding:0;cursor:pointer;color:#334155;font-weight:600;font-size:15px;font-family:inherit;transition:color .15s" style-hover="color:#0756FF">Contato<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="{{ contChevronStyle }}"><path d="m6 9 6 6 6-6"></path></svg></button>
+          <div style="{{ contMenuStyle }}">
+            <div style="background:#fff;border:1px solid #eef2f8;border-radius:16px;box-shadow:0 24px 60px -18px rgba(15,23,42,.3);padding:10px;min-width:230px;display:flex;flex-direction:column">
+              <a href="/seja-um-parceiro" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Seja um parceiro</a>
+              <a href="/suporte" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Fale com o suporte</a>
+              <a href="/fale-com-o-especialista" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Fale com o especialista</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div style="display:flex;align-items:center;gap:16px">
+        <div style="display:flex;align-items:center;gap:7px">
+          <button onClick="{{ setLangPt }}" aria-label="Português (Brasil)" title="Português" style="width:26px;height:19px;border-radius:4px;border:none;padding:0;overflow:hidden;cursor:pointer;background:none;display:flex;transition:transform .15s" style-hover="transform:scale(1.14)">
+            <svg width="26" height="19" viewBox="0 0 26 19"><rect width="26" height="19" fill="#009c3b"/><path d="M13 2.5 23.5 9.5 13 16.5 2.5 9.5Z" fill="#ffdf00"/><circle cx="13" cy="9.5" r="3.4" fill="#002776"/></svg>
+          </button>
+          <button onClick="{{ setLangEs }}" aria-label="Español" title="Español" style="width:26px;height:19px;border-radius:4px;border:none;padding:0;overflow:hidden;cursor:pointer;background:none;display:flex;transition:transform .15s" style-hover="transform:scale(1.14)">
+            <svg width="26" height="19" viewBox="0 0 26 19"><rect width="26" height="19" fill="#c60b1e"/><rect y="4.75" width="26" height="9.5" fill="#ffc400"/></svg>
+          </button>
+          <button onClick="{{ setLangEn }}" aria-label="English (US)" title="English" style="width:26px;height:19px;border-radius:4px;border:none;padding:0;overflow:hidden;cursor:pointer;background:none;display:flex;transition:transform .15s" style-hover="transform:scale(1.14)">
+            <svg width="26" height="19" viewBox="0 0 26 19"><rect width="26" height="19" fill="#fff"/><g fill="#b22234"><rect width="26" height="1.46"/><rect y="2.92" width="26" height="1.46"/><rect y="5.85" width="26" height="1.46"/><rect y="8.77" width="26" height="1.46"/><rect y="11.69" width="26" height="1.46"/><rect y="14.62" width="26" height="1.46"/><rect y="17.54" width="26" height="1.46"/></g><rect width="11.5" height="8.77" fill="#3c3b6e"/></svg>
+          </button>
+        </div>
+        <a href="/#form" style="display:inline-flex;align-items:center;gap:8px;background:#0756FF;color:#fff;font-weight:700;font-size:14.5px;padding:12px 24px;border-radius:100px;transition:background .15s;box-shadow:0 8px 20px -8px rgba(7,86,255,.6)" style-hover="background:#0445CC">Fale com o especialista</a>
+        <a href="/#form" style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;font-weight:700;font-size:14.5px;padding:12px 24px;border-radius:100px;transition:filter .15s;box-shadow:0 8px 20px -8px rgba(37,211,102,.6)" style-hover="filter:brightness(.95)">Preços e Planos</a>
+      </div>
+    </div>
+    </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section style="background:linear-gradient(180deg,#f4f8ff 0%,#fff 60%);padding:56px 24px 30px">
+    <div style="max-width:820px;margin:0 auto;text-align:center">
+      <span style="display:inline-block;font-size:12px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:#0756FF;background:#e0ebff;border-radius:100px;padding:7px 16px;margin-bottom:18px">Preços e Planos</span>
+      <h1 class="sub-title" style="font-size:48px;line-height:1.05;font-weight:900;letter-spacing:-2px;color:#0a1633;margin:0 0 16px;text-wrap:balance">Monte o seu <span style="color:#0756FF">plano ideal</span></h1>
+      <p style="font-size:18.5px;line-height:1.6;color:#51607a;margin:0 auto;max-width:600px">Ajuste usuários, módulos e canais e veja o valor em tempo real. A partir de <strong>R$ 249/mês</strong> — o valor é inicial e pode variar conforme o plano escolhido.</p>
+    </div>
+  </section>
+
+  <!-- CALCULADORA -->
+  <section style="background:#fff;padding:20px 24px 40px">
+    <div class="pl-grid" style="max-width:960px;margin:0 auto">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div style="background:#fff;border:1px solid #e6ecf5;border-radius:20px;box-shadow:0 24px 60px -40px rgba(15,23,42,.4);padding:26px 26px 22px">
+          <div style="font-size:20px;font-weight:900;letter-spacing:-.5px;color:#0a1633">Configure seus serviços</div>
+          <div style="font-size:13.5px;color:#8695af;margin-bottom:18px">Ajuste as quantidades conforme a sua necessidade</div>
+          {{ serviceRows }}
+        </div>
+        <div style="background:#fff;border:1px solid #e6ecf5;border-radius:20px;box-shadow:0 24px 60px -40px rgba(15,23,42,.4);padding:26px">
+          <div style="font-size:20px;font-weight:900;letter-spacing:-.5px;color:#0a1633">Setup</div>
+          <div style="font-size:13.5px;color:#8695af;margin-bottom:18px">Pagamento único — valores pagos uma única vez pela configuração do projeto (à vista ou parcelado em até 10x com juros do link)</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:stretch" class="pl-setup">{{ setupCards }}</div>
+        </div>
+        <div style="background:#fff;border:1px solid #e6ecf5;border-radius:20px;box-shadow:0 24px 60px -40px rgba(15,23,42,.4);padding:26px">
+          <div style="font-size:20px;font-weight:900;letter-spacing:-.5px;color:#0a1633;margin-bottom:16px">Período do contrato</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px" class="pl-period">{{ periodCards }}</div>
+          <div style="font-size:12.5px;color:#8695af;margin-top:14px;line-height:1.5">Descontos aplicados sobre a <strong style="color:#0a1633">mensalidade</strong>: 6 meses = -10% · 12 meses = -15%. Prazo de entrega: API Comum até 3 dias úteis · API Oficial até 5 dias úteis · Agente de IA até 15 dias úteis · IA Avançado até 20 dias úteis.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUMO -->
+  <section style="background:linear-gradient(180deg,#f4f8ff 0%,#eef4ff 100%);padding:20px 24px 80px">
+    <div style="max-width:960px;margin:0 auto">
+      <div style="background:linear-gradient(160deg,#0a52e8,#0433a8);border-radius:22px;padding:34px 34px;box-shadow:0 40px 80px -34px rgba(7,86,255,.6)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start" class="pl-resumo">
+          <div>
+            <div style="font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#9db8ff;margin-bottom:6px">Resumo do plano</div>
+            <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:2px">{{ mensalHero }}<span style="font-size:17px;color:#cddbff">/mês</span></div>
+            <div style="font-size:13.5px;color:#bcd2ff;margin-bottom:18px">{{ periodoLabel }} · pago todo mês via boleto</div>
+            <div style="background:rgba(255,255,255,.1);border-radius:14px;padding:16px 18px">
+              <div style="font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#9db8ff;margin-bottom:8px">O que está incluso</div>
+              <div style="display:flex;flex-direction:column;gap:9px">{{ resumoRows }}</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="background:#fff;border-radius:14px;padding:18px 20px">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid #eef1f6"><span style="font-size:13.5px;color:#64748b">Mensalidade</span><span style="font-size:17px;font-weight:900;color:#0a1633">{{ mensalStr }}<span style="font-size:12px;font-weight:600;color:#8695af">/mês</span></span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eef1f6"><span style="font-size:13.5px;color:#64748b">Total do período ({{ mesesStr }})</span><span style="font-size:15px;font-weight:800;color:#0a1633">{{ totalStr }}</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eef1f6"><span style="font-size:13.5px;color:#0756FF;font-weight:700">À vista (-10%)</span><span style="font-size:15px;font-weight:900;color:#0756FF">{{ avistaStr }}</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-top:10px"><span style="font-size:13px;color:#64748b">Setup (uma única vez)</span><span style="font-size:14px;font-weight:800;color:#0a1633">{{ setupStr }}</span></div>
+              <div style="font-size:11px;color:#0756FF;margin-top:8px">💰 Economia à vista: {{ economiaStr }}</div>
+            </div>
+            <input value="{{ nomeCliente }}" onInput="{{ setNome }}" placeholder="Nome do cliente (para a proposta)" style="width:100%;font-family:inherit;font-size:14.5px;padding:13px 14px;border:none;border-radius:12px;outline:none;background:rgba(255,255,255,.92);color:#0a1633" />
+            <button onClick="{{ gerarProposta }}" style="width:100%;display:flex;align-items:center;justify-content:center;gap:9px;background:#fff;color:#0756FF;font-family:inherit;font-weight:800;font-size:16px;padding:15px;border:none;border-radius:13px;cursor:pointer;box-shadow:0 14px 30px -14px rgba(0,0,0,.4)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6M9 15h6M9 18h4"></path></svg>Gerar proposta (PDF)</button>
+            <button onClick="{{ gerarPropostaContratar }}" style="width:100%;display:flex;align-items:center;justify-content:center;gap:9px;background:#25D366;color:#fff;font-family:inherit;font-weight:800;font-size:16px;padding:15px;border:none;border-radius:13px;cursor:pointer;box-shadow:0 14px 30px -16px rgba(37,211,102,.6)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6M9 15h6M9 18h4"></path></svg>Contratar meu plano</button>
+            <div style="font-size:11px;color:#bcd2ff;line-height:1.5;text-align:center">Proposta válida por 7 dias. Valores iniciais e podem variar conforme o plano fechado na reunião.</div>
+            <button onClick="{{ toggleAdmin }}" title="Modo edição" style="align-self:center;width:26px;height:16px;border-radius:100px;border:none;cursor:pointer;position:relative;margin-top:2px;background:{{ adminDotBg }}"><span style="position:absolute;top:2px;width:12px;height:12px;border-radius:50%;background:#fff;transition:left .18s;left:{{ adminDotLeft }}"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:linear-gradient(165deg,#0756FF 0%,#0540c4 55%,#062a86 100%);padding:64px 20px 26px;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-140px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(255,255,255,.14),transparent 70%);pointer-events:none"></div>
+    <div style="max-width:1180px;margin:0 auto;position:relative;z-index:2">
+      <div class="foot-grid" style="display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:44px">
+        <div>
+          <div style="display:inline-flex;align-items:center;justify-content:center;background:#fff;padding:12px 16px;border-radius:14px;margin-bottom:20px;box-shadow:0 10px 24px -12px rgba(0,0,0,.4)"><img src="../assets/nx-logo.png" alt="NX Digital" style="height:40px;object-fit:contain;display:block" /></div>
+          <p style="font-size:14.5px;line-height:1.6;color:#cdddff;max-width:320px;margin:0 0 22px">Plataforma de atendimento multicanal com API oficial da Meta. A gente implementa, configura e treina o seu time.</p>
+          <div style="display:flex;gap:10px">
+            <a href="https://instagram.com/gruponxdigital" target="_blank" rel="noopener" aria-label="Instagram @gruponxdigital" style="width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:rgba(255,255,255,.24)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.2" fill="#fff" stroke="none"></circle></svg></a>
+            <a href="/#form" aria-label="WhatsApp" style="width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:rgba(255,255,255,.24)"><svg width="21" height="21" viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.87 9.87 0 0 0 1.523 5.263l-.999 3.648 3.965-1.05zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg></a>
+            <a href="mailto:atendimento@nxsystems.com.br" aria-label="E-mail" style="width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:rgba(255,255,255,.24)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8fb4ff;margin:0 0 18px">Soluções</h4>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <a href="/chatbot" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Chatbot</a>
+            <a href="/agente-de-ia" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Agente de IA</a>
+            <a href="/copiloto-de-ia" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Copiloto de IA</a>
+            <a href="/crm-inteligente" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">CRM Inteligente</a>
+            <a href="/disparo-em-massa" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Disparo em massa</a>
+            <a href="/relatorios" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Relatórios</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8fb4ff;margin:0 0 18px">Quem somos</h4>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <a href="/nossa-historia" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Nossa História</a>
+            <a href="/protecao-de-dados" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Proteção de Dados</a>
+            <a href="/politica-de-privacidade" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Política de Privacidade</a>
+            <a href="/termos-de-uso" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Termos de Uso</a>
+            <a href="/codigo-de-etica" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Código de Ética</a>
+            <a href="/politicas-da-meta" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Políticas da Meta</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8fb4ff;margin:0 0 18px">Nossa empresa</h4>
+          <div style="display:flex;flex-direction:column;gap:13px;font-size:14px;color:#dce8ff;line-height:1.5">
+            <div style="font-weight:700;color:#fff">GRUPO NX NETSCALE LTDA</div>
+            <div style="display:flex;gap:9px;align-items:flex-start"><svg style="flex-shrink:0;margin-top:2px" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8fb4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 8h6M9 12h6M9 16h4"></path></svg><span>CNPJ 59.935.008/0001-92</span></div>
+            <a href="mailto:atendimento@nxsystems.com.br" style="display:flex;gap:9px;align-items:flex-start;color:#dce8ff;transition:color .15s" style-hover="color:#fff"><svg style="flex-shrink:0;margin-top:2px" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8fb4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg><span>atendimento@nxsystems.com.br</span></a>
+            <div style="display:flex;gap:9px;align-items:flex-start"><svg style="flex-shrink:0;margin-top:2px" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8fb4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>Av. Expedicionário José Pedro Coelho, 1237 — Centro, Tubarão/SC, 88701-005</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding-top:24px;border-top:1px solid rgba(255,255,255,.16)">
+        <div style="font-size:13px;color:#a9c4ff">© 2026 Grupo NX Netscale LTDA • Todos os direitos reservados</div>
+        <div style="display:flex;align-items:center;gap:16px;font-size:13px;color:#a9c4ff"><a href="/mapa-do-site" style="color:#dce8ff;font-weight:600" style-hover="color:#fff">Mapa do site</a><span>Plataforma de atendimento multicanal • Parceiro oficial Meta</span></div>
+      </div>
+    </div>
+  </footer>
+
+    <a href="/#form" aria-label="Falar no WhatsApp" style="position:fixed;bottom:24px;right:24px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px -6px rgba(37,211,102,.6);animation:pulseRing 2.4s infinite">
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.87 9.87 0 0 0 1.523 5.263l-.999 3.648 3.965-1.05zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+  </a>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { solOpen:false, quemOpen:false, contOpen:false,
+    qty: { users:5, numeros:0, automacao:0, instagram:0, messenger:0, ligacao:0, extras:0 },
+    setup: { oficial:false, comum:false, ia:false, iaplus:false },
+    period: 3, nomeCliente:'', admin:false, pOver:{}, sOver:{}, mOver:null };
+  waNumber = '5548936181649';
+  MIN_MENSAL = 249.90; // mensalidade mínima (5 usuários)
+  // preços editáveis (mensais por unidade)
+  PRICES = { automacao:149.90, instagram:29.90, messenger:29.90, ligacao:69.90, extras:59.90 };
+  // total mensal dos usuários: base de 5 users = 249,90; cada user a mais custa menos que o anterior
+  usersTotal(n){
+    if(n<=5) return this.MIN_MENSAL;
+    let t;
+    if(n<=10) t=249+(n-5)*20;        // 6..10: +20  (269,289,309,329,349)
+    else if(n<=20) t=349+(n-10)*10;  // 11..20: +10 (359..449)
+    else if(n<=40) t=449+(n-20)*20;  // 21..40: +20 (469..849)
+    else t=849+(n-40)*19.7;          // 41..50+: +19,70 (50 = 1046)
+    return Math.round(t*100)/100;
+  }
+  SETUP = { oficial:497, comum:397, ia:997, iaplus:1797 };
+  // números inclusos e valor por número adicional na mensalidade
+  SETUP_INFO = {
+    oficial:{ inclui:'até 3 números', extra:29.90, prazo:'Entrega em até 5 dias úteis', bens:['Máxima estabilidade e segurança','Sem risco de bloqueio ou banimento','Conta verificada e segura pela Meta'], obs:'Possui custo da Meta: em média R$ 0,10 a R$ 0,15 por conversa iniciada pela empresa.' },
+    comum:{ inclui:'até 6 números', extra:9.90, prazo:'Entrega em até 3 dias úteis', bens:['Sem custos por mensagem','Sem burocracia para ativar','Funciona como um WhatsApp normal'], obs:'Modelo mais acessível, porém sujeito a risco de bloqueio se usado de forma irregular.' },
+    ia:{ inclui:'IA treinada para o seu negócio', extra:0, prazo:'Entrega em até 15 dias úteis', bens:['Atende e responde 24h por dia','Entende áudio, imagem e responde em áudio','100% personalizada para a sua operação'], obs:'Ideal para operações que querem atender na hora, 24 horas por dia, sem deixar cliente esperando.' },
+    iaplus:{ inclui:'IA avançada com integração externa', extra:0, prazo:'Entrega em até 20 dias úteis', bens:['Tudo da IA padrão, mais completa','Puxa informações de sistemas externos (API)','CRM inteligente e automações automáticas'], obs:'Ideal para operações que precisam integrar dados de outros sistemas.' }
+  };
+  numeroExtra(){ if(this.state.setup.oficial) return this.SETUP_INFO.oficial.extra; if(this.state.setup.comum) return this.SETUP_INFO.comum.extra; return 0; }
+  brl(v){ return 'R$ ' + v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+  bump(k,d){ this.setState(s=>{ const q={...s.qty}; const min = k==='users'?5:0; q[k]=Math.max(min, q[k]+d); return {qty:q}; }); }
+  toggleSetup(k){ this.setState(s=>({ setup:{...s.setup, [k]:!s.setup[k]} })); }
+  setPeriod(p){ this.setState({period:p}); }
+  setNome(e){ this.setState({nomeCliente:e.target.value}); }
+  setAdmin(){ this.setState(s=>({admin:!s.admin})); }
+  setPOver(k,e){ const v=e.target.value; this.setState(s=>({pOver:{...s.pOver,[k]:v===''?undefined:parseFloat(v.replace(',','.'))}})); }
+  setSOver(k,e){ const v=e.target.value; this.setState(s=>({sOver:{...s.sOver,[k]:v===''?undefined:parseFloat(v.replace(',','.'))}})); }
+  setMOver(e){ const v=e.target.value; this.setState({mOver:v===''?null:parseFloat(v.replace(',','.'))}); }
+  setupVal(k){ const o=this.state.sOver[k]; return (o!=null&&!isNaN(o))?o:this.SETUP[k]; }
+  pVal(k){ const o=this.state.pOver[k]; return (o!=null&&!isNaN(o))?o:this.PRICES[k]; }
+  gerarProposta(titulo){
+    const d=this._proposta; if(!d) return;
+    const brl=this.brl.bind(this);
+    const docTitle=titulo||'Proposta comercial';
+    const dt=new Date(); const val=new Date(dt.getTime()+7*864e5);
+    const fmt=(x)=>x.toLocaleDateString('pt-BR');
+    const linhas=d.resumo.map(r=>'<tr><td style="padding:5px 8px;border-bottom:1px solid #eef1f6;color:#334155"><strong style="color:#0a1633">'+r[0]+'</strong>'+(r[2]?('<div style="font-size:9.5px;color:#8695af;margin-top:1px">'+r[2]+'</div>'):'')+'</td><td style="padding:5px 8px;border-bottom:1px solid #eef1f6;text-align:right;font-weight:700;color:#0a1633;white-space:nowrap;vertical-align:top">'+r[1]+'</td></tr>').join('');
+    const setupKeys=[['comum','API Comum'],['oficial','API Oficial'],['ia','Agente de IA'],['iaplus','Agente de IA Avançado']];
+    const SETUP_DESCR={"API Comum":"Modelo semelhante ao WhatsApp Web. Sem custo por mensagem e sem burocracia — o mais acessível. Contempla até 6 números (adicionais R$ 9,90/mês cada). Entrega em até 3 dias úteis. Por não ser oficial, existe risco de bloqueio do número em caso de uso indevido.","API Oficial":"Conta verificada pela Meta. Máxima estabilidade e sem risco de bloqueio ou banimento. Contempla até 3 números (adicionais R$ 29,90/mês cada). Entrega em até 5 dias úteis. Custo Meta de aprox. R$ 0,10 a R$ 0,15 por conversa iniciada pela empresa.","Agente de IA":"IA que atende e responde 24h por dia, entende áudio e imagem e também responde em áudio. 100% personalizada para o seu negócio. Entrega em até 15 dias úteis. Consumo de tokens por conta do cliente (média de US$ 5 para ~1.000 conversas).","Agente de IA Avançado":"Versão completa: integração externa, busca informações em sistemas do cliente, CRM inteligente e automações avançadas. Entrega em até 20 dias úteis. Consumo de tokens por conta do cliente (média de US$ 5 para ~1.000 conversas)."};
+    const setupRows=setupKeys.filter(([k])=>this.state.setup[k]).map(([k,nome])=>'<tr><td style="padding:6px 8px;border-bottom:1px solid #eef1f6;color:#334155;word-break:break-word;overflow-wrap:anywhere"><strong style="color:#0a1633">'+nome+'</strong><div style="font-size:9px;color:#5f6d88;line-height:1.5;margin-top:2px;white-space:normal;overflow-wrap:anywhere;word-break:break-word">'+(SETUP_DESCR[nome]||'')+'</div></td><td style="padding:6px 8px;border-bottom:1px solid #eef1f6;text-align:right;font-weight:800;color:#0a1633;vertical-align:top;white-space:nowrap">'+brl(this.setupVal(k))+'</td></tr>').join('');
+    const html='<!DOCTYPE html><html><head><meta charset="utf-8"><title>Proposta NX Digital</title><style>@page{margin:0}*{page-break-inside:avoid;break-inside:avoid}body{font-family:Inter,Arial,sans-serif;margin:0;color:#0a1633;-webkit-print-color-adjust:exact;print-color-adjust:exact}.wrap{max-width:760px;margin:0 auto;padding:14px 26px;font-size:9.5px}</style></head><body><div class="wrap">'
+      +'<div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #0756FF;padding-bottom:7px;margin-bottom:6px"><div><div style="font-size:20px;font-weight:900;letter-spacing:-.8px;color:#0756FF">NX Digital</div><div style="font-size:10px;color:#8695af">Plataforma de atendimento multicanal · Parceiro oficial Meta</div></div><div style="text-align:right;font-size:10px;color:#64748b">'+docTitle+'<br>Emitida em '+fmt(dt)+'<br><strong style="color:#e0324f">Válida até '+fmt(val)+'</strong></div></div>'
+      +'<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px"><div><span style="font-size:10px;color:#64748b">Cliente: </span><span style="font-size:15px;font-weight:800">'+(d.nome||'—')+'</span></div><div style="font-size:10px;color:#64748b">Período: <strong style="color:#0a1633">'+d.periodo+'</strong></div></div>'
+      +'<div style="font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#0756FF;margin-bottom:5px">Serviços mensais</div>'
+      +'<table style="width:100%;border-collapse:collapse;font-size:11px;margin-bottom:8px">'+linhas+'</table>'
+      +(setupRows?('<div style="font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#0756FF;margin-bottom:5px">Setup (pagamento único)</div><table style="width:100%;border-collapse:collapse;font-size:11px;margin-bottom:5px;table-layout:fixed">'+setupRows+'</table><div style="background:#eef4ff;border:1px solid #dbe7ff;border-radius:8px;padding:6px 10px;font-size:10px;color:#0756FF;font-weight:700;margin-bottom:8px">💳 Setup à vista ou parcelado em até 10x com juros do link de pagamento</div>'):'')
+      +'<div style="background:#f4f8ff;border:1px solid #dbe7ff;border-radius:10px;padding:12px 16px;margin-bottom:8px;display:flex;flex-wrap:wrap;gap:6px 26px">'
+      +'<div style="flex:1;min-width:130px"><div style="font-size:9.5px;color:#64748b;text-transform:uppercase;letter-spacing:.4px">Mensalidade</div><div style="font-size:17px;font-weight:900;color:#0756FF">'+d.mensal+'<span style="font-size:10px;color:#64748b;font-weight:600">/mês</span></div></div>'
+      +(d.setupList.length?'<div style="flex:1;min-width:110px"><div style="font-size:9.5px;color:#64748b;text-transform:uppercase;letter-spacing:.4px">Setup (único)</div><div style="font-size:14px;font-weight:800">'+d.setupStr+'</div></div>':'')+'</div>'
+      +'<div style="font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#0756FF;margin-bottom:5px">O que o cliente já tem acesso</div><div style="display:flex;flex-wrap:wrap;gap:4px 0;margin-bottom:6px">'+['Múltiplos atendentes em 1 ou mais números','Chatbot (se desejar)','Agendamento de mensagens','Disparo em massa','Transferência entre setores','Agenda interna','CRM / funil de vendas','Etiquetas de organização','Relatórios de atendimento','Histórico completo das conversas'].map(f=>'<div style="width:50%;display:flex;gap:5px;align-items:flex-start;font-size:10px;color:#334155;box-sizing:border-box;padding-right:14px"><span style="color:#0756FF;font-weight:800;flex-shrink:0">✓</span><span>'+f+'</span></div>').join('')+'</div><div style="font-size:9.5px;color:#8695af;margin-bottom:8px">E diversas outras funções da plataforma. Automações específicas devem ser consultadas.</div>'
+      +'<div style="background:#eef4ff;border:1px solid #dbe7ff;border-radius:9px;padding:9px 12px;margin-bottom:8px;font-size:10.5px;line-height:1.45;color:#0a3a99"><strong>💬 Suporte humanizado incluso</strong> — atendimento direto por grupo no WhatsApp, sempre que precisar. Além de implementação, configuração e treinamento da sua equipe.</div>'
+      +((this.state.setup.oficial||this.state.setup.ia||this.state.setup.iaplus)?'<div style="background:#eef4ff;border:1px solid #dbe7ff;border-radius:9px;padding:9px 12px;margin-bottom:8px"><div style="font-size:10.5px;font-weight:800;color:#0756FF;margin-bottom:4px">Custos variáveis (assumidos pelo cliente)</div><div style="display:flex;flex-direction:column;gap:3px;font-size:10px;line-height:1.4;color:#28457f">'+((this.state.setup.ia||this.state.setup.iaplus)?'<div>• <strong>Tokens de IA:</strong> em média US$ 5 para cerca de 1.000 conversas — varia conforme configuração e volume.</div>':'')+(this.state.setup.oficial?'<div>• <strong>API Oficial (Meta):</strong> custo médio de R$ 0,10 a R$ 0,15 por conversa iniciada.</div>':'')+'</div></div>':'')
+      +'<div style="font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#0756FF;margin:7px 0 4px">Escolha o período do contrato</div>'
+      +'<div style="display:flex;gap:8px;margin-bottom:6px">'
+      +(d.cenarios||[]).map(c=>'<div style="flex:1;border:'+(c.atual?'2px solid #0756FF':'1px solid #e2e8f0')+';background:'+(c.atual?'#0756FF':'#fff')+';border-radius:11px;padding:14px 11px 12px;position:relative;text-align:center">'
+        +(c.atual?'<div style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:#0756FF;color:#fff;font-size:7.5px;font-weight:800;letter-spacing:.4px;padding:2px 9px;border-radius:100px;border:1.5px solid #fff;white-space:nowrap">ESCOLHIDO</div>':'')
+        +'<div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:7px"><span style="font-size:12px;font-weight:800;color:'+(c.atual?'#fff':'#0a1633')+'">'+c.meses+' meses</span>'+(c.desc>0?'<span style="font-size:8.5px;font-weight:800;color:#0e7a5f;background:#e5f9ed;padding:2px 6px;border-radius:100px">-'+c.desc+'%</span>':'')+'</div>'
+        +'<div style="font-size:19px;font-weight:900;letter-spacing:-.6px;color:'+(c.atual?'#fff':'#0a1633')+';line-height:1">'+c.mensal+'</div>'
+        +'<div style="font-size:8.5px;color:'+(c.atual?'#cddbff':'#8695af')+';margin-top:3px">por mês (boleto)</div>'
+        +'</div>').join('')
+      +'</div>'
+      +'<div style="font-size:8.5px;color:#8695af;margin-bottom:7px">O período marcado como ESCOLHIDO foi o combinado. Você pode optar por outro a qualquer momento antes do fechamento — o setup não muda.</div>'
+      +'<div style="display:flex;gap:7px;margin:6px 0 7px">'
+      +'<div style="flex:1;background:#f5f8ff;border:1px solid #dbe7ff;border-radius:11px;padding:8px 6px;text-align:center"><div style="font-size:19px;font-weight:900;letter-spacing:-.8px;color:#0756FF;line-height:1">+700</div><div style="font-size:9px;color:#51607a;margin-top:5px;line-height:1.35">empresas ativas usando a NX</div></div>'
+      +'<div style="flex:1;background:#f5f8ff;border:1px solid #dbe7ff;border-radius:11px;padding:8px 6px;text-align:center"><div style="font-size:19px;font-weight:900;letter-spacing:-.8px;color:#0756FF;line-height:1">+3.500</div><div style="font-size:9px;color:#51607a;margin-top:5px;line-height:1.35">pessoas atendendo clientes todos os dias</div></div>'
+      +'<div style="flex:1;background:#f5f8ff;border:1px solid #dbe7ff;border-radius:11px;padding:8px 6px;text-align:center"><div style="font-size:19px;font-weight:900;letter-spacing:-.8px;color:#0756FF;line-height:1">2024</div><div style="font-size:9px;color:#51607a;margin-top:5px;line-height:1.35">ano em que a operação começou</div></div>'
+      +'<div style="flex:1;background:#0756FF;border-radius:11px;padding:8px 6px;text-align:center"><div style="font-size:19px;font-weight:900;letter-spacing:-.8px;color:#fff;line-height:1">100%</div><div style="font-size:9px;color:#dbe7ff;margin-top:5px;line-height:1.35">entregue pronto, com treinamento</div></div>'
+      +'</div>'
+      +'<div style="margin-top:6px;padding-top:10px;border-top:1.5px solid #eef1f6;display:flex;justify-content:space-between;gap:16px;font-size:9.5px;color:#64748b;line-height:1.45"><div><strong style="color:#0a1633;font-size:10.5px">GRUPO NX NETSCALE LTDA</strong><br>CNPJ 59.935.008/0001-92 · Tubarão/SC<br>WhatsApp (48) 93618-1649 · atendimento@nxsystems.com.br<br>gruponxdigital.com · Instagram: @gruponxdigital</div><div style="text-align:right;max-width:250px">Mensalidade paga todo mês via boleto (ou à vista com 10% de desconto). Valores iniciais, podem variar conforme o escopo fechado na reunião.'+(docTitle==='Plano contratado'?'':' Proposta válida por 7 dias.')+'</div></div>'
+      +'</div><\/body></html>';
+    // imprime a partir de um iframe próprio (o nome do PDF vem do título dele)
+    const cli=(d.nome||'').trim();
+    const nomeArq=(docTitle==='Plano contratado'?'Plano contratado NX Digital':'Proposta NX Digital')+(cli?(' - '+cli):'');
+    const htmlNomeado=html.replace('<title>Proposta NX Digital</title>','<title>'+nomeArq+'</title>');
+    const oldF=document.getElementById('nx-doc-frame'); if(oldF) oldF.remove();
+    const fr=document.createElement('iframe'); fr.id='nx-doc-frame';
+    fr.setAttribute('style','position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden');
+    document.body.appendChild(fr);
+    const fd=fr.contentWindow.document; fd.open(); fd.write(htmlNomeado); fd.close();
+    // Chrome usa o título do documento TOPO como nome do arquivo
+    const prevSelf=document.title; let topDoc=null, prevTop=null;
+    try{ let w=window; while(w!==w.parent){ w=w.parent; } if(w.document){ topDoc=w.document; prevTop=topDoc.title; } }catch(e){}
+    document.title=nomeArq; try{ if(topDoc) topDoc.title=nomeArq; }catch(e){}
+    setTimeout(function(){
+      try{ fr.contentWindow.document.title=nomeArq; fr.contentWindow.focus(); fr.contentWindow.print(); }catch(e){}
+      setTimeout(function(){ document.title=prevSelf; try{ if(topDoc&&prevTop!=null) topDoc.title=prevTop; }catch(e){} const f=document.getElementById('nx-doc-frame'); if(f) f.remove(); },90000);
+    },400);
+  }
+  gerarPropostaContratar(){ this.gerarProposta('Plano contratado'); }
+  renderVals(){
+    const P=this.PRICES, q=this.state.qty, brl=this.brl.bind(this), admin=this.state.admin;
+    const uOverTotal=this.state.pOver.usersTotal;
+    const uRaw=(uOverTotal!=null&&!isNaN(uOverTotal))?uOverTotal:this.usersTotal(q.users);
+    const uTotal=Math.round((uRaw-9)/10)*10+9, uUnit=uTotal/q.users;
+    const numExtra=this.numeroExtra();
+    const numHint=numExtra>0?('R$ '+numExtra.toLocaleString('pt-BR',{minimumFractionDigits:2})+' por número na mensalidade'):'Selecione uma API no setup para adicionar números';
+    const items=[
+      ['users','Usuários',uUnit,5,'Quanto mais usuários, menor o valor de cada um', uTotal],
+      ['automacao','Módulo de Automação',this.pVal('automacao'),0,'Automações de fluxo, respostas automáticas, disparos e gatilhos'],
+      ['instagram','Conta Instagram',this.pVal('instagram'),0,'Integração com Instagram trazendo o Direct e comentários'],
+      ['messenger','Conta Messenger',this.pVal('messenger'),0,'Integração com Messenger trazendo mensagens e comentários'],
+      ['ligacao','Ligação',this.pVal('ligacao'),0,'Ligação via WhatsApp: faz e recebe chamadas'],
+      ['extras','Canais Extras',this.pVal('extras'),0,'Gmail, OLX, Mercado Livre e outros'],
+    ];
+    const adminInput=(val,onIn,w)=>React.createElement('input',{value:val,onInput:onIn,onClick:(e)=>e.stopPropagation(),style:{width:(w||'80px'),fontFamily:'inherit',fontSize:'12.5px',padding:'5px 8px',border:'1.5px solid #f59e0b',borderRadius:'8px',outline:'none',background:'#fffbeb',color:'#0a1633',fontWeight:700}});
+    const stepBtn=(k,d,label)=>React.createElement('button',{onClick:()=>this.bump(k,d),style:{width:'32px',height:'32px',borderRadius:'9px',border:'1px solid #e2e8f0',background:'#fff',color:'#0756FF',fontSize:'18px',fontWeight:800,cursor:'pointer',lineHeight:1,display:'flex',alignItems:'center',justifyContent:'center'}},label);
+    const serviceRows=items.map(([k,nome,preco,mn,hint,ov],i)=>{
+      const sub=ov!=null?ov:q[k]*preco;
+      const priceCell=admin
+        ? (k==='users'
+            ? adminInput(uTotal,(e)=>this.setPOver('usersTotal',e),'96px')
+            : adminInput(preco,(e)=>this.setPOver(k,e),'88px'))
+        : React.createElement('div',{style:{fontSize:'12.5px',color:hint?'#0756FF':'#8695af',fontWeight:hint?600:400}},brl(preco)+'/mês'+(hint?(' · '+hint):''));
+      return React.createElement('div',{key:k,style:{display:'flex',alignItems:'center',gap:'14px',padding:'14px 4px',borderTop:i===0?'none':'1px solid #eef1f6'}},
+        React.createElement('div',{style:{flex:1,minWidth:0}},React.createElement('div',{style:{fontSize:'15px',fontWeight:700,color:'#0a1633'}},nome),priceCell),
+        React.createElement('div',{style:{display:'flex',alignItems:'center',gap:'10px'}},stepBtn(k,-1,'−'),React.createElement('span',{style:{minWidth:'26px',textAlign:'center',fontSize:'16px',fontWeight:800,color:'#0a1633'}},q[k]),stepBtn(k,1,'+')),
+        React.createElement('div',{style:{minWidth:'118px',textAlign:'right'}},React.createElement('div',{style:{fontSize:'18px',fontWeight:900,letterSpacing:'-.4px',color:sub>0?'#0756FF':'#b6c0d4'}},brl(sub)),sub>0?React.createElement('div',{style:{fontSize:'10px',color:'#8695af',fontWeight:600}},'/mês'):null)
+      );
+    });
+    const setupData=[['comum','API Comum',this.setupVal('comum')],['oficial','API Oficial',this.setupVal('oficial')],['ia','Agente de IA',this.setupVal('ia')],['iaplus','Agente de IA Avançado',this.setupVal('iaplus')]];
+    const setupCards=setupData.map(([k,nome,val])=>{ const on=this.state.setup[k]; const info=this.SETUP_INFO[k];
+      return React.createElement('button',{key:k,onClick:()=>this.toggleSetup(k),style:{textAlign:'left',cursor:'pointer',border:on?'2px solid #0756FF':'1.5px solid #e2e8f0',background:on?'#f4f8ff':'#fff',borderRadius:'14px',padding:'16px 16px',fontFamily:'inherit',transition:'all .15s',display:'flex',flexDirection:'column',height:'100%'}},
+        React.createElement('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'6px'}},React.createElement('span',{style:{fontSize:'14.5px',fontWeight:800,color:'#0a1633'}},nome),React.createElement('span',{style:{width:'20px',height:'20px',borderRadius:'6px',border:on?'none':'1.5px solid #cbd5e1',background:on?'#0756FF':'#fff',display:'flex',alignItems:'center',justifyContent:'center'}},on?React.createElement('svg',{width:12,height:12,viewBox:'0 0 24 24',fill:'none',stroke:'#fff',strokeWidth:3,strokeLinecap:'round',strokeLinejoin:'round'},React.createElement('path',{d:'M20 6 9 17l-5-5'})):null)),
+        admin?adminInput(val,(e)=>this.setSOver(k,e),'100%'):React.createElement('div',{style:{fontSize:'18px',fontWeight:900,color:'#0756FF'}},brl(val)),
+        React.createElement('div',{style:{fontSize:'11px',color:'#8695af',marginTop:'2px'}},'Pagamento único · '+info.inclui),
+        React.createElement('div',{style:{display:'flex',flexDirection:'column',gap:'5px',margin:'10px 0 8px'}},...info.bens.map((b,bi)=>React.createElement('div',{key:bi,style:{display:'flex',gap:'6px',alignItems:'flex-start',fontSize:'11.5px',lineHeight:1.35,color:'#334155'}},React.createElement('svg',{width:12,height:12,viewBox:'0 0 24 24',fill:'none',stroke:'#0756FF',strokeWidth:3,strokeLinecap:'round',strokeLinejoin:'round',style:{flexShrink:0,marginTop:'2px'}},React.createElement('path',{d:'M20 6 9 17l-5-5'})),React.createElement('span',null,b)))),
+        info.obs?React.createElement('div',{style:{fontSize:'10.5px',lineHeight:1.4,color:'#8695af',borderTop:'1px solid #eef1f6',paddingTop:'7px',marginBottom:'7px'}},info.obs):null,
+        React.createElement('div',{style:{fontSize:'10.5px',color:'#0756FF',fontWeight:600,display:'flex',alignItems:'center',gap:'4px',marginTop:'auto'}},'🕒 '+info.prazo));
+    });
+    const periods=[[3,'3 meses',0,''],[6,'6 meses',10,'MAIS ESCOLHIDO'],[12,'12 meses',15,'']];
+    const periodCards=periods.map(([m,label,desc,tag])=>{ const on=this.state.period===m;
+      return React.createElement('button',{key:m,onClick:()=>this.setPeriod(m),style:{position:'relative',textAlign:'center',cursor:'pointer',border:on?'2px solid #0756FF':'1.5px solid #e2e8f0',background:on?'#f4f8ff':'#fff',borderRadius:'14px',padding:'18px 12px',fontFamily:'inherit',transition:'all .15s'}},
+        tag?React.createElement('span',{style:{position:'absolute',top:'-10px',left:'50%',transform:'translateX(-50%)',fontSize:'9px',fontWeight:800,letterSpacing:'.4px',color:'#fff',background:'#0756FF',borderRadius:'100px',padding:'3px 10px',whiteSpace:'nowrap'}},tag):null,
+        React.createElement('div',{style:{fontSize:'16px',fontWeight:800,color:'#0a1633'}},label),
+        React.createElement('div',{style:{fontSize:'12.5px',fontWeight:700,color:desc>0?'#0756FF':'#8695af',marginTop:'2px'}},desc>0?('-'+desc+'%'):'padrão'));
+    });
+    // cálculo
+    const mensalBase=items.reduce((a,[k,,preco,,,ov])=>a+(ov!=null?ov:q[k]*preco),0);
+    const periodInfo={3:0,6:10,12:15}[this.state.period];
+    const meses=this.state.period;
+    const raw=mensalBase*(1-periodInfo/100);
+    const mensalCalc=Math.round((raw-9)/10)*10+9; // termina em 9, sem centavos
+    const mensal=(this.state.mOver!=null&&!isNaN(this.state.mOver))?this.state.mOver:mensalCalc;
+    const total=mensal*meses;
+    const avista=total*0.9;
+    const economia=total-avista;
+    const fator = mensalBase>0 ? (mensal/mensalBase) : 1;
+    const resumoData=items.filter(([k,,,,,ov])=>ov!=null||q[k]>0).map(([k,nome,preco,,hint,ov])=>[q[k]+'× '+nome, brl((ov!=null?ov:q[k]*preco)*fator)+'/mês', hint||'']);
+    const resumoRows=resumoData.map(([l,v],i)=>React.createElement('div',{key:i,style:{display:'flex',justifyContent:'space-between',fontSize:'13px',color:'#dbe7ff'}},React.createElement('span',null,l),React.createElement('span',{style:{fontWeight:700,color:'#fff'}},v)));
+    const setupList=[this.state.setup.oficial?'API Oficial':null,this.state.setup.comum?'API Comum':null,this.state.setup.ia?'Agente de IA':null,this.state.setup.iaplus?'Agente de IA Avançado':null].filter(Boolean);
+    const setupTotal=(this.state.setup.oficial?this.setupVal('oficial'):0)+(this.state.setup.comum?this.setupVal('comum'):0)+(this.state.setup.ia?this.setupVal('ia'):0)+(this.state.setup.iaplus?this.setupVal('iaplus'):0);
+    const waMsg='Olá! Montei meu plano na NX:\n'+resumoData.map(r=>'• '+r[0]).join('\n')+'\nPeríodo: '+meses+' meses\nMensalidade: '+brl(mensal)+'\nTotal do período: '+brl(total)+(setupTotal>0?('\nSetup: '+setupList.join(', ')+' = '+brl(setupTotal)):'');
+    const waLink='https://wa.me/'+this.waNumber+'?text='+encodeURIComponent(waMsg);
+    const cenarios=[3,6,12].map(m=>{ const pd={3:0,6:10,12:15}[m]; const rw=mensalBase*(1-pd/100); const mc=Math.round((rw-9)/10)*10+9; const mm=(m===meses&&this.state.mOver!=null&&!isNaN(this.state.mOver))?this.state.mOver:mc; return { meses:m, desc:pd, mensal:brl(mm), total:brl(mm*m), avista:brl(mm*m*0.9), atual:m===meses }; });
+    const prazos=[]; if(this.state.setup.comum) prazos.push([3,'até 3 dias úteis']); if(this.state.setup.oficial) prazos.push([5,'até 5 dias úteis']); if(this.state.setup.ia) prazos.push([15,'até 15 dias úteis']); if(this.state.setup.iaplus) prazos.push([20,'até 20 dias úteis']);
+    const prazoTxt = prazos.length ? prazos.sort((a,b)=>b[0]-a[0])[0][1] : '';
+    this._proposta={ prazo:prazoTxt, nome:this.state.nomeCliente, resumo:resumoData, setupList, setupStr:brl(setupTotal), periodo:meses+' meses', mensal:brl(mensal), total:brl(total), avista:brl(avista), cenarios };
+    this._waLink=waLink;
+    const menu = (open) => `position:absolute;top:100%;left:-10px;padding-top:14px;z-index:60;transition:opacity .18s,transform .18s;transform-origin:top left;opacity:${open?1:0};transform:${open?'translateY(0) scale(1)':'translateY(-6px) scale(.98)'};visibility:${open?'visible':'hidden'};pointer-events:${open?'auto':'none'}`;
+    const chev = (open) => `transition:transform .18s;transform:rotate(${open?180:0}deg)`;
+    return {
+      serviceRows, setupCards, periodCards, resumoRows,
+      mensalStr: brl(mensal), totalStr: brl(total), avistaStr: brl(avista), economiaStr: brl(economia),
+      setupStr: setupTotal>0?brl(setupTotal):'nenhum selecionado',
+      periodoLabel: 'Contrato de '+meses+' meses'+(periodInfo>0?(' (-'+periodInfo+'% na mensalidade)'):''),
+      waLink, trackWhats:()=>{},
+      mensalHero: admin
+        ? React.createElement('span',{style:{display:'inline-flex',alignItems:'baseline',gap:'6px'}},React.createElement('span',{style:{fontSize:'24px',fontWeight:800,color:'#fff'}},'R$'),React.createElement('input',{value:mensal,onInput:(e)=>this.setMOver(e),style:{width:'160px',fontFamily:'inherit',fontSize:'34px',fontWeight:900,letterSpacing:'-1px',padding:'2px 10px',border:'2px solid #ffd25a',borderRadius:'10px',outline:'none',background:'rgba(255,255,255,.95)',color:'#0a1633'}}))
+        : React.createElement('span',{style:{fontSize:'52px',fontWeight:900,letterSpacing:'-2px',color:'#fff'}},brl(mensal)),
+      nomeCliente:this.state.nomeCliente, setNome:(e)=>this.setNome(e), gerarProposta:()=>this.gerarProposta('Proposta comercial'), gerarPropostaContratar:()=>this.gerarPropostaContratar(),
+      admin, toggleAdmin:()=>this.setAdmin(), adminDotBg: admin?'rgba(255,210,90,.9)':'rgba(255,255,255,.18)', adminDotLeft: admin?'12px':'2px',
+      mesesStr: meses+' meses',
+      openSol:()=>this.setState({solOpen:true}), closeSol:()=>this.setState({solOpen:false}), toggleSol:()=>this.setState(s=>({solOpen:!s.solOpen})),
+      openQuem:()=>this.setState({quemOpen:true}), closeQuem:()=>this.setState({quemOpen:false}), toggleQuem:()=>this.setState(s=>({quemOpen:!s.quemOpen})),
+      openCont:()=>this.setState({contOpen:true}), closeCont:()=>this.setState({contOpen:false}), toggleCont:()=>this.setState(s=>({contOpen:!s.contOpen})),
+      solMenuStyle: menu(this.state.solOpen), solChevronStyle: chev(this.state.solOpen),
+      quemMenuStyle: menu(this.state.quemOpen), quemChevronStyle: chev(this.state.quemOpen),
+      contMenuStyle: menu(this.state.contOpen), contChevronStyle: chev(this.state.contOpen),
+      setLangPt:()=>{}, setLangEs:()=>{}, setLangEn:()=>{},
+    };
+  }
+}
+</script>
+</body>
+</html>

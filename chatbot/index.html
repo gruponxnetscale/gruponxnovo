@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>NX Digital - Plataforma de atendimento</title>
+<meta name="description" content="Chatbot — NX Digital, plataforma de atendimento multicanal no WhatsApp." />
+<link rel="icon" type="image/png" href="../assets/nx-logo.png" />
+<link rel="apple-touch-icon" href="../assets/nx-logo.png" />
+<link rel="shortcut icon" type="image/png" href="../assets/nx-logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:#0B1220;background:#fff;-webkit-font-smoothing:antialiased}
+  a{color:#0756FF;text-decoration:none}
+  a:hover{color:#0445CC}
+  @media(max-width:920px){.head-nav{display:none!important}.sub-title{font-size:40px!important}.foot-grid{grid-template-columns:1fr 1fr!important}.hero-grid{grid-template-columns:1fr!important}.dist-grid{grid-template-columns:1fr!important}.int-grid{grid-template-columns:repeat(3,1fr)!important}.mode-grid{grid-template-columns:1fr!important}}
+  @media(max-width:560px){.foot-grid{grid-template-columns:1fr!important}}
+  @keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+
+  /* ===== MOBILE (não afeta desktop) ===== */
+  @media(max-width:760px){
+    html,body{overflow-x:hidden!important}
+    img{max-width:100%!important;height:auto!important}
+    h1,.sub-title{font-size:clamp(27px,7.6vw,36px)!important;line-height:1.12!important;letter-spacing:-1.1px!important}
+    h2{font-size:clamp(22px,6.2vw,29px)!important;line-height:1.16!important;letter-spacing:-.8px!important}
+    h3{font-size:18px!important}
+    section{padding-left:16px!important;padding-right:16px!important}
+    section > div, footer > div{max-width:100%!important}
+    div[style*="grid-template-columns"]{grid-template-columns:1fr!important}
+    div[style*="position:sticky"],div[style*="position: sticky"]{position:static!important;top:auto!important}
+    p{font-size:15.5px!important;line-height:1.6!important}
+    a[style*="padding:16px 3"],a[style*="padding:15px 3"],a[style*="padding: 16px 3"],a[style*="padding: 15px 3"]{width:100%!important;justify-content:center!important}
+    div[style*="max-width:520px"],div[style*="max-width:560px"],div[style*="max-width:460px"],div[style*="max-width:440px"],div[style*="max-width:420px"],div[style*="max-width:400px"]{max-width:100%!important}
+    img[style*="margin-left:-9%"]{width:100%!important;margin-left:0!important}
+    img[style*="margin-left:-24px"]{margin-left:0!important}
+  }
+  @media(max-width:560px){
+    section{padding-top:44px!important;padding-bottom:44px!important}
+    div[style*="padding:56px"],div[style*="padding:64px"],div[style*="padding: 56px"],div[style*="padding: 64px"]{padding:26px 18px!important}
+    div[style*="border-radius:28px"]{border-radius:20px!important}
+  }
+
+  /* nav mobile: mostra os menus em linha rolável */
+  @media(max-width:920px){
+    header .head-nav{display:flex!important;order:3;width:100%;gap:18px!important;overflow-x:auto;padding:8px 2px 2px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    header .head-nav::-webkit-scrollbar{display:none}
+    header .head-nav > *{flex-shrink:0}
+    header .head-nav a,header .head-nav button{font-size:13.5px!important;white-space:nowrap}
+    header .wrap-pad,header > div > div > div{flex-wrap:wrap!important}
+  }
+  @media(max-width:560px){
+    header a[style*="border-radius:100px"]{font-size:12.5px!important;padding:9px 15px!important}
+    header img{height:30px!important}
+  }
+
+  /* ===== MOBILE v2 — refinos (desktop intocado) ===== */
+  @media(max-width:760px){
+    *{max-width:100%}
+    svg{max-width:100%}
+    /* mockups e cards com largura fixa */
+    div[style*="width:420px"],div[style*="width:440px"],div[style*="width:460px"],div[style*="width:360px"],div[style*="width:340px"],div[style*="width:330px"],div[style*="width:320px"],div[style*="width:310px"],div[style*="width:300px"],div[style*="width:290px"],div[style*="width:270px"],div[style*="width:250px"],div[style*="width:230px"]{width:100%!important}
+    div[style*="min-width:110px"],div[style*="min-width:150px"],div[style*="min-width:104px"]{min-width:0!important}
+    /* cartões flutuantes viram estáticos para não sobrepor texto */
+    div[style*="position:absolute"][style*="animation:floaty"]{position:static!important;animation:none!important;margin:12px auto 0!important;transform:none!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important}
+    /* marquee mais lento e legível */
+    div[style*="animation:marquee"]{gap:34px!important}
+    div[style*="animation:marquee"] > span{font-size:19px!important}
+    /* tabelas / linhas largas rolam sozinhas */
+    table{display:block;overflow-x:auto;white-space:nowrap}
+    /* textos que travavam em uma linha só */
+    p[style*="white-space:nowrap"],div[style*="white-space:nowrap"]{white-space:normal!important}
+    /* aspect-ratio de círculos decorativos não estica a página */
+    div[style*="aspect-ratio:1"]{max-height:78vw}
+    /* form: inputs confortáveis e sem zoom no iOS */
+    input,select,textarea,button{font-size:16px!important;max-width:100%}
+    select{background-position:right 12px center!important}
+    /* CTAs empilhados ocupam a linha */
+    div[style*="display:flex"][style*="flex-wrap:wrap"] > a{flex:1 1 100%}
+  }
+  @media(max-width:560px){
+    h1,.sub-title,.h1-xl{font-size:clamp(25px,7.4vw,31px)!important;letter-spacing:-.9px!important}
+    h2,.sec-title{font-size:clamp(21px,6vw,26px)!important}
+    /* padding interno de cards grandes */
+    div[style*="padding:32px 30px"],div[style*="padding:30px 28px"],div[style*="padding:34px 30px"],div[style*="padding:26px 26px"],div[style*="padding:28px 26px"]{padding:20px 16px!important}
+    div[style*="border-radius:26px"],div[style*="border-radius:24px"],div[style*="border-radius:22px"],div[style*="border-radius:20px"]{border-radius:16px!important}
+    /* números gigantes */
+    div[style*="font-size:56px"],div[style*="font-size:44px"],div[style*="font-size:42px"]{font-size:32px!important;letter-spacing:-1px!important}
+    /* whatsapp flutuante não cobre o CTA */
+    a[style*="position:fixed"]{bottom:14px!important;right:14px!important;transform:scale(.9)}
+  }
+
+  /* ===== MOBILE v3 — correções (desktop intocado) ===== */
+  @media(max-width:760px){
+    /* CABEÇALHO: logo+CTAs em linha, menus abaixo, nada estourando */
+    header .wrap-pad{flex-wrap:wrap!important;gap:8px!important;padding:8px 12px!important}
+    header .wrap-pad > div:first-child{flex:0 0 auto}
+    header .wrap-pad > div:last-child{flex:1 1 100%;order:2;display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:8px!important;justify-content:flex-start!important}
+    header .wrap-pad > div:last-child > div:first-child{order:1;flex:0 0 auto}
+    header .wrap-pad > div:last-child > a{flex:1 1 auto;min-width:0;justify-content:center!important;text-align:center;font-size:13px!important;padding:10px 12px!important;white-space:nowrap}
+    header .head-nav{order:3;flex:1 1 100%}
+    /* MARQUEE: precisa ser mais largo que a tela pra rolar */
+    div[style*="animation:marquee"]{width:max-content!important;max-width:none!important;flex-wrap:nowrap!important}
+    div[style*="animation:marquee"] > span{max-width:none!important;flex-shrink:0!important}
+    /* FAIXA "Atenda mais rápido": deixa quebrar em 2 linhas */
+    section p[style*="white-space:nowrap"]{white-space:normal!important;font-size:17px!important;text-align:left!important}
+    /* HERO: foto da especialista encaixada, sem sobra */
+    img[src*="moca"],img[src*="hero-"]{width:100%!important;max-width:420px!important;margin:0 auto!important;display:block!important}
+    /* WhatsApp flutuante fica acima de tudo, sem cobrir CTA */
+    a[style*="position:fixed"]{z-index:90!important}
+  }
+  @media(max-width:560px){
+    header .wrap-pad > div:last-child > a{font-size:12.5px!important;padding:9px 10px!important}
+    header img{height:26px!important}
+    div[style*="animation:marquee"] > span{font-size:17px!important}
+    section p[style*="white-space:nowrap"]{font-size:15.5px!important}
+  }
+
+  /* MOBILE marquee speed */
+  @media(max-width:760px){
+    div[style*="animation:marquee"]{animation-duration:9s!important}
+  }
+  @media(max-width:560px){
+    div[style*="animation:marquee"]{animation-duration:7s!important}
+  }
+
+  /* MOBILE footer logo */
+  @media(max-width:760px){
+    footer .foot-grid > div:first-child > div:first-child{display:inline-flex!important;width:auto!important;max-width:150px!important;padding:8px 12px!important;border-radius:10px!important}
+    footer .foot-grid img{height:30px!important;width:auto!important;max-width:120px!important;object-fit:contain!important}
+  }
+
+  /* MOBILE seg tabs — 2 por linha, compactos */
+  @media(max-width:760px){
+    div[data-reveal][style*="justify-content:center"][style*="flex-wrap:wrap"]{gap:8px!important}
+    div[data-reveal][style*="justify-content:center"][style*="flex-wrap:wrap"] > button{flex:1 1 calc(50% - 8px)!important;min-width:0!important;font-size:13px!important;padding:10px 8px!important;justify-content:center!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    div[data-reveal][style*="justify-content:center"][style*="flex-wrap:wrap"] > button > svg{width:15px!important;height:15px!important;flex-shrink:0}
+  }
+  @media(max-width:560px){
+    div[data-reveal][style*="justify-content:center"][style*="flex-wrap:wrap"] > button{font-size:12px!important;padding:9px 6px!important}
+  }
+
+  /* MOBILE cabeçalho: bandeirinhas pequenas na primeira linha */
+  @media(max-width:760px){
+    header .wrap-pad{position:relative}
+    header .wrap-pad > div:last-child > div:first-child{position:absolute!important;top:10px!important;right:14px!important;gap:5px!important;z-index:5}
+    header .wrap-pad > div:last-child > div:first-child button{width:20px!important;height:15px!important;border-radius:3px!important}
+    header .wrap-pad > div:last-child > div:first-child button svg{width:20px!important;height:15px!important}
+    header .wrap-pad > div:last-child{padding-top:2px!important}
+    header .wrap-pad > div:first-child{padding-right:82px}
+  }
+
+  /* MOBILE nav centralizado */
+  @media(max-width:920px){
+    header .head-nav{justify-content:center!important;overflow-x:visible!important;flex-wrap:wrap!important;gap:16px!important;padding:6px 2px 2px!important}
+  }
+
+  /* MOBILE: esconde a fileira de ícones */
+  @media(max-width:760px){
+    .int-icons{display:none!important}
+  }
+
+  /* MOBILE: cabeçalho reto + dropdowns dentro da tela */
+  @media(max-width:760px){
+    header > div:first-child{padding:0!important;max-width:none!important}
+    header > div:first-child > div:first-child{border-radius:0!important;box-shadow:0 2px 10px -4px rgba(15,23,42,.25)!important}
+    header .head-nav > div{position:static!important}
+    header .head-nav > div > div[style*="position:absolute"]{position:fixed!important;left:8px!important;right:8px!important;top:auto!important;width:auto!important;max-width:none!important;padding-top:6px!important}
+    header .head-nav > div > div[style*="position:absolute"] > div{min-width:0!important;width:100%!important;max-height:62vh!important;overflow-y:auto!important;box-sizing:border-box!important}
+    header .head-nav > div > div[style*="position:absolute"] a{font-size:13.5px!important;padding:10px 13px!important;white-space:normal!important;line-height:1.35!important}
+  }
+</style>
+</helmet>
+
+<div style="width:100%;overflow-x:hidden;background:#fff">
+
+  <!-- HEADER -->
+  <header style="position:sticky;top:0;z-index:50;padding:0;background:#eaf1ff">
+    <div style="max-width:1240px;margin:0 auto;padding:12px 24px 0">
+    <div style="background:#fff;border-radius:22px;box-shadow:0 14px 40px -16px rgba(7,86,255,.35)">
+    <div class="wrap-pad" style="max-width:1200px;margin:0 auto;padding:8px 28px;display:flex;align-items:center;justify-content:space-between">
+      <a href="/" style="display:flex;align-items:center;gap:8px">
+        <img src="../assets/nx-logo.png" alt="NX Digital" style="height:40px;object-fit:contain;display:block" />
+      </a>
+      <nav class="head-nav" style="display:flex;align-items:center;gap:32px">
+        <div style="position:relative" onMouseEnter="{{ openSol }}" onMouseLeave="{{ closeSol }}">
+          <button onClick="{{ toggleSol }}" style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;padding:0;cursor:pointer;color:#334155;font-weight:600;font-size:15px;font-family:inherit;transition:color .15s" style-hover="color:#0756FF">Soluções<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="{{ solChevronStyle }}"><path d="m6 9 6 6 6-6"></path></svg></button>
+          <div style="{{ solMenuStyle }}">
+            <div style="background:#fff;border:1px solid #eef2f8;border-radius:16px;box-shadow:0 24px 60px -18px rgba(15,23,42,.3);padding:10px;min-width:250px;display:flex;flex-direction:column">
+              <a href="/chatbot" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Chatbot</a>
+              <a href="/agente-de-ia" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Agente de IA</a>
+              <a href="/copiloto-de-ia" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Copiloto de IA</a>
+              <a href="/crm-inteligente" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">CRM Inteligente</a>
+              <a href="/disparo-em-massa" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Disparo em massa</a>
+              <a href="/relatorios" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Relatórios</a>
+              <a href="/integracoes-personalizadas" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Integrações personalizadas</a>
+              <a href="/integracao-whatsapp" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Integração WhatsApp</a>
+              <a href="/integracao-instagram" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Integração Instagram</a>
+              <a href="/criacao-de-site" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Criação de site</a>
+              <a href="/automacao-personalizada" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Automação personalizada</a>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative" onMouseEnter="{{ openQuem }}" onMouseLeave="{{ closeQuem }}">
+          <button onClick="{{ toggleQuem }}" style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;padding:0;cursor:pointer;color:#334155;font-weight:600;font-size:15px;font-family:inherit;transition:color .15s" style-hover="color:#0756FF">Quem somos<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="{{ quemChevronStyle }}"><path d="m6 9 6 6 6-6"></path></svg></button>
+          <div style="{{ quemMenuStyle }}">
+            <div style="background:#fff;border:1px solid #eef2f8;border-radius:16px;box-shadow:0 24px 60px -18px rgba(15,23,42,.3);padding:10px;min-width:290px;display:flex;flex-direction:column">
+              <a href="/protecao-de-dados" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Proteção de Dados e Segurança</a>
+              <a href="/politica-de-chatbot-e-ia" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Política de Chatbot e Inteligência Artificial</a>
+              <a href="/politica-de-privacidade" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Política de Privacidade</a>
+              <a href="/aviso-de-privacidade" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Aviso de Privacidade</a>
+              <a href="/termos-de-uso" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Termos de Uso</a>
+              <a href="/codigo-de-etica" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Código de Ética</a>
+              <a href="/politica-anticorrupcao" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Política Anticorrupção</a>
+              <a href="/politicas-da-meta" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Políticas da Meta</a>
+              <a href="/nossa-historia" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Nossa História</a>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative" onMouseEnter="{{ openCont }}" onMouseLeave="{{ closeCont }}">
+          <button onClick="{{ toggleCont }}" style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;padding:0;cursor:pointer;color:#334155;font-weight:600;font-size:15px;font-family:inherit;transition:color .15s" style-hover="color:#0756FF">Contato<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="{{ contChevronStyle }}"><path d="m6 9 6 6 6-6"></path></svg></button>
+          <div style="{{ contMenuStyle }}">
+            <div style="background:#fff;border:1px solid #eef2f8;border-radius:16px;box-shadow:0 24px 60px -18px rgba(15,23,42,.3);padding:10px;min-width:230px;display:flex;flex-direction:column">
+              <a href="/seja-um-parceiro" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Seja um parceiro</a>
+              <a href="/suporte" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Fale com o suporte</a>
+              <a href="/fale-com-o-especialista" style="padding:11px 16px;border-radius:10px;color:#334155;font-weight:600;font-size:14.5px;transition:background .12s,color .12s" style-hover="background:#f4f7ff;color:#0756FF">Fale com o especialista</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div style="display:flex;align-items:center;gap:16px">
+        <div style="display:flex;align-items:center;gap:7px">
+          <button onClick="{{ setLangPt }}" aria-label="Português (Brasil)" title="Português" style="width:26px;height:19px;border-radius:4px;border:none;padding:0;overflow:hidden;cursor:pointer;background:none;display:flex;transition:transform .15s" style-hover="transform:scale(1.14)">
+            <svg width="26" height="19" viewBox="0 0 26 19"><rect width="26" height="19" fill="#009c3b"/><path d="M13 2.5 23.5 9.5 13 16.5 2.5 9.5Z" fill="#ffdf00"/><circle cx="13" cy="9.5" r="3.4" fill="#002776"/></svg>
+          </button>
+          <button onClick="{{ setLangEs }}" aria-label="Español" title="Español" style="width:26px;height:19px;border-radius:4px;border:none;padding:0;overflow:hidden;cursor:pointer;background:none;display:flex;transition:transform .15s" style-hover="transform:scale(1.14)">
+            <svg width="26" height="19" viewBox="0 0 26 19"><rect width="26" height="19" fill="#c60b1e"/><rect y="4.75" width="26" height="9.5" fill="#ffc400"/></svg>
+          </button>
+          <button onClick="{{ setLangEn }}" aria-label="English (US)" title="English" style="width:26px;height:19px;border-radius:4px;border:none;padding:0;overflow:hidden;cursor:pointer;background:none;display:flex;transition:transform .15s" style-hover="transform:scale(1.14)">
+            <svg width="26" height="19" viewBox="0 0 26 19"><rect width="26" height="19" fill="#fff"/><g fill="#b22234"><rect width="26" height="1.46"/><rect y="2.92" width="26" height="1.46"/><rect y="5.85" width="26" height="1.46"/><rect y="8.77" width="26" height="1.46"/><rect y="11.69" width="26" height="1.46"/><rect y="14.62" width="26" height="1.46"/><rect y="17.54" width="26" height="1.46"/></g><rect width="11.5" height="8.77" fill="#3c3b6e"/></svg>
+          </button>
+        </div>
+        <a href="#form" style="display:inline-flex;align-items:center;gap:8px;background:#0756FF;color:#fff;font-weight:700;font-size:14.5px;padding:12px 24px;border-radius:100px;transition:background .15s;box-shadow:0 8px 20px -8px rgba(7,86,255,.6)" style-hover="background:#0445CC">Fale com o especialista</a>
+        <a href="#form" style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;font-weight:700;font-size:14.5px;padding:12px 24px;border-radius:100px;transition:filter .15s;box-shadow:0 8px 20px -8px rgba(37,211,102,.6)" style-hover="filter:brightness(.95)">Preços e Planos</a>
+      </div>
+    </div>
+    </div>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO (em branco — editar depois) -->
+  <!-- HERO CHATBOT -->
+  <section style="position:relative;background:linear-gradient(160deg,#eaf1ff 0%,#dbe8ff 100%);overflow:hidden;padding:16px 20px 0">
+    <div class="hero-grid" style="max-width:1200px;margin:0 auto;padding:24px 20px 72px;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:14px;background:#0756FF;border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:12px 20px;margin-bottom:22px;box-shadow:0 14px 30px -16px rgba(7,86,255,.7)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.87 9.87 0 0 0 1.523 5.263l-.999 3.648 3.965-1.05zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.2" fill="#fff" stroke="none"></circle></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.3 2 2 6.2 2 11.7c0 3.1 1.4 5.8 3.7 7.6v3.2l3.4-1.9c.9.3 1.9.4 2.9.4 5.7 0 10-4.2 10-9.7S17.7 2 12 2Zm1 12.4-2.5-2.7-4.9 2.7 5.4-5.7 2.6 2.7 4.8-2.7-5.4 5.7Z"></path></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.5 1.4 4.7 3.6 6.2 0 .8-.4 2-1.4 3.3 0 0 2.6-.4 4.6-1.9.9.2 1.9.4 3.2.4 5.5 0 10-3.6 10-8S17.5 3 12 3Z"></path></svg>
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"></path></svg>
+        </div>
+        <h1 class="sub-title" style="font-size:54px;line-height:1.05;font-weight:900;letter-spacing:-2px;color:#0B1220;margin-bottom:20px;text-wrap:balance">Atendimento automático que <span style="color:#0756FF">responde na hora, 24h</span></h1>
+        <p style="font-size:19px;line-height:1.55;color:#51607a;max-width:480px;margin-bottom:22px;text-wrap:pretty">Um fluxo inteligente que recebe o cliente, entende o que ele precisa e direciona para o setor certo — sem fila, sem espera e sem perder venda.</p>
+        <ul style="list-style:none;margin:0 0 32px;padding:0;display:flex;flex-direction:column;gap:12px">
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:16px;color:#334155"><svg style="flex-shrink:0;margin-top:3px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Menus e botões que guiam o cliente até a solução</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:16px;color:#334155"><svg style="flex-shrink:0;margin-top:3px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Direciona para o setor ou atendente certo, na hora</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:16px;color:#334155"><svg style="flex-shrink:0;margin-top:3px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Fluxos 100% personalizados para o seu negócio</li>
+        </ul>
+        <div style="display:flex;flex-wrap:wrap;gap:12px">
+          <a href="#form" style="display:inline-flex;align-items:center;gap:9px;background:#0756FF;color:#fff;font-weight:700;font-size:16px;padding:16px 32px;border-radius:14px;box-shadow:0 16px 34px -14px rgba(7,86,255,.7);transition:background .15s" style-hover="background:#0445CC">Quero montar meu chatbot<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a href="/#faq" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:#0756FF;font-weight:700;font-size:16px;padding:16px 30px;border-radius:14px;border:1.5px solid #cfdcff;transition:background .15s" style-hover="background:#f4f7ff">Ver como funciona</a>
+        </div>
+      </div>
+
+      <div style="position:relative;display:flex;justify-content:center">
+        <div style="position:absolute;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(7,86,255,.18),transparent 68%);top:50%;left:50%;transform:translate(-50%,-50%)"></div>
+        <div style="position:relative;z-index:2;width:100%;max-width:345px;background:#0b0f16;border-radius:52px;padding:13px;box-shadow:0 50px 100px -38px rgba(7,86,255,.55);border:1px solid #2b3446">
+          <div style="position:absolute;top:24px;left:50%;transform:translateX(-50%);width:130px;height:26px;background:#0b0f16;border-radius:16px;z-index:6"></div>
+          <div style="background:#dcd3c7;border-radius:40px;overflow:hidden;height:660px;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;gap:11px;padding:42px 15px 13px;background:#075e54;color:#fff">
+              <span style="width:40px;height:40px;border-radius:50%;overflow:hidden;flex-shrink:0;display:block"><img src="../assets/nx-avatar.png" alt="NX Digital" style="width:100%;height:100%;object-fit:cover;display:block" /></span>
+              <div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:700;display:flex;align-items:center;gap:5px">NX Digital <svg width="15" height="15" viewBox="0 0 24 24" fill="#0756FF"><circle cx="12" cy="12" r="11"/><path d="m8 12 3 3 5-6" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div style="font-size:11.5px;opacity:.85;display:flex;align-items:center;gap:5px"><span style="width:7px;height:7px;border-radius:50%;background:#54ffb0;display:inline-block"></span>online</div></div>
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="#fff"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.2z"/></svg>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg>
+            </div>
+            <div style="flex:1;min-height:0;display:flex;flex-direction:column;justify-content:flex-start;gap:8px;padding:14px 12px;overflow:hidden">
+              <div style="align-self:flex-end;max-width:84%;background:#d9fdd3;border-radius:12px 2px 12px 12px;padding:9px 12px;font-size:13.5px;line-height:1.45;color:#111b21;box-shadow:0 2px 6px -2px rgba(15,23,42,.18)">Bom dia! 👋</div>
+              <div style="align-self:flex-start;max-width:84%;background:#fff;border-radius:2px 12px 12px 12px;padding:9px 12px;font-size:13.5px;line-height:1.45;color:#111b21;box-shadow:0 2px 6px -2px rgba(15,23,42,.18)">Bom dia! 🙂 Bem-vindo à NX Digital. Com qual setor você quer falar?</div>
+              <div style="align-self:flex-start;width:90%;background:#fff;border-radius:10px;padding:11px;text-align:center;font-size:13.5px;font-weight:700;color:#0756FF;box-shadow:0 2px 6px -2px rgba(15,23,42,.18);border:1.5px solid #0756FF">› Vendas</div>
+              <div style="align-self:flex-start;width:90%;background:#fff;border-radius:10px;padding:11px;text-align:center;font-size:13.5px;font-weight:700;color:#0756FF;box-shadow:0 2px 6px -2px rgba(15,23,42,.18)">› Suporte</div>
+              <div style="align-self:flex-start;width:90%;background:#fff;border-radius:10px;padding:11px;text-align:center;font-size:13.5px;font-weight:700;color:#0756FF;box-shadow:0 2px 6px -2px rgba(15,23,42,.18)">› Falar com atendente</div>
+              <div style="align-self:flex-end;max-width:84%;background:#d9fdd3;border-radius:12px 2px 12px 12px;padding:9px 12px;font-size:13.5px;line-height:1.45;color:#111b21;box-shadow:0 2px 6px -2px rgba(15,23,42,.18)">Vendas</div>
+              <div style="align-self:flex-start;max-width:84%;background:#fff;border-radius:2px 12px 12px 12px;padding:9px 12px;font-size:13.5px;line-height:1.45;color:#111b21;box-shadow:0 2px 6px -2px rgba(15,23,42,.18)">Perfeito! Já estou te transferindo para o <strong>time de Vendas</strong>. Um atendente vai continuar por aqui. 👍</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:9px;margin:0 10px 12px;padding:9px 13px;background:#fff;border-radius:100px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9aa7bd" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg><span style="flex:1;font-size:13px;color:#9aa7bd">Mensagem</span><span style="width:30px;height:30px;border-radius:50%;background:#075e54;display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATENDA MAIS PESSOAS -->
+  <section style="background:#fff;padding:104px 24px;text-align:center">
+    <div style="max-width:820px;margin:0 auto">
+      <h2 style="font-size:52px;line-height:1.08;font-weight:900;letter-spacing:-1.8px;color:#0a1633;margin:0 0 24px;text-wrap:balance">Atenda mais pessoas com a <span style="color:#0756FF">mesma equipe</span></h2>
+      <p style="font-size:19px;line-height:1.65;color:#6b7690;max-width:720px;margin:0 auto 40px;text-wrap:pretty">Com o chatbot da NX, você reduz filas, elimina etapas repetitivas e acelera o atendimento em todos os canais. Enquanto o bot resolve dúvidas básicas, seu time foca no que realmente importa: falar com quem precisa de atenção humana e fechar mais vendas.</p>
+      <a href="#form" style="display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,#0756FF,#3d9bff);color:#fff;font-weight:700;font-size:17px;padding:17px 40px;border-radius:100px;box-shadow:0 18px 40px -14px rgba(7,86,255,.65);transition:transform .15s,box-shadow .15s" style-hover="transform:translateY(-2px);box-shadow:0 24px 50px -14px rgba(7,86,255,.75)">Agende uma demonstração <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="m10 8 6 4-6 4z" fill="#fff" stroke="none"></path></svg></a>
+    </div>
+  </section>
+
+  <!-- DISTRIBUIÇÃO DE CHATS -->
+  <section style="background:#fff;padding:40px 24px 104px;overflow:hidden">
+    <div class="dist-grid" style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center">
+      <div>
+        <h2 style="font-size:44px;line-height:1.1;font-weight:900;letter-spacing:-1.4px;color:#0756FF;margin:0 0 22px;text-wrap:balance">Automatize a distribuição de todos os seus chats</h2>
+        <p style="font-size:18px;line-height:1.6;color:#51607a;margin:0 0 32px;max-width:430px"><strong style="color:#0a1633;font-weight:800">Distribua os chats</strong> para sua equipe em tempo real, sem esforço manual, garantindo <strong style="color:#0a1633;font-weight:800">rapidez e qualidade</strong> no atendimento.</p>
+        <a href="#form" style="display:inline-flex;align-items:center;gap:8px;background:#0756FF;color:#fff;font-weight:700;font-size:16px;padding:15px 32px;border-radius:12px;box-shadow:0 16px 34px -14px rgba(7,86,255,.7);transition:background .15s,transform .15s" style-hover="background:#0445CC;transform:translateY(-2px)">Conferir detalhes</a>
+      </div>
+      <div style="position:relative;min-height:460px">
+        <div style="position:absolute;right:-30px;top:10px;width:74%;height:86%;background:linear-gradient(160deg,#eaf1ff 0%,#d6e4ff 100%);border-radius:48px 48px 48px 120px;transform:rotate(-2deg);z-index:0"></div>
+        <svg viewBox="0 0 560 470" style="position:relative;z-index:1;width:100%;height:auto;display:block" fill="none">
+          <defs>
+            <marker id="ah" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto"><path d="M0 0l8 5L0 10z" fill="#0756FF"></path></marker>
+            <linearGradient id="leadg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0756FF"></stop><stop offset="1" stop-color="#3d9bff"></stop></linearGradient>
+            <filter id="cardsh" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#0756FF" flood-opacity="0.16"></feDropShadow></filter>
+          </defs>
+          <!-- arrows -->
+          <path d="M232 236 C 268 200, 312 172, 358 156" stroke="#0756FF" stroke-width="3.4" fill="none" stroke-linecap="round" marker-end="url(#ah)"></path>
+          <path d="M262 258 L 372 258" stroke="#0756FF" stroke-width="3.4" fill="none" stroke-linecap="round" marker-end="url(#ah)"></path>
+          <path d="M240 300 C 272 344, 304 372, 336 392" stroke="#0756FF" stroke-width="3.4" fill="none" stroke-linecap="round" marker-end="url(#ah)"></path>
+          <!-- Novo lead card -->
+          <g transform="rotate(-3 150 258)">
+            <rect x="66" y="216" width="168" height="86" rx="18" fill="url(#leadg)"></rect>
+            <rect x="138" y="232" width="34" height="24" rx="7" fill="rgba(255,255,255,.16)"></rect>
+            <circle cx="149" cy="244" r="1.7" fill="#fff"></circle><circle cx="156" cy="244" r="1.7" fill="#fff"></circle><circle cx="163" cy="244" r="1.7" fill="#fff"></circle>
+            <path d="M150 256 l0 6 6-6" fill="rgba(255,255,255,.16)"></path>
+            <text x="150" y="288" text-anchor="middle" font-family="Inter,sans-serif" font-size="20" font-weight="800" fill="#fff">Novo lead</text>
+          </g>
+          <!-- Atendente 1 -->
+          <g filter="url(#cardsh)">
+            <path d="M366 74 h158 a18 18 0 0 1 18 18 v52 a18 18 0 0 1 -18 18 h-70 l-14 20 -6 -20 h-58 a18 18 0 0 1 -18 -18 v-52 a18 18 0 0 1 18 -18 z" fill="#fff"></path>
+          </g>
+          <circle cx="445" cy="104" r="14" fill="#eaf1ff"></circle>
+          <circle cx="445" cy="100" r="4.6" fill="none" stroke="#ff7a6b" stroke-width="2.2"></circle>
+          <path d="M438 112 a7.5 7.5 0 0 1 14 0" fill="none" stroke="#ff7a6b" stroke-width="2.2"></path>
+          <text x="445" y="140" text-anchor="middle" font-family="Inter,sans-serif" font-size="18" font-weight="800" fill="#0a1633">Atendente 1</text>
+          <!-- Atendente 2 -->
+          <g filter="url(#cardsh)">
+            <path d="M398 214 h138 a18 18 0 0 1 18 18 v46 a18 18 0 0 1 -18 18 h-92 l-12 18 -5 -18 h-29 a18 18 0 0 1 -18 -18 v-46 a18 18 0 0 1 18 -18 z" fill="#fff"></path>
+          </g>
+          <circle cx="467" cy="240" r="14" fill="#eaf1ff"></circle>
+          <circle cx="467" cy="236" r="4.6" fill="none" stroke="#ff7a6b" stroke-width="2.2"></circle>
+          <path d="M460 248 a7.5 7.5 0 0 1 14 0" fill="none" stroke="#ff7a6b" stroke-width="2.2"></path>
+          <text x="467" y="276" text-anchor="middle" font-family="Inter,sans-serif" font-size="18" font-weight="800" fill="#0a1633">Atendente 2</text>
+          <!-- Atendente 3 -->
+          <g filter="url(#cardsh)">
+            <path d="M320 356 h150 a18 18 0 0 1 18 18 v50 a18 18 0 0 1 -18 18 h-62 l-13 19 -6 -19 h-69 a18 18 0 0 1 -18 -18 v-50 a18 18 0 0 1 18 -18 z" fill="#fff"></path>
+          </g>
+          <circle cx="395" cy="384" r="14" fill="#eaf1ff"></circle>
+          <circle cx="395" cy="380" r="4.6" fill="none" stroke="#ff7a6b" stroke-width="2.2"></circle>
+          <path d="M388 392 a7.5 7.5 0 0 1 14 0" fill="none" stroke="#ff7a6b" stroke-width="2.2"></path>
+          <text x="395" y="420" text-anchor="middle" font-family="Inter,sans-serif" font-size="18" font-weight="800" fill="#0a1633">Atendente 3</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIBERE SUA EQUIPE -->
+  <section style="background:linear-gradient(165deg,#0756FF 0%,#0540c4 55%,#062a86 100%);padding:96px 24px">
+    <div style="max-width:760px;margin:0 auto;text-align:center">
+      <h2 style="font-size:40px;line-height:1.12;font-weight:900;letter-spacing:-1.2px;color:#fff;margin:0 0 18px;text-wrap:balance">Libere sua equipe para o que <span style="color:#bcd2ff">realmente importa</span></h2>
+      <p style="font-size:17px;line-height:1.6;color:#d3e0ff;max-width:560px;margin:0 auto 44px;text-wrap:pretty">O chatbot da NX não substitui a equipe, ele a potencializa. Automatize tarefas repetitivas que consomem tempo e foque no estratégico.</p>
+      <div style="display:flex;flex-direction:column;gap:16px;text-align:left">
+        {{ libRows }}
+      </div>
+    </div>
+  </section>
+
+  <!-- ESCOLHA COMO O BOT ATENDE -->
+  <section style="background:#fff;padding:96px 24px">
+    <div style="max-width:1080px;margin:0 auto">
+      <div style="text-align:center;max-width:800px;margin:0 auto 56px">
+        <h2 style="font-size:44px;line-height:1.1;font-weight:900;letter-spacing:-1.4px;color:#0a1633;margin:0 0 18px;text-wrap:balance">Escolha como o bot atende seus <span style="color:#0756FF">clientes</span></h2>
+        <p style="font-size:17px;line-height:1.6;color:#5f6d88;margin:0 auto;text-wrap:pretty">O chatbot da NX oferece dois modos: fluxos estruturados para processos simples, ou Agente Inteligente para conversas mais naturais. O Agente usa IA para entender o contexto e responder com o tom da sua marca.</p>
+      </div>
+      <div class="mode-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:28px">
+        <div style="background:linear-gradient(160deg,#0756FF 0%,#0540c4 100%);border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:38px 34px;box-shadow:0 30px 60px -30px rgba(7,86,255,.55)">
+          <span style="display:inline-block;font-size:11px;font-weight:800;letter-spacing:.8px;color:#fff;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:100px;padding:6px 14px;margin-bottom:24px">PROCESSOS</span>
+          <h3 style="font-size:27px;font-weight:900;letter-spacing:-.6px;color:#fff;margin:0 0 14px">Modo Estruturado</h3>
+          <p style="font-size:15.5px;line-height:1.6;color:#d3e0ff;margin:0 0 26px">Ideal para triagens, coletas de dados e guias passo a passo onde o controle total do fluxo é necessário.</p>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:15px">
+            {{ modeEstrut }}
+          </ul>
+        </div>
+        <div style="background:linear-gradient(160deg,#0756FF 0%,#0540c4 100%);border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:38px 34px;box-shadow:0 30px 60px -30px rgba(7,86,255,.55)">
+          <span style="display:inline-block;font-size:11px;font-weight:800;letter-spacing:.8px;color:#fff;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:100px;padding:6px 14px;margin-bottom:24px">INTELIGÊNCIA ARTIFICIAL</span>
+          <h3 style="font-size:27px;font-weight:900;letter-spacing:-.6px;color:#fff;margin:0 0 14px">Agente Inteligente</h3>
+          <p style="font-size:15.5px;line-height:1.6;color:#d3e0ff;margin:0 0 26px">Utiliza Processamento de Linguagem Natural (NLP) para entender intenções e responder de forma humana.</p>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:15px">
+            {{ modeIa }}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTEGRAÇÕES -->
+  <section style="position:relative;background:linear-gradient(180deg,#eaf3ff 0%,#f2f8ff 100%);padding:96px 24px;overflow:hidden">
+    <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(7,86,255,.13) 1.1px,transparent 1.1px);background-size:22px 22px;opacity:.5;pointer-events:none"></div>
+    <div style="max-width:1000px;margin:0 auto;position:relative;z-index:2">
+      <div style="text-align:center;max-width:760px;margin:0 auto 56px">
+        <h2 style="font-size:44px;line-height:1.1;font-weight:900;letter-spacing:-1.4px;color:#0a1633;margin:0 0 18px;text-wrap:balance">Integre com os <span style="color:#0756FF">principais sistemas</span> do mercado</h2>
+        <p style="font-size:17px;line-height:1.6;color:#5f6d88;margin:0 auto;text-wrap:pretty">O chatbot da NX se conecta com CRM, ERP, helpdesk e qualquer API externa. Suas informações fluem sem barreiras, e você pode automatizar processos complexos sem depender de desenvolvedor.</p>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:0;max-width:720px;margin:0 auto 40px">
+        {{ flowNodes }}
+      </div>
+      <div class="int-grid int-icons" style="display:grid;grid-template-columns:repeat(6,1fr);gap:18px;max-width:820px;margin:0 auto 48px">
+        {{ intCards }}
+      </div>
+      <div style="text-align:center">
+        <a href="#form" style="display:inline-flex;align-items:center;gap:11px;background:linear-gradient(135deg,#0756FF,#3d9bff);color:#fff;font-weight:700;font-size:16.5px;padding:16px 38px;border-radius:100px;box-shadow:0 18px 40px -14px rgba(7,86,255,.6);transition:transform .15s" style-hover="transform:translateY(-2px)">Ver todas as integrações <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v8M8 12h8"></path></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULÁRIO -->
+  <section id="form" style="background:#fff;padding:88px 24px;scroll-margin-top:80px">
+    <div class="dist-grid" style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+      <div>
+        <h2 style="font-size:38px;line-height:1.1;font-weight:900;letter-spacing:-1.2px;color:#0a1633;margin:0 0 16px">Fale com o nosso time comercial</h2>
+        <p style="font-size:18px;line-height:1.6;color:#51607a;margin:0 0 24px">Preencha ao lado e o nosso time comercial te chama rapidinho no WhatsApp para organizar seu atendimento — implementação e treinamento inclusos.</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;gap:12px;color:#334155;font-size:15.5px;font-weight:500"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Resposta rápida do nosso time, sem robô genérico</div>
+          <div style="display:flex;align-items:center;gap:12px;color:#334155;font-size:15.5px;font-weight:500"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Parceiro oficial Meta</div>
+          <div style="display:flex;align-items:center;gap:12px;color:#334155;font-size:15.5px;font-weight:500"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Demonstração gratuita</div>
+        </div>
+      </div>
+      <div>
+        <div style="background:#fff;border-radius:24px;padding:32px 30px;box-shadow:0 40px 80px -34px rgba(7,86,255,.4);border:1px solid #eef1f6">
+          <h3 style="font-size:22px;font-weight:800;letter-spacing:-.5px;margin:0 0 6px;color:#0a1633">Quero organizar meu atendimento</h3>
+          <p style="font-size:14.5px;color:#64748b;line-height:1.5;margin:0 0 22px">Preencha e o nosso time comercial te chama rapidinho no seu WhatsApp.</p>
+          <form onSubmit="{{ handleSubmit }}" style="display:flex;flex-direction:column;gap:14px">
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px">Nome</label>
+              <input name="nome" required placeholder="Seu nome" style="width:100%;font-family:inherit;font-size:15px;padding:13px 14px;border:1.5px solid #e2e8f0;border-radius:12px;outline:none;background:#fafbff" style-focus="border-color:#0756FF;box-shadow:0 0 0 3px rgba(7,86,255,.12);background:#fff" />
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px">WhatsApp</label>
+              <input name="whatsapp" required inputmode="tel" placeholder="(00) 00000-0000" style="width:100%;font-family:inherit;font-size:15px;padding:13px 14px;border:1.5px solid #e2e8f0;border-radius:12px;outline:none;background:#fafbff" style-focus="border-color:#0756FF;box-shadow:0 0 0 3px rgba(7,86,255,.12);background:#fff" />
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px">Ramo do negócio</label>
+              <input name="ramo" required placeholder="Ex: clínica, loja, imobiliária…" style="width:100%;font-family:inherit;font-size:15px;padding:13px 14px;border:1.5px solid #e2e8f0;border-radius:12px;outline:none;background:#fafbff" style-focus="border-color:#0756FF;box-shadow:0 0 0 3px rgba(7,86,255,.12);background:#fff" />
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px">Quantidade de usuários</label>
+              <select name="usuarios" required style="width:100%;font-family:inherit;font-size:15px;padding:13px 14px;border:1.5px solid #e2e8f0;border-radius:12px;outline:none;background:#fafbff;color:#334155;cursor:pointer;appearance:none;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 fill=%22none%22 stroke=%22%2364748b%22 stroke-width=%222.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22m6 9 6 6 6-6%22/></svg>');background-repeat:no-repeat;background-position:right 14px center" style-focus="border-color:#0756FF;box-shadow:0 0 0 3px rgba(7,86,255,.12);background-color:#fff">
+                <option value="" disabled selected>Selecione o tamanho da equipe</option>
+                <option value="1-5">1 a 5 usuários</option>
+                <option value="6-15">6 a 15 usuários</option>
+                <option value="16-30">16 a 30 usuários</option>
+                <option value="31-50">31 a 50 usuários</option>
+                <option value="50+">Mais de 50 usuários</option>
+              </select>
+            </div>
+            <label style="display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:#64748b;line-height:1.5;cursor:pointer;margin-top:2px">
+              <input type="checkbox" name="consent" required style="margin-top:2px;width:16px;height:16px;accent-color:#0756FF;flex-shrink:0" />
+              <span>Ao enviar, você concorda com nossa <a href="https://ajuda.zdg.com.br/diretrizes-e-politicas/aviso-de-privacidade" target="_blank" rel="noopener">Política de Privacidade</a> e com o tratamento dos seus dados conforme a LGPD.</span>
+            </label>
+            <button type="submit" style="margin-top:6px;width:100%;background:#0756FF;color:#fff;font-family:inherit;font-weight:700;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;transition:background .15s;box-shadow:0 14px 26px -12px rgba(7,86,255,.7)" style-hover="background:#0445CC">Enviar e receber mensagem</button>
+            <button type="button" onClick="{{ handleWhats }}" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;font-family:inherit;font-weight:700;font-size:16px;padding:15px;border:none;border-radius:14px;cursor:pointer;transition:filter .15s" style-hover="filter:brightness(.95)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37s-1.05 1.02-1.05 2.5 1.08 2.9 1.23 3.1c.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.71.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35zM12 2a10 10 0 0 0-8.6 15.06L2 22l5.06-1.33A10 10 0 1 0 12 2z"></path></svg>
+              Falar agora no WhatsApp
+            </button>
+            <p style="text-align:center;font-size:12px;color:#94a3b8;margin-top:2px">Resposta rápida • Parceiro oficial Meta • Demonstração gratuita</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:linear-gradient(165deg,#0756FF 0%,#0540c4 55%,#062a86 100%);padding:64px 20px 26px;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-140px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(255,255,255,.14),transparent 70%);pointer-events:none"></div>
+    <div style="max-width:1180px;margin:0 auto;position:relative;z-index:2">
+      <div class="foot-grid" style="display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:44px">
+        <div>
+          <div style="display:inline-flex;align-items:center;justify-content:center;background:#fff;padding:12px 16px;border-radius:14px;margin-bottom:20px;box-shadow:0 10px 24px -12px rgba(0,0,0,.4)"><img src="../assets/nx-logo.png" alt="NX Digital" style="height:40px;object-fit:contain;display:block" /></div>
+          <p style="font-size:14.5px;line-height:1.6;color:#cdddff;max-width:320px;margin:0 0 22px">Plataforma de atendimento multicanal com API oficial da Meta. A gente implementa, configura e treina o seu time.</p>
+          <div style="display:flex;gap:10px">
+            <a href="https://instagram.com/gruponxdigital" target="_blank" rel="noopener" aria-label="Instagram @gruponxdigital" style="width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:rgba(255,255,255,.24)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.2" fill="#fff" stroke="none"></circle></svg></a>
+            <a href="#form" aria-label="WhatsApp" style="width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:rgba(255,255,255,.24)"><svg width="21" height="21" viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.87 9.87 0 0 0 1.523 5.263l-.999 3.648 3.965-1.05zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg></a>
+            <a href="mailto:atendimento@nxsystems.com.br" aria-label="E-mail" style="width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:rgba(255,255,255,.24)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8fb4ff;margin:0 0 18px">Soluções</h4>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <a href="/chatbot" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Chatbot</a>
+            <a href="/agente-de-ia" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Agente de IA</a>
+            <a href="/copiloto-de-ia" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Copiloto de IA</a>
+            <a href="/crm-inteligente" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">CRM Inteligente</a>
+            <a href="/disparo-em-massa" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Disparo em massa</a>
+            <a href="/relatorios" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Relatórios</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8fb4ff;margin:0 0 18px">Quem somos</h4>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <a href="/nossa-historia" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Nossa História</a>
+            <a href="/protecao-de-dados" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Proteção de Dados</a>
+            <a href="/politica-de-privacidade" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Política de Privacidade</a>
+            <a href="/termos-de-uso" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Termos de Uso</a>
+            <a href="/codigo-de-etica" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Código de Ética</a>
+            <a href="/politicas-da-meta" style="font-size:14.5px;color:#dce8ff;transition:color .15s" style-hover="color:#fff">Políticas da Meta</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8fb4ff;margin:0 0 18px">Nossa empresa</h4>
+          <div style="display:flex;flex-direction:column;gap:13px;font-size:14px;color:#dce8ff;line-height:1.5">
+            <div style="font-weight:700;color:#fff">GRUPO NX NETSCALE LTDA</div>
+            <div style="display:flex;gap:9px;align-items:flex-start"><svg style="flex-shrink:0;margin-top:2px" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8fb4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 8h6M9 12h6M9 16h4"></path></svg><span>CNPJ 59.935.008/0001-92</span></div>
+            <a href="mailto:atendimento@nxsystems.com.br" style="display:flex;gap:9px;align-items:flex-start;color:#dce8ff;transition:color .15s" style-hover="color:#fff"><svg style="flex-shrink:0;margin-top:2px" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8fb4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg><span>atendimento@nxsystems.com.br</span></a>
+            <div style="display:flex;gap:9px;align-items:flex-start"><svg style="flex-shrink:0;margin-top:2px" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8fb4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>Av. Expedicionário José Pedro Coelho, 1237 — Centro, Tubarão/SC, 88701-005</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding-top:24px;border-top:1px solid rgba(255,255,255,.16)">
+        <div style="font-size:13px;color:#a9c4ff">© 2026 Grupo NX Netscale LTDA • Todos os direitos reservados</div>
+        <div style="display:flex;align-items:center;gap:16px;font-size:13px;color:#a9c4ff"><a href="/mapa-do-site" style="color:#dce8ff;font-weight:600" style-hover="color:#fff">Mapa do site</a><span>Plataforma de atendimento multicanal • Parceiro oficial Meta</span></div>
+      </div>
+    </div>
+  </footer>
+
+    <a href="#form" aria-label="Falar no WhatsApp" style="position:fixed;bottom:24px;right:24px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px -6px rgba(37,211,102,.6);animation:pulseRing 2.4s infinite">
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.87 9.87 0 0 0 1.523 5.263l-.999 3.648 3.965-1.05zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+  </a>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { solOpen:false, quemOpen:false, contOpen:false };
+  waNumber = '5548936181649';
+  handleSubmit(e){
+    e.preventDefault();
+    if(e.target.checkValidity && !e.target.checkValidity()){ e.target.reportValidity(); return; }
+    const f = e.target;
+    const nome = f.nome.value.trim();
+    const whats = f.whatsapp.value.trim();
+    const ramo = f.ramo.value.trim();
+    const sel = f.usuarios;
+    const usuarios = sel && sel.selectedIndex >= 0 ? sel.options[sel.selectedIndex].text : '';
+    const texto = encodeURIComponent(`Olá! Quero organizar meu atendimento.\nNome: ${nome}\nWhatsApp: ${whats}\nRamo: ${ramo}\nQuantidade de usuários: ${usuarios}`);
+    window.open(`https://wa.me/${this.waNumber}?text=${texto}`, '_blank');
+    window.location.href = 'obrigado?nome=' + encodeURIComponent(nome);
+  }
+  handleWhats(){
+    const texto = encodeURIComponent('Olá! Quero organizar meu atendimento no WhatsApp com a NX Digital.');
+    window.open(`https://wa.me/${this.waNumber}?text=${texto}`, '_blank');
+  }
+  renderVals(){
+    const menu = (open) => `position:absolute;top:100%;left:-10px;padding-top:14px;z-index:60;transition:opacity .18s,transform .18s;transform-origin:top left;opacity:${open?1:0};transform:${open?'translateY(0) scale(1)':'translateY(-6px) scale(.98)'};visibility:${open?'visible':'hidden'};pointer-events:${open?'auto':'none'}`;
+    const chev = (open) => `transition:transform .18s;transform:rotate(${open?180:0}deg)`;
+    const svgI = (paths, extra) => React.createElement('svg', { width:22, height:22, viewBox:'0 0 24 24', fill:'none', stroke:'#fff', strokeWidth:1.9, strokeLinecap:'round', strokeLinejoin:'round' }, ...(extra||[]), ...(Array.isArray(paths)?paths:[paths]).map((d,i)=>React.createElement('path',{key:i,d})));
+    const libData = [
+      { icon: svgI(['M8 2v3M16 2v3','M4 8h16'], [React.createElement('rect',{key:'r',x:3,y:5,width:18,height:16,rx:2})]), title:'Agendamentos', desc:'Consultas, exames e reuniões marcados automaticamente 24/7.' },
+      { icon: svgI(['M8 7h8M8 11h8M8 15h5'], [React.createElement('rect',{key:'r',x:4,y:3,width:16,height:18,rx:2})]), title:'Orçamentos básicos', desc:'Respostas rápidas para solicitações de preço e orçamentos padronizados.' },
+      { icon: svgI(['M1 3h13v10H1zM14 8h4l3 3v2h-7z','M5.5 17.5a1.5 1.5 0 1 0 0-.01M17.5 17.5a1.5 1.5 0 1 0 0-.01']), title:'Pedidos e Delivery', desc:'Gestão completa de pedidos de restaurante e serviços de entrega.' },
+      { icon: svgI(['M14 2v6h6','M9 13h6M9 17h6M9 9h1'], [React.createElement('path',{key:'p',d:'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'})]), title:'Boletos e 2ª Via', desc:'Emissão instantânea de guias e boletos direto no chat.' },
+      { icon: svgI(['m9 12 2 2 4-4'], [React.createElement('rect',{key:'r',x:3,y:3,width:18,height:18,rx:4})]), title:'Envios de Protocolo', desc:'Automação no envio de registros e protocolos de atendimento.' },
+    ];
+    const libRows = libData.map((r,i) =>
+      React.createElement('div',{ key:i, style:{ display:'flex', alignItems:'center', gap:'18px', background:'rgba(255,255,255,.08)', border:'1px solid rgba(255,255,255,.16)', borderRadius:'16px', padding:'22px 24px' } },
+        React.createElement('span',{ style:{ flexShrink:0, width:'50px', height:'50px', borderRadius:'13px', background:'rgba(255,255,255,.14)', display:'flex', alignItems:'center', justifyContent:'center' } }, r.icon),
+        React.createElement('div',null,
+          React.createElement('div',{ style:{ fontSize:'17px', fontWeight:800, color:'#fff', marginBottom:'4px' } }, r.title),
+          React.createElement('div',{ style:{ fontSize:'14px', lineHeight:1.5, color:'#d3e0ff' } }, r.desc)
+        )
+      )
+    );
+    const blueI = (paths, extra) => React.createElement('svg', { width:26, height:26, viewBox:'0 0 24 24', fill:'none', stroke:'#0756FF', strokeWidth:1.9, strokeLinecap:'round', strokeLinejoin:'round' }, ...(extra||[]), ...(Array.isArray(paths)?paths:[paths]).map((d,i)=>React.createElement('path',{key:i,d})));
+    const flowDefs = [
+      { label:'Chatbot', icon: blueI('M8 10h8M8 14h5', [React.createElement('path',{key:'p',d:'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z'})]) },
+      { label:'API', icon: blueI(['m9 8-4 4 4 4','m15 8 4 4-4 4']) },
+      { label:'Sistemas', icon: blueI(['M7 8h.01M7 16h.01'], [React.createElement('rect',{key:'a',x:3,y:4,width:18,height:7,rx:2}),React.createElement('rect',{key:'b',x:3,y:13,width:18,height:7,rx:2})]) },
+    ];
+    const flowNodes = flowDefs.map((n,i) => [
+      i>0 ? React.createElement('div',{ key:'l'+i, style:{ flex:1, height:'2px', background:'linear-gradient(90deg,#bcd3ff,#7aa8ff)' } }) : null,
+      React.createElement('div',{ key:'n'+i, style:{ display:'flex', flexDirection:'column', alignItems:'center', gap:'12px', flexShrink:0 } },
+        React.createElement('div',{ style:{ width:'86px', height:'86px', borderRadius:'50%', background:'#fff', border:'2px solid #0756FF', display:'flex', alignItems:'center', justifyContent:'center', boxShadow:'0 14px 30px -14px rgba(7,86,255,.4)' } }, n.icon),
+        React.createElement('span',{ style:{ fontSize:'15px', fontWeight:800, color:'#0a1633' } }, n.label)
+      )
+    ]).flat();
+    const cardIcons = [
+      blueI(['M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2','M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75'], [React.createElement('circle',{key:'c',cx:9,cy:7,r:4})]),
+      blueI(['M3 5c0 1.66 4 3 9 3s9-1.34 9-3M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5M3 12c0 1.66 4 3 9 3s9-1.34 9-3'], [React.createElement('ellipse',{key:'e',cx:12,cy:5,rx:9,ry:3})]),
+      blueI(['M3 18v-6a9 9 0 0 1 18 0v6','M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z']),
+      blueI(['M2 12h20','M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z'], [React.createElement('circle',{key:'c',cx:12,cy:12,r:10})]),
+      blueI(['M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z','M3 6h18M16 10a4 4 0 0 1-8 0']),
+      blueI('M13 2 3 14h9l-1 8 10-12h-9z'),
+    ];
+    const intCards = cardIcons.map((ic,i) =>
+      React.createElement('div',{ key:i, style:{ aspectRatio:'1', background:'#fff', borderRadius:'18px', display:'flex', alignItems:'center', justifyContent:'center', boxShadow:'0 14px 34px -18px rgba(7,86,255,.35)' } }, ic)
+    );
+    const modeRow = (icon, txt) => (i) => React.createElement('li',{ key:i, style:{ display:'flex', alignItems:'center', gap:'12px', fontSize:'15px', color:'#eaf1ff' } },
+      React.createElement('span',{ style:{ flexShrink:0, display:'flex' } }, icon), txt);
+    const mI = (paths, extra) => React.createElement('svg', { width:22, height:22, viewBox:'0 0 24 24', fill:'none', stroke:'#fff', strokeWidth:1.9, strokeLinecap:'round', strokeLinejoin:'round' }, ...(extra||[]), ...(Array.isArray(paths)?paths:[paths]).map((d,i)=>React.createElement('path',{key:i,d})));
+    const estrutData = [
+      [mI(['M9 7h11M9 12h11M9 17h11'], [React.createElement('rect',{key:'a',x:3,y:5,width:3,height:3,rx:.6}),React.createElement('rect',{key:'b',x:3,y:10.5,width:3,height:3,rx:.6}),React.createElement('rect',{key:'c',x:3,y:16,width:3,height:3,rx:.6})]), 'Fluxos predefinidos para processos simples'],
+      [mI(['M6 3v12','M18 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 15a9 9 0 0 0 9-9']), 'Navegação por botões e menus'],
+      [mI('m9 12 2 2 4-4', [React.createElement('circle',{key:'c',cx:12,cy:12,r:9})]), 'Validação rigorosa de dados'],
+    ];
+    const iaData = [
+      [mI('M12 3l1.6 4L18 8.5l-4.4 1.5L12 14l-1.6-4L6 8.5 10.4 7 12 3zM18 15l.8 2 2.2.8-2.2.8L18 21l-.8-2.4L15 18l2.2-1z'), 'IA contextualizada para conversas complexas'],
+      [mI(['M6 20V10M12 20V4M18 20v-6']), 'Base de conhecimento configurável'],
+      [mI(['M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2','M20 8v6M23 11h-6'], [React.createElement('circle',{key:'c',cx:9,cy:7,r:4})]), 'Transferência automática para humano'],
+    ];
+    const modeEstrut = estrutData.map(([ic,t],i)=>modeRow(ic,t)(i));
+    const modeIa = iaData.map(([ic,t],i)=>modeRow(ic,t)(i));
+    return {
+      libRows, flowNodes, intCards, modeEstrut, modeIa,
+      handleSubmit: (e) => this.handleSubmit(e),
+      handleWhats: () => this.handleWhats(),
+      openSol:()=>this.setState({solOpen:true}), closeSol:()=>this.setState({solOpen:false}), toggleSol:()=>this.setState(s=>({solOpen:!s.solOpen})),
+      openQuem:()=>this.setState({quemOpen:true}), closeQuem:()=>this.setState({quemOpen:false}), toggleQuem:()=>this.setState(s=>({quemOpen:!s.quemOpen})),
+      openCont:()=>this.setState({contOpen:true}), closeCont:()=>this.setState({contOpen:false}), toggleCont:()=>this.setState(s=>({contOpen:!s.contOpen})),
+      solMenuStyle: menu(this.state.solOpen), solChevronStyle: chev(this.state.solOpen),
+      quemMenuStyle: menu(this.state.quemOpen), quemChevronStyle: chev(this.state.quemOpen),
+      contMenuStyle: menu(this.state.contOpen), contChevronStyle: chev(this.state.contOpen),
+      setLangPt:()=>{}, setLangEs:()=>{}, setLangEn:()=>{},
+    };
+  }
+}
+</script>
+</body>
+</html>
