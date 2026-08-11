@@ -1,3 +1,90 @@
+/* ============================================================
+   NX — Recuperacao automatica de imagens quebradas
+   Se um arquivo de imagem nao existir no servidor, tenta:
+     1) o mesmo arquivo na raiz do site
+     2) o mesmo arquivo na pasta /assets/
+     3) o arquivo direto do repositorio no GitHub (CDN jsDelivr)
+   Nao altera imagens que ja carregam normalmente.
+   ============================================================ */
+(function () {
+  "use strict";
+  var CDN = "https://cdn.jsdelivr.net/gh/gruponxnetscale/gruponxnovo@main/";
+
+  function buildCandidates(img) {
+    var raw = img.getAttribute("src") || "";
+    if (!raw || /^data:/i.test(raw)) return [];
+    var path;
+    try { path = new URL(raw, location.href).pathname; } catch (e) { return []; }
+    path = path.replace(/^\/+/, "");
+    if (!/\.(png|jpe?g|gif|webp|svg|avif)$/i.test(path)) return [];
+    var file = path.split("/").pop();
+    var list = ["/" + file, "/assets/" + file, CDN + "assets/" + file, CDN + file];
+    var out = [], seen = {};
+    for (var i = 0; i < list.length; i++) {
+      if (list[i] === path || list[i] === "/" + path) continue;
+      if (seen[list[i]]) continue;
+      seen[list[i]] = 1;
+      out.push(list[i]);
+    }
+    return out;
+  }
+
+  function recover(img) {
+    if (!img || img.tagName !== "IMG") return;
+    if (!img.__nxList) img.__nxList = buildCandidates(img);
+    var list = img.__nxList, i = img.__nxTry || 0;
+    while (i < list.length) {
+      var next = list[i];
+      i++;
+      if (next !== img.getAttribute("src")) {
+        img.__nxTry = i;
+        img.src = next;
+        return;
+      }
+    }
+    img.__nxTry = i;
+  }
+
+  function isBroken(img) {
+    return img.complete && img.naturalWidth === 0 && !!img.getAttribute("src");
+  }
+
+  function sweep(root) {
+    if (!root || !root.querySelectorAll) return;
+    var imgs = root.querySelectorAll("img");
+    for (var i = 0; i < imgs.length; i++) if (isBroken(imgs[i])) recover(imgs[i]);
+  }
+
+  window.addEventListener("error", function (e) {
+    var t = e && e.target;
+    if (t && t.tagName === "IMG") recover(t);
+  }, true);
+
+  function start() {
+    sweep(document);
+    try {
+      new MutationObserver(function (muts) {
+        for (var i = 0; i < muts.length; i++) {
+          var added = muts[i].addedNodes;
+          for (var j = 0; j < added.length; j++) {
+            var n = added[j];
+            if (!n || n.nodeType !== 1) continue;
+            if (n.tagName === "IMG") { if (isBroken(n)) recover(n); }
+            else sweep(n);
+          }
+        }
+      }).observe(document.documentElement, { childList: true, subtree: true });
+    } catch (e) {}
+    setTimeout(function () { sweep(document); }, 1200);
+    setTimeout(function () { sweep(document); }, 4000);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start);
+  } else {
+    start();
+  }
+})();
 // GENERATED from dc-runtime/src/*.ts — do not edit. Rebuild with `cd dc-runtime && bun run build`.
 "use strict";
 (() => {
