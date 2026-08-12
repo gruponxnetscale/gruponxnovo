@@ -235,6 +235,11 @@
     header .head-nav > div > div[style*="position:absolute"] > div{min-width:0!important;width:100%!important;max-height:62vh!important;overflow-y:auto!important;box-sizing:border-box!important}
     header .head-nav > div > div[style*="position:absolute"] a{font-size:13.5px!important;padding:10px 13px!important;white-space:normal!important;line-height:1.35!important}
   }
+
+  /* validação visual: campos não preenchidos em vermelho */
+  form.nx-checked input:invalid,form.nx-checked select:invalid,form.nx-checked textarea:invalid{border-color:#ef4444!important;background:#fff5f5!important;box-shadow:0 0 0 3px rgba(239,68,68,.12)!important}
+  form.nx-checked input[type=checkbox]:invalid{outline:2px solid #ef4444;outline-offset:2px}
+  form.nx-checked label:has(input[type=checkbox]:invalid){color:#ef4444!important}
 </style>
 </helmet>
 
