@@ -1,4 +1,96 @@
 /* ============================================================
+   NX — Formulario obrigatorio antes de ir pro WhatsApp
+
+   Motivo: o motor que monta as paginas transforma o HTML em
+   componentes React, e nesse caminho o atributo "required" era
+   perdido. Resultado: o formulario ficava valido mesmo vazio e
+   qualquer clique ia direto pro WhatsApp.
+
+   Este bloco reaplica o "required" nos campos do formulario
+   depois que a pagina termina de montar (e sempre que ela e
+   remontada), fazendo os dois botoes — "Enviar e receber
+   mensagem" e "Falar agora no WhatsApp" — travarem enquanto
+   faltar campo.
+   ============================================================ */
+(function () {
+  "use strict";
+
+  var CAMPOS = ["nome", "whatsapp", "ramo", "usuarios", "consent"];
+
+  function marcarForm(f) {
+    if (!f || !f.elements) return false;
+    var mudou = false;
+    for (var i = 0; i < CAMPOS.length; i++) {
+      var el = f.elements[CAMPOS[i]];
+      if (el && el.tagName && !el.required) {
+        el.required = true;
+        mudou = true;
+      }
+    }
+    return mudou;
+  }
+
+  function aplicar() {
+    var forms = document.querySelectorAll("form");
+    for (var i = 0; i < forms.length; i++) marcarForm(forms[i]);
+  }
+
+  // Rede de seguranca: se algum botao/link tentar abrir o WhatsApp
+  // com o formulario da pagina incompleto, barra e mostra o erro.
+  document.addEventListener(
+    "click",
+    function (e) {
+      var alvo = e.target && e.target.closest ? e.target.closest("a,button") : null;
+      if (!alvo) return;
+
+      var href = alvo.getAttribute ? alvo.getAttribute("href") || "" : "";
+      var ehLinkWhats = /(?:wa\.me|api\.whatsapp\.com)/i.test(href);
+      var f = alvo.closest ? alvo.closest("form") : null;
+
+      // Botao de submit: a validacao nativa do navegador ja resolve.
+      if (!ehLinkWhats && alvo.tagName === "BUTTON" && alvo.type === "submit") {
+        aplicar();
+        return;
+      }
+      if (!f && !ehLinkWhats) return;
+
+      if (!f) f = document.querySelector("form");
+      if (!f) return; // pagina sem formulario: nao ha o que validar
+
+      aplicar();
+      if (f.checkValidity && !f.checkValidity()) {
+        e.preventDefault();
+        e.stopPropagation();
+        f.classList.add("nx-checked");
+        if (f.scrollIntoView) f.scrollIntoView({ behavior: "smooth", block: "center" });
+        if (f.reportValidity) f.reportValidity();
+      }
+    },
+    true
+  );
+
+  function iniciar() {
+    aplicar();
+    try {
+      new MutationObserver(function () {
+        aplicar();
+      }).observe(document.documentElement, { childList: true, subtree: true });
+    } catch (e) {}
+    var tentativas = 0;
+    var t = setInterval(function () {
+      aplicar();
+      if (++tentativas > 20) clearInterval(t);
+    }, 500);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", iniciar);
+  } else {
+    iniciar();
+  }
+})();
+
+/* ============================================================
    NX — Recuperacao automatica de imagens quebradas
    Se um arquivo de imagem nao existir no servidor, tenta:
      1) o mesmo arquivo na raiz do site
