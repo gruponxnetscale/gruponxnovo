@@ -439,12 +439,15 @@ class Component extends DCLogic {
     window.open('https://wa.me/'+this.waNumber+'?text='+texto,'_blank');
     window.location.href='obrigado?nome='+encodeURIComponent(nome);
   }
-  handleWhats(){ window.open('https://wa.me/'+this.waNumber+'?text='+encodeURIComponent('Ol\u00e1! Quero falar com a NX Digital.'),'_blank'); }
+  handleWhats(ev){
+    const f = ev && ev.target && ev.target.closest ? ev.target.closest('form') : document.querySelector('form');
+    if(f){ if(f.checkValidity && !f.checkValidity()){ f.reportValidity(); return; } if(f.requestSubmit){ f.requestSubmit(); return; } }
+    window.open('https://wa.me/'+this.waNumber+'?text='+encodeURIComponent('Ol\u00e1! Quero falar com a NX Digital.'),'_blank'); }
   renderVals(){
     const menu = (open) => `position:absolute;top:100%;left:-10px;padding-top:14px;z-index:60;transition:opacity .18s,transform .18s;transform-origin:top left;opacity:${open?1:0};transform:${open?'translateY(0) scale(1)':'translateY(-6px) scale(.98)'};visibility:${open?'visible':'hidden'};pointer-events:${open?'auto':'none'}`;
     const chev = (open) => `transition:transform .18s;transform:rotate(${open?180:0}deg)`;
     return {
-      handleSubmit:(e)=>this.handleSubmit(e), handleWhats:()=>this.handleWhats(),
+      handleSubmit:(e)=>this.handleSubmit(e), handleWhats:(ev)=>this.handleWhats(ev),
       openSol:()=>this.setState({solOpen:true}), closeSol:()=>this.setState({solOpen:false}), toggleSol:()=>this.setState(s=>({solOpen:!s.solOpen})),
       openQuem:()=>this.setState({quemOpen:true}), closeQuem:()=>this.setState({quemOpen:false}), toggleQuem:()=>this.setState(s=>({quemOpen:!s.quemOpen})),
       openCont:()=>this.setState({contOpen:true}), closeCont:()=>this.setState({contOpen:false}), toggleCont:()=>this.setState(s=>({contOpen:!s.contOpen})),
