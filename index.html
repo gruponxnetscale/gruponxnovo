@@ -1231,8 +1231,10 @@ class Component extends DCLogic {
         this.sendForm(e.target);
       },
       handleWhats: (e) => {
-        const f = e.target.closest('form');
-        if (f && !f.reportValidity()) return;
+        const f = (e.target && e.target.closest) ? e.target.closest('form') : document.querySelector('form');
+        if (!f) return;
+        f.classList.add('nx-checked');
+        if (f.checkValidity && !f.checkValidity()) { f.reportValidity(); return; }
         this.sendForm(f);
       },
     };
