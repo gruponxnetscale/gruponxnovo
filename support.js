@@ -16,12 +16,16 @@
   "use strict";
 
   var CAMPOS = ["nome", "whatsapp", "ramo", "usuarios", "consent"];
+  // Na pagina de Suporte o preenchimento e livre: so o aceite (LGPD)
+  // continua obrigatorio.
+  var CAMPOS_SUPORTE = ["consent"];
 
-  function marcarForm(f) {
+  function marcarForm(f, lista) {
     if (!f || !f.elements) return false;
+    lista = lista || CAMPOS;
     var mudou = false;
-    for (var i = 0; i < CAMPOS.length; i++) {
-      var el = f.elements[CAMPOS[i]];
+    for (var i = 0; i < lista.length; i++) {
+      var el = f.elements[lista[i]];
       if (el && el.tagName && !el.required) {
         el.required = true;
         mudou = true;
@@ -37,9 +41,9 @@
   }
 
   function aplicar() {
-    if (ehSuporte()) return;
+    var lista = ehSuporte() ? CAMPOS_SUPORTE : CAMPOS;
     var forms = document.querySelectorAll("form");
-    for (var i = 0; i < forms.length; i++) marcarForm(forms[i]);
+    for (var i = 0; i < forms.length; i++) marcarForm(forms[i], lista);
   }
 
   // Rede de seguranca: se algum botao/link tentar abrir o WhatsApp
