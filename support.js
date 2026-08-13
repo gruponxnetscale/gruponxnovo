@@ -30,7 +30,14 @@
     return mudou;
   }
 
+  // A pagina de Suporte e a unica com preenchimento opcional:
+  // ali nao reaplicamos o "required" nos campos.
+  function ehSuporte() {
+    return /(^|\/)suporte(\/|\.html?)?$/i.test(location.pathname);
+  }
+
   function aplicar() {
+    if (ehSuporte()) return;
     var forms = document.querySelectorAll("form");
     for (var i = 0; i < forms.length; i++) marcarForm(forms[i]);
   }
