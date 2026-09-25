@@ -317,9 +317,9 @@
           </div>
           <div style="display:flex;flex-direction:column;gap:12px">
             <div style="background:#fff;border-radius:14px;padding:18px 20px">
-              <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid #eef1f6"><span style="font-size:13.5px;color:#64748b">Parcela</span><span style="font-size:17px;font-weight:900;color:#0a1633">{{ parcelaStr }}</span></div>
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eef1f6"><span style="font-size:13.5px;color:#64748b">Total do período ({{ mesesStr }})</span><span style="font-size:15px;font-weight:800;color:#0a1633">{{ totalStr }}</span></div>
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eef1f6"><span style="font-size:13.5px;color:#0756FF;font-weight:700">À vista (-10%)</span><span style="font-size:15px;font-weight:900;color:#0756FF">{{ avistaStr }}</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid #eef1f6"><span style="font-size:13.5px;color:#64748b">Parcela</span>{{ parcCell }}</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eef1f6"><span style="font-size:13.5px;color:#64748b">Total do período ({{ mesesStr }})</span>{{ totCell }}</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eef1f6"><span style="font-size:13.5px;color:#0756FF;font-weight:700">À vista (-10%)</span>{{ avCell }}</div>
               <div style="display:flex;justify-content:space-between;align-items:center;padding-top:10px"><span style="font-size:13px;color:#64748b">Setup (uma única vez)</span><span style="font-size:14px;font-weight:800;color:#0a1633">{{ setupStr }}</span></div>
               <div style="font-size:11px;color:#0756FF;margin-top:8px">💰 Economia à vista: {{ economiaStr }}</div>
             </div>
@@ -398,7 +398,7 @@ class Component extends DCLogic {
   state = { solOpen:false, quemOpen:false, contOpen:false,
     qty: { users:5, numeros:0, automacao:0, ligacao:0, extras:0 },
     setup: { oficial:false, comum:false, ia:false, iaplus:false, site:false },
-    period: 3, nomeCliente:'', cnpjCliente:'', cliErro:false, admin:false, pOver:{}, sOver:{}, mOver:null };
+    period: 3, nomeCliente:'', cnpjCliente:'', cliErro:false, admin:false, pOver:{}, sOver:{}, mOver:null, valOv:null, valEdit:null };
   waNumber = '5548936181649';
   MIN_MENSAL = 299; // mensalidade mínima (5 usuários)
   // preços editáveis (mensais por unidade)
@@ -426,7 +426,9 @@ class Component extends DCLogic {
   brl(v){ const r=Math.round(v*100)/100; const inteiro=Math.abs(r-Math.round(r))<0.005; return 'R$ ' + r.toLocaleString('pt-BR',{minimumFractionDigits:inteiro?0:2,maximumFractionDigits:inteiro?0:2}); }
   bump(k,d){ this.setState(s=>{ const q={...s.qty}; const min = k==='users'?5:0; q[k]=Math.max(min, q[k]+d); return {qty:q}; }); }
   toggleSetup(k){ this.setState(s=>({ setup:{...s.setup, [k]:!s.setup[k]} })); }
-  setPeriod(p){ this.setState({period:p}); }
+  setPeriod(p){ this.setState({period:p, valOv:null, valEdit:null}); }
+  setValOv(k,e){ const t=e.target.value; const n=parseFloat(t.replace(/\./g,'').replace(',','.')); this.setState({valEdit:{k,t}, valOv:(t===''||isNaN(n))?null:{k,v:n}, mOver:null}); }
+  valCell(k,val,st){ const ed=this.state.valEdit; const txt=(ed&&ed.k===k)?ed.t:(Math.round(val*100)/100).toFixed(2).replace('.',','); return React.createElement('span',{style:{display:'inline-flex',alignItems:'center',gap:'4px'}},React.createElement('span',{style:{fontSize:'13px',fontWeight:700,color:st.color}},'R$'),React.createElement('input',{value:txt,inputMode:'decimal',onChange:(e)=>this.setValOv(k,e),onBlur:()=>this.setState({valEdit:null}),style:{width:'104px',textAlign:'right',fontFamily:'inherit',fontSize:st.size,fontWeight:st.w,color:st.color,border:'1.5px dashed #9db8ff',borderRadius:'8px',padding:'4px 7px',outline:'none',background:'#f5f9ff'}})); }
   setNome(e){ this.setState({nomeCliente:e.target.value, cliErro:false}); }
   setCnpj(e){ let v=e.target.value.replace(/\D/g,'').slice(0,14); v=v.replace(/^(\d{2})(\d)/,'$1.$2').replace(/^(\d{2})\.(\d{3})(\d)/,'$1.$2.$3').replace(/\.(\d{3})(\d)/,'.$1/$2').replace(/(\d{4})(\d)/,'$1-$2'); this.setState({cnpjCliente:v, cliErro:false}); }
   cliOk(){ const n=(this.state.nomeCliente||'').trim(); const c=(this.state.cnpjCliente||'').replace(/\D/g,''); return n.length>=2; }
@@ -555,9 +557,11 @@ class Component extends DCLogic {
     const _itensAtivos=items.filter(([k,,,,,ov])=>ov!=null||q[k]>0);
     const _vals=_itensAtivos.map(([k,nome,preco,,hint,ov])=>Math.round((ov!=null?ov:q[k]*preco)*_fatorP));
     const mensalCalc=_vals.reduce((a,b)=>a+b,0);
-    const mensal=(this.state.mOver!=null&&!isNaN(this.state.mOver))?this.state.mOver:mensalCalc;
-    const total=mensal*meses;
-    const avista=total*0.9;
+    let mensal=(this.state.mOver!=null&&!isNaN(this.state.mOver))?this.state.mOver:mensalCalc;
+    let total=mensal*meses;
+    let avista=total*0.9;
+    const _vo=this.state.valOv;
+    if(_vo&&!isNaN(_vo.v)){ if(_vo.k==='parc'){ mensal=_vo.v; total=mensal*meses; avista=total*0.9; } else if(_vo.k==='tot'){ total=_vo.v; mensal=total/meses; avista=total*0.9; } else { avista=_vo.v; total=avista/0.9; mensal=total/meses; } }
     const economia=total-avista;
     const resumoData=_itensAtivos.map(([k,nome,preco,,hint,ov],i)=>[q[k]+'× '+nome, brl(_vals[i])+'/mês', hint||'']);
     const resumoRows=resumoData.map(([l,v],i)=>React.createElement('div',{key:i,style:{display:'flex',justifyContent:'space-between',fontSize:'13px',color:'#dbe7ff'}},React.createElement('span',null,l),React.createElement('span',{style:{fontWeight:700,color:'#fff'}},v)));
@@ -565,7 +569,7 @@ class Component extends DCLogic {
     const setupTotal=(this.state.setup.oficial?this.setupVal('oficial'):0)+(this.state.setup.comum?this.setupVal('comum'):0)+(this.state.setup.ia?this.setupVal('ia'):0)+(this.state.setup.iaplus?this.setupVal('iaplus'):0)+((this.state.setup.oficial&&this.state.setup.site)?this.setupVal('site'):0);
     const waMsg='Olá! Montei meu plano na NX:\n'+resumoData.map(r=>'• '+r[0]).join('\n')+'\nPeríodo: '+meses+' meses\nMensalidade: '+brl(mensal)+'\nTotal do período: '+brl(total)+(setupTotal>0?('\nSetup: '+setupList.join(', ')+' = '+brl(setupTotal)):'');
     const waLink='https://wa.me/'+this.waNumber+'?text='+encodeURIComponent(waMsg);
-    const cenarios=[3,6,12].map(m=>{ const pd={3:0,6:10,12:15}[m]; const rw=mensalBase*(1-pd/100); const mc=items.filter(([k2,,,,,ov2])=>ov2!=null||q[k2]>0).reduce((a,[k2,,p2,,,ov2])=>a+Math.round((ov2!=null?ov2:q[k2]*p2)*(1-pd/100)),0); const mm=(m===meses&&this.state.mOver!=null&&!isNaN(this.state.mOver))?this.state.mOver:mc; return { meses:m, desc:pd, mensal:brl(mm), total:brl(mm*m), avista:brl(mm*m*0.9), totalS:this.money(mm*m), parcS:this.money(mm), atual:m===meses }; });
+    const cenarios=[3,6,12].map(m=>{ const pd={3:0,6:10,12:15}[m]; const rw=mensalBase*(1-pd/100); const mc=items.filter(([k2,,,,,ov2])=>ov2!=null||q[k2]>0).reduce((a,[k2,,p2,,,ov2])=>a+Math.round((ov2!=null?ov2:q[k2]*p2)*(1-pd/100)),0); const mm=(m===meses)?mensal:mc; return { meses:m, desc:pd, mensal:brl(mm), total:brl(mm*m), avista:brl(mm*m*0.9), totalS:this.money(mm*m), parcS:this.money(mm), atual:m===meses }; });
     const prazos=[]; if(this.state.setup.comum) prazos.push([3,'até 3 dias úteis']); if(this.state.setup.oficial) prazos.push([5,'até 5 dias úteis']); if(this.state.setup.ia) prazos.push([15,'até 15 dias úteis']); if(this.state.setup.iaplus) prazos.push([20,'até 20 dias úteis']);
     const prazoTxt = prazos.length ? prazos.sort((a,b)=>b[0]-a[0])[0][1] : '';
     const _pagS=meses+' parcelas de '+this.money(mensal)+' no boleto, ou à vista por '+this.money(mensal*meses*0.9)+' (-10%).';
@@ -580,6 +584,9 @@ class Component extends DCLogic {
       nomeBorder: (this.state.cliErro&&(this.state.nomeCliente||'').trim().length<2)?'2px solid #e0324f':'none',
       cnpjBorder: (this.state.cliErro&&(this.state.cnpjCliente||'').replace(/\D/g,'').length!==14)?'2px solid #e0324f':'none',
       acessoTxt: 'Plano de '+meses+' meses com acesso garantido durante todo o período. O valor total é dividido em '+meses+' parcelas de '+this.money(mensal)+'.',
+      parcCell: admin?this.valCell('parc',mensal,{size:'16px',w:900,color:'#0a1633'}):React.createElement('span',{style:{fontSize:'17px',fontWeight:900,color:'#0a1633'}},this.money(mensal)),
+      totCell: admin?this.valCell('tot',total,{size:'15px',w:800,color:'#0a1633'}):React.createElement('span',{style:{fontSize:'15px',fontWeight:800,color:'#0a1633'}},brl(total)),
+      avCell: admin?this.valCell('av',avista,{size:'15px',w:900,color:'#0756FF'}):React.createElement('span',{style:{fontSize:'15px',fontWeight:900,color:'#0756FF'}},brl(avista)),
       mensalStr: brl(mensal), totalStr: brl(total), avistaStr: brl(avista), economiaStr: brl(economia),
       setupStr: setupTotal>0?brl(setupTotal):'nenhum selecionado',
       periodoLabel: 'Contrato de '+meses+' meses'+(periodInfo>0?(' (-'+periodInfo+'% na mensalidade)'):''),
