@@ -19,7 +19,7 @@
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:'Inter',sans-serif;color:#0B1220;background:#fff;-webkit-font-smoothing:antialiased}
+  body{font-family:'Inter',sans-serif;color:#0B1220;background:#f4f8ff;-webkit-font-smoothing:antialiased}
   a{color:#0756FF;text-decoration:none}
   a:hover{color:#0445CC}
   @media(max-width:920px){.incl-grid{grid-auto-flow:row!important;grid-template-rows:none!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}.head-nav{display:none!important}.sub-title{font-size:38px!important}}
@@ -228,7 +228,7 @@
   </header>
 
   <!-- HERO -->
-  <section style="background:linear-gradient(180deg,#f4f8ff 0%,#fff 60%);padding:56px 24px 30px">
+  <section style="background:#f4f8ff;padding:56px 24px 30px">
     <div style="max-width:820px;margin:0 auto;text-align:center">
       <span style="display:inline-block;font-size:12px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:#0756FF;background:#e0ebff;border-radius:100px;padding:7px 16px;margin-bottom:18px">Preços e Planos</span>
       <h1 class="sub-title" style="font-size:48px;line-height:1.05;font-weight:900;letter-spacing:-2px;color:#0a1633;margin:0 0 16px;text-wrap:balance">Monte o seu <span style="color:#0756FF">plano ideal</span></h1>
@@ -237,7 +237,7 @@
   </section>
 
   <!-- CALCULADORA -->
-  <section style="background:#fff;padding:20px 24px 40px">
+  <section style="background:#f4f8ff;padding:20px 24px 40px">
     <div class="pl-grid" style="max-width:960px;margin:0 auto">
       <div style="display:flex;flex-direction:column;gap:20px">
         <div style="background:#fff;border:1px solid #e6ecf5;border-radius:20px;box-shadow:0 24px 60px -40px rgba(15,23,42,.4);padding:26px 26px 22px">
@@ -264,6 +264,7 @@
               <div style="display:flex;align-items:center;gap:7px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M4 5h16M7 12h10M10 19h4"></path></svg><span style="font-size:12.5px;font-weight:600;color:#0a1633;line-height:1.3">Filtros avançados</span></div>
               <div style="display:flex;align-items:center;gap:7px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="6" width="18" height="13" rx="3"></rect><path d="M3 10h18"></path></svg><span style="font-size:12.5px;font-weight:600;color:#0a1633;line-height:1.3">Carteira de clientes</span></div>
               <div style="display:flex;align-items:center;gap:7px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M3 5h18l-7 8v6l-4 2v-8z"></path></svg><span style="font-size:12.5px;font-weight:600;color:#0a1633;line-height:1.3">Calendário de follow-up</span></div>
+              <div style="display:flex;align-items:center;gap:7px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg><span style="font-size:12.5px;font-weight:600;color:#0a1633;line-height:1.3">Setorização</span></div>
             </div>
             <div style="font-size:11.5px;color:#8695af;line-height:1.45;margin-top:10px">E diversas outras funções da plataforma. Automações específicas devem ser consultadas.</div>
           </div>
@@ -284,19 +285,33 @@
   </section>
 
   <!-- RESUMO -->
-  <section style="background:linear-gradient(180deg,#f4f8ff 0%,#eef4ff 100%);padding:20px 24px 80px">
+  <section style="background:#f4f8ff;padding:20px 24px 80px">
     <div style="max-width:960px;margin:0 auto">
+      <h2 style="font-size:30px;font-weight:900;letter-spacing:-.8px;color:#0a1633;text-align:center;margin:0 0 20px">Resumo do plano</h2>
       <div style="background:linear-gradient(160deg,#0a52e8,#0433a8);border-radius:22px;padding:34px 34px;box-shadow:0 40px 80px -34px rgba(7,86,255,.6)">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start" class="pl-resumo">
           <div>
-            <div style="font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#9db8ff;margin-bottom:6px">Resumo do plano</div>
-            <div style="font-size:15px;font-weight:700;color:#dce8ff;margin-bottom:4px">{{ planoLabel }}</div>
-            <div style="font-size:52px;font-weight:900;letter-spacing:-2px;color:#fff;line-height:1.05">{{ totalHero }}</div>
-            <div style="display:flex;align-items:baseline;gap:6px;margin:6px 0 4px;font-size:16px;font-weight:700;color:#dce8ff">{{ parcPrefix }}{{ mensalHero }}</div>
-            <div style="font-size:13px;color:#bcd2ff;margin-bottom:18px">{{ periodoLabel }}</div>
-            <div style="background:rgba(255,255,255,.1);border-radius:14px;padding:16px 18px">
-              <div style="font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#9db8ff;margin-bottom:8px">O que está incluso</div>
+            <div style="background:rgba(255,255,255,.1);border-radius:14px;padding:18px 20px">
+              <div style="font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#9db8ff;margin-bottom:10px">O que está incluso</div>
               <div style="display:flex;flex-direction:column;gap:9px">{{ resumoRows }}</div>
+              <div style="height:1px;background:rgba(255,255,255,.16);margin:14px 0 12px"></div>
+              <div style="font-size:11.5px;font-weight:700;color:#bcd2ff;margin-bottom:9px">Recursos nativos já inclusos</div>
+              <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 12px">
+                <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#fff;line-height:1.3"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9db8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"></path></svg>WhatsApp</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#fff;line-height:1.3"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9db8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"></path></svg>Instagram</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#fff;line-height:1.3"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9db8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"></path></svg>Facebook</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#fff;line-height:1.3"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9db8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"></path></svg>Disparo em massa</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#fff;line-height:1.3"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9db8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"></path></svg>CRM</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#fff;line-height:1.3"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9db8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"></path></svg>Agendamento</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#fff;line-height:1.3"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9db8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"></path></svg>Chatbot</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#fff;line-height:1.3"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9db8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"></path></svg>Transferência entre setores</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#fff;line-height:1.3"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9db8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"></path></svg>Etiquetas e relatórios</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#fff;line-height:1.3"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9db8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"></path></svg>Funil de vendas</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#fff;line-height:1.3"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9db8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"></path></svg>Kanban</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#fff;line-height:1.3"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9db8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"></path></svg>Filtros avançados</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#fff;line-height:1.3"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9db8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"></path></svg>Carteira de clientes</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:#fff;line-height:1.3"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9db8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"></path></svg>Setorização</div>
+              </div>
             </div>
             <div style="font-size:13px;line-height:1.5;color:#dce8ff;margin-top:12px">{{ acessoTxt }}</div>
           </div>
@@ -441,7 +456,7 @@ class Component extends DCLogic {
       +'<table style="width:100%;border-collapse:collapse;font-size:11px;margin-bottom:8px">'+linhas+'</table>'
       +(setupRows?('<div style="font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#0756FF;margin-bottom:5px">Setup (pagamento único)</div><table style="width:100%;border-collapse:collapse;font-size:11px;margin-bottom:5px;table-layout:fixed">'+setupRows+'</table><div style="background:#eef4ff;border:1px solid #dbe7ff;border-radius:8px;padding:6px 10px;font-size:10px;color:#0756FF;font-weight:700;margin-bottom:8px">💳 Setup à vista ou parcelado em até 10x com juros do link de pagamento</div>'):'')
       +'<div style="background:#f4f8ff;border:1px solid #dbe7ff;border-radius:10px;padding:12px 16px;margin-bottom:8px;display:flex;flex-wrap:wrap;gap:6px 26px">'
-      +'<div style="flex:1;min-width:150px"><div style="font-size:9.5px;color:#64748b;text-transform:uppercase;letter-spacing:.4px">Valor do plano ('+d.periodo+')</div><div style="font-size:20px;font-weight:900;color:#0756FF;letter-spacing:-.5px">'+d.totalS+'</div><div style="font-size:10px;color:#51607a;font-weight:600">'+d.parcS+'</div></div>'
+      +'<div style="flex:1;min-width:150px"><div style="font-size:9.5px;color:#64748b;text-transform:uppercase;letter-spacing:.4px">Valor do plano ('+d.periodo+')</div><div style="font-size:20px;font-weight:900;color:#0756FF;letter-spacing:-.5px">'+d.parcS+'</div><div style="font-size:10px;color:#51607a;font-weight:600">Total: '+d.totalS+'</div></div>'
       +(d.setupList.length?'<div style="flex:1;min-width:110px"><div style="font-size:9.5px;color:#64748b;text-transform:uppercase;letter-spacing:.4px">Setup (único)</div><div style="font-size:14px;font-weight:800">'+d.setupStr+'</div></div>':'')+'<div style="flex-basis:100%;font-size:10px;color:#0a1633;border-top:1px solid #dbe7ff;padding-top:6px">'+d.acessoS+'<br><strong>Pagamento:</strong> '+d.pagS+'</div></div>'
       +'<div style="font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#0756FF;margin-bottom:5px">O que o cliente já tem acesso</div><div style="display:flex;flex-wrap:wrap;gap:4px 0;margin-bottom:6px">'+['Múltiplos atendentes em 1 ou mais números','Chatbot (se desejar)','Agendamento de mensagens','Disparo em massa','Transferência entre setores','Agenda interna','CRM / funil de vendas','Etiquetas de organização','Relatórios de atendimento','Histórico completo das conversas'].map(f=>'<div style="width:50%;display:flex;gap:5px;align-items:flex-start;font-size:10px;color:#334155;box-sizing:border-box;padding-right:14px"><span style="color:#0756FF;font-weight:800;flex-shrink:0">✓</span><span>'+f+'</span></div>').join('')+'</div><div style="font-size:9.5px;color:#8695af;margin-bottom:8px">E diversas outras funções da plataforma. Automações específicas devem ser consultadas.</div>'
       +'<div style="background:#eef4ff;border:1px solid #dbe7ff;border-radius:9px;padding:9px 12px;margin-bottom:8px;font-size:10.5px;line-height:1.45;color:#0a3a99"><strong>💬 Suporte humanizado incluso</strong> — atendimento direto por grupo no WhatsApp, sempre que precisar. Além de implementação, configuração e treinamento da sua equipe.</div>'
@@ -451,8 +466,8 @@ class Component extends DCLogic {
       +(d.cenarios||[]).map(c=>'<div style="flex:1;border:'+(c.atual?'2px solid #0756FF':'1px solid #e2e8f0')+';background:'+(c.atual?'#0756FF':'#fff')+';border-radius:11px;padding:14px 11px 12px;position:relative;text-align:center">'
         +(c.atual?'<div style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:#0756FF;color:#fff;font-size:7.5px;font-weight:800;letter-spacing:.4px;padding:2px 9px;border-radius:100px;border:1.5px solid #fff;white-space:nowrap">ESCOLHIDO</div>':'')
         +'<div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:7px"><span style="font-size:12px;font-weight:800;color:'+(c.atual?'#fff':'#0a1633')+'">'+c.meses+' meses</span>'+(c.desc>0?'<span style="font-size:8.5px;font-weight:800;color:#0e7a5f;background:#e5f9ed;padding:2px 6px;border-radius:100px">-'+c.desc+'%</span>':'')+'</div>'
-        +'<div style="font-size:19px;font-weight:900;letter-spacing:-.6px;color:'+(c.atual?'#fff':'#0a1633')+';line-height:1">'+c.totalS+'</div>'
-        +'<div style="font-size:9px;font-weight:600;color:'+(c.atual?'#cddbff':'#8695af')+';margin-top:4px">'+c.meses+'x '+c.parcS+'</div>'
+        +'<div style="font-size:17px;font-weight:900;letter-spacing:-.5px;color:'+(c.atual?'#fff':'#0a1633')+';line-height:1">'+c.meses+'x '+c.parcS+'</div>'
+        +'<div style="font-size:9px;font-weight:600;color:'+(c.atual?'#cddbff':'#8695af')+';margin-top:4px">Total: '+c.totalS+'</div>'
         +'</div>').join('')
       +'</div>'
       +'<div style="font-size:8.5px;color:#8695af;margin-bottom:7px">O período marcado como ESCOLHIDO foi o combinado. Você pode optar por outro antes do fechamento — o setup não muda.</div>'
@@ -571,7 +586,7 @@ class Component extends DCLogic {
       waLink, trackWhats:()=>{},
       mensalHero: admin
         ? React.createElement('span',{style:{display:'inline-flex',alignItems:'baseline',gap:'6px'}},React.createElement('span',{style:{fontSize:'24px',fontWeight:800,color:'#fff'}},'R$'),React.createElement('input',{value:mensal,onInput:(e)=>this.setMOver(e),style:{width:'160px',fontFamily:'inherit',fontSize:'34px',fontWeight:900,letterSpacing:'-1px',padding:'2px 10px',border:'2px solid #ffd25a',borderRadius:'10px',outline:'none',background:'rgba(255,255,255,.95)',color:'#0a1633'}}))
-        : React.createElement('span',{style:{fontSize:'16px',fontWeight:800,color:'#fff'}},this.money(mensal)),
+        : React.createElement('span',{style:{fontSize:'52px',fontWeight:900,letterSpacing:'-2px',color:'#fff',lineHeight:1.05}},this.money(mensal)),
       nomeCliente:this.state.nomeCliente, setNome:(e)=>this.setNome(e), gerarProposta:()=>this.gerarProposta('Proposta comercial'), gerarPropostaContratar:()=>this.gerarPropostaContratar(),
       admin, toggleAdmin:()=>this.setAdmin(), adminDotBg: admin?'rgba(255,210,90,.9)':'rgba(255,255,255,.18)', adminDotLeft: admin?'12px':'2px',
       mesesStr: meses+' meses',
