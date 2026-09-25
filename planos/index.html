@@ -489,19 +489,47 @@ class Component extends DCLogic {
     const cli=(d.nome||'').trim();
     const nomeArq=(docTitle==='Plano contratado'?'Plano contratado NX Digital':'Proposta NX Digital')+(cli?(' - '+cli):'');
     const htmlNomeado=html.replace('<title>Proposta NX Digital</title>','<title>'+nomeArq+'</title>');
-    const oldF=document.getElementById('nx-doc-frame'); if(oldF) oldF.remove();
-    const fr=document.createElement('iframe'); fr.id='nx-doc-frame';
-    fr.setAttribute('style','position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden');
-    document.body.appendChild(fr);
-    const fd=fr.contentWindow.document; fd.open(); fd.write(htmlNomeado); fd.close();
-    // Chrome usa o título do documento TOPO como nome do arquivo
-    const prevSelf=document.title; let topDoc=null, prevTop=null;
-    try{ let w=window; while(w!==w.parent){ w=w.parent; } if(w.document){ topDoc=w.document; prevTop=topDoc.title; } }catch(e){}
-    document.title=nomeArq; try{ if(topDoc) topDoc.title=nomeArq; }catch(e){}
-    setTimeout(function(){
-      try{ fr.contentWindow.document.title=nomeArq; fr.contentWindow.focus(); fr.contentWindow.print(); }catch(e){}
-      setTimeout(function(){ document.title=prevSelf; try{ if(topDoc&&prevTop!=null) topDoc.title=prevTop; }catch(e){} const f=document.getElementById('nx-doc-frame'); if(f) f.remove(); },90000);
-    },400);
+    const imprimir=()=>{
+      const oldF=document.getElementById('nx-doc-frame'); if(oldF) oldF.remove();
+      const fr=document.createElement('iframe'); fr.id='nx-doc-frame';
+      fr.setAttribute('style','position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden');
+      document.body.appendChild(fr);
+      const fd=fr.contentWindow.document; fd.open(); fd.write(htmlNomeado); fd.close();
+      // Chrome usa o título do documento TOPO como nome do arquivo
+      const prevSelf=document.title; let topDoc=null, prevTop=null;
+      try{ let w=window; while(w!==w.parent){ w=w.parent; } if(w.document){ topDoc=w.document; prevTop=topDoc.title; } }catch(e){}
+      document.title=nomeArq; try{ if(topDoc) topDoc.title=nomeArq; }catch(e){}
+      setTimeout(function(){
+        try{ fr.contentWindow.document.title=nomeArq; fr.contentWindow.focus(); fr.contentWindow.print(); }catch(e){}
+        setTimeout(function(){ document.title=prevSelf; try{ if(topDoc&&prevTop!=null) topDoc.title=prevTop; }catch(e){} const f=document.getElementById('nx-doc-frame'); if(f) f.remove(); },90000);
+      },400);
+    };
+    // download direto do PDF (vai para os Downloads do Chrome)
+    const body=htmlNomeado.slice(htmlNomeado.indexOf('<body>')+6, htmlNomeado.lastIndexOf('</body>')).replace('<div class="wrap">','<div style="max-width:760px;margin:0 auto;padding:14px 26px;font-size:9.5px">');
+    const load=(src,ok)=>ok()?Promise.resolve():new Promise((res,rej)=>{ const sc=document.createElement('script'); sc.src=src; sc.onload=res; sc.onerror=rej; document.head.appendChild(sc); });
+    const carregar=()=>load('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js',()=>!!window.html2canvas).then(()=>load('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js',()=>!!(window.jspdf&&window.jspdf.jsPDF)));
+    this.setState({gerandoPdf:true});
+    let box=null, cover=null; const sx=window.scrollX, sy=window.scrollY;
+    const fim=()=>{ if(box) box.remove(); };
+    carregar().then(()=>{
+      box=document.createElement('div');
+      box.setAttribute('style','position:absolute;left:0;top:0;width:794px;background:#fff;font-family:Inter,Arial,sans-serif;color:#0a1633;z-index:-1;pointer-events:none');
+      box.innerHTML=body;
+      document.body.appendChild(box);
+      const imgs=[...box.querySelectorAll('img')].map(im=>im.complete?Promise.resolve():new Promise(r=>{im.onload=im.onerror=r;}));
+      return Promise.all(imgs)
+        .then(()=>window.html2canvas(box,{scale:2,useCORS:true,backgroundColor:'#ffffff',scrollX:-window.scrollX,scrollY:-window.scrollY,x:0,y:0,width:794,height:box.scrollHeight,windowWidth:794,windowHeight:box.scrollHeight}))
+        .then((canvas)=>{
+          if(!canvas||!canvas.width||!canvas.height) throw new Error('canvas vazio');
+          if(window.__nxPdfDebug){ window.__nxPdfCanvas=canvas; fim(); return; }
+          const pdf=new window.jspdf.jsPDF({unit:'mm',format:'a4',orientation:'portrait'});
+          const pw=210, ph=297; const img=canvas.toDataURL('image/jpeg',0.95);
+          let w=pw, h=canvas.height*pw/canvas.width;
+          if(h<=ph*1.08){ if(h>ph){ w=pw*ph/h; h=ph; } pdf.addImage(img,'JPEG',(pw-w)/2,0,w,h); }
+          else { let y=0; while(y<h){ if(y>0) pdf.addPage(); pdf.addImage(img,'JPEG',0,-y,w,h); y+=ph; } }
+          fim(); pdf.save(nomeArq+'.pdf');
+        });
+    }).catch((e)=>{ fim(); console.warn('PDF direto falhou, usando impressão',e); imprimir(); }).then(()=>this.setState({gerandoPdf:false}));
   }
   gerarPropostaContratar(){ if(!this.cliOk()){ this.setState({cliErro:true}); return; } if(this.CONTRATO_URL){ window.open(this.CONTRATO_URL,'_blank'); } this.gerarProposta('Plano contratado'); }
   renderVals(){
