@@ -232,7 +232,7 @@
     <div style="max-width:820px;margin:0 auto;text-align:center">
       <span style="display:inline-block;font-size:12px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:#0756FF;background:#e0ebff;border-radius:100px;padding:7px 16px;margin-bottom:18px">Preços e Planos</span>
       <h1 class="sub-title" style="font-size:48px;line-height:1.05;font-weight:900;letter-spacing:-2px;color:#0a1633;margin:0 0 16px;text-wrap:balance">Monte o seu <span style="color:#0756FF">plano ideal</span></h1>
-      <p style="font-size:18.5px;line-height:1.6;color:#51607a;margin:0 auto;max-width:600px">Ajuste usuários, módulos e canais e veja o valor em tempo real. A partir de <strong>R$ 299/mês</strong> — o valor é inicial e pode variar conforme o plano escolhido.</p>
+      <p style="font-size:18.5px;line-height:1.6;color:#51607a;margin:0 auto;max-width:600px">Ajuste usuários, módulos e canais e veja o valor em tempo real.</p>
     </div>
   </section>
 
@@ -398,19 +398,19 @@ class Component extends DCLogic {
   state = { solOpen:false, quemOpen:false, contOpen:false,
     qty: { users:5, numeros:0, automacao:0, ligacao:0, extras:0 },
     setup: { oficial:false, comum:false, ia:false, iaplus:false, site:false },
-    period: 3, nomeCliente:'', cnpjCliente:'', cliErro:false, admin:false, soPeriodo:false, pOver:{}, sOver:{}, mOver:null, valOv:null, valEdit:null };
+    period: 12, nomeCliente:'', cnpjCliente:'', cliErro:false, admin:false, soPeriodo:false, pOver:{}, sOver:{}, mOver:null, valOv:null, valEdit:null };
   waNumber = '5548936181649';
-  MIN_MENSAL = 299; // mensalidade mínima (5 usuários)
+  MIN_MENSAL = 349; // mensalidade mínima (5 usuários)
   // preços editáveis (mensais por unidade)
-  PRICES = { automacao:149.00, ligacao:69.90, extras:59.90 };
-  // total mensal dos usuários: base de 5 users = 299; cada user a mais custa menos que o anterior
+  PRICES = { automacao:49.90, ligacao:69.90, extras:59.90 };
+  // total mensal dos usuários: base de 5 users = 349; cada user a mais custa menos que o anterior
   usersTotal(n){
     if(n<=5) return this.MIN_MENSAL;
     let t;
-    if(n<=10) t=299+(n-5)*20;        // 6..10: +20  (319,339,359,379,399)
-    else if(n<=20) t=399+(n-10)*10;  // 11..20: +10 (409..499)
-    else if(n<=40) t=499+(n-20)*20;  // 21..40: +20 (519..899)
-    else t=899+(n-40)*20;            // 41..50+: +20
+    if(n<=10) t=349+(n-5)*20;        // 6..10: +20  (369,389,409,429,449)
+    else if(n<=20) t=449+(n-10)*10;  // 11..20: +10 (459..549)
+    else if(n<=40) t=549+(n-20)*20;  // 21..40: +20 (569..949)
+    else t=949+(n-40)*20;            // 41..50+: +20
     return Math.round(t*100)/100;
   }
   SETUP = { oficial:597, comum:397, ia:997, iaplus:1797, site:497 };
@@ -571,7 +571,7 @@ class Component extends DCLogic {
         info.obs?React.createElement('div',{style:{fontSize:'10.5px',lineHeight:1.4,color:'#8695af',borderTop:'1px solid #eef1f6',paddingTop:'7px',marginBottom:'7px'}},info.obs):null,
         React.createElement('div',{style:{fontSize:'10.5px',color:'#0756FF',fontWeight:600,display:'flex',alignItems:'center',gap:'4px',marginTop:'auto'}},'🕒 '+info.prazo));
     });
-    const periods=[[3,'3 meses',0,''],[6,'6 meses',10,'MAIS ESCOLHIDO'],[12,'12 meses',15,'']];
+    const periods=[[3,'3 meses',0,''],[6,'6 meses',10,''],[12,'12 meses',15,'MAIS ESCOLHIDO']];
     const periodCards=periods.map(([m,label,desc,tag])=>{ const on=this.state.period===m;
       return React.createElement('button',{key:m,onClick:()=>this.setPeriod(m),style:{position:'relative',textAlign:'center',cursor:'pointer',border:on?'2px solid #0756FF':'1.5px solid #e2e8f0',background:on?'#f4f8ff':'#fff',borderRadius:'14px',padding:'18px 12px',fontFamily:'inherit',transition:'all .15s'}},
         tag?React.createElement('span',{style:{position:'absolute',top:'-10px',left:'50%',transform:'translateX(-50%)',fontSize:'9px',fontWeight:800,letterSpacing:'.4px',color:'#fff',background:'#0756FF',borderRadius:'100px',padding:'3px 10px',whiteSpace:'nowrap'}},tag):null,
