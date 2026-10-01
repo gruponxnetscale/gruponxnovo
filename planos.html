@@ -275,11 +275,6 @@
           <div style="font-size:13.5px;color:#8695af;margin-bottom:18px">Pagamento único — valores pagos uma única vez pela configuração do projeto (à vista ou parcelado em até 10x com juros do link)</div>
           <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:stretch" class="pl-setup">{{ setupCards }}</div>
         </div>
-        <div style="background:#fff;border:1px solid #e6ecf5;border-radius:20px;box-shadow:0 24px 60px -40px rgba(15,23,42,.4);padding:26px">
-          <div style="font-size:20px;font-weight:900;letter-spacing:-.5px;color:#0a1633;margin-bottom:16px">Período do contrato</div>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px" class="pl-period">{{ periodCards }}</div>
-          <div style="font-size:12.5px;color:#8695af;margin-top:14px;line-height:1.5">Descontos aplicados sobre a <strong style="color:#0a1633">mensalidade</strong>: 6 meses = -10% · 12 meses = -15%. Prazo de entrega: API Comum até 3 dias úteis · API Oficial até 5 dias úteis · Agente de IA até 15 dias úteis · IA Avançado até 20 dias úteis.</div>
-        </div>
       </div>
     </div>
   </section>
@@ -331,6 +326,11 @@
             <div style="align-self:center;display:flex;gap:10px;margin-top:2px"><button onClick="{{ toggleAdmin }}" title="Modo edição" style="width:26px;height:16px;border-radius:100px;border:none;cursor:pointer;position:relative;margin-top:2px;background:{{ adminDotBg }}"><span style="position:absolute;top:2px;width:12px;height:12px;border-radius:50%;background:#fff;transition:left .18s;left:{{ adminDotLeft }}"></span></button><button onClick="{{ toggleSoPer }}" title="PDF só com o período escolhido" style="width:26px;height:16px;border-radius:100px;border:none;cursor:pointer;position:relative;margin-top:2px;background:{{ soPerBg }}"><span style="position:absolute;top:2px;width:12px;height:12px;border-radius:50%;background:#fff;transition:left .18s;left:{{ soPerLeft }}"></span></button></div>
           </div>
         </div>
+      </div>
+      <div style="margin-top:20px;background:#fff;border:1px solid #e6ecf5;border-radius:20px;box-shadow:0 24px 60px -40px rgba(15,23,42,.4);padding:26px">
+        <div style="font-size:20px;font-weight:900;letter-spacing:-.5px;color:#0a1633;margin-bottom:16px">Período do contrato</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px" class="pl-period">{{ periodCards }}</div>
+        <div style="font-size:12.5px;color:#8695af;margin-top:14px;line-height:1.5">Descontos aplicados sobre a <strong style="color:#0a1633">mensalidade</strong>: 6 meses = -10% · 12 meses = -15%. Prazo de entrega: API Comum até 3 dias úteis · API Oficial até 5 dias úteis · Agente de IA até 15 dias úteis · IA Avançado até 20 dias úteis.</div>
       </div>
     </div>
   </section>
@@ -547,17 +547,19 @@ class Component extends DCLogic {
     ];
     const adminInput=(val,onIn,w)=>React.createElement('input',{value:val,onInput:onIn,onClick:(e)=>e.stopPropagation(),style:{width:(w||'80px'),fontFamily:'inherit',fontSize:'12.5px',padding:'5px 8px',border:'1.5px solid #C9971C',borderRadius:'8px',outline:'none',background:'#FDFAEF',color:'#0a1633',fontWeight:700}});
     const stepBtn=(k,d,label)=>React.createElement('button',{onClick:()=>this.bump(k,d),style:{width:'32px',height:'32px',borderRadius:'9px',border:'1px solid #e2e8f0',background:'#fff',color:'#0756FF',fontSize:'18px',fontWeight:800,cursor:'pointer',lineHeight:1,display:'flex',alignItems:'center',justifyContent:'center'}},label);
+    const _pf={3:1,6:0.9,12:0.85}[this.state.period]||1, _pd={3:0,6:10,12:15}[this.state.period]||0;
+    const _dv=(v)=>{ const r=v*_pf; return Number.isInteger(Math.round(v*100)/100)?Math.round(r):Math.round(r*100)/100; };
     const serviceRows=items.map(([k,nome,preco,mn,hint,ov],i)=>{
-      const sub=ov!=null?ov:q[k]*preco;
+      const sub=_dv(ov!=null?ov:q[k]*preco);
       const priceCell=admin
         ? (k==='users'
             ? adminInput(uTotal,(e)=>this.setPOver('usersTotal',e),'96px')
             : adminInput(preco,(e)=>this.setPOver(k,e),'88px'))
-        : React.createElement('div',{style:{fontSize:'12.5px',color:hint?'#0756FF':'#8695af',fontWeight:hint?600:400}},brl(preco)+'/mês'+(hint?(' · '+hint):''));
+        : React.createElement('div',{style:{fontSize:'12.5px',color:hint?'#0756FF':'#8695af',fontWeight:hint?600:400}},this.money(Math.round(preco*_pf*100)/100)+'/mês'+(hint?(' · '+hint):''));
       return React.createElement('div',{key:k,style:{display:'flex',alignItems:'center',gap:'14px',padding:'14px 4px',borderTop:i===0?'none':'1px solid #eef1f6'}},
         React.createElement('div',{style:{flex:1,minWidth:0}},React.createElement('div',{style:{fontSize:'15px',fontWeight:700,color:'#0a1633'}},nome),priceCell),
         React.createElement('div',{style:{display:'flex',alignItems:'center',gap:'10px'}},stepBtn(k,-1,'−'),React.createElement('span',{style:{minWidth:'26px',textAlign:'center',fontSize:'16px',fontWeight:800,color:'#0a1633'}},q[k]),stepBtn(k,1,'+')),
-        React.createElement('div',{style:{minWidth:'118px',textAlign:'right'}},React.createElement('div',{style:{fontSize:'18px',fontWeight:900,letterSpacing:'-.4px',color:sub>0?'#0756FF':'#b6c0d4'}},brl(sub)),sub>0?React.createElement('div',{style:{fontSize:'10px',color:'#8695af',fontWeight:600}},'/mês'):null)
+        React.createElement('div',{style:{minWidth:'118px',textAlign:'right'}},React.createElement('div',{style:{fontSize:'18px',fontWeight:900,letterSpacing:'-.4px',color:sub>0?'#0756FF':'#b6c0d4'}},this.money(sub)),sub>0?React.createElement('div',{style:{fontSize:'10px',color:'#8695af',fontWeight:600}},'/mês'):null)
       );
     });
     let setupData=[['comum','API Comum',this.setupVal('comum')],['oficial','API Oficial',this.setupVal('oficial')],['ia','Agente de IA',this.setupVal('ia')],['iaplus','Agente de IA Avançado',this.setupVal('iaplus')]];
