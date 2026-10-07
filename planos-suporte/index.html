@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR" translate="no">
 <head>
 <meta charset="utf-8">
+<meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="../support.js"></script>
 </head>
@@ -270,12 +271,7 @@
           </div>
           {{ serviceRows }}
         </div>
-        <div style="background:#fff;border:1px solid #e6ecf5;border-radius:20px;box-shadow:0 24px 60px -40px rgba(15,23,42,.4);padding:26px">
-          <div style="font-size:20px;font-weight:900;letter-spacing:-.5px;color:#0a1633">Setup</div>
-          <div style="font-size:13.5px;color:#8695af;margin-bottom:18px">Pagamento único — valores pagos uma única vez pela configuração do projeto (à vista ou parcelado em até 10x com juros do link)</div>
-          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:stretch" class="pl-setup">{{ setupCards }}</div>
-        </div>
-      </div>
+              </div>
     </div>
   </section>
 
@@ -340,13 +336,13 @@
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   state = { solOpen:false, quemOpen:false, contOpen:false,
-    qty: { users:0, numeros:0, automacao:0, ligacao:0, extras:0, numComum:0, numOf:0, numOfDesc:0, numOfCort:0 },
+    qty: { users:0, numeros:0, automacao:0, ligacao:0, extras:0, numComum:0, numOf:0, numOfDesc:0, numOfCort:0, migracao:0, iaAg:0, iaAgPlus:0 },
     setup: { oficial:false, comum:false, ia:false, iaplus:false, site:false },
     period: 3, nomeCliente:'', cnpjCliente:'', cliErro:false, admin:false, soPeriodo:false, pOver:{}, sOver:{}, mOver:null, valOv:null, valEdit:null };
   waNumber = '5548936181649';
   MIN_MENSAL = 349; // mensalidade mínima (5 usuários)
   // preços editáveis (mensais por unidade)
-  PRICES = { users:19.90, automacao:49.90, ligacao:69.90, extras:59.90, numComum:9.90, numOf:149, numOfDesc:49.90, numOfCort:0 };
+  PRICES = { users:19.90, automacao:49.90, ligacao:69.90, extras:59.90, numComum:9.90, numOf:149.90, numOfDesc:49.90, numOfCort:0, migracao:597, iaAg:997, iaAgPlus:1997 };
   // total mensal dos usuários: base de 5 users = 349; cada user a mais custa menos que o anterior
   usersTotal(n){
     if(n<=5) return this.MIN_MENSAL;
@@ -489,7 +485,10 @@ class Component extends DCLogic {
       ['numOf','Número API Oficial',this.pVal('numOf'),0,'Pagamento único · não altera a mensalidade',null,true],
       ['numOfDesc','Número API Oficial (condição especial)',this.pVal('numOfDesc'),0,'Pagamento único · valor reduzido por número',null,true],
       ['numOfCort','Número API Oficial (cortesia)',this.pVal('numOfCort'),0,'Para cliente com risco de cancelamento · consultar antes',null,true],
-      ['ligacao','Ligação',this.pVal('ligacao'),0,'Ligação via WhatsApp: faz e recebe chamadas'],
+      ['migracao','Migração API Comum → API Oficial',this.pVal('migracao'),0,'Para quem já usa a API Comum · dependendo da negociação, migrar só 1 número sai por R$ 149,90',null,true],
+      ['iaAg','Agente de IA',this.pVal('iaAg'),0,'Atende 24h, entende áudio e imagem e responde em áudio',null,true],
+      ['iaAgPlus','Agente de IA Avançado',this.pVal('iaAgPlus'),0,'Integrações externas, puxa dados de outros sistemas e CRM inteligente automático',null,true],
+      ['ligacao','Ligação',this.pVal('ligacao'),0,'Por canal · ligação via WhatsApp: faz e recebe chamadas'],
       ['extras','Canais Extras',this.pVal('extras'),0,'Gmail, OLX, Mercado Livre e outros'],
     ];
     const _mItems=items.filter(it=>!it[6]), _uItems=items.filter(it=>it[6]);
@@ -503,7 +502,7 @@ class Component extends DCLogic {
         ? (k==='users'
             ? adminInput(uTotal,(e)=>this.setPOver('usersTotal',e),'96px')
             : adminInput(preco,(e)=>this.setPOver(k,e),'88px'))
-        : React.createElement('div',{style:{fontSize:'12.5px',color:hint?'#0756FF':'#8695af',fontWeight:hint?600:400}},(un?(preco>0?this.money(preco)+' por número':'Gratuito'):this.money(Math.round(preco*_pf*100)/100)+'/mês')+(hint?(' · '+hint):''));
+        : React.createElement('div',{style:{fontSize:'12.5px',color:hint?'#0756FF':'#8695af',fontWeight:hint?600:400}},(un?(preco>0?this.money(preco)+(k==='migracao'?' por migração':(k==='iaAg'||k==='iaAgPlus')?' (implementação)':' por número'):'Gratuito'):this.money(Math.round(preco*_pf*100)/100)+'/mês')+(hint?(' · '+hint):''));
       return React.createElement('div',{key:k,style:{display:'flex',alignItems:'center',gap:'14px',padding:'14px 4px',borderTop:i===0?'none':'1px solid #eef1f6'}},
         React.createElement('div',{style:{flex:1,minWidth:0}},React.createElement('div',{style:{fontSize:'15px',fontWeight:700,color:'#0a1633'}},nome),priceCell),
         React.createElement('div',{style:{display:'flex',alignItems:'center',gap:'10px'}},stepBtn(k,-1,'−'),React.createElement('span',{style:{minWidth:'26px',textAlign:'center',fontSize:'16px',fontWeight:800,color:'#0a1633'}},q[k]),stepBtn(k,1,'+')),
