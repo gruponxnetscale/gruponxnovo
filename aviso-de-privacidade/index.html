@@ -406,7 +406,7 @@ class Component extends DCLogic {
   state = { solOpen:false, quemOpen:false, contOpen:false };
   waNumber = '5548936181649';
   handleSubmit(e){
-    e.preventDefault();
+    e.preventDefault(); if(!window.nxValidate(e.target)) return;
     const f=e.target;
     f.classList.add('nx-checked'); if(!window.nxValidate(f)) return;
     const _f=e.target; const nome=f.nome.value.trim(),whats=f.whatsapp.value.trim(),ramo=f.ramo.value.trim();
