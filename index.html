@@ -971,7 +971,7 @@ class Component extends DCLogic {
   }
   get waNumber() { return '5548936181649'; }
   sendForm(f) {
-    if (!f) return;
+    if (!f || !window.nxValidate(f)) return;
     const nome = (f.nome.value || '').trim();
     const whats = (f.whatsapp.value || '').trim();
     const ramo = (f.ramo.value || '').trim();
@@ -1278,6 +1278,7 @@ class Component extends DCLogic {
       segTabBotStyle, segTabIaStyle, setSegBot: () => this.setState({ segMode: 'bot' }), setSegIa: () => this.setState({ segMode: 'ia' }),
       handleSubmit: (e) => {
         e.preventDefault();
+        if (!window.nxValidate(e.target)) return;
         this.sendForm(e.target);
       },
       handleWhats: (e) => {
