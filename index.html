@@ -55,6 +55,11 @@
   @keyframes spinGlow{to{transform:rotate(360deg)}}
   @keyframes auraPulse{0%{box-shadow:0 0 0 0 rgba(7,86,255,.5)}70%{box-shadow:0 0 0 14px rgba(7,86,255,0)}100%{box-shadow:0 0 0 0 rgba(7,86,255,0)}}
   @keyframes marquee{to{transform:translateX(-50%)}}
+  @keyframes bfTick{to{transform:translateX(-50%)}}
+  .bf-sticker:hover{color:#0b0f1a}
+  @media(max-width:760px){.bf-deco{display:none!important}.bf-sticker{width:84px!important;height:84px!important;top:auto!important;bottom:18px!important;left:auto!important;right:14px!important}.bf-sticker span:nth-child(2){font-size:22px!important}.bf-sticker span:nth-child(1),.bf-sticker span:nth-child(3){font-size:8px!important}}
+  @media(max-width:760px){.bf-trk{animation-duration:14s!important;gap:9px!important;padding:5px 0!important}.bf-trk svg{width:10px!important;height:10px!important}.bf-pill{font-size:10.5px!important;padding:3px 9px!important;letter-spacing:.3px!important}.bf-bar{border-bottom-width:2px!important}}
+  @media(prefers-reduced-motion:reduce){.bf-trk{animation:none!important}}
   #seg-row::-webkit-scrollbar{display:none}
   .noscroll::-webkit-scrollbar{display:none}
   .noscroll{scrollbar-width:none;-ms-overflow-style:none}
@@ -295,6 +300,7 @@ window.nxValidate=function(f){
 
   <!-- ===================== HEADER ===================== -->
   <header style="position:sticky;top:0;z-index:50;padding:0;background:#0547d2">
+    <a href="#form" onClick="{{ goForm }}" aria-label="Primeira mensalidade gratuita: Black Friday NX até 30/11" class="bf-bar" style="cursor:pointer;display:block;overflow:hidden;background:#0756FF;border-bottom:3px solid #FFD400;color:#fff">{{ bfTicker }}</a>
     <div style="max-width:1240px;margin:0 auto;padding:12px 24px 0">
     <div style="background:#fff;border-radius:22px;box-shadow:0 14px 40px -16px rgba(7,86,255,.35)">
     <div class="wrap-pad" style="max-width:1200px;margin:0 auto;padding:8px 28px;display:flex;align-items:center;justify-content:space-between">
@@ -371,6 +377,23 @@ window.nxValidate=function(f){
 
   <!-- ===================== HERO (centralizado) ===================== -->
   <section style="position:relative;background:#0547d2;overflow:hidden">
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;z-index:1">
+      <svg class="bf-deco" aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" style="position:absolute;top:6px;left:1%;transform:rotate(-14deg);animation:floaty 5s ease-in-out infinite;pointer-events:none;z-index:1"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z" fill="#FFD400"></path></svg>
+      <svg class="bf-deco" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" style="position:absolute;top:230px;left:1%;pointer-events:none;z-index:1"><path d="M12 0c.6 6.2 5.8 11.4 12 12-6.2.6-11.4 5.8-12 12-.6-6.2-5.8-11.4-12-12C6.2 11.4 11.4 6.2 12 0z" fill="#fff"></path></svg>
+      <svg class="bf-deco" aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" style="position:absolute;bottom:120px;left:4%;opacity:.8;pointer-events:none;z-index:1"><path d="M12 0c.6 6.2 5.8 11.4 12 12-6.2.6-11.4 5.8-12 12-.6-6.2-5.8-11.4-12-12C6.2 11.4 11.4 6.2 12 0z" fill="#FFD400"></path></svg>
+      <span class="bf-deco" style="position:absolute;bottom:60px;left:7%;font-size:64px;font-weight:900;line-height:1;color:transparent;-webkit-text-stroke:2px rgba(255,212,0,.75);transform:rotate(-10deg)">%</span>
+      <svg class="bf-deco" aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" style="position:absolute;top:40px;left:42%;pointer-events:none;z-index:1"><path d="M12 0c.6 6.2 5.8 11.4 12 12-6.2.6-11.4 5.8-12 12-.6-6.2-5.8-11.4-12-12C6.2 11.4 11.4 6.2 12 0z" fill="#FFD400"></path></svg>
+      <svg class="bf-deco" aria-hidden="true" width="42" height="42" viewBox="0 0 24 24" style="position:absolute;top:110px;right:2.5%;transform:rotate(16deg);animation:floaty 6s ease-in-out infinite .8s;pointer-events:none;z-index:1"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z" fill="#0b0f1a"></path></svg>
+      <svg class="bf-deco" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" style="position:absolute;top:40px;right:12%;pointer-events:none;z-index:1"><path d="M12 0c.6 6.2 5.8 11.4 12 12-6.2.6-11.4 5.8-12 12-.6-6.2-5.8-11.4-12-12C6.2 11.4 11.4 6.2 12 0z" fill="#fff"></path></svg>
+      <svg class="bf-deco" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" style="position:absolute;bottom:200px;right:3%;opacity:.85;pointer-events:none;z-index:1"><path d="M12 0c.6 6.2 5.8 11.4 12 12-6.2.6-11.4 5.8-12 12-.6-6.2-5.8-11.4-12-12C6.2 11.4 11.4 6.2 12 0z" fill="#FFD400"></path></svg>
+      <span class="bf-deco" style="position:absolute;top:250px;right:1%;font-size:48px;font-weight:900;line-height:1;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.55);transform:rotate(12deg)">%</span>
+
+    </div>
+      <a href="#form" class="bf-sticker" style="position:absolute;top:60px;left:calc(50% - 30px);pointer-events:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;width:118px;height:118px;border-radius:50%;background:#FFD400;color:#0b0f1a;text-align:center;transform:rotate(-10deg);box-shadow:0 0 0 5px #0b0f1a,0 18px 36px -12px rgba(0,0,0,.55);animation:floaty 4.5s ease-in-out infinite;z-index:5;text-decoration:none">
+        <span style="font-size:10.5px;font-weight:900;letter-spacing:1px">BLACK NX</span>
+        <span style="font-size:30px;font-weight:900;line-height:1;letter-spacing:-1px">R$ 0</span>
+        <span style="font-size:10px;font-weight:800;line-height:1.15">1ª MENSALIDADE<br>ATÉ 30/11</span>
+      </a>
     <div class="wrap-pad hero-pad" style="max-width:1200px;margin:0 auto;padding:20px 32px 0;position:relative;z-index:2">
       <div class="hero-grid" style="display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:start">
         <div>
@@ -420,7 +443,7 @@ window.nxValidate=function(f){
   </section>
 
   <!-- ===================== FORMULÁRIO ===================== -->
-  <section id="form" style="background:#fff;padding:80px 0;scroll-margin-top:80px">
+  <section id="form" style="background:#fff;padding:80px 0;scroll-margin-top:130px">
     <span id="contato" style="position:relative;top:-72px"></span>
     <div class="wrap-pad two-col" style="max-width:1000px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
       <div data-reveal>
@@ -1246,7 +1269,16 @@ class Component extends DCLogic {
       ];
     }
     void bubble; void botAvatar; void userAvatar; void meta;
+    const bfItens=['PRIMEIRA MENSALIDADE GRATUITA','BLACK FRIDAY NX','SÓ ATÉ 30/11'];
+    const bfBolt=(k)=>React.createElement('svg',{key:k,width:14,height:14,viewBox:'0 0 24 24','aria-hidden':'true',style:{flex:'none'}},React.createElement('path',{d:'M13 2 4 14h7l-1 8 9-12h-7l1-8z',fill:'#FFD400'}));
+    const bfPill=(t,i)=>React.createElement('span',{key:'p'+i,className:'bf-pill',style:{display:'inline-block',transform:'skewX(-12deg)',background:i%2?'#FFD400':'#0b0f1a',color:i%2?'#0b0f1a':'#fff',fontWeight:900,fontSize:13.5,letterSpacing:'.6px',padding:'5px 15px',whiteSpace:'nowrap'}},t);
+    const bfSeq=[];
+    for(let r=0;r<8;r++) bfItens.forEach((t,j)=>{const i=r*3+j; bfSeq.push(bfPill(t,i)); bfSeq.push(bfBolt('b'+i));});
+    const bfTicker=React.createElement('div',{className:'bf-trk',style:{display:'flex',alignItems:'center',gap:16,width:'max-content',padding:'8px 0',animation:'bfTick 26s linear infinite'}},bfSeq);
+    const goForm=(e)=>{const el=document.getElementById('form'); if(!el) return; e.preventDefault(); const h=document.querySelector('header'); const off=(h?h.offsetHeight:0)+12; window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-off,behavior:'smooth'}); const f=el.querySelector('input'); if(f) setTimeout(()=>f.focus({preventScroll:true}),600);};
     return {
+      bfTicker,
+      goForm,
       marqueeLogos,
       recursos,
       conversas,
