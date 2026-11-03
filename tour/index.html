@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="pt-BR" translate="no">
+<head>
+<meta charset="utf-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Plataforma de atendimento no WhatsApp com API Oficial | NX Digital</title>
+<meta name="description" content="Veja o NX Systems por dentro em um tour guiado de 2 minutos: vários atendentes no mesmo número, API Oficial da Meta, agente de IA 24h, chatbot, CRM e campanhas. A partir de R$ 349/mês.">
+<link rel="canonical" href="https://gruponxdigital.com/tour">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NX Digital">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Tour guiado do NX Systems | NX Digital">
+<meta property="og:description" content="Atendimento no WhatsApp com API Oficial, IA e CRM. Veja a plataforma por dentro, sem agendar nada.">
+<meta property="og:url" content="https://gruponxdigital.com/tour">
+<meta property="og:image" content="https://gruponxdigital.com/assets/og-nx.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gruponxdigital.com/assets/og-nx.png">
+<link rel="icon" type="image/png" href="../assets/nx-logo.png">
+<link rel="apple-touch-icon" href="../assets/nx-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<link rel="preload" as="image" href="img/home.webp" fetchpriority="high">
+<style>
+:root{
+  --blue:#0756FF; --blue-d:#0445CC; --blue-hero:#0547d2; --blue-deep:#0433a8; --ink:#0a1633; --muted:#51607a; --muted-2:#64748b;
+  --line:#e6ecf5; --soft:#eaf1ff; --bg:#f7faff; --surface:#fff; --wa:#25D366; --navy:#0a1633; --gold:#D6A733;
+  --shade:rgba(10,22,51,.46); --r:20px; --max:1180px; color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:var(--ink);font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
+button,a,input{font-family:inherit}
+a{color:var(--blue);text-decoration:none} a:hover{color:var(--blue-d)}
+img{max-width:100%}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:12px;padding:13px 22px;font-weight:800;font-size:15px;cursor:pointer;text-decoration:none;white-space:nowrap;touch-action:manipulation;line-height:1.2;transition:transform .15s,background .15s,filter .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-wa{background:var(--wa);color:#fff;box-shadow:0 14px 28px -14px rgba(37,211,102,.7)}
+.btn-wa:hover{filter:brightness(.96);color:#fff}
+.btn-primary{background:var(--blue);color:#fff;box-shadow:0 14px 28px -12px rgba(7,86,255,.65)}
+.btn-primary:hover{background:var(--blue-d);color:#fff}
+.btn-ghost{background:#fff;color:var(--blue);border:1.5px solid #dbe6fb}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue-d)}
+.btn-lg{padding:16px 30px;font-size:16.5px}
+.btn svg{flex:none}
+
+/* faixa Black NX */
+.promo{background:var(--navy);color:#fff;font-size:14px}
+.promo .wrap{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding-block:10px;text-align:center}
+.promo b{color:var(--gold)}
+.promo a{color:#fff;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+/* topo */
+.hdr{background:var(--blue-hero);position:sticky;top:0;z-index:20;padding:12px 0 0}
+.hdr .bar{background:#fff;border-radius:22px;box-shadow:0 14px 40px -16px rgba(7,86,255,.35);display:flex;align-items:center;gap:16px;height:62px;padding:0 12px 0 22px}
+.logo{display:flex;align-items:center}
+.logo img{height:46px;width:auto;display:block}
+.meta-badge{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--ink);background:#f3f7ff;border:1px solid #dbe6fb;border-radius:100px;padding:5px 12px 5px 8px}
+.meta-badge img{height:18px;width:auto;display:block}
+.hdr .sp{flex:1}
+.hdr .btn{padding:11px 18px;font-size:14.5px}
+
+/* hero */
+.hero{background:var(--blue-hero);color:#fff;padding:40px 0 6px}
+.eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--blue);background:#e0ebff;border-radius:100px;padding:6px 14px}
+.hero .eyebrow{color:#fff;background:rgba(255,255,255,.16)}
+.hero h1{margin:14px 0 12px;font-size:clamp(30px,4.3vw,50px);line-height:1.05;font-weight:900;letter-spacing:-.04em;max-width:900px;text-wrap:balance;color:#fff}
+.hero .sub{margin:0 0 20px;font-size:clamp(16px,1.6vw,19px);line-height:1.55;color:#e6eeff;max-width:780px;text-wrap:pretty}
+.checks{display:flex;flex-wrap:wrap;gap:10px 22px;margin:0 0 6px;padding:0;list-style:none;font-size:14.5px;font-weight:600;color:#fff}
+.checks li{display:flex;align-items:center;gap:8px}
+.checks li span{display:inline-flex;width:20px;height:20px;border-radius:50%;background:#fff;color:var(--blue);align-items:center;justify-content:center;flex:none}
+
+/* tour */
+.tour{position:relative;padding:22px 0 10px}
+.tour::before{content:"";position:absolute;left:0;right:0;top:0;height:250px;background:var(--blue-hero);border-radius:0 0 40px 40px}
+.tour .wrap{position:relative}
+.tour-bar{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap;color:#fff}
+.tour-bar .lbl{font-weight:800;font-size:14.5px}
+.tour-bar .sp{flex:1}
+.count{font-size:13px;color:#e6eeff;font-variant-numeric:tabular-nums;font-weight:600}
+.tour-bar .btn{padding:8px 14px;font-size:13.5px;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.35)}
+.tour-bar .btn:hover{background:rgba(255,255,255,.24);color:#fff}
+
+.stage-wrap{position:relative}
+.window{background:#fff;border:1px solid #dbe6fb;border-radius:var(--r);overflow:hidden;box-shadow:0 40px 80px -34px rgba(7,86,255,.45),0 8px 24px -12px rgba(10,22,51,.18)}
+.chrome{display:flex;align-items:center;gap:12px;height:40px;padding:0 14px;background:#eef3fb;border-bottom:1px solid #dbe6fb}
+.dots{display:flex;gap:6px;flex:none}.dots i{width:11px;height:11px;border-radius:50%;background:#ff5f57}.dots i:nth-child(2){background:#febc2e}.dots i:nth-child(3){background:#28c840}
+.url{flex:1;min-width:0;max-width:520px;margin:0 auto;height:26px;border-radius:8px;background:#fff;border:1px solid #dbe6fb;color:var(--muted-2);font-size:12px;font-weight:600;display:flex;align-items:center;padding:0 10px;gap:6px;overflow:hidden;white-space:nowrap}
+.url span{overflow:hidden;text-overflow:ellipsis}
+.url svg{flex:none;color:var(--blue)}
+.zoom{display:none;flex:none;border:1px solid #dbe6fb;background:#fff;color:var(--blue);border-radius:8px;height:26px;padding:0 10px;font-size:11.5px;font-weight:800;cursor:pointer}
+.viewport{position:relative;overflow:hidden;background:#f3f6fb;touch-action:manipulation;user-select:none;-webkit-user-select:none;aspect-ratio:1536/695}
+.canvas{position:absolute;left:0;top:0;width:1536px;height:695px;transform-origin:0 0;will-change:transform}
+.canvas.anim{transition:transform .45s cubic-bezier(.3,.7,.2,1)}
+.canvas img{position:absolute;inset:0;width:100%;height:100%;display:block;background:#fff;-webkit-user-drag:none;pointer-events:none;transition:opacity .18s}
+.canvas img.off{opacity:0}
+.spot{position:absolute;border-radius:12px;box-shadow:0 0 0 9999px var(--shade);cursor:pointer;-webkit-tap-highlight-color:transparent;display:none}
+.spot.anim{transition:left .45s cubic-bezier(.3,.7,.2,1),top .45s cubic-bezier(.3,.7,.2,1),width .45s cubic-bezier(.3,.7,.2,1),height .45s cubic-bezier(.3,.7,.2,1)}
+.spot::after{content:"";position:absolute;inset:-4px;border-radius:14px;border:2.5px solid var(--blue);animation:pulse 1.6s ease-out infinite}
+.spot.hint::after{animation:shake .4s 2}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(7,86,255,.6)}100%{box-shadow:0 0 0 14px rgba(7,86,255,0)}}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.tap{position:absolute;right:10px;bottom:10px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:6px 11px;border-radius:100px;pointer-events:none;display:none;box-shadow:0 8px 18px -8px rgba(7,86,255,.8)}
+.tip{position:absolute;z-index:5;width:340px;background:var(--blue);color:#fff;border-radius:18px;padding:18px 20px 14px;box-shadow:0 24px 50px -16px rgba(7,86,255,.65);transition:left .35s,top .35s,opacity .2s;opacity:0;pointer-events:none;left:0;top:0}
+.tip h3,.dock h3{margin:0 0 6px;font-size:16.5px;font-weight:800;letter-spacing:-.02em;text-wrap:balance;color:#fff}
+.tip p,.dock p{margin:0;font-size:14px;line-height:1.55;color:#e6eeff}
+.nav{display:flex;align-items:center;gap:10px;margin-top:14px}
+.nav .n{flex:1;text-align:center;font-size:12.5px;font-weight:600;font-variant-numeric:tabular-nums;color:#e6eeff}
+.back{background:rgba(255,255,255,.14);border:0;color:#fff;cursor:pointer;padding:8px;border-radius:10px;display:inline-flex;touch-action:manipulation}
+.back:disabled{opacity:.35;cursor:default}
+.next{background:#fff;color:var(--blue);border:0;border-radius:10px;padding:10px 18px;font-weight:800;font-size:13.5px;cursor:pointer;touch-action:manipulation;box-shadow:0 8px 18px -10px rgba(0,0,0,.45)}
+.next:hover{color:var(--blue-d)}
+.tip .arrow{position:absolute;width:14px;height:14px;background:var(--blue);transform:rotate(45deg)}
+.card{position:absolute;inset:0;display:grid;place-items:center;padding:16px;background:var(--shade);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);z-index:6}
+.card .box{background:#fff;color:var(--ink);border-radius:24px;padding:28px 30px;max-width:480px;width:100%;box-shadow:0 40px 80px -30px rgba(7,86,255,.5);max-height:100%;overflow:auto}
+.box h2{margin:12px 0 10px;font-size:26px;line-height:1.12;font-weight:900;letter-spacing:-.03em;text-wrap:balance}
+.box p{margin:0 0 18px;color:var(--muted);line-height:1.55;font-size:15px}
+.box .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.meta{font-size:12.5px;color:var(--muted-2);font-weight:500}
+.form{display:grid;gap:10px;margin-bottom:16px}
+.form label{display:grid;gap:5px;font-size:13px;font-weight:600;color:#334155}
+.form input{border:1.5px solid #e2e8f0;background:#fafbff;color:var(--ink);border-radius:12px;padding:12px 13px;font-size:16px;width:100%;outline:none}
+.form input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(7,86,255,.12);background:#fff}
+.phone{user-select:all;-webkit-user-select:all;font-weight:800;color:var(--ink)}
+.progress{margin:14px 0 0;display:flex;gap:5px}
+.progress button{flex:1;height:6px;border:0;border-radius:3px;background:#dbe6fb;cursor:pointer;padding:0}
+.progress button.done{background:var(--blue)}
+.progress button.cur{background:var(--blue);opacity:.5}
+.dock{display:none}
+
+/* seções */
+section.blk{padding:88px 0}
+section.blk.alt{background:var(--bg)}
+.blk .head{text-align:center;margin-bottom:44px}
+.blk h2{margin:14px auto 12px;font-size:clamp(28px,3.4vw,40px);line-height:1.1;font-weight:900;letter-spacing:-.035em;text-wrap:balance;max-width:820px}
+.blk .lead{margin:0 auto;color:var(--muted);max-width:680px;font-size:18px;line-height:1.6;text-wrap:pretty}
+
+.logos{padding:30px 0 34px;overflow:hidden}
+.logos p{margin:0 0 18px;font-size:14px;font-weight:700;color:var(--muted-2);text-align:center;letter-spacing:.2px}
+.marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee .trk{display:flex;gap:56px;width:max-content;animation:mq 38s linear infinite}
+.marquee span{flex:none;white-space:nowrap;font-size:24px;font-weight:800;letter-spacing:-.02em;color:var(--blue)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.feat{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px 24px;transition:transform .15s,box-shadow .15s}
+.feat:hover{transform:translateY(-3px);box-shadow:0 24px 50px -30px rgba(7,86,255,.45)}
+.feat .ic{width:48px;height:48px;border-radius:14px;background:var(--soft);color:var(--blue);display:grid;place-items:center;margin-bottom:18px}
+.feat h3{margin:0 0 8px;font-size:18px;font-weight:800;letter-spacing:-.02em}
+.feat p{margin:0;color:var(--muted);font-size:15px;line-height:1.6}
+
+.price{display:grid;grid-template-columns:1.05fr 1fr;gap:22px;align-items:start}
+.pcard{background:#fff;border:2px solid var(--blue);border-radius:24px;padding:32px 30px;box-shadow:0 40px 80px -40px rgba(7,86,255,.5)}
+.pcard .from{font-size:13px;color:var(--blue);font-weight:800;text-transform:uppercase;letter-spacing:.7px}
+.pcard .val{font-size:52px;font-weight:900;letter-spacing:-.04em;line-height:1.02;margin:6px 0;color:var(--ink)}
+.pcard .val small{font-size:18px;font-weight:600;color:var(--muted);letter-spacing:0}
+.pcard .plan{font-size:15px;font-weight:600;color:var(--muted);margin-bottom:22px}
+.pcard ul{list-style:none;margin:0 0 26px;padding:22px 0 0;border-top:1px solid var(--line);display:grid;gap:12px;font-size:15.5px}
+.pcard li{display:flex;gap:11px;align-items:flex-start;font-weight:500}
+.pcard li span{display:inline-flex;width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;align-items:center;justify-content:center;flex:none;margin-top:1px}
+.pcard .btn{width:100%}
+.offer{margin:0 0 20px;background:var(--navy);color:#fff;border-radius:14px;padding:14px 16px;font-size:14px;line-height:1.55}
+.offer b{color:var(--gold)}
+.costs{background:#fff;border:1px solid var(--line);border-radius:24px;padding:30px 28px}
+.costs h3{margin:0 0 18px;font-size:20px;font-weight:900;letter-spacing:-.02em}
+.costs dl{margin:0;display:grid;gap:12px}
+.costs dl>div{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.costs dt{font-weight:800;font-size:15.5px}
+.costs dd{margin:4px 0 0;color:var(--muted);font-size:14.5px;line-height:1.6}
+
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;counter-reset:s}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:30px 26px;position:relative}
+.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--blue);color:#fff;font-weight:900;font-size:18px;margin-bottom:18px;box-shadow:0 10px 22px -10px rgba(7,86,255,.7)}
+.step h3{margin:0 0 8px;font-size:19px;font-weight:800;letter-spacing:-.02em}
+.step p{margin:0;color:var(--muted);font-size:15px;line-height:1.6}
+
+.faq{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:16px;padding:0 22px}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center;padding:19px 0;font-weight:800;font-size:16.5px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--soft);font-size:20px;font-weight:600;color:var(--blue);flex:none;transition:transform .18s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:0;padding:0 0 20px;color:var(--muted);font-size:15.5px;line-height:1.65}
+
+.final{padding:24px 0 88px}
+.final .band{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-deep) 100%);border-radius:28px;padding:64px 40px;text-align:center;color:#fff;position:relative;overflow:hidden}
+.final .band::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:rgba(255,255,255,.07);top:-200px;right:-120px}
+.final h2{position:relative;margin:0 auto 12px;max-width:720px;font-size:clamp(28px,3.4vw,40px);line-height:1.1;font-weight:900;letter-spacing:-.035em;color:#fff;text-wrap:balance}
+.final p{position:relative;margin:0 auto 28px;color:#fff;max-width:600px;font-size:18px;line-height:1.6}
+.final .btn{position:relative}
+
+footer{background:var(--blue-hero);color:#dce8ff;padding:30px 0 30px;font-size:13.5px;line-height:1.6}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;align-items:center}
+footer .fl{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+footer .fl img{height:32px;width:auto;border-radius:8px;background:#fff;padding:3px}
+footer a{color:#fff;font-weight:600}
+footer a:hover{color:#fff;text-decoration:underline}
+
+/* barra fixa de WhatsApp no celular */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px max(16px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:#fff;border-top:1px solid var(--line);box-shadow:0 -10px 30px -18px rgba(10,22,51,.35);display:none;transform:translateY(110%);transition:transform .25s}
+.sticky.on{transform:none}
+.sticky .btn{width:100%}
+
+@media (max-width:900px){
+  .grid{grid-template-columns:1fr 1fr}
+  .price{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  body{font-size:15px}
+  .hdr{position:static;padding:0;background:#fff;border-bottom:1px solid var(--line)}
+  .hdr .wrap{padding:0}
+  .hdr .bar{border-radius:0;box-shadow:none;height:56px;padding:0 14px;gap:10px}
+  .logo img{height:32px}
+  .hdr .btn{padding:9px 14px;font-size:13.5px}
+  .hdr .btn .long{display:none}
+  .meta-badge{display:none}
+  .promo{font-size:13px}.promo .wrap{padding-block:7px;gap:6px}
+  .hero{padding:12px 0 0}
+  .eyebrow{font-size:10.5px;padding:4px 10px}
+  .hero h1{font-size:23px;margin:8px 0 6px;letter-spacing:-.03em;line-height:1.1}
+  .hero .sub{font-size:13.5px;margin-bottom:9px;line-height:1.45}
+  .checks{display:grid;grid-template-columns:1fr 1fr;gap:5px 8px;font-size:12px;margin-bottom:0}
+  .checks li{gap:6px}
+  .checks li span{width:16px;height:16px}
+  .tour{padding-top:10px}
+  .promo .wrap{padding-block:6px}
+  .tour::before{height:120px;border-radius:0 0 24px 24px}
+  .tour-bar{display:none}
+  .window{border-radius:16px}
+  .chrome{height:34px;gap:8px;padding:0 10px}.dots i{width:9px;height:9px}.url{font-size:11px;height:24px}
+  .viewport{aspect-ratio:auto}
+  .zoom{display:inline-block}
+  .tap{display:block}
+  .tip{display:none}
+  .dock{display:block;margin:12px 0 0;background:var(--blue);color:#fff;border-radius:16px;padding:16px 16px 12px;box-shadow:0 18px 36px -18px rgba(7,86,255,.7)}
+  .dock p{font-size:14.5px}
+  .next{padding:11px 18px;font-size:14.5px}
+  .card .box{padding:20px 18px;border-radius:18px}
+  .box h2{font-size:20px}.box p{font-size:14px;margin-bottom:12px}
+  section.blk{padding:56px 0}
+  .blk .head{margin-bottom:28px}
+  .blk .lead{font-size:16px}
+  .grid,.steps{grid-template-columns:1fr}
+  .feat,.step{padding:22px 20px}
+  .pcard{padding:24px 20px}.costs{padding:24px 20px}
+  .pcard .val{font-size:42px}
+  .marquee span{font-size:19px}.marquee .trk{gap:40px;animation-duration:30s}
+  .final{padding:8px 0 56px}
+  .final .band{padding:44px 22px;border-radius:22px}
+  .final p{font-size:16px}
+  .final .btn{white-space:normal}
+  footer{padding-bottom:96px}
+  .sticky{display:block}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.spot.anim,.canvas.anim,.tip,.sticky{transition:none}.spot::after{animation:none}.marquee .trk{animation:none;flex-wrap:wrap;justify-content:center;width:auto;gap:12px 28px}}
+
+/* Black NX */
+.promo{--bo:#FF5A1F;--bo2:#FF7A1A;background:#0b0f1a;padding:0;overflow:hidden;border-bottom:3px solid var(--bo)}
+.tick{display:block;overflow:hidden;color:#fff}.tick:hover{color:#fff}
+.trk2{display:flex;align-items:center;gap:16px;width:max-content;padding:9px 0;animation:tk 22s linear infinite}
+.tk{display:inline-block;transform:skewX(-12deg);background:#fff;color:#0b0f1a;font-weight:900;font-size:13.5px;letter-spacing:.6px;padding:5px 15px;white-space:nowrap}
+.tk.g{background:var(--bo);color:#fff}
+.trk2 svg{flex:none}.trk2 svg path{fill:var(--bo)}
+@keyframes tk{to{transform:translateX(-50%)}}
+.bf{--bo:#FF5A1F;--bo2:#FF7A1A;padding:40px 0 6px}
+.bfc{position:relative;background:radial-gradient(120% 140% at 50% 0%,#24140c 0%,#0b0f1a 55%);color:#fff;border-radius:22px;padding:50px 34px 24px;border:1.5px solid rgba(255,90,31,.55);box-shadow:0 0 0 1px rgba(255,90,31,.15),0 30px 80px -30px rgba(255,90,31,.55);animation:bfglow 2.4s ease-in-out infinite}
+@keyframes bfglow{50%{box-shadow:0 0 0 1px rgba(255,90,31,.35),0 30px 90px -24px rgba(255,90,31,.85)}}
+.cn{position:absolute;width:20px;height:20px;border:0 solid var(--bo)}
+.cn.tl{top:12px;left:12px;border-top-width:3px;border-left-width:3px}.cn.tr{top:12px;right:12px;border-top-width:3px;border-right-width:3px}
+.cn.bl{bottom:12px;left:12px;border-bottom-width:3px;border-left-width:3px}.cn.br{bottom:12px;right:12px;border-bottom-width:3px;border-right-width:3px}
+.bftag{position:absolute;top:-20px;left:50%;transform:translateX(-50%) skewX(-12deg);background:linear-gradient(90deg,var(--bo),var(--bo2));color:#fff;font-weight:900;font-size:14px;letter-spacing:1.6px;text-transform:uppercase;padding:10px 24px;white-space:nowrap;box-shadow:0 14px 30px -10px rgba(255,90,31,.9)}
+.bfrow{display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:center}
+.bfk{display:inline-block;font-size:12px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase;color:#fff;background:rgba(255,90,31,.18);border:1px solid rgba(255,90,31,.5);border-radius:100px;padding:5px 12px;margin-bottom:10px}
+.bfh{font-size:34px;white-space:nowrap;line-height:1.02;font-weight:900;letter-spacing:-.03em;text-transform:uppercase}
+.bfh em{font-style:normal;color:var(--bo);text-shadow:0 0 24px rgba(255,90,31,.6)}
+.bfz{margin-top:10px;font-size:17px;font-weight:700;color:#e6e9f0;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.bfz b{font-size:40px;font-weight:900;color:#fff;background:var(--bo);padding:0 10px;border-radius:8px;line-height:1.15;transform:skewX(-8deg);display:inline-block}
+.cd{display:flex;align-items:flex-start;gap:8px}
+.cd>div{display:flex;flex-direction:column;align-items:center;gap:8px}
+.cd b{display:grid;place-items:center;width:74px;height:80px;border-radius:12px;background:linear-gradient(180deg,#232836 0 50%,#1b1f2b 50% 100%);font-size:42px;font-weight:900;font-variant-numeric:tabular-nums;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 10px 24px -12px rgba(0,0,0,.8)}
+.cd span{font-size:11px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;color:var(--bo)}
+.cd i{font-style:normal;font-size:30px;font-weight:900;color:var(--bo);line-height:80px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:.25}}
+.bfr{display:flex;flex-direction:column;align-items:flex-end;gap:10px;text-align:right}
+.bfr .btn{background:linear-gradient(90deg,var(--bo),var(--bo2));color:#fff;box-shadow:0 16px 34px -12px rgba(255,90,31,.9);animation:pulse 1.8s ease-in-out infinite}
+.bfr .btn:hover{filter:brightness(1.07);color:#fff}
+@keyframes pulse{50%{transform:scale(1.04)}}
+.bfn{font-size:12px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#ffb08f}
+.bfline{height:1px;background:rgba(255,255,255,.12);margin:26px 0 18px}
+.bfcond{display:table;margin:0 auto;border:1.5px solid var(--bo);color:#fff;font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase;padding:10px 20px;border-radius:6px}
+.bfcond:hover{background:var(--bo);color:#fff}
+@media (max-width:1100px){.bfrow{grid-template-columns:1fr;text-align:center;justify-items:center}.bfr{align-items:center;text-align:center}.bfz{justify-content:center}}
+@media (max-width:760px){
+  .trk2{padding:7px 0;gap:12px;animation-duration:18s}.tk{font-size:12px;padding:4px 11px}
+  .bf{padding:34px 0 0}.bfc{padding:42px 16px 18px;border-radius:18px}
+  .bftag{font-size:11.5px;padding:8px 14px;letter-spacing:1px}
+  .bfh{font-size:26px;white-space:normal}.bfz b{font-size:32px}
+  .cd{gap:5px}.cd b{width:58px;height:64px;font-size:30px;border-radius:10px}.cd i{font-size:22px;line-height:64px}
+  .bfr{width:100%}.bfr .btn{width:100%;white-space:normal}
+}
+@media (prefers-reduced-motion:reduce){.trk2,.bfc,.bfr .btn,.cd i{animation:none}}
+</style>
+</head>
+<body>
+
+<!-- Black NX: aparece sozinho até 30/11/2026 23:59 (horário de Brasília) -->
+<div class="promo" id="promo" hidden>
+  <a class="tick" href="#black" aria-label="Black NX: 30 dias de uso grátis, R$ 0 no primeiro mês, até 30/11. Ver oferta">
+    <div class="trk2"><span class="tk">BLACK NX</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk g">30 DIAS GRÁTIS</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk">R$ 0 NO 1º MÊS</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk g">SÓ ATÉ 30/11</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk">BLACK NX</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk g">30 DIAS GRÁTIS</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk">R$ 0 NO 1º MÊS</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk g">SÓ ATÉ 30/11</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk">BLACK NX</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk g">30 DIAS GRÁTIS</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk">R$ 0 NO 1º MÊS</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk g">SÓ ATÉ 30/11</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk">BLACK NX</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk g">30 DIAS GRÁTIS</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk">R$ 0 NO 1º MÊS</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk g">SÓ ATÉ 30/11</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span aria-hidden="true" style="display:contents"><span class="tk">BLACK NX</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk g">30 DIAS GRÁTIS</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk">R$ 0 NO 1º MÊS</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk g">SÓ ATÉ 30/11</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk">BLACK NX</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk g">30 DIAS GRÁTIS</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk">R$ 0 NO 1º MÊS</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk g">SÓ ATÉ 30/11</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk">BLACK NX</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk g">30 DIAS GRÁTIS</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk">R$ 0 NO 1º MÊS</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk g">SÓ ATÉ 30/11</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk">BLACK NX</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk g">30 DIAS GRÁTIS</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk">R$ 0 NO 1º MÊS</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="tk g">SÓ ATÉ 30/11</span><svg width="14" height="14" viewBox="0 0 24 24" fill="#D6A733" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></span></div>
+  </a>
+</div>
+
+<header class="hdr">
+  <div class="wrap">
+    <div class="bar">
+      <a class="logo" href="https://gruponxdigital.com/" aria-label="NX Digital"><img src="../assets/nx-logo.png" alt="NX Digital" width="38" height="38"></a>
+      <span class="meta-badge"><img src="../assets/meta-business-partner.png" alt="" width="38" height="18">Parceiro Oficial Meta</span>
+      <span class="sp"></span>
+      <a class="btn btn-wa" data-wa="header" data-msg="Olá! Estou no site da NX e quero falar com um especialista.">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37s-1.05 1.02-1.05 2.5 1.08 2.9 1.23 3.1c.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.71.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35zM12 2a10 10 0 0 0-8.6 15.06L2 22l5.06-1.33A10 10 0 1 0 12 2z"/></svg>
+        <span>Falar<span class="long"> com especialista</span></span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow" id="h-eyebrow">Tour guiado · 2 minutos</div>
+      <h1 id="h-title">Plataforma de atendimento no WhatsApp com API Oficial</h1>
+      <p class="sub" id="h-sub">Veja o NX Systems por dentro agora, sem agendar nada: vários atendentes no mesmo número, agente de IA 24h, chatbot, CRM e campanhas em uma tela só.</p>
+      <ul class="checks">
+        <li><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Parceiro Oficial Meta</li>
+        <li><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>+700 empresas</li>
+        <li><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Implantação e treinamento</li>
+        <li><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Suporte humano</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="tour" id="tour" aria-label="Tour interativo do NX Systems">
+    <div class="wrap">
+      <div class="tour-bar">
+        <span class="lbl">Tour interativo</span>
+        <span class="sp"></span>
+        <span class="count" id="count"></span>
+        <button class="btn btn-ghost" id="restart" type="button">Recomeçar</button>
+      </div>
+      <div class="stage-wrap" id="wrap">
+        <div class="window">
+          <div class="chrome"><div class="dots"><i></i><i></i><i></i></div>
+            <div class="url"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span id="url">app.nxsystems.com.br</span></div>
+            <button class="zoom" id="zoom" type="button">Tela inteira</button>
+          </div>
+          <div class="viewport" id="vp">
+            <div class="canvas" id="canvas"><img id="imgA" alt="Tela do NX Systems" src="img/home.webp"><img id="imgB" alt="" class="off"></div>
+            <div class="spot" id="spot" role="button" tabindex="0" aria-label="Avançar para a próxima etapa"></div>
+            <div class="tap" id="tap">Toque no destaque</div>
+            <div class="card" id="card" hidden><div class="box" id="cardbox"></div></div>
+          </div>
+        </div>
+        <div class="tip" id="tip" role="dialog" aria-live="polite">
+          <i class="arrow" id="arrow"></i>
+          <h3 id="tt"></h3><p id="tx"></p>
+          <div class="nav"><button class="back" id="bk" type="button" aria-label="Voltar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><span class="n" id="nn"></span><button class="next" id="nx" type="button">Próximo</button></div>
+        </div>
+      </div>
+      <div class="dock" id="dock" aria-live="polite">
+        <h3 id="dt"></h3><p id="dx"></p>
+        <div class="nav"><button class="back" id="dbk" type="button" aria-label="Voltar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><span class="n" id="dn"></span><button class="next" id="dnx" type="button">Próximo</button></div>
+      </div>
+      <nav class="progress" id="prog" aria-label="Etapas do tour"></nav>
+    </div>
+  </section>
+
+  <section class="bf" id="black" hidden>
+    <div class="wrap">
+      <div class="bfc">
+        <i class="cn tl"></i><i class="cn tr"></i><i class="cn bl"></i><i class="cn br"></i>
+        <div class="bftag">• Black NX • Só até 30/11 •</div>
+        <div class="bfrow">
+          <div class="bfl">
+            <div class="bfk">Oferta Black Friday</div>
+            <div class="bfh">30 dias de uso <em>grátis</em></div>
+            <div class="bfz"><b>R$ 0</b> no 1º mês</div>
+          </div>
+          <div class="cd" aria-label="Tempo restante da oferta">
+            <div><b id="cd-d">00</b><span>Dias</span></div><i>:</i>
+            <div><b id="cd-h">00</b><span>Horas</span></div><i>:</i>
+            <div><b id="cd-m">00</b><span>Minutos</span></div><i>:</i>
+            <div><b id="cd-s">00</b><span>Segundos</span></div>
+          </div>
+          <div class="bfr">
+            <a class="btn btn-wa btn-lg" data-wa="black" data-msg="Olá! Quero aproveitar a Black NX: 30 dias de uso grátis."><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37s-1.05 1.02-1.05 2.5 1.08 2.9 1.23 3.1c.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.71.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35zM12 2a10 10 0 0 0-8.6 15.06L2 22l5.06-1.33A10 10 0 1 0 12 2z"/></svg>Quero meus 30 dias grátis</a>
+            <div class="bfn">Oferta válida até 30/11</div>
+          </div>
+        </div>
+        <div class="bfline"></div>
+        <a class="bfcond" href="#planos">Ver condições da oferta</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="logos" aria-label="Clientes">
+    <p>Empresas que atendem pelo WhatsApp com a NX</p>
+    <div class="marquee"><div class="trk"><span>Banco BMG</span><span>Prefeitura de São Ludgero</span><span>Marajó Gás</span><span>Shopbike</span><span>Posto Presidente</span><span>DigitalX</span><span>Apae</span><span>Digaweb Telecom</span><span>Academia Spart</span><span>Coexpress</span><span>VeicularMais</span><span>Colégio Horizonte</span><span aria-hidden="true">Banco BMG</span><span aria-hidden="true">Prefeitura de São Ludgero</span><span aria-hidden="true">Marajó Gás</span><span aria-hidden="true">Shopbike</span><span aria-hidden="true">Posto Presidente</span><span aria-hidden="true">DigitalX</span><span aria-hidden="true">Apae</span><span aria-hidden="true">Digaweb Telecom</span><span aria-hidden="true">Academia Spart</span><span aria-hidden="true">Coexpress</span><span aria-hidden="true">VeicularMais</span><span aria-hidden="true">Colégio Horizonte</span></div></div>
+  </section>
+
+  <section class="blk alt" id="recursos">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">O que você viu no tour</span>
+        <h2>Tudo que o seu atendimento no WhatsApp precisa, num só lugar</h2>
+      </div>
+      <div class="grid">
+        <div class="feat"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20h5v-2a3 3 0 0 0-5.4-1.8M17 20H7m10 0v-2c0-.7-.1-1.3-.4-1.8M7 20H2v-2a3 3 0 0 1 5.4-1.8M7 20v-2c0-.7.1-1.3.4-1.8m0 0a5 5 0 0 1 9.2 0M15 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg></div><h3>Vários atendentes, um número</h3><p>Todos os WhatsApps da empresa numa tela, com filas por setor, protocolo e responsável em cada conversa.</p></div>
+        <div class="feat"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4v5c0 4.5-3 8-7 9-4-1-7-4.5-7-9V7l7-4Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>API Oficial da Meta</h3><p>Conexão oficial e estável, com histórico completo e cada resposta assinada com o nome de quem atendeu.</p></div>
+        <div class="feat"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 13h.01M15 13h.01M9 17h6"/></svg></div><h3>Agente de IA 24 horas</h3><p>Responde dúvidas, qualifica o cliente e passa a conversa para a pessoa certa. Você treina em português, sem programar.</p></div>
+        <div class="feat"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h4a2 2 0 0 1 2 2V14"/></svg></div><h3>Chatbot com editor visual</h3><p>Menus, botões, listas, PIX e agendamento em blocos de arrastar. Um fluxo para cada canal, campanha ou horário.</p></div>
+        <div class="feat"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="5" height="16" rx="1.5"/><rect x="10" y="4" width="5" height="11" rx="1.5"/><rect x="17" y="4" width="4" height="7" rx="1.5"/></svg></div><h3>CRM e kanban</h3><p>Veja em que etapa está cada cliente: novo, falando com a IA, em negociação ou urgente.</p></div>
+        <div class="feat"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5M4 19h16M8 15l3-4 3 2 5-6"/></svg></div><h3>Campanhas e indicadores</h3><p>Disparos pela API Oficial com entrega em tempo real, tempo de resposta por fila e insights de IA sobre o atendimento.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" id="planos">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Planos</span>
+        <h2>Preço claro, sem surpresa depois</h2>
+        <p class="lead">O plano começa em R$ 349/mês. O valor final depende de quantos usuários, canais e módulos a sua operação precisa, e a gente monta isso com você na conversa.</p>
+      </div>
+      <div class="price">
+        <div class="pcard">
+          <div class="offer" id="offer" hidden><b>Black NX: 30 dias de uso grátis</b>, R$ 0 no 1º mês, até 30/11. Válido para planos de 6 ou 12 meses no cartão; taxa de implantação paga na assinatura; mensalidade a partir de 30 dias após a entrega.</div>
+          <div class="from">A partir de</div>
+          <div class="val">R$ 349<small>/mês</small></div>
+          <div class="plan">Plano inicial com 5 usuários</div>
+          <ul>
+            <li><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Painel multicanal com vários atendentes no mesmo número</li>
+            <li><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>WhatsApp, Instagram, Messenger e chat do site</li>
+            <li><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Chatbot, CRM, kanban e campanhas</li>
+            <li><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Agente de IA e automações como módulos opcionais</li>
+            <li><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Configuração e treinamento da equipe</li>
+            <li><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Suporte por grupo no WhatsApp</li>
+          </ul>
+          <a class="btn btn-wa btn-lg" data-wa="planos" data-msg="Olá! Vi os planos na página do tour e quero montar o meu."><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37s-1.05 1.02-1.05 2.5 1.08 2.9 1.23 3.1c.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.71.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35zM12 2a10 10 0 0 0-8.6 15.06L2 22l5.06-1.33A10 10 0 1 0 12 2z"/></svg>Quero montar meu plano</a>
+        </div>
+        <div class="costs">
+          <h3>O que entra além da mensalidade</h3>
+          <dl>
+            <div><dt>Taxa de implantação</dt><dd>Paga uma única vez, na assinatura. Cobre a configuração técnica da API Oficial do WhatsApp e a implantação da plataforma.</dd></div>
+            <div><dt>Mensagens da Meta</dt><dd>Na API Oficial, a Meta cobra por mensagem enviada, conforme a categoria (marketing, utilidade, autenticação e atendimento). O que o cliente manda para você não é cobrado. Na conversa a gente estima o seu consumo.</dd></div>
+            <div><dt>Período do plano</dt><dd>Você escolhe entre planos de 3, 6 ou 12 meses.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk alt">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Como começar</span>
+        <h2>Do primeiro contato à operação rodando</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Conversa com o especialista</h3><p>Entendemos o seu atendimento hoje, quantas pessoas atendem e o que precisa automatizar. Montamos o plano ideal.</p></div>
+        <div class="step"><h3>Implantação e treinamento</h3><p>Conectamos o seu número na API Oficial, configuramos filas, chatbot ou IA e treinamos a equipe.</p></div>
+        <div class="step"><h3>Operação rodando</h3><p>Seu time atende pelo NX Systems com suporte direto no WhatsApp sempre que precisar.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" id="faq">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Dúvidas</span>
+        <h2>Perguntas frequentes</h2>
+      </div>
+      <div class="faq">
+        <details><summary>O tour mostra o sistema de verdade?</summary><p>Sim. São as telas reais do NX Systems, com dados fictícios. Na conversa com o especialista você vê a plataforma montada para o seu cenário.</p></details>
+        <details><summary>Quanto custa?</summary><p>O plano começa em R$ 349/mês com 5 usuários. O valor final varia conforme usuários, canais e módulos (como agente de IA e automações). Além disso, há a taxa de implantação, paga uma vez, e o consumo de mensagens da Meta.</p></details>
+        <details><summary>O custo das mensagens da Meta está incluso?</summary><p>Não. Na API Oficial a Meta cobra por mensagem enviada, conforme a categoria. As mensagens que o cliente manda para você não são cobradas. Antes de fechar, estimamos o seu consumo para não ter surpresa.</p></details>
+        <details><summary>Vários atendentes podem usar o mesmo número?</summary><p>Sim. Todo o time atende no mesmo número, com filas por setor, distribuição das conversas e cada resposta assinada com o nome de quem atendeu.</p></details>
+        <details><summary>Preciso saber programar para usar a IA ou o chatbot?</summary><p>Não. A IA é treinada com instruções em português e o chatbot é montado em um editor visual. Na implantação a gente configura junto com você.</p></details>
+        <details><summary>Funciona com Instagram e Messenger?</summary><p>Sim. WhatsApp, Instagram, Messenger e chat do site ficam no mesmo painel.</p></details>
+        <details><summary>Como funciona o suporte?</summary><p>Por um grupo no WhatsApp com o nosso time, com atendimento humano.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <div class="band">
+        <h2>Quer ver isso rodando na sua empresa?</h2>
+        <p>Chame um especialista no WhatsApp. A gente mostra a plataforma com o seu cenário e monta o plano ideal.</p>
+        <a class="btn btn-wa btn-lg" data-wa="final" data-msg="Olá! Vi o tour do NX Systems e quero ver a plataforma no meu cenário."><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37s-1.05 1.02-1.05 2.5 1.08 2.9 1.23 3.1c.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.71.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35zM12 2a10 10 0 0 0-8.6 15.06L2 22l5.06-1.33A10 10 0 1 0 12 2z"/></svg>Falar com especialista no WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fl"><img src="../assets/nx-logo.png" alt="NX Digital" width="32" height="32"><span>GRUPO NX NETSCALE LTDA · CNPJ 59.935.008/0001-92 · Av. Expedicionário José Pedro Coelho, 1237, Centro, Tubarão/SC · <a href="tel:+5548936181649">(48) 93618-1649</a></span></div>
+    <span><a href="https://gruponxdigital.com/politica-de-privacidade">Política de Privacidade</a> · <a href="https://gruponxdigital.com/termos-de-uso">Termos de Uso</a></span>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky"><a class="btn btn-wa" data-wa="sticky" data-msg="Olá! Estou vendo o tour do NX Systems e quero falar com um especialista."><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37s-1.05 1.02-1.05 2.5 1.08 2.9 1.23 3.1c.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.71.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35zM12 2a10 10 0 0 0-8.6 15.06L2 22l5.06-1.33A10 10 0 1 0 12 2z"/></svg>Falar com especialista no WhatsApp</a></div>
+
+<script>
+/* ================= CONFIGURAÇÃO ================= */
+const CONFIG={
+  whatsapp:'5548936181649',        // número que recebe os leads
+  webhook:'',                      // URL do webhook do n8n (eventos do tour + leads). Vazio = não envia
+  googleAds:'AW-XXXXXXXXXX',       // ID da conta Google Ads (Ferramentas > Conversões > Tag do Google)
+  conversao:'XXXXXXXXXXXXXXXXXXX', // rótulo da conversão "Clique no WhatsApp"
+  conversaoTour:'',                // (opcional) rótulo de uma conversão secundária "Concluiu o tour"
+  ga4:'',                          // (opcional) ID do GA4, ex.: G-XXXXXXX
+  blackAte:'2026-12-01T00:00:00-03:00' // a faixa Black NX some sozinha a partir desta data
+};
+/* Headline por tema: use ?tema=api|multi|ia|chatbot na URL final do anúncio */
+const TEMAS={
+  api:{t:'Plataforma de atendimento no WhatsApp com API Oficial',s:'Veja o NX Systems por dentro agora, sem agendar nada: vários atendentes no mesmo número, agente de IA 24h, chatbot, CRM e campanhas em uma tela só.'},
+  multi:{t:'Vários atendentes no mesmo número de WhatsApp',s:'Todo o seu time atendendo no mesmo WhatsApp, com filas por setor e histórico completo. Veja a plataforma por dentro em 2 minutos.'},
+  ia:{t:'Agente de IA que atende o seu WhatsApp 24 horas',s:'A IA responde, qualifica e passa para a pessoa certa da equipe. Veja como ela funciona por dentro, em um tour guiado de 2 minutos.'},
+  chatbot:{t:'Chatbot e IA para o WhatsApp da sua empresa',s:'Monte fluxos com menus, botões e PIX num editor visual, ou deixe a IA atender. Veja tudo por dentro em 2 minutos.'}
+};
+/* ================================================= */
+
+const qs=new URLSearchParams(location.search);
+const store={get(k){try{return JSON.parse(localStorage.getItem('nx_'+k))}catch(e){return null}},set(k,v){try{localStorage.setItem('nx_'+k,JSON.stringify(v))}catch(e){}}};
+
+/* origem do visitante: guarda gclid/UTMs da primeira visita por 90 dias */
+const ORIGEM=(()=>{
+  const keys=['gclid','gbraid','wbraid','utm_source','utm_medium','utm_campaign','utm_term','utm_content'];
+  const now={}; keys.forEach(k=>{const v=qs.get(k); if(v) now[k]=v.slice(0,300)});
+  let saved=store.get('origem');
+  if(saved&&saved.exp<Date.now()) saved=null;
+  const o=Object.keys(now).length?{...now,exp:Date.now()+90*864e5}:(saved||{exp:Date.now()+90*864e5});
+  store.set('origem',o); return o;
+})();
+const canal=ORIGEM.gclid||ORIGEM.gbraid||ORIGEM.wbraid||/google/i.test(ORIGEM.utm_source||'')?'G'
+  :/(facebook|instagram|meta|fb|ig)/i.test(ORIGEM.utm_source||'')?'M':ORIGEM.utm_source?'U':'O';
+/* código curto que vai na mensagem do WhatsApp e no webhook, para o CRM saber a origem */
+const CODIGO=(()=>{let c=store.get('codigo'); if(!c){c=Math.random().toString(36).slice(2,7).toUpperCase(); store.set('codigo',c)} return 'TOUR-'+canal+'-'+c})();
+const SID=Math.random().toString(36).slice(2,10);
+const LEAD={empresa:(qs.get('empresa')||'').slice(0,80), nome:(qs.get('nome')||'').slice(0,80)};
+const TEMA=TEMAS[qs.get('tema')]?qs.get('tema'):'api';
+const isMobile=()=>window.innerWidth<=760;
+const $=id=>document.getElementById(id);
+
+/* headline do tema */
+$('h-title').textContent=TEMAS[TEMA].t; $('h-sub').textContent=TEMAS[TEMA].s;
+
+/* Black NX */
+if(Date.now()<new Date(CONFIG.blackAte).getTime()){ $('promo').hidden=false; $('offer').hidden=false; }
+
+/* Google tag (só carrega quando o ID estiver preenchido) */
+const tagOk=id=>id&&!/X{4,}/.test(id);
+window.dataLayer=window.dataLayer||[]; function gtag(){dataLayer.push(arguments)}
+if(tagOk(CONFIG.googleAds)||tagOk(CONFIG.ga4)){
+  const s=document.createElement('script'); s.async=true;
+  s.src='https://www.googletagmanager.com/gtag/js?id='+(tagOk(CONFIG.googleAds)?CONFIG.googleAds:CONFIG.ga4);
+  document.head.appendChild(s); gtag('js',new Date());
+  if(tagOk(CONFIG.googleAds)) gtag('config',CONFIG.googleAds);
+  if(tagOk(CONFIG.ga4)) gtag('config',CONFIG.ga4);
+}
+function conv(label){ if(tagOk(CONFIG.googleAds)&&tagOk(label)) gtag('event','conversion',{send_to:CONFIG.googleAds+'/'+label}); }
+
+/* webhook do n8n */
+function send(event,data={}){
+  if(!CONFIG.webhook) return;
+  const {exp,...orig}=ORIGEM;
+  const payload={event,sid:SID,codigo:CODIGO,tema:TEMA,step:cur,ts:new Date().toISOString(),empresa:LEAD.empresa,
+    ref:document.referrer||'',pagina:location.href.split('?')[0],mobile:isMobile(),...orig,...data};
+  try{fetch(CONFIG.webhook,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload),keepalive:true}).catch(()=>{})}catch(e){}
+}
+function waLink(msg){return 'https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent(msg+'\n\n[Código: '+CODIGO+']')}
+
+/* todos os botões de WhatsApp da página */
+document.querySelectorAll('[data-wa]').forEach(a=>{
+  a.href=waLink(a.dataset.msg); a.target='_blank'; a.rel='noopener';
+  a.addEventListener('click',()=>{conv(CONFIG.conversao); if(tagOk(CONFIG.ga4)) gtag('event','generate_lead',{method:'whatsapp',where:a.dataset.wa}); send('cta_click',{where:a.dataset.wa})});
+});
+
+/* ================= TOUR ================= */
+const IMG={home:'img/home.webp',conversa:'img/conversa.webp',agentes:'img/agentes.webp','agente-editar':'img/agente-editar.webp','chatflow-lista':'img/chatflow-lista.webp','chatflow-editor':'img/chatflow-editor.webp',kanban:'img/kanban.webp',campanhas:'img/campanhas.webp',dashboard:'img/dashboard.webp'};
+const BOX={home_atend:[280,312,400,190],conv_ticket:[260,266,351,82],conv_chat:[930,153,522,56],conv_input:[994,641,422,36],ag_card:[280,208,400,166],ag_instr:[409,514,718,80],ag_tabs:[412,112,708,36],cf_card:[696,220,400,166],cf_blocks:[296,195,210,440],kb_col:[912,267,300,395],camp_prog:[1230,262,172,360],dash_cards:[280,286,1232,166],dash_ia:[280,172,1232,90]};
+const W=1536,H=695;
+const STEPS=[
+ {type:'intro', frame:'home'},
+ {frame:'home', box:BOX.home_atend, t:'Central de Atendimento', x:'Todos os WhatsApps da sua empresa em uma tela só, com vários atendentes usando o mesmo número.'},
+ {frame:'conversa', box:BOX.conv_ticket, t:'Cada conversa vira um ticket', x:'Com protocolo, fila (Suporte, Financeiro, Comercial), atendente responsável e etiquetas. Nenhum cliente fica esquecido.'},
+ {frame:'conversa', box:BOX.conv_chat, t:'API Oficial da Meta', x:'Conexão oficial, muito mais estável e segura. Cada resposta sai assinada com o nome de quem atendeu e o histórico fica completo.'},
+ {frame:'conversa', box:BOX.conv_input, t:'Respostas rápidas', x:'Digite / para usar mensagens prontas. Envie áudio, fotos, arquivos e cobrança por PIX sem sair da conversa.'},
+ {frame:'agentes', box:BOX.ag_card, t:'Agentes de IA 24 horas', x:'A IA faz o pré-atendimento: responde dúvidas, qualifica o cliente e passa a conversa para a pessoa certa da equipe.'},
+ {frame:'agente-editar', box:BOX.ag_instr, t:'Treine a IA em português', x:'Você descreve como ela deve atender, do mesmo jeito que treinaria um funcionário novo. Sem programação.'},
+ {frame:'agente-editar', box:BOX.ag_tabs, t:'Conhecimento e roteamento', x:'Suba catálogo, preços e PDFs, defina para qual fila vai cada assunto e conecte agenda, CRM e outras ferramentas.'},
+ {frame:'chatflow-lista', box:BOX.cf_card, t:'Chatbots com menu', x:'Prefere um menu de opções? Crie um fluxo para cada canal, campanha ou horário de atendimento.'},
+ {frame:'chatflow-editor', box:BOX.cf_blocks, t:'Editor visual de fluxos', x:'Arraste blocos de mensagem, botões, listas, PIX, agente de IA, n8n e agendamento. Tudo visual.'},
+ {frame:'kanban', box:BOX.kb_col, t:'Kanban por etiqueta', x:'Veja em que etapa está cada cliente: novo, falando com a IA, em negociação ou urgente.'},
+ {frame:'campanhas', box:BOX.camp_prog, t:'Campanhas pela API Oficial', x:'Dispare mensagens para a sua base e acompanhe em tempo real quantas foram entregues.'},
+ {frame:'dashboard', box:BOX.dash_cards, t:'Indicadores do atendimento', x:'Tempo médio de atendimento, de espera e de primeira resposta, com volume por fila, canal e atendente.'},
+ {frame:'dashboard', box:BOX.dash_ia, t:'Insights de IA', x:'Com um clique a IA lê as métricas do período e aponta onde o atendimento pode melhorar.'},
+ {type:'cta', frame:'dashboard'}
+];
+const URLS={home:'/',conversa:'/atendimento',agentes:'/agentes-ia','agente-editar':'/agentes-ia','chatflow-lista':'/chat-flow','chatflow-editor':'/chat-flow',kanban:'/kanban/tags',campanhas:'/campanhas',dashboard:'/dashboard'};
+
+const vp=$('vp'), canvas=$('canvas'), spot=$('spot'), tip=$('tip'), arrow=$('arrow'), card=$('card');
+let imgs=[$('imgA'),$('imgB')], front=0, cur=-1, curFrame='home', view={z:1,ox:0,oy:0}, full=false, seen=new Set();
+
+/* carrega as outras telas depois que a página abriu */
+const preload=()=>Object.values(IMG).forEach(src=>{const im=new Image(); im.src=src});
+if(document.readyState==='complete') setTimeout(preload,300); else window.addEventListener('load',()=>setTimeout(preload,300));
+
+function showFrame(name){
+  if(curFrame===name) return;
+  const back=imgs[1-front], fr=imgs[front];
+  back.src=IMG[name]; back.alt='Tela do NX Systems'; fr.alt='';
+  const swap=()=>{back.classList.remove('off'); fr.classList.add('off'); front=1-front;};
+  (back.decode?back.decode().catch(()=>{}):Promise.resolve()).then(swap);
+  curFrame=name; $('url').textContent='app.nxsystems.com.br'+(URLS[name]||'/');
+}
+function computeView(s){
+  const vw=vp.clientWidth;
+  if(!isMobile()){ vp.style.height=''; return {z:vw/W,ox:0,oy:0}; }
+  const vh=Math.round(Math.min(Math.max(vw*0.95,280), window.innerHeight*0.52));
+  vp.style.height=vh+'px';
+  const zMin=vw/W;
+  if(!s.box||full){ return {z:zMin,ox:0,oy:-(vh/zMin-H)/2}; }
+  const [x,y,w,h]=s.box, pad=28;
+  let z=Math.min(vw/(w+pad*2), vh/(h+pad*2), 0.95); z=Math.max(z,zMin);
+  const cw=vw/z, ch=vh/z, cx=x+w/2, cy=y+h/2;
+  let ox=cx-cw/2, oy=cy-ch/2;
+  ox=Math.max(0,Math.min(ox,W-cw));
+  oy = ch>=H ? -(ch-H)/2 : Math.max(0,Math.min(oy,H-ch));
+  return {z,ox,oy};
+}
+function applyView(v){ view=v; canvas.style.transform=`scale(${v.z}) translate(${-v.ox}px,${-v.oy}px)`; }
+function toScreen(b){ const p=6; return {L:(b[0]-p-view.ox)*view.z, T:(b[1]-p-view.oy)*view.z, W:(b[2]+p*2)*view.z, H:(b[3]+p*2)*view.z}; }
+function place(s, animate){
+  canvas.classList.toggle('anim',!!animate); spot.classList.toggle('anim',!!animate);
+  applyView(computeView(s));
+  $('zoom').hidden=!s.box; $('zoom').textContent=full?'Aproximar':'Tela inteira';
+  $('tap').hidden=!s.box||!isMobile();
+  if(!s.box){spot.style.display='none';tip.style.opacity=0;tip.style.pointerEvents='none';return}
+  const r=toScreen(s.box);
+  Object.assign(spot.style,{display:'block',left:r.L+'px',top:r.T+'px',width:r.W+'px',height:r.H+'px'});
+  if(isMobile()) return;
+  const off=vp.offsetTop, vw=vp.clientWidth, vh=vp.clientHeight, tw=tip.offsetWidth, th=tip.offsetHeight, g=16;
+  let side,tx,ty;
+  if(r.L+r.W+g+tw<=vw){side='right';tx=r.L+r.W+g;ty=r.T+r.H/2-th/2}
+  else if(r.L-g-tw>=0){side='left';tx=r.L-g-tw;ty=r.T+r.H/2-th/2}
+  else if(r.T+r.H+g+th<=vh){side='bottom';tx=r.L+r.W/2-tw/2;ty=r.T+r.H+g}
+  else {side='top';tx=r.L+r.W/2-tw/2;ty=r.T-g-th}
+  tx=Math.max(8,Math.min(tx,vw-tw-8)); ty=Math.max(8,Math.min(ty,vh-th-8));
+  tip.style.left=tx+'px'; tip.style.top=(ty+off)+'px'; tip.style.opacity=1; tip.style.pointerEvents='auto';
+  const cx=Math.max(14,Math.min(r.L+r.W/2-tx,tw-28)), cy=Math.max(14,Math.min(r.T+r.H/2-ty,th-28));
+  arrow.style.cssText= side==='right'?`left:-6px;top:${cy}px`: side==='left'?`right:-6px;top:${cy}px`: side==='bottom'?`top:-6px;left:${cx}px`:`bottom:-6px;left:${cx}px`;
+}
+let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>cur>=0&&place(STEPS[cur],false),80)});
+
+function renderProgress(){
+  const p=$('prog'); p.innerHTML='';
+  STEPS.forEach((s,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Ir para a etapa '+(i+1));
+    b.className=i<cur?'done':i===cur?'cur':'';b.onclick=()=>go(i);p.appendChild(b)});
+}
+const total=STEPS.length;
+function go(i){
+  if(i<0||i>=total) return;
+  const first=cur<0; cur=i; full=false; const s=STEPS[i];
+  showFrame(s.frame);
+  card.hidden=!(s.type==='intro'||s.type==='cta');
+  if(s.type==='intro') intro(); if(s.type==='cta') cta();
+  const lbl=i+' de '+(total-2);
+  $('tt').textContent=$('dt').textContent=s.t||''; $('tx').textContent=$('dx').textContent=s.x||'';
+  $('nn').textContent=$('dn').textContent=s.box?lbl:''; $('count').textContent=s.box?('Etapa '+lbl):'';
+  $('bk').disabled=$('dbk').disabled=(i<=1);
+  $('nx').textContent=$('dnx').textContent=(i===total-2?'Concluir':'Próximo');
+  $('dock').hidden=!s.box;
+  place(s,!first); renderProgress();
+  if(!seen.has(i)){seen.add(i);send('step_view',{titulo:s.t||s.type})}
+  if(s.type==='cta'){ send('demo_complete'); conv(CONFIG.conversaoTour); if(tagOk(CONFIG.ga4)) gtag('event','tour_complete'); }
+}
+const next=()=>go(cur+1), back=()=>go(cur-1);
+spot.addEventListener('click',next);
+spot.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();next()}});
+$('nx').onclick=$('dnx').onclick=next; $('bk').onclick=$('dbk').onclick=back;
+$('restart').onclick=()=>go(0);
+$('zoom').onclick=()=>{full=!full;place(STEPS[cur],true)};
+vp.addEventListener('click',e=>{ if(e.target===vp||e.target===canvas||e.target.tagName==='IMG'){ spot.classList.remove('hint'); void spot.offsetWidth; spot.classList.add('hint'); }});
+let sx=null; vp.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
+vp.addEventListener('touchend',e=>{ if(sx===null||!card.hidden) return; const dx=e.changedTouches[0].clientX-sx; sx=null; if(Math.abs(dx)>60){ dx<0?next():back(); }},{passive:true});
+/* setas do teclado só quando o tour está na tela */
+let tourVisivel=true;
+if('IntersectionObserver' in window) new IntersectionObserver(es=>{tourVisivel=es[0].isIntersecting},{threshold:.4}).observe($('wrap'));
+document.addEventListener('keydown',e=>{if(!tourVisivel||e.target.tagName==='INPUT')return;if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')back()});
+
+function intro(){
+  const nome=LEAD.empresa?('Preparamos este tour para a '+esc(LEAD.empresa)+'. '):'';
+  $('cardbox').innerHTML=`<div class="eyebrow">Tour guiado · 2 minutos</div>
+   <h2>Veja o NX Systems por dentro</h2>
+   <p>${nome}Toque nos pontos destacados para navegar pela plataforma real: atendimento no WhatsApp, agentes de IA, chatbots, kanban, campanhas e indicadores. Os dados são fictícios.</p>
+   <div class="row"><button class="btn btn-primary" id="start" type="button">Começar o tour</button><span class="meta">13 etapas · sem cadastro</span></div>`;
+  $('start').onclick=()=>{send('demo_start');go(1)};
+}
+function cta(){
+  $('cardbox').innerHTML=`<div class="eyebrow">Fim do tour</div>
+   <h2>Quer isso rodando na sua empresa?</h2>
+   <p>Fale com um especialista da NX Digital pelo WhatsApp. Mostramos a plataforma com o seu cenário e montamos o plano ideal.</p>
+   <div class="form">
+     <label for="ld-nome">Seu nome (opcional)<input id="ld-nome" autocomplete="name" value="${esc(LEAD.nome)}" placeholder="Ex.: Ana Souza"></label>
+     <label for="ld-emp">Empresa (opcional)<input id="ld-emp" autocomplete="organization" value="${esc(LEAD.empresa)}" placeholder="Ex.: Pedal Bikes"></label>
+   </div>
+   <div class="row"><a class="btn btn-wa" id="ctawa" target="_blank" rel="noopener">Falar no WhatsApp</a><button class="btn btn-ghost" id="again" type="button">Ver de novo</button></div>
+   <p class="meta" style="margin:14px 0 0">Ou chame no <span class="phone">(48) 93618-1649</span></p>`;
+  const upd=()=>{const n=$('ld-nome').value.trim(),e=$('ld-emp').value.trim();
+    $('ctawa').href=waLink('Olá! '+(n?'Sou '+n+(e?' da '+e:'')+'. ':(e?'Sou da '+e+'. ':''))+'Acabei de ver o tour do NX Systems e quero falar com um especialista.')};
+  $('ld-nome').oninput=$('ld-emp').oninput=upd; upd();
+  $('ctawa').onclick=()=>{conv(CONFIG.conversao); if(tagOk(CONFIG.ga4)) gtag('event','generate_lead',{method:'whatsapp',where:'fim_tour'});
+    send('lead',{where:'fim_tour',nome:$('ld-nome').value.trim(),empresa:$('ld-emp').value.trim()})};
+  $('again').onclick=()=>go(1);
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+/* barra fixa de WhatsApp no celular, depois que a pessoa passa do tour */
+if('IntersectionObserver' in window) new IntersectionObserver(es=>{ $('sticky').classList.toggle('on',!es[0].isIntersecting && es[0].boundingClientRect.top<0) }).observe($('tour'));
+
+send('demo_open');
+go(0);
+</script>
+<script>
+/* Black NX: mostra o bloco e roda a contagem até CONFIG.blackAte */
+(function(){
+  var fim=new Date(CONFIG.blackAte).getTime(), box=document.getElementById('black');
+  if(!(Date.now()<fim)) return; box.hidden=false;
+  var p=function(n){return (n<10?'0':'')+n}, ids=['cd-d','cd-h','cd-m','cd-s'].map(function(i){return document.getElementById(i)});
+  function tick(){var t=Math.max(0,fim-Date.now()),s=Math.floor(t/1000);
+    ids[0].textContent=p(Math.floor(s/86400)); ids[1].textContent=p(Math.floor(s%86400/3600)); ids[2].textContent=p(Math.floor(s%3600/60)); ids[3].textContent=p(s%60);
+    if(t<=0){box.hidden=true;clearInterval(iv)}}
+  tick(); var iv=setInterval(tick,1000);
+})();
+</script>
+</body>
+</html>
