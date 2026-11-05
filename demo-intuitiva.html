@@ -420,6 +420,11 @@ class Component extends DCLogic {
   // Para cada demo nova, acrescente uma linha aqui (o slug é o final do link demo.nxdigital.com.br/d/SLUG).
   DEMOS = [
     { slug: 'nx-systems-tour', nome: 'Tour completo' },
+    { slug: 'nx-atendimento', nome: 'Atendimento' },
+    { slug: 'nx-crm', nome: 'CRM e Funil' },
+    { slug: 'nx-disparo', nome: 'Disparo em massa' },
+    { slug: 'nx-ia', nome: 'Agente de IA' },
+    { slug: 'nx-chatbot', nome: 'Chatbot' },
   ];
   componentDidMount(){
     this._demoMsg = (e) => {
@@ -590,10 +595,10 @@ class Component extends DCLogic {
       : 'display:block;width:100%;border:0;border-radius:18px;background:transparent;' +
         (this.state.demoH ? 'height:' + this.state.demoH + 'px' : 'aspect-ratio:16/9;min-height:520px');
     const atual = this.demoSlug();
-    const demoTabs = this.DEMOS.length < 2 ? null : React.createElement('div', { style:{display:'flex',flexWrap:'wrap',justifyContent:'center',gap:10,margin:'0 0 22px'} },
+    const demoTabs = this.DEMOS.length < 2 ? null : React.createElement('div', { style:{display:'flex',flexWrap:'wrap',justifyContent:'center',gap:this.demoCelular()?8:10,margin:'0 0 22px'} },
       this.DEMOS.map((d) => React.createElement('button', { key:d.slug, type:'button',
         onClick:() => { this.setState({ demoSel:d.slug, demoH:0 }); try { history.replaceState(null,'','?d='+d.slug); } catch(e){} },
-        style:{cursor:'pointer',border:'none',borderRadius:100,padding:'10px 20px',fontWeight:700,fontSize:15,fontFamily:'inherit',
+        style:{cursor:'pointer',border:'none',borderRadius:100,padding:this.demoCelular()?'8px 14px':'10px 20px',fontWeight:700,fontSize:this.demoCelular()?13.5:15,fontFamily:'inherit',
           background: d.slug===atual ? '#0756FF' : '#fff', color: d.slug===atual ? '#fff' : '#0756FF',
           boxShadow: d.slug===atual ? '0 10px 24px -10px rgba(7,86,255,.6)' : 'inset 0 0 0 1.5px #cfe0ff'} }, d.nome)));
     return {
