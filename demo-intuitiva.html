@@ -419,12 +419,12 @@ class Component extends DCLogic {
   DEMO_BASE = 'https://demo.nxdigital.com.br';
   // Para cada demo nova, acrescente uma linha aqui (o slug é o final do link demo.nxdigital.com.br/d/SLUG).
   DEMOS = [
-    { slug: 'nx-systems-tour', nome: 'Tour completo' },
-    { slug: 'nx-atendimento', nome: 'Atendimento' },
-    { slug: 'nx-crm', nome: 'CRM e Funil' },
-    { slug: 'nx-disparo', nome: 'Disparo em massa' },
-    { slug: 'nx-ia', nome: 'Agente de IA' },
-    { slug: 'nx-chatbot', nome: 'Chatbot' },
+    { slug: 'nx-systems-tour', nome: 'Tour completo', url: '/demo-intuitiva' },
+    { slug: 'nx-atendimento', nome: 'Atendimento', url: '/demo-intuitiva-atendimento' },
+    { slug: 'nx-crm', nome: 'CRM e Funil', url: '/demo-intuitiva-crm' },
+    { slug: 'nx-disparo', nome: 'Disparo em massa', url: '/demo-intuitiva-disparo' },
+    { slug: 'nx-ia', nome: 'Agente de IA', url: '/demo-intuitiva-ia' },
+    { slug: 'nx-chatbot', nome: 'Chatbot', url: '/demo-intuitiva-chatbot' },
   ];
   componentDidMount(){
     this._demoMsg = (e) => {
@@ -443,7 +443,9 @@ class Component extends DCLogic {
   demoCelular(){ return this.state.vw <= 760; }
   demoSlug(){
     if (this.state.demoSel) return this.state.demoSel;
-    const s = new URLSearchParams(location.search).get('d') || this.DEMO_PADRAO;
+    const pag = location.pathname.replace(/\.html$/, '').replace(/\/+$/, '');
+    const porUrl = this.DEMOS.find((d) => pag.endsWith(d.url));
+    const s = new URLSearchParams(location.search).get('d') || (porUrl ? porUrl.slug : this.DEMO_PADRAO);
     return s.replace(/[^a-z0-9-]/gi, '').toLowerCase();
   }
   demoSrc(){
@@ -597,7 +599,7 @@ class Component extends DCLogic {
     const atual = this.demoSlug();
     const demoTabs = this.DEMOS.length < 2 ? null : React.createElement('div', { style:{display:'flex',flexWrap:'wrap',justifyContent:'center',gap:this.demoCelular()?8:10,margin:'0 0 22px'} },
       this.DEMOS.map((d) => React.createElement('button', { key:d.slug, type:'button',
-        onClick:() => { this.setState({ demoSel:d.slug, demoH:0 }); try { history.replaceState(null,'','?d='+d.slug); } catch(e){} },
+        onClick:() => { this.setState({ demoSel:d.slug, demoH:0 }); try { history.replaceState(null,'',d.url); } catch(e){} },
         style:{cursor:'pointer',border:'none',borderRadius:100,padding:this.demoCelular()?'8px 14px':'10px 20px',fontWeight:700,fontSize:this.demoCelular()?13.5:15,fontFamily:'inherit',
           background: d.slug===atual ? '#0756FF' : '#fff', color: d.slug===atual ? '#fff' : '#0756FF',
           boxShadow: d.slug===atual ? '0 10px 24px -10px rgba(7,86,255,.6)' : 'inset 0 0 0 1.5px #cfe0ff'} }, d.nome)));
