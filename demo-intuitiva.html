@@ -346,8 +346,7 @@ window.nxValidate=function(f){
       </div>
     </div>
   </section>
-  <style>@media (max-width:640px){#nxdemo{border-radius:12px!important}}</style>
-
+  
   <footer style="background:linear-gradient(165deg,#0756FF 0%,#0540c4 55%,#062a86 100%);padding:64px 20px 26px;position:relative;overflow:hidden">
     <div style="position:absolute;top:-140px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(255,255,255,.14),transparent 70%);pointer-events:none"></div>
     <div style="max-width:1180px;margin:0 auto;position:relative;z-index:2">
@@ -412,7 +411,7 @@ window.nxValidate=function(f){
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { solOpen:false, quemOpen:false, contOpen:false, acc:0, iaSeg:0, demoH:0, demoSel:'' };
+  state = { solOpen:false, quemOpen:false, contOpen:false, acc:0, iaSeg:0, demoH:0, demoSel:'', vw:(typeof window!=='undefined'?window.innerWidth:1200) };
   waNumber = '5548936181649';
   // ---- Tour interativo (Demo Studio) ----
   // Demo que abre em gruponxdigital.com/demo. As outras abrem com ?d=SLUG, sem precisar mexer aqui.
@@ -426,11 +425,17 @@ class Component extends DCLogic {
     this._demoMsg = (e) => {
       const d = e.data;
       if (e.origin !== this.DEMO_BASE || !d || d.type !== 'nxdemo:height' || d.slug !== this.demoSlug()) return;
+      if (this.demoCelular()) return;
       if (d.height && d.height !== this.state.demoH) this.setState({ demoH: d.height });
     };
     window.addEventListener('message', this._demoMsg);
+    this._demoRs = () => { if (window.innerWidth !== this.state.vw) this.setState({ vw: window.innerWidth }); };
+    window.addEventListener('resize', this._demoRs);
   }
-  componentWillUnmount(){ window.removeEventListener('message', this._demoMsg); }
+  componentWillUnmount(){ window.removeEventListener('message', this._demoMsg); window.removeEventListener('resize', this._demoRs); }
+  // No celular o player mede a própria janela (o iframe) para decidir a altura; por isso o quadro
+  // ganha altura fixa de tela cheia e não segue a altura que o player informa.
+  demoCelular(){ return this.state.vw <= 760; }
   demoSlug(){
     if (this.state.demoSel) return this.state.demoSel;
     const s = new URLSearchParams(location.search).get('d') || this.DEMO_PADRAO;
@@ -580,8 +585,10 @@ class Component extends DCLogic {
       ? React.createElement('div',{ key, style:{ alignSelf:'flex-start', maxWidth:'84%', background:'#fff', borderRadius:'2px 12px 12px 12px', padding:'8px 11px', fontSize:'12.5px', lineHeight:1.38, color:'#111b21', boxShadow:'0 2px 6px -2px rgba(15,23,42,.18)' } }, txt)
       : React.createElement('div',{ key, style:{ alignSelf:'flex-end', maxWidth:'84%', background:'#d9fdd3', borderRadius:'12px 2px 12px 12px', padding:'8px 11px', fontSize:'12.5px', lineHeight:1.38, color:'#111b21', boxShadow:'0 2px 6px -2px rgba(15,23,42,.18)' } }, txt);
     const segMessages = React.createElement(React.Fragment,{ key:segIdx }, ...seg.msgs.map((m,i)=>bBubble(i, m[0], m[1])));
-    const demoStyle = 'display:block;width:100%;border:0;border-radius:18px;background:transparent;' +
-      (this.state.demoH ? 'height:' + this.state.demoH + 'px' : 'aspect-ratio:16/9;min-height:520px');
+    const demoStyle = this.demoCelular()
+      ? 'display:block;width:calc(100% + 32px);max-width:none;margin:0 -16px;border:0;border-radius:0;background:transparent;height:max(660px,190vw);max-height:900px'
+      : 'display:block;width:100%;border:0;border-radius:18px;background:transparent;' +
+        (this.state.demoH ? 'height:' + this.state.demoH + 'px' : 'aspect-ratio:16/9;min-height:520px');
     const atual = this.demoSlug();
     const demoTabs = this.DEMOS.length < 2 ? null : React.createElement('div', { style:{display:'flex',flexWrap:'wrap',justifyContent:'center',gap:10,margin:'0 0 22px'} },
       this.DEMOS.map((d) => React.createElement('button', { key:d.slug, type:'button',
