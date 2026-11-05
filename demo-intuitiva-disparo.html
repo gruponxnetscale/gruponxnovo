@@ -342,11 +342,69 @@ window.nxValidate=function(f){
       {{ demoTabs }}
       <iframe id="nxdemo" src="{{ demoSrc }}" title="Tour interativo do NX Systems" allow="fullscreen" style="{{ demoStyle }}"></iframe>
       <div style="display:flex;justify-content:center;margin-top:28px">
-        <a href="https://wa.me/5548936181649?text=Ol%C3%A1!%20Vi%20o%20tour%20do%20NX%20Systems%20e%20quero%20falar%20com%20um%20especialista." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#3d9bff,#1e6bff);color:#fff;font-weight:800;font-size:16px;padding:15px 32px;border-radius:100px;text-decoration:none;box-shadow:0 16px 34px -12px rgba(7,86,255,.55)">Falar com um especialista</a>
+        <a href="#form-ia" style="display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#3d9bff,#1e6bff);color:#fff;font-weight:800;font-size:16px;padding:15px 32px;border-radius:100px;text-decoration:none;box-shadow:0 16px 34px -12px rgba(7,86,255,.55)">Falar com um especialista</a>
       </div>
     </div>
   </section>
   
+  <!-- ===================== FORMULÁRIO (obrigatório antes do WhatsApp) ===================== -->
+  <section id="form-ia" style="background:#fff;padding:72px 0;scroll-margin-top:110px">
+    <span id="form" style="position:relative;top:-90px"></span>
+    <style>.nx-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}@media(max-width:860px){.nx-form-grid{grid-template-columns:1fr;gap:28px}.nx-form-grid h2{font-size:28px!important}.nx-form-card{padding:24px 18px!important}}</style>
+    <div class="nx-form-grid" style="max-width:1000px;margin:0 auto;padding:0 20px">
+      <div>
+        <h2 style="font-size:38px;line-height:1.1;font-weight:900;letter-spacing:-1.2px;margin:0 0 16px;color:#0a1633">Fale com um especialista</h2>
+        <p style="font-size:18px;line-height:1.6;color:#51607a;margin:0 0 24px">Preencha o formulário e o nosso time te chama no WhatsApp para mostrar a plataforma no seu cenário.</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;gap:12px;color:#334155;font-size:15.5px;font-weight:600"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M20 6 9 17l-5-5"></path></svg>Implantação 100% feita pela nossa equipe</div>
+          <div style="display:flex;align-items:center;gap:12px;color:#334155;font-size:15.5px;font-weight:600"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M20 6 9 17l-5-5"></path></svg>Entregamos tudo configurado e rodando</div>
+          <div style="display:flex;align-items:center;gap:12px;color:#334155;font-size:15.5px;font-weight:600"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M20 6 9 17l-5-5"></path></svg>Treinamos o seu time para usar no dia a dia</div>
+          <div style="display:flex;align-items:center;gap:12px;color:#334155;font-size:15.5px;font-weight:600"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0756FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M20 6 9 17l-5-5"></path></svg>Parceiro oficial Meta</div>
+        </div>
+      </div>
+      <div>
+        <div class="nx-form-card" style="background:#fff;border-radius:24px;padding:32px 30px;box-shadow:0 40px 80px -34px rgba(7,86,255,.4);border:1px solid #eef1f6">
+          <h3 style="font-size:22px;font-weight:800;letter-spacing:-.5px;margin:0 0 6px;color:#0a1633">Quero isso rodando na minha empresa</h3>
+          <p style="font-size:14.5px;color:#64748b;line-height:1.5;margin:0 0 22px">Preencha e o nosso time comercial te chama rapidinho no seu WhatsApp.</p>
+          <form noValidate="{{ true }}" onSubmit="{{ handleSubmit }}" style="display:flex;flex-direction:column;gap:14px">
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px">Nome</label>
+              <input name="nome" required autocomplete="name" placeholder="Seu nome" style="width:100%;font-family:inherit;font-size:16px;padding:13px 14px;border:1.5px solid #e2e8f0;border-radius:12px;outline:none;background:#fafbff" style-focus="border-color:#0756FF;box-shadow:0 0 0 3px rgba(7,86,255,.12);background:#fff" />
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px">WhatsApp</label>
+              <input name="whatsapp" required inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000" style="width:100%;font-family:inherit;font-size:16px;padding:13px 14px;border:1.5px solid #e2e8f0;border-radius:12px;outline:none;background:#fafbff" style-focus="border-color:#0756FF;box-shadow:0 0 0 3px rgba(7,86,255,.12);background:#fff" />
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px">Ramo do negócio</label>
+              <input name="ramo" required placeholder="Ex: clínica, loja, imobiliária…" style="width:100%;font-family:inherit;font-size:16px;padding:13px 14px;border:1.5px solid #e2e8f0;border-radius:12px;outline:none;background:#fafbff" style-focus="border-color:#0756FF;box-shadow:0 0 0 3px rgba(7,86,255,.12);background:#fff" />
+            </div>
+            <div>
+              <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px">Quantidade de usuários</label>
+              <select name="usuarios" required style="width:100%;font-family:inherit;font-size:16px;padding:13px 14px;border:1.5px solid #e2e8f0;border-radius:12px;outline:none;background:#fafbff;color:#334155;cursor:pointer;appearance:none;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 fill=%22none%22 stroke=%22%2364748b%22 stroke-width=%222.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22m6 9 6 6 6-6%22/></svg>');background-repeat:no-repeat;background-position:right 14px center" style-focus="border-color:#0756FF;box-shadow:0 0 0 3px rgba(7,86,255,.12);background:#fff">
+                <option value="" disabled selected>Selecione o tamanho da equipe</option>
+                <option value="1-5">1 a 5 usuários</option>
+                <option value="6-15">6 a 15 usuários</option>
+                <option value="16-30">16 a 30 usuários</option>
+                <option value="31-50">31 a 50 usuários</option>
+                <option value="50+">Mais de 50 usuários</option>
+              </select>
+            </div>
+            <label style="display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:#64748b;line-height:1.5;cursor:pointer;margin-top:2px">
+              <input type="checkbox" name="consent" required style="margin-top:2px;width:16px;height:16px;accent-color:#0756FF;flex-shrink:0" />
+              <span>Ao enviar, você concorda com nossa <a href="https://ajuda.zdg.com.br/diretrizes-e-politicas/aviso-de-privacidade" target="_blank" rel="noopener">Política de Privacidade</a> e com o tratamento dos seus dados conforme a LGPD.</span>
+            </label>
+            <button type="submit" style="margin-top:6px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;font-family:inherit;font-weight:800;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;box-shadow:0 14px 26px -12px rgba(37,211,102,.7)" style-hover="filter:brightness(.95)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37s-1.05 1.02-1.05 2.5 1.08 2.9 1.23 3.1c.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.71.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35zM12 2a10 10 0 0 0-8.6 15.06L2 22l5.06-1.33A10 10 0 1 0 12 2z"></path></svg>
+              Falar com especialista no WhatsApp
+            </button>
+            <p style="text-align:center;font-size:12px;color:#94a3b8;margin:2px 0 0">Resposta rápida • Parceiro oficial Meta • Demonstração gratuita</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer style="background:linear-gradient(165deg,#0756FF 0%,#0540c4 55%,#062a86 100%);padding:64px 20px 26px;position:relative;overflow:hidden">
     <div style="position:absolute;top:-140px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(255,255,255,.14),transparent 70%);pointer-events:none"></div>
     <div style="max-width:1180px;margin:0 auto;position:relative;z-index:2">
@@ -403,7 +461,7 @@ window.nxValidate=function(f){
     </div>
   </footer>
 
-    <a href="https://wa.me/5548936181649" target="_blank" rel="noopener" aria-label="Falar no WhatsApp" style="position:fixed;bottom:24px;right:24px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px -6px rgba(37,211,102,.6);animation:pulseRing 2.4s infinite">
+    <a href="#form-ia" aria-label="Falar com um especialista" style="position:fixed;bottom:24px;right:24px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px -6px rgba(37,211,102,.6);animation:pulseRing 2.4s infinite">
     <svg width="34" height="34" viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.87 9.87 0 0 0 1.523 5.263l-.999 3.648 3.965-1.05zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
   </a>
 
@@ -434,12 +492,24 @@ class Component extends DCLogic {
       if (d.height && d.height !== this.state.demoH) this.setState({ demoH: d.height });
     };
     window.addEventListener('message', this._demoMsg);
+    // Botão "Falar com especialista" do fim do tour: desce até o formulário (o WhatsApp só vem depois dele).
+    this._demoCta = (e) => {
+      if (e.origin !== this.DEMO_BASE || !e.data || e.data.type !== 'nxdemo:cta') return;
+      this.irParaForm();
+    };
+    window.addEventListener('message', this._demoCta);
     this._demoRs = () => { if (window.innerWidth !== this.state.vw) this.setState({ vw: window.innerWidth }); };
     window.addEventListener('resize', this._demoRs);
   }
-  componentWillUnmount(){ window.removeEventListener('message', this._demoMsg); window.removeEventListener('resize', this._demoRs); }
+  componentWillUnmount(){ window.removeEventListener('message', this._demoMsg); window.removeEventListener('message', this._demoCta); window.removeEventListener('resize', this._demoRs); }
   // No celular o player mede a própria janela (o iframe) para decidir a altura; por isso o quadro
   // ganha altura fixa de tela cheia e não segue a altura que o player informa.
+  irParaForm(){
+    const el = document.getElementById('form-ia'); if (!el) return;
+    // scrollIntoView: no celular quem rola é o body, não a janela. O recuo vem do scroll-margin-top da seção.
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const f = el.querySelector('input'); if (f) setTimeout(() => f.focus({ preventScroll: true }), 700);
+  }
   demoCelular(){ return this.state.vw <= 760; }
   demoSlug(){
     if (this.state.demoSel) return this.state.demoSel;
@@ -451,8 +521,8 @@ class Component extends DCLogic {
   demoSrc(){
     const qs = new URLSearchParams(location.search), out = new URLSearchParams();
     ['empresa','nome','vendedor'].forEach((k) => { if (qs.get(k)) out.set(k, qs.get(k)); });
-    const q = out.toString();
-    return this.DEMO_BASE + '/e/' + this.demoSlug() + (q ? '?' + q : '');
+    out.set('cta', 'site');
+    return this.DEMO_BASE + '/e/' + this.demoSlug() + '?' + out.toString();
   }
 
   handleSubmit(e){
@@ -464,9 +534,10 @@ class Component extends DCLogic {
     const ramo = f.ramo.value.trim();
     const sel = f.usuarios;
     const usuarios = sel && sel.selectedIndex >= 0 ? sel.options[sel.selectedIndex].text : '';
-    const texto = encodeURIComponent(`Olá! Quero organizar meu atendimento.\nNome: ${nome}\nWhatsApp: ${whats}\nRamo: ${ramo}\nQuantidade de usuários: ${usuarios}`);
+    const demoVista = (this.DEMOS.find((d) => d.slug === this.demoSlug()) || {}).nome || 'Tour completo';
+    const texto = encodeURIComponent(`Olá! Vi a demonstração do NX Systems (${demoVista}) e quero falar com um especialista.\nNome: ${nome}\nWhatsApp: ${whats}\nRamo: ${ramo}\nQuantidade de usuários: ${usuarios}`);
     window.open(`https://wa.me/${this.waNumber}?text=${texto}`, '_blank');
-    window.location.href = 'obrigado?nome=' + encodeURIComponent(nome);
+    window.location.href = '/obrigado?nome=' + encodeURIComponent(nome);
   }
   handleWhats(ev){
     const _fm = ev && ev.target && ev.target.closest ? ev.target.closest('form') : document.querySelector('form');
