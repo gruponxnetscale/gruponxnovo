@@ -17,22 +17,22 @@ if(a)gtag('event','conversion',{send_to:'AW-18554704161/Kt_YCJ3PyLEdEKGiyY9F'});
 <body>
 <x-dc>
 <helmet>
-<title>Tour interativo do NX Systems | NX Digital</title>
-<meta name="description" content="Navegue pela plataforma NX Systems por dentro: atendimento no WhatsApp, agentes de IA, chatbot, CRM, kanban e campanhas. Sem cadastro." />
+<title>Tour interativo da NX Digital</title>
+<meta name="description" content="Navegue pela plataforma da NX Digital por dentro: atendimento no WhatsApp, agentes de IA, chatbot, CRM, kanban e campanhas. Sem cadastro." />
 <link rel="canonical" href="https://gruponxdigital.com/demo-intuitiva">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NX Digital">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:title" content="Tour interativo do NX Systems | NX Digital">
-<meta property="og:description" content="Navegue pela plataforma NX Systems por dentro: atendimento no WhatsApp, agentes de IA, chatbot, CRM, kanban e campanhas. Sem cadastro.">
+<meta property="og:title" content="Tour interativo da NX Digital">
+<meta property="og:description" content="Navegue pela plataforma da NX Digital por dentro: atendimento no WhatsApp, agentes de IA, chatbot, CRM, kanban e campanhas. Sem cadastro.">
 <meta property="og:url" content="https://gruponxdigital.com/demo-intuitiva">
 <meta property="og:image" content="https://gruponxdigital.com/assets/og-nx.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="NX Digital — Atendimento no WhatsApp com IA e API oficial da Meta">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Tour interativo do NX Systems | NX Digital">
-<meta name="twitter:description" content="Navegue pela plataforma NX Systems por dentro: atendimento no WhatsApp, agentes de IA, chatbot, CRM, kanban e campanhas. Sem cadastro.">
+<meta name="twitter:title" content="Tour interativo da NX Digital">
+<meta name="twitter:description" content="Navegue pela plataforma da NX Digital por dentro: atendimento no WhatsApp, agentes de IA, chatbot, CRM, kanban e campanhas. Sem cadastro.">
 <meta name="twitter:image" content="https://gruponxdigital.com/assets/og-nx.png">
 <link rel="icon" type="image/png" href="../assets/nx-logo.png" />
 <link rel="apple-touch-icon" href="../assets/nx-logo.png" />
@@ -336,11 +336,11 @@ window.nxValidate=function(f){
   <section style="background:linear-gradient(180deg,#eef4ff 0%,#f6faff 100%);padding:40px 16px 72px">
     <div style="max-width:1200px;margin:0 auto">
       <div style="text-align:center;margin:0 auto 28px;max-width:720px">
-        <h1 style="font-size:40px;line-height:1.1;font-weight:900;letter-spacing:-1.2px;color:#0756FF;margin:0 0 12px;text-wrap:balance">Veja o NX Systems por dentro</h1>
+        <h1 style="font-size:40px;line-height:1.1;font-weight:900;letter-spacing:-1.2px;color:#0756FF;margin:0 0 12px;text-wrap:balance">Veja a NX Digital por dentro</h1>
         <p style="font-size:17px;line-height:1.6;color:#33405c;margin:0">Toque nos pontos destacados e navegue pela plataforma. Os dados são fictícios.</p>
       </div>
       {{ demoTabs }}
-      <iframe id="nxdemo" src="{{ demoSrc }}" title="Tour interativo do NX Systems" allow="fullscreen" style="{{ demoStyle }}"></iframe>
+      <iframe id="nxdemo" src="{{ demoSrc }}" title="Tour interativo da NX Digital" allow="fullscreen" style="{{ demoStyle }}"></iframe>
       <div style="display:flex;justify-content:center;margin-top:28px">
         <a href="#form-ia" style="display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#3d9bff,#1e6bff);color:#fff;font-weight:800;font-size:16px;padding:15px 32px;border-radius:100px;text-decoration:none;box-shadow:0 16px 34px -12px rgba(7,86,255,.55)">Falar com um especialista</a>
       </div>
@@ -537,7 +537,7 @@ class Component extends DCLogic {
     const sel = f.usuarios;
     const usuarios = sel && sel.selectedIndex >= 0 ? sel.options[sel.selectedIndex].text : '';
     const demoVista = (this.DEMOS.find((d) => d.slug === this.demoSlug()) || {}).nome || 'Tour completo';
-    const texto = encodeURIComponent(`Olá! Vi a demonstração do NX Systems (${demoVista}) e quero falar com um especialista.\nNome: ${nome}\nWhatsApp: ${whats}\nRamo: ${ramo}\nQuantidade de usuários: ${usuarios}`);
+    const texto = encodeURIComponent(`Olá! Vi a demonstração da NX Digital (${demoVista}) e quero falar com um especialista.\nNome: ${nome}\nWhatsApp: ${whats}\nRamo: ${ramo}\nQuantidade de usuários: ${usuarios}`);
     window.open(`https://wa.me/${this.waNumber}?text=${texto}`, '_blank');
     window.location.href = '/obrigado?nome=' + encodeURIComponent(nome);
   }
