@@ -475,6 +475,7 @@ class Component extends DCLogic {
   // Demo que abre em gruponxdigital.com/demo. As outras abrem com ?d=SLUG, sem precisar mexer aqui.
   DEMO_PADRAO = 'nx-systems-tour';
   DEMO_BASE = 'https://demo.nxdigital.com.br';
+  DEMO_VERSAO = '2';
   // Para cada demo nova, acrescente uma linha aqui (o slug é o final do link demo.nxdigital.com.br/d/SLUG).
   DEMOS = [
     { slug: 'nx-systems-tour', nome: 'Tour completo', url: '/demo-intuitiva' },
@@ -522,6 +523,7 @@ class Component extends DCLogic {
     const qs = new URLSearchParams(location.search), out = new URLSearchParams();
     ['empresa','nome','vendedor'].forEach((k) => { if (qs.get(k)) out.set(k, qs.get(k)); });
     out.set('cta', 'site');
+    out.set('v', this.DEMO_VERSAO); // muda o endereço do quadro a cada atualização do player: o navegador não reaproveita versão velha
     return this.DEMO_BASE + '/e/' + this.demoSlug() + '?' + out.toString();
   }
 
